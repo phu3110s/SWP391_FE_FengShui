@@ -1,0 +1,109 @@
+.login-background{
+    display: flex;
+    align-items: center;
+
+}
+
+.login-ui{
+    width: 50%;
+    height: 100vh;
+    background-color: #353945;
+
+}
+
+.login-logo{
+    width: 15%;
+    text-align: center;
+    background-color: white;
+    margin-top: 60px;
+    margin-left: 50px;
+    border-radius: 50px;
+}
+
+.logo{
+    width: 30%;
+    height: auto;
+    /* transform: rotate(-60deg); */
+}
+
+.login-title{
+    color: aliceblue;
+    text-align: center;
+    margin-left: 200px;
+}
+.title{
+    text-align: left;
+}
+
+.login-img{
+    width: 100%;
+}
+.Koi-imglogin{
+    width: 97%;
+    height: auto;
+}
+
+.login-form{
+    width: 50%;
+    text-align: center;
+}
+
+.login-form-title{
+    text-align: center;
+}
+
+.title-welcome{
+    text-align: left;
+    padding-left: 160px;
+    margin: 0;
+}
+
+.name-field{
+    text-align: left;
+    padding-left: 160px;
+    margin: 0;
+    margin-top: 30px;
+    margin-bottom: 7px;
+}
+
+.input-field{
+    display: inline-block;
+    border: 1px solid #cbddf0;
+    width: 60%;
+    height: 40px;
+    justify-content: space-between;
+    border-radius: 10px;
+    background-color: #EDF2F7;
+}
+
+.input-field:hover{
+    background-color: white;
+    border: 1px solid #cbddf0;
+}
+
+.signin-button{
+    display: inline-block;
+    border: 1px solid black;
+    width: 60%;
+    height: 40px;
+    justify-content: space-between;
+    border-radius: 20px;
+    background-color: black;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    color: white;
+}
+
+.signin-button:hover{
+    background-color: #353945;
+}
+
+.link-to-signup{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.link-to-signup:hover{
+    color: blue;
+}
