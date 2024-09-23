@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
-import { Input } from "antd";
+import { Input, Spin } from "antd";
 import { EyeTwoTone, EyeInvisibleOutlined } from "@ant-design/icons";
-import { login } from "../apis/auth";
+// import { login } from "../apis/auth";
 import userApi from "../apis/userApi";
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   //   const [LoginResult, setLoginResult] = useState("null");
   const navigate = useNavigate();
   const handleLogin = async () => {
@@ -16,11 +17,12 @@ export default function Login() {
       userId: username,
       password: password,
     };
+    setLoading(true);
     try {
       const response = await userApi.login(data);
       localStorage.setItem("TOKEN", response.data.accessToken);
-      localStorage.setItem("Username", response.data.fullName);
-      alert("Đăng nhập thành công");
+      localStorage.setItem("username", response.data.fullName);
+      // alert("Đăng nhập thành công");
       console.log("Login Successful:", response);
       navigate("/");
     } catch (error) {
@@ -29,6 +31,8 @@ export default function Login() {
       } else {
         alert("Lỗi mạng. Xin kiểm tra lại đường truyền");
       }
+    } finally {
+      setLoading(false);
     }
   };
   return (
@@ -88,8 +92,17 @@ export default function Login() {
             className="signin-button"
             type="submit"
             onClick={() => handleLogin()}
+            disabled={loading}
           >
-            Sign In
+            {loading ? (
+              <Spin
+                size="big"
+                className="custom-spin"
+                style={{ marginRight: 8 }}
+              />
+            ) : (
+              "Sign In"
+            )}
           </button>
         </div>
 

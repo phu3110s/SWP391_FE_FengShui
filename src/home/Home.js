@@ -6,13 +6,16 @@ export default function Home() {
   const [username, setUsername] = useState();
   const navigate = useNavigate();
   useEffect(() => {
-    const username = localStorage.getItem("Username");
-    if (username) {
+    const token = localStorage.getItem("TOKEN");
+    const username = localStorage.getItem("username");
+    console.log(token);
+    console.log(username);
+    if (token) {
       setUsername(username);
     }
-  });
+  }, []);
   const handleLogout = () => {
-    localStorage.removeItem("Username");
+    localStorage.removeItem("response.data.accessToken");
     setUsername(null);
     navigate("/");
   };
@@ -24,7 +27,9 @@ export default function Home() {
           {username ? (
             <>
               Welcome {username}
-              <button onClick={handleLogout}>Logout</button>
+              <button className="logout-button" onClick={handleLogout}>
+                Logout
+              </button>
             </>
           ) : (
             <Link to="./Login">Login ở đây nhoa</Link>
