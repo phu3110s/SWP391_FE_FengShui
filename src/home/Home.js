@@ -5,10 +5,10 @@ import Header from '../header/Header'
 export default function Home() {
     return (
         <div>
-            <Header />
-            <div>
-                <Link to={'./Login'}>Login ở đây nhoa</Link>
+            <div className='link_to_login'>
+                <Link className='' to={'./Login'}>Login ở đây nha</Link>
             </div>
+            <Header />
         </div>
     )
 }
