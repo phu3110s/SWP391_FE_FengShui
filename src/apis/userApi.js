@@ -7,7 +7,7 @@ const userApi = {
   },
 
   register: (userInfo) => {
-    const url = "/auth/register";
+    const url = "/api/v1/user";
     return axiosClient.post(url, userInfo);
   },
   getUserProfile: () => {

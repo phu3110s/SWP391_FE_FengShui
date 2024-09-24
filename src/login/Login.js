@@ -20,16 +20,25 @@ export default function Login() {
     setLoading(true);
     try {
       const response = await userApi.login(data);
+
+      // Nếu login thành công, lưu thông tin vào localStorage và điều hướng
       localStorage.setItem("TOKEN", response.data.accessToken);
       localStorage.setItem("username", response.data.fullName);
-      // alert("Đăng nhập thành công");
+      localStorage.setItem("userId", response.data.id);
       console.log("Login Successful:", response);
       navigate("/");
     } catch (error) {
       if (error.response) {
-        alert("Đăng nhập thất bại. Vui lòng thử lại");
+        const { data, status } = error.response;
+        if (status === 400) {
+          alert(data.error);
+        } else if (status === 401) {
+          alert("Thông tin người dùng nhập vào không chính xác");
+        } else {
+          alert("An unknown error occurred.");
+        }
       } else {
-        alert("Lỗi mạng. Xin kiểm tra lại đường truyền");
+        alert("Lỗi kết nối");
       }
     } finally {
       setLoading(false);
