@@ -20,13 +20,13 @@ export default function Home() {
     navigate("/");
   };
   return (
-    <div>
+    <div className="Log-container">
       <Header />
-      <div>
+      <div className="authorization-box">
         <h1>
           {username ? (
             <>
-              Welcome {username}
+              <span>Welcome {username}</span>
               <button className="logout-button" onClick={handleLogout}>
                 Logout
               </button>

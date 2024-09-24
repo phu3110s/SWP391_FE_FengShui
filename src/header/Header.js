@@ -1,7 +1,6 @@
 import React from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
-
 export default function Header() {
   return (
     <div className="header-form">
@@ -13,13 +12,13 @@ export default function Header() {
         </li>
 
         <li className="active">
-          <Link className="link" to={"/"}>
-            Blog Posting
+          <Link className="link" to={"/blogs"}>
+            Blog
           </Link>
         </li>
 
         <li className="active">
-          <Link className="link" to={"/"}>
+          <Link className="link" to={"/product"}>
             Product Posting
           </Link>
         </li>
