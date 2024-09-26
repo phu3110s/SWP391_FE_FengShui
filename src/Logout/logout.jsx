@@ -9,6 +9,7 @@ function Logout(props) {
   const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem("Username");
+    localStorage.removeItem("Token");
     setUsername(null);
     navigate("/Login");
   };

@@ -1,0 +1,46 @@
+.posting-blog{
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+}
+.posting-blog h1, .posting-blog h2{
+    text-align: center;
+}
+.posting-blog form{
+    background-color: white;
+    padding:10px;
+    border-radius: 10px;
+    width:400px;
+}
+.posting-blog label{
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.posting-blog input[type="file"]{
+    display:block;
+    margin-right:20px;
+    width: 50px;
+}
+.posting-blog button:hover {
+    background-color: #40a9ff;
+}
+.posting-blog-inputImage {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .posting-blog-inputImage label {
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .posting-blog-inputImage input[type="file"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 300px;
+  }
+   

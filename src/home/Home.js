@@ -6,7 +6,7 @@ export default function Home() {
   const [username, setUsername] = useState();
   const navigate = useNavigate();
   useEffect(() => {
-    const token = localStorage.getItem("TOKEN");
+    const token = localStorage.getItem("token");
     const username = localStorage.getItem("username");
     console.log(token);
     console.log(username);
@@ -15,7 +15,7 @@ export default function Home() {
     }
   }, []);
   const handleLogout = () => {
-    localStorage.removeItem("response.data.accessToken");
+    localStorage.removeItem("token");
     setUsername(null);
     navigate("/");
   };

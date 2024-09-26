@@ -13,23 +13,23 @@ axiosClient.interceptors.request.use(
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
+    if (config.data instanceof FormData) {
+      config.headers["Content-Type"] = "multipart/form-data";
+    } else {
+      config.headers["Content-Type"] = "application/json";
+    }
     return config;
   },
   function (error) {
-    // Xử lý lỗi trước khi gửi request
-
     return Promise.reject(error);
   }
 );
 
 axiosClient.interceptors.response.use(
   function (response) {
-    // Xử lí response
-
     return response;
   },
   function (error) {
-    // Xử lý lỗi từ response
     return Promise.reject(error);
   }
 );
