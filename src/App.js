@@ -7,7 +7,9 @@ import Policy from "./policy/Policy";
 import BlogList from "./Blog/BlogList/BlogList";
 import BlogDetail from "./Blog/BlogDetail/BlogDetail";
 import Product from "./Product/Product";
-
+import BlogPosting from "./Blog/BlogPosting/BlogPosting";
+import MyBlog from "./Blog/MyBlog/MyBlog";
+import News from "./News/News";
 function App() {
   return (
     <div className="App">
@@ -19,6 +21,9 @@ function App() {
         <Route path="/blogs" element={<BlogList />} />{" "}
         <Route path="/blogs/:id" element={<BlogDetail />} />
         <Route path="/product" element={<Product />} />
+        <Route path="/blog-posting" element={<BlogPosting />} />
+        <Route path="/MyBlog" element={<MyBlog />} />
+        <Route path="/News" element={<News />} />
       </Routes>
     </div>
   );

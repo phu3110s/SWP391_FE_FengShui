@@ -20,9 +20,7 @@ export default function Login() {
     setLoading(true);
     try {
       const response = await userApi.login(data);
-
-      // Nếu login thành công, lưu thông tin vào localStorage và điều hướng
-      localStorage.setItem("TOKEN", response.data.accessToken);
+      localStorage.setItem("token", response.data.accessToken);
       localStorage.setItem("username", response.data.fullName);
       localStorage.setItem("userId", response.data.id);
       console.log("Login Successful:", response);
@@ -31,11 +29,9 @@ export default function Login() {
       if (error.response) {
         const { data, status } = error.response;
         if (status === 400) {
-          alert(data.error);
-        } else if (status === 401) {
-          alert("Thông tin người dùng nhập vào không chính xác");
+          alert(data.Error);
         } else {
-          alert("An unknown error occurred.");
+          alert("Lỗi bất định");
         }
       } else {
         alert("Lỗi kết nối");

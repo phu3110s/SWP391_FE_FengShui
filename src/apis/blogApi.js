@@ -5,22 +5,22 @@ const blogApi = {
     const url = "/blogs";
     return axiosClient.post(url, data);
   },
-  getBlogs: (page, size) => {
-    const url = `/blogs?page=${page}&size=${size}`;
+  getBlogs: (page, size, status) => {
+    const url = `/blogs?status=${status}&page=${page}&size=${size}`;
     return axiosClient.get(url);
   },
   getBlogById: (id) => {
     const url = `/blogs/${id}`;
     return axiosClient.get(url);
   },
-  // getUserProfile: () => {
-  //   const url = "/user/profile";
-  //   return axiosClient.get(url);
-  // },
-  // updateUserProfile: (userInfo) => {
-  //   const url = "/user/profile";
-  //   return axiosClient.put(url, userInfo);
-  // },
+  uploadBlog: (FormData) => {
+    const url = "/blogs";
+    return axiosClient.post(url, FormData);
+  },
+  getUserBlog: (id, page, size, status) => {
+    const url = `users/${id}/blogs?status=${status}&page=${page}&size=${size}`;
+    return axiosClient.get(url);
+  },
 };
 
 export default blogApi;
