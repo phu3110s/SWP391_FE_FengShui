@@ -1,6 +1,10 @@
+
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "../header/Header";
+import Footer from '../components/footer/Footer'
+import Navigation from '../components/navbar/Navigation'
+
 
 export default function Home() {
   const [username, setUsername] = useState();
@@ -22,6 +26,7 @@ export default function Home() {
   return (
     <div className="Log-container">
       <Header />
+      <Navigation />
       <div className="authorization-box">
         <h1>
           {username ? (
@@ -36,6 +41,7 @@ export default function Home() {
           )}
         </h1>
       </div>
+      <Footer />
     </div>
   );
 }

@@ -1,12 +1,4 @@
-.Log-container{
-    display:flex;
-    flex-direction: column;
-}
-.authorization-box{
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #f8f9fa;
-    border-bottom: 1px solid;
+.home{
+    width: 100%;
+    height: auto;
 }
