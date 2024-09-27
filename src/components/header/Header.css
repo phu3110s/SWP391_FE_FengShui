@@ -1,5 +1,4 @@
 .header-form{
-    /* background-color: pink; */
     width: 100%;
     height: 50px;
     display: flex;
@@ -26,13 +25,11 @@
 .logo-home{
     width: 50%;
     height: auto;
-    /* transform: rotate(-60deg); */
 }
 
 .list-active{
     width: 100%;
     text-align: left;
-    /* padding-right: 500px; */
 }
 
 .active{

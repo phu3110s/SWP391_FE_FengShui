@@ -5,8 +5,9 @@ import { Input, Space } from 'antd';
 const { Search } = Input;
 
 
-const onSearch = (value, _e, info) => console.log(info?.source, value);
+// const onSearch = (value, _e, info) => console.log(info?.source, value);
 export default function Header() {
+    const token = localStorage.getItem("token");
 
     return (
         <div className='header-form'>
@@ -22,12 +23,20 @@ export default function Header() {
                     <Link className='link' to={'/Calculate'}>Feng Shui Calculating</Link>
                 </li>
 
-                <li className='active'>
-                    <Link className='link' to={'/'}>Blog Posting</Link>
+                <li className="active">
+                    <Link className="link" to={"/blogs"}>
+                        Blog
+                    </Link>
+                </li>
+
+                <li className="active">
+                    <Link className="link" to={"/blog-posting"}>
+                        Blog Posting
+                    </Link>
                 </li>
 
                 <li className='active'>
-                    <Link className='link' to={'/'}>Porduct Posting</Link>
+                    <Link className='link' to={'/'}>Product Posting</Link>
                 </li>
 
                 <li className='active'>
@@ -38,7 +47,7 @@ export default function Header() {
             <Space direction="vertical">
                 <Search
                     placeholder="input search text"
-                    onSearch={onSearch}
+                // onSearch={onSearch}
                 />
             </Space>
 
@@ -49,6 +58,14 @@ export default function Header() {
             <div className='button-link-login'>
                 <Link className='link_to_login' to={'./Login'}>Login</Link>
             </div>
+
+            {token ? (
+                <li className="active">
+                    <Link className="link" to={"/MyBlog"}>
+                        My Blog
+                    </Link>
+                </li>
+            ) : null}
 
         </div>
     )
