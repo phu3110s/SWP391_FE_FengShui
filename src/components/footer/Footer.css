@@ -1,0 +1,15 @@
+.footer{
+    bottom: 0;
+    width: 100%;
+    background-color: #FF9B9B;
+    padding: 10px 0;
+    height: auto;
+}
+.footer-infor{
+    text-align: center;
+    /* margin: 0 0 0 70px; */
+}
+
+.copyright{
+    text-align: center;
+}
