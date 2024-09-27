@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"; // Để lấy id từ URL
 import blogApi from "../../apis/blogApi";
-import Header from "../../header/Header";
+import Header from "../../components/header/Header";
 const BlogDetail = () => {
   const { id } = useParams();
   const [blog, setBlog] = useState(null);

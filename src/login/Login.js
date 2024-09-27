@@ -57,7 +57,7 @@ export default function Login() {
         </div>
 
         <div className="login-img">
-          <img className="Koi-imglogin" src="./img/Koi-login.jpg" alt=""></img>
+          <img className="Koi-imglogin" src="./img/koi-gif.gif" alt=""></img>
         </div>
       </div>
 

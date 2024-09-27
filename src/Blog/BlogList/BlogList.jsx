@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import blogApi from "../../apis/blogApi";
-import Header from "../../header/Header";
+import Header from "../../components/header/Header";
 import "../BlogList/style.css";
 const BlogList = () => {
   const [blogs, setBlogs] = useState([]);

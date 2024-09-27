@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 export default function Navigation() {
     return (
         <div className='navabar'>
-            <img className='img-background' src='./img/navbar-background.jpg' alt=''></img>
+            <img className='img-background' src='https://i.pinimg.com/originals/c9/bb/4c/c9bb4cf31417f2a8d59c5931d34ca67f.gif' alt=''></img>
 
             <ul className='list-active-navbar'>
 
