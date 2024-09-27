@@ -95,7 +95,7 @@
 }
 
 .signin-button:hover{
-    background-color: #353945;
+    background-color: #17389c;
 }
 
 .link-to-signup{
@@ -106,4 +106,7 @@
 
 .link-to-signup:hover{
     color: blue;
+}
+.custom-spin{
+    color:red;
 }

@@ -1,15 +1,15 @@
-// import { useEffect, useState } from 'react';
-// import { jwtDecode } from 'jwt-decode';
-import { /*Link,*/ Route, Routes } from 'react-router-dom';
-import './App.css';
-import Login from './login/Login';
-import Home from './home/Home';
-import SignUp from './signup/SignUp';
-import Policy from './policy/Policy';
-import Calculate from './calculate/Calculate';
-// import { Button } from 'antd';
-// import Icon from '@ant-design/icons/lib/components/Icon';
-
+import { Route, Routes } from "react-router-dom";
+import "./App.css";
+import Login from "./login/Login";
+import Home from "./home/Home";
+import SignUp from "./signup/SignUp";
+import Policy from "./policy/Policy";
+import BlogList from "./Blog/BlogList/BlogList";
+import BlogDetail from "./Blog/BlogDetail/BlogDetail";
+import Product from "./Product/Product";
+import BlogPosting from "./Blog/BlogPosting/BlogPosting";
+import MyBlog from "./Blog/MyBlog/MyBlog";
+import News from "./News/News";
 function App() {
 
   // const [user, setUser] = useState({})
@@ -43,39 +43,20 @@ function App() {
 
 
   return (
-    <>
-      {/* <div style={{ width: '100%', display: 'flex', flexDirection: 'row-reverse', justifyContent: 'flex-end' }}>
-        <div id='buttonDiv' style={{ width: '30%' }}></div>
-        {Object.keys(user).length !== 0 &&
-          <Button
-            className='btn-logout'
-            onClick={handleLogOut}>
-            <Icon left>exit_to_app</Icon>Logout
-          </Button>
-        }
-        {user &&
-          <div style={{ width: '70%' }}>
-            <h6 style={{ padding: '10px', marginBottom: '0' }}>
-              {user.name ? <Icon left style={{ fontSize: '1cm' }}>account_circle</Icon> : ''} {user.name}
-              {user.name ? <Button className='blog-btn'>
-                <Icon left style={{ fontSize: '0.8cm' }}>add</Icon>
-                <Link to='/Blog' className='blog-btn-name'>BLOG</Link>
-              </Button> : ''}
-            </h6>
-          </div>
-        }
-      </div> */}
-
-      <div className="App">
-        <Routes>
-          <Route path='/' element={<Home />}></Route>
-          <Route path='/login' element={<Login />}></Route>
-          <Route path='/signup' element={<SignUp />}></Route>
-          <Route path='/policy' element={<Policy />}></Route>
-          <Route path='/Calculate' element={<Calculate />}></Route>
-        </Routes>
-      </div>
-    </>
+    <div className="App">
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/signup" element={<SignUp />}></Route>
+        <Route path="/policy" element={<Policy />}></Route>
+        <Route path="/blogs" element={<BlogList />} />{" "}
+        <Route path="/blogs/:id" element={<BlogDetail />} />
+        <Route path="/product" element={<Product />} />
+        <Route path="/blog-posting" element={<BlogPosting />} />
+        <Route path="/MyBlog" element={<MyBlog />} />
+        <Route path="/News" element={<News />} />
+      </Routes>
+    </div>
   );
 }
 
