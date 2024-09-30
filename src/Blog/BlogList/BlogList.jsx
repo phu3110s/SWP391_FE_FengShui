@@ -13,7 +13,7 @@ const BlogList = () => {
   const fetchBlogs = async () => {
     setLoading(true);
     try {
-      const response = await blogApi.getBlogs(page, size, "Approve");
+      const response = await blogApi.getBlogs(page, size, "Approved");
       setBlogs(response.data.items);
       setLoading(false);
     } catch (err) {

@@ -5,6 +5,7 @@ import { Input, Spin } from "antd";
 import { EyeTwoTone, EyeInvisibleOutlined } from "@ant-design/icons";
 // import { login } from "../apis/auth";
 import userApi from "../apis/userApi";
+import { toast } from "react-toastify";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -20,11 +21,17 @@ export default function Login() {
     setLoading(true);
     try {
       const response = await userApi.login(data);
+      const userRole = response.data.role;
       localStorage.setItem("token", response.data.accessToken);
       localStorage.setItem("username", response.data.fullName);
       localStorage.setItem("userId", response.data.id);
+      localStorage.setItem("userImg", response.data.urlImg);
       console.log("Login Successful:", response);
-      navigate("/");
+      if (userRole === "Admin") {
+        navigate("/AdminDashboard");
+      } else {
+        navigate("/");
+      }
     } catch (error) {
       if (error.response) {
         const { data, status } = error.response;
