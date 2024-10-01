@@ -1,13 +1,15 @@
 .login-background{
     display: flex;
     align-items: center;
-
 }
 
 .login-ui{
     width: 50%;
     height: 100vh;
-    background-color: #353945;
+    /* background-color: #353945; */
+    background-image: url('https://pa1.aminoapps.com/6547/269f5957ecaa4dc4dd61f50eeba94721a9a79c2e_00.gif');
+    background-size: cover;
+    background-position: center;
 
 }
 
@@ -27,12 +29,17 @@
 }
 
 .login-title{
-    color: aliceblue;
+    color: white;
+    margin-top: 100px;
     text-align: center;
-    margin-left: 200px;
+    font-size: 35px; 
+    font-weight: bold;
 }
 .title{
-    text-align: left;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    
 }
 
 .login-img{
