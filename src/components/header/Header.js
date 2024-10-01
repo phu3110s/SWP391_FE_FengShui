@@ -11,6 +11,7 @@ export default function Header() {
 
     return (
         <div className='header-form'>
+            {/* <img src='https://i.pinimg.com/originals/c9/bb/4c/c9bb4cf31417f2a8d59c5931d34ca67f.gif' alt=''></img> */}
 
             <div className='home-logo'>
                 <Link to={'/'}>
@@ -20,7 +21,7 @@ export default function Header() {
 
             <ul className='list-active'>
                 <li className='active'>
-                    <Link className='link' to={'/Calculate'}>Feng Shui Calculating</Link>
+                    <Link className='link' to={'/Advise'}>Feng Shui Calculating</Link>
                 </li>
 
                 <li className="active">

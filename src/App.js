@@ -4,12 +4,15 @@ import Login from "./login/Login";
 import Home from "./home/Home";
 import SignUp from "./signup/SignUp";
 import Policy from "./policy/Policy";
+// import Calculate from './calculate/Calculate'
 import BlogList from "./Blog/BlogList/BlogList";
 import BlogDetail from "./Blog/BlogDetail/BlogDetail";
 import Product from "./Product/Product";
 import BlogPosting from "./Blog/BlogPosting/BlogPosting";
 import MyBlog from "./Blog/MyBlog/MyBlog";
 import News from "./News/News";
+import Advise from "./advise/Advise";
+
 function App() {
 
   // const [user, setUser] = useState({})
@@ -49,6 +52,7 @@ function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>
         <Route path="/policy" element={<Policy />}></Route>
+        <Route path="/Advise" element={<Advise />} />
         <Route path="/blogs" element={<BlogList />} />{" "}
         <Route path="/blogs/:id" element={<BlogDetail />} />
         <Route path="/product" element={<Product />} />

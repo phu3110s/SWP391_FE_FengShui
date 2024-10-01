@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Footer from '../components/footer/Footer'
 import Navigation from '../components/navbar/Navigation'
 import Header from "../components/header/Header";
@@ -37,7 +37,7 @@ export default function Home() {
               </button>
             </>
           ) : (
-            <Link to="./Login">Login ở đây!!!</Link>
+            <></>
           )}
         </h1>
       </div>

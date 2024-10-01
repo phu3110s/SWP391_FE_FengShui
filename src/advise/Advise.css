@@ -1,0 +1,46 @@
+.advise{
+    width: 100%;
+    height: auto;
+    background-image: url('https://i.pinimg.com/originals/48/42/41/4842415e5f93c69717a67668fd1fb85b.gif');
+    background-size: cover;
+    background-position: center;
+}
+
+.advise-form{
+    
+    display: flex;
+    align-items: center;
+}
+
+.user-form{
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.user-information{
+    width: 70%;
+    height: auto;
+    background-color: aliceblue;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-left: 15%;
+}
+
+.koi-form{
+    width: 50%;
+    height: 100vh;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+.koi-information{
+    width: 70%;
+    height: auto;
+    background-color: aliceblue;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-left: 15%;
+}

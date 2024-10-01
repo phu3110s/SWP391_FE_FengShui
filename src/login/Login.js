@@ -43,6 +43,7 @@ export default function Login() {
   return (
     <div className="login-background">
       <div className="login-ui">
+        {/* <img className="login-ui" alt="" src="https://pa1.aminoapps.com/6547/269f5957ecaa4dc4dd61f50eeba94721a9a79c2e_00.gif"></img> */}
         <div className="login-logo">
           <Link to={"/"}>
             <img className="logo" src="./img/Koi-logo.png" alt=""></img>
@@ -50,14 +51,12 @@ export default function Login() {
         </div>
 
         <div className="login-title">
-          <h1 className="title">
-            Welcome to <br />
-            FengShui Koi Consulting
-          </h1>
+          Welcome to <br />
+          FengShui Koi Consulting
         </div>
 
         <div className="login-img">
-          <img className="Koi-imglogin" src="./img/koi-gif.gif" alt=""></img>
+          {/* <img className="Koi-imglogin" src="./img/koi-gif.gif" alt=""></img> */}
         </div>
       </div>
 
