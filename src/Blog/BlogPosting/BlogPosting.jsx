@@ -29,7 +29,6 @@ export default function BlogPosting() {
   const handleImageInput = (e) => {
     const file = e.target.files[0];
     if (file) {
-      console.log(file.name);
       setImage(file);
     }
   };
@@ -50,9 +49,12 @@ export default function BlogPosting() {
       });
       if (response.status === 201) {
         message.success("Đăng blog thành công. Chờ duyệt");
+        setTitle("");
+        setDesription("");
+        setImage("");
       } else if (response.status === 401) {
         alert(
-          "Lỗi. Không thể đăng bài. hết phiên đăng nhập vui lòng đăng nhập lại"
+          "Lỗi. Không thể đăng bài. Hết phiên đăng nhập vui lòng đăng nhập lại"
         );
       } else {
         alert("Lỗi gì éo biết. Chịu");

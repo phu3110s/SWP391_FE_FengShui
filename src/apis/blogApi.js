@@ -21,6 +21,10 @@ const blogApi = {
     const url = `users/${id}/blogs?status=${status}&page=${page}&size=${size}`;
     return axiosClient.get(url);
   },
+  approveBlog: (id, status) => {
+    const url = `blogs/${id}/status`;
+    return axiosClient.put(url, status);
+  },
 };
 
 export default blogApi;

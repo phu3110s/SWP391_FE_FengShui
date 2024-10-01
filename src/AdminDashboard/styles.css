@@ -1,0 +1,92 @@
+.admin-dashboard {
+  display: flex;
+}
+
+.sidebar {
+  width: 180px;
+  height: 100vh;
+  background-color: #001529;
+  display: flex;
+  flex-direction: column;
+}
+
+.home-logo{
+  width: 65px;
+  height: 43px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  padding: 0;
+  margin-left: 50px;
+  border-radius: 50%;
+  background-color: white;
+  border: 1px solid #D35D6E;
+}
+
+.home-logo:hover{
+  background-color: #FF9B9B;
+}
+
+.logo-home{
+  width: 50%;
+  height: auto;
+}
+.dashboard-content {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.authorization-box {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
+}
+
+.dashboard-main-content {
+  padding: 40px;
+}
+
+/* Sidebar menu item */
+.menu-item {
+  padding: 15px;
+  cursor: pointer;
+}
+
+.menu-item:hover {
+  background-color: #1890ff; /* Màu khi hover */
+  color: white;
+}
+
+/* Header styling */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f0f2f5;
+  padding: 20px;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.header h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+}
+
+.notification-btn {
+  background-color: #1890ff;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.notification-btn:hover {
+  background-color: #40a9ff;
+}

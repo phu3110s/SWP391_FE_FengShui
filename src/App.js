@@ -12,9 +12,11 @@ import BlogPosting from "./Blog/BlogPosting/BlogPosting";
 import MyBlog from "./Blog/MyBlog/MyBlog";
 import News from "./News/News";
 import Advise from "./advise/Advise";
-
+import AdminDashboard from "./AdminDashboard/AdminDashboard";
+import BlogApprove from "./AdminFunction/BlogApprove/BlogApprove";
+import UserManagement from "./AdminFunction/UserManagement/UserManagement";
+import SellingBlogManagement from "./AdminFunction/SellingBlogManagement/SellingBlogManagement";
 function App() {
-
   // const [user, setUser] = useState({})
 
   // const handleCredentialResponse = (response) => {
@@ -44,7 +46,6 @@ function App() {
   //   }
   // }, []);
 
-
   return (
     <div className="App">
       <Routes>
@@ -59,6 +60,11 @@ function App() {
         <Route path="/blog-posting" element={<BlogPosting />} />
         <Route path="/MyBlog" element={<MyBlog />} />
         <Route path="/News" element={<News />} />
+        <Route path="/AdminDashboard" element={<AdminDashboard />}>
+          <Route path="ApprovePost" element={<BlogApprove />} />
+          <Route path="UserManagement" element={<UserManagement />} />
+          <Route path="ApproveSell" element={<SellingBlogManagement />} />
+        </Route>
       </Routes>
     </div>
   );

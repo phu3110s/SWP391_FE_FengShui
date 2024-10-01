@@ -12,7 +12,6 @@ export default function MyBlog() {
   const [size] = useState(10);
   const [loading, setLoading] = useState(false);
   const [viewType, setViewType] = useState("Approved");
-
   const fetchBlogs = async () => {
     setLoading(true);
     try {
@@ -21,7 +20,7 @@ export default function MyBlog() {
           userId,
           page,
           size,
-          "Approve"
+          "Approved"
         );
         setApproveBlogs(responseApproveBlogs.data.items);
       } else {
@@ -105,7 +104,7 @@ export default function MyBlog() {
             onChange={(e) => setPage(Number(e.target.value))}
             min="1"
           />
-          <button onClick={fetchBlogs}>Fetch Blogs</button>
+          <button onClick={fetchBlogs}>Find</button>
         </label>
       </div>
     </div>
