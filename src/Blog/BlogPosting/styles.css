@@ -2,6 +2,7 @@
     display:flex;
     flex-direction:column;
     align-items: center;
+    background-color: #40a9ff
 }
 .posting-blog h1, .posting-blog h2{
     text-align: center;
