@@ -1,13 +1,16 @@
 import axios from "axios";
-import userApi from "./userApi";
+
 const axiosClient = axios.create({
-  // baseURL: "https://feng-shui-koi.onrender.com/api/v1",
-  baseURL: "http://localhost:8080/api/v1",
+  baseURL:
+    "https://fengshuikoiapi-eahsenh5ckgqbzf7.southeastasia-01.azurewebsites.net/api/v1",
+
   headers: {
-    accept: "text/plain",
-    "Content-Type": "application/json",
+    "Content-Type": "application/json; charset=UTF-8",
+    Accept: "application/json",
+    "Accept-Language": "vi",
   },
 });
+
 axiosClient.interceptors.request.use(
   function (config) {
     const token = localStorage.getItem("token");
@@ -31,6 +34,11 @@ axiosClient.interceptors.response.use(
     return response;
   },
   function (error) {
+    if (error.response && error.response.status === 401) {
+      localStorage.removeItem("token");
+      alert("Phiên đăng nhập đã hết hạn, vui lòng đăng nhập lại");
+      window.location.href = "/login";
+    }
     return Promise.reject(error);
   }
 );

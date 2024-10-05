@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import blogApi from "../../apis/blogApi";
+import blogApi from "../../../apis/blogApi";
 import { Spin, Button, message } from "antd";
 import "./BlogApprove.css";
 export default function BlogApprove() {

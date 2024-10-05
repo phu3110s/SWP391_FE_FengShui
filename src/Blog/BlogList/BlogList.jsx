@@ -17,6 +17,12 @@ const BlogList = () => {
       setBlogs(response.data.items);
       setLoading(false);
     } catch (err) {
+      if (err.response) {
+        const { data, status } = error.response;
+        if (status === 401) {
+          alert("Hệ thống đang lỗi , vui lòng  chờ");
+        }
+      }
       setError(err.message);
       setLoading(false);
     }
