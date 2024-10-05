@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/SWP391_FE_FengShui/static/css/main.3b8fa938.css",
+    "main.js": "/SWP391_FE_FengShui/static/js/main.eb55cad4.js",
+    "index.html": "/SWP391_FE_FengShui/index.html",
+    "main.3b8fa938.css.map": "/SWP391_FE_FengShui/static/css/main.3b8fa938.css.map",
+    "main.eb55cad4.js.map": "/SWP391_FE_FengShui/static/js/main.eb55cad4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3b8fa938.css",
+    "static/js/main.eb55cad4.js"
+  ]
+}
