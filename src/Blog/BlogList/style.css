@@ -5,6 +5,10 @@
     gap: 20px;
     margin:20px;
 }
+.dashboard-content{
+    width: 60%;
+    margin-left: 110px;
+}
 .blog-item{
     width: 300px;
     border: 1px solid;
