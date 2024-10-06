@@ -4,6 +4,7 @@ import blogApi from "../../apis/blogApi";
 import Header from "../../components/header/Header";
 import "../BlogList/style.css";
 import { Spin } from "antd";
+import "./NewBlog.css";
 const NewBlog = () => {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);

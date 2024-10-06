@@ -1,8 +1,7 @@
+import { Avatar, Dropdown, Input, Menu, Space } from "antd";
 import React, { useEffect, useState } from "react";
-import "./Header.css";
 import { Link, useNavigate } from "react-router-dom";
-import { Input, Space, Dropdown, Menu, Avatar } from "antd";
-import { UserOutlined } from "@ant-design/icons";
+import "./Header.css";
 const { Search } = Input;
 
 export default function Header() {
@@ -29,6 +28,9 @@ export default function Header() {
         <Link to="/MyBlog">My Blog</Link>
       </Menu.Item>
       <Menu.Item key="2">
+        <Link to="/user-profile">My Profile</Link>
+      </Menu.Item>
+      <Menu.Item key="3">
         <span onClick={handleLogout}>Logout</span>
       </Menu.Item>
     </Menu>
