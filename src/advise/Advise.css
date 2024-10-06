@@ -1,15 +1,15 @@
 .advise{
     width: 100%;
     height: auto;
-    background-image: url('https://i.pinimg.com/originals/48/42/41/4842415e5f93c69717a67668fd1fb85b.gif');
+    /* background-image: url('https://i.pinimg.com/originals/48/42/41/4842415e5f93c69717a67668fd1fb85b.gif'); */
     background-size: cover;
     background-position: center;
 }
 
 .advise-form{
-    
     display: flex;
     align-items: center;
+
 }
 
 .user-form{
@@ -26,6 +26,8 @@
     padding-top: 30px;
     padding-bottom: 30px;
     margin-left: 15%;
+    border: 1px solid black;
+    border-radius: 10px;
 }
 
 .koi-form{
@@ -43,4 +45,6 @@
     padding-top: 30px;
     padding-bottom: 30px;
     margin-left: 15%;
+    border: 1px solid black;
+    border-radius: 10px;
 }

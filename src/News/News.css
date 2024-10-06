@@ -1,16 +1,4 @@
-/* * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-  }
-  body {
-    display: flex;
-    font-family: "Poppins", sans-serif;
-  }
-  body > div {
-    margin: 5% auto 0;
-    max-width: 720px;
-  } */
+
   .tabs {
     display: flex;
     position: relative;
@@ -39,12 +27,7 @@
     cursor: pointer;
     transition: all 0.5s ease;
   }
-  /* .tab-icon {
-    font-size: 24px;
-    width: 32px;
-    position: relative;
-    top: 2px;
-  } */
+
   .tab-item:hover {
     opacity: 1;
     background-color: rgba(194, 53, 100, 0.05);

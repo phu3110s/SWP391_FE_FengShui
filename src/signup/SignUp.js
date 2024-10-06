@@ -95,7 +95,7 @@ export default function SignUp() {
           <div>
             <p className="name-field">Gender</p>
             <div>
-              <label>
+              <label className="label-gender">
                 <input
                   type="radio"
                   name="gender"
@@ -105,7 +105,7 @@ export default function SignUp() {
                 />
                 Male
               </label>
-              <label>
+              <label className="label-gender">
                 <input
                   type="radio"
                   name="gender"
@@ -115,7 +115,7 @@ export default function SignUp() {
                 />
                 Female
               </label>
-              <label>
+              <label className="label-gender">
                 <input
                   type="radio"
                   name="gender"
