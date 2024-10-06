@@ -18,6 +18,7 @@ import UserManagement from "./AdminFunction/UserManagement/UserManagement";
 import SellingBlogManagement from "./AdminFunction/SellingBlogManagement/SellingBlogManagement";
 import AdminRoute from "./AdminFunction/AdminRoute/AdminRoute";
 import Calculate from "./calculate/Calculate";
+import UserProfile from "./User/UserComponent/UserProfile/UserProfile";
 function App() {
   // const [user, setUser] = useState({})
 
@@ -54,6 +55,7 @@ function App() {
         <Route path="/" element={<Home />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>
+        <Route path="/user-profile" element={<UserProfile />} />
         <Route path="/policy" element={<Policy />}></Route>
         <Route path="/Advise" element={<Advise />} />
         <Route path="/Calculate" element={<Calculate />}></Route>

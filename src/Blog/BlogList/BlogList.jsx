@@ -21,6 +21,13 @@ const BlogList = () => {
         const { data, status } = error.response;
         if (status === 401) {
           alert("Hệ thống đang lỗi , vui lòng  chờ");
+          setError(
+            "Người dùng chưa xác thực/Phiên đăng nhập hết hạn. Vui lòng đăng nhập lại"
+          );
+        } else if (status === 500) {
+          setError("Lỗi kết nối!!!Vui lòng thử lại sau");
+        } else {
+          alert("lỗi bất định");
         }
       }
       setError(err.message);
@@ -36,7 +43,7 @@ const BlogList = () => {
   }, [page]);
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
+  if (error) return <p>Lỗi: {error}</p>;
 
   return (
     <div>
