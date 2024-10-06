@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/SWP391_FE_FengShui/static/css/main.3b8fa938.css",
-    "main.js": "/SWP391_FE_FengShui/static/js/main.eb55cad4.js",
-    "index.html": "/SWP391_FE_FengShui/index.html",
-    "main.3b8fa938.css.map": "/SWP391_FE_FengShui/static/css/main.3b8fa938.css.map",
-    "main.eb55cad4.js.map": "/SWP391_FE_FengShui/static/js/main.eb55cad4.js.map"
+    "main.css": "/static/css/main.f90dbfdb.css",
+    "main.js": "/static/js/main.8eebb18c.js",
+    "index.html": "/index.html",
+    "main.f90dbfdb.css.map": "/static/css/main.f90dbfdb.css.map",
+    "main.8eebb18c.js.map": "/static/js/main.8eebb18c.js.map"
   },
   "entrypoints": [
-    "static/css/main.3b8fa938.css",
-    "static/js/main.eb55cad4.js"
+    "static/css/main.f90dbfdb.css",
+    "static/js/main.8eebb18c.js"
   ]
 }
