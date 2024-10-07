@@ -31,6 +31,8 @@
     font-size: 0.9em;
 }
 .pagination {
-    margin-top: 20px;
-    text-align: center;
-}
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    margin-top: 20px; 
+  }

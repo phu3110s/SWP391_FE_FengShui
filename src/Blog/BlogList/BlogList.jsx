@@ -3,46 +3,54 @@ import { Link } from "react-router-dom";
 import blogApi from "../../apis/blogApi";
 import Header from "../../components/header/Header";
 import "../BlogList/style.css";
+import { Pagination, Spin } from "antd";
+
 const BlogList = () => {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
-  const [size] = useState(10);
+  const [size, setSize] = useState(10); // Page size
+  const [totalItems, setTotalItems] = useState(0); // Total number of blog posts
+
+  const handlePageChange = (page, pageSize) => {
+    setPage(page);
+    setSize(pageSize);
+  };
 
   const fetchBlogs = async () => {
     setLoading(true);
     try {
+      // Call the API with current page and size
       const response = await blogApi.getBlogs(page, size, "Approved");
-      setBlogs(response.data.items);
+
+      setBlogs(response.data.items); // Set the blogs data
+      setTotalItems(response.data.total); // Set the total number of items (this is important for pagination)
       setLoading(false);
     } catch (err) {
+      // Error handling
       if (err.response) {
-        const { data, status } = error.response;
+        const { status } = err.response;
         if (status === 401) {
-          alert("Hệ thống đang lỗi , vui lòng  chờ");
           setError(
-            "Người dùng chưa xác thực/Phiên đăng nhập hết hạn. Vui lòng đăng nhập lại"
+            "Người dùng chưa xác thực/Phiên đăng nhập hết hạn. Vui lòng đăng nhập lại."
           );
         } else if (status === 500) {
-          setError("Lỗi kết nối!!!Vui lòng thử lại sau");
+          setError("Lỗi kết nối!!! Vui lòng thử lại sau.");
         } else {
-          alert("lỗi bất định");
+          setError("Lỗi không xác định.");
         }
+      } else {
+        setError(err.message);
       }
-      setError(err.message);
       setLoading(false);
     }
   };
-
   useEffect(() => {
     fetchBlogs();
-  }, []);
-  useEffect(() => {
-    fetchBlogs();
-  }, [page]);
+  }, [page, size]);
+  if (loading) return <Spin size="Big" style={{ margin: 8 }} />;
 
-  if (loading) return <p>Loading...</p>;
   if (error) return <p>Lỗi: {error}</p>;
 
   return (
@@ -50,6 +58,7 @@ const BlogList = () => {
       <Header />
       <h1>Blogs</h1>
 
+      {/* Blog List */}
       <div className="blog-container">
         {blogs.map((blog) => (
           <div className="blog-info" key={blog.id}>
@@ -61,16 +70,12 @@ const BlogList = () => {
         ))}
       </div>
       <div className="pagination">
-        <label>
-          Page:
-          <input
-            type="number"
-            value={page}
-            onChange={(e) => setPage(Number(e.target.value))}
-            min="1"
-          />
-          <button onClick={fetchBlogs}>Fetch Blogs</button>
-        </label>
+        <Pagination
+          current={page}
+          pageSize={size}
+          total={totalItems}
+          onChange={handlePageChange}
+        />
       </div>
     </div>
   );
