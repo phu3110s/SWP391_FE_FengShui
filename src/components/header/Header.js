@@ -83,35 +83,34 @@ export default function Header() {
       <Space direction="vertical">
         <Search placeholder="input search text" />
       </Space>
-
-      <div className="authorization-box">
-        {username ? (
-          <Dropdown overlay={userMenu} trigger={["click"]}>
-            <div
-              style={{
-                cursor: "pointer",
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              <Avatar src={avatarUrl} alt="User Avatar" />{" "}
+            <div className="authorization-box">
+                {username ? (
+                    <Dropdown overlay={userMenu} trigger={["click"]}>
+                        <div
+                            style={{
+                                cursor: "pointer",
+                                display: "flex",
+                                alignItems: "center",
+                            }}
+                        >
+                            <Avatar src={avatarUrl} alt="User Avatar" />
+                        </div>
+                    </Dropdown>
+                ) : (
+                    <>
+                        <div className="button-link-signin">
+                            <Link className="link_to_signin" to="/SignUp">
+                                Sign In
+                            </Link>
+                        </div>
+                        <div className="button-link-login">
+                            <Link className="link_to_login" to="/Login">
+                                Login
+                            </Link>
+                        </div>
+                    </>
+                )}
             </div>
-          </Dropdown>
-        ) : (
-          <>
-            <div className="button-link-signin">
-              <Link className="link_to_signin" to="/SignUp">
-                Sign In
-              </Link>
-            </div>
-            <div className="button-link-login">
-              <Link className="link_to_login" to="/Login">
-                Login
-              </Link>
-            </div>
-          </>
-        )}
-      </div>
-    </div>
-  );
+        </div>
+    );
 }

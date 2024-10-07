@@ -69,39 +69,42 @@ export default function BlogPosting() {
   return (
     <div className="posting-blog">
       <Header />
-      <h1>Blog Posting Page</h1>
-      <h2>Creating new blog</h2>
-      <form onSubmit={handleSubmitPost}>
-        <div className="posting-blog-title">
-          <label>Title:</label>
-          <Input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            placeholder="Enter blog title"
-            required
-          />
-        </div>
-        <div className="posting-blog-description">
-          <label>Description</label>
-          <Input.TextArea
-            type="text"
-            value={description}
-            onChange={(e) => setDesription(e.target.value)}
-            placeholder="Enter your blog description"
-            required
-          />
-        </div>
-        <div className="posting-blog-inputImage">
-          <label>Upload Image:</label>
-          <input type="file" onChange={handleImageInput} accept="image/*" />
-        </div>
-        <div>
-          <button type="submit" disabled={loading}>
-            {loading ? "Posting..." : "Post Blog"}
-          </button>
-        </div>
-      </form>
+      <div className="bl-pt-form">
+        <h1>Blog Posting Page</h1>
+        <h3>Creating new blog</h3>
+        <form onSubmit={handleSubmitPost}>
+          <div className="posting-blog-title">
+            <label>Title</label>
+            <Input
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              placeholder="Enter blog title"
+              required
+            />
+          </div>
+          <div className="posting-blog-description">
+            <label>Description</label>
+            <Input.TextArea
+              type="text"
+              value={description}
+              onChange={(e) => setDesription(e.target.value)}
+              placeholder="Enter your blog description"
+              required
+            />
+          </div>
+          <div className="posting-blog-inputImage">
+            <label>Upload Image</label><br />
+            Share photos or a video<br />
+            <input type="file" onChange={handleImageInput} accept="image/*" />
+          </div>
+          <div>
+            <button className="subm-pt-button" type="submit" disabled={loading}>
+              {loading ? "Posting..." : "Post Blog"}
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

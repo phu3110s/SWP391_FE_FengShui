@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../../components/header/Header";
 import blogApi from "../../apis/blogApi";
 import { Link } from "react-router-dom";
+import './MyBlog.css'
 
 export default function MyBlog() {
   const userId = localStorage.getItem("userId");
@@ -51,18 +52,18 @@ export default function MyBlog() {
   }, [viewType, page]);
 
   return (
-    <div>
+    <div className="my-blog">
       <Header />
-      <h1>My Blogs</h1>
+      <h1 className="blog-title">My Blogs</h1>
       <div>
-        <button onClick={() => setViewType("Approved")}>Approved Blogs</button>
-        <button onClick={() => setViewType("Pending")}>Pending Blogs</button>
+        <button className="button-blogs" onClick={() => setViewType("Approved")}>Approved Blogs</button>
+        <button className="button-blogs" onClick={() => setViewType("Pending")}>Pending Blogs</button>
       </div>
 
       {loading && <p>Loading...</p>}
       {viewType === "Approved" ? (
         <div>
-          <h2>Các bài post đã được duyệt của bạn</h2>
+          <h2 className="blog-title">Các bài post đã được duyệt của bạn</h2>
           <div className="approve-blog-container">
             {approveBlogs.length > 0 ? (
               approveBlogs.map((blog) => (
@@ -73,13 +74,13 @@ export default function MyBlog() {
                 </div>
               ))
             ) : (
-              <p>Bạn chưa có bài post nào được duyệt.</p>
+              <p className="blog-title">Bạn chưa có bài post nào được duyệt.</p>
             )}
           </div>
         </div>
       ) : (
         <div>
-          <h2>Các bài post đang chờ được duyệt của bạn</h2>
+          <h2 className="blog-title">Các bài post đang chờ được duyệt của bạn</h2>
           <div className="pending-blog-container">
             {pendingBlogs.length > 0 ? (
               pendingBlogs.map((blog) => (
@@ -90,7 +91,7 @@ export default function MyBlog() {
                 </div>
               ))
             ) : (
-              <p>Bạn chưa có bài post nào đang chờ duyệt.</p>
+              <p className="blog-title">Bạn chưa có bài post nào đang chờ duyệt.</p>
             )}
           </div>
         </div>
@@ -99,12 +100,14 @@ export default function MyBlog() {
         <label>
           Page:
           <input
+            className="input-blog"
             type="number"
             value={page}
             onChange={(e) => setPage(Number(e.target.value))}
             min="1"
           />
           <button onClick={fetchBlogs}>Find</button>
+          {/* <button className="button-blogs" onClick={fetchBlogs}>Fetch Blogs</button> */}
         </label>
       </div>
     </div>

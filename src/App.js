@@ -1,4 +1,6 @@
-import { Route, Router, Routes } from "react-router-dom";
+
+import { Route, Routes, useNavigate } from "react-router-dom";
+
 import "./App.css";
 import Login from "./login/Login";
 import Home from "./home/Home";
@@ -16,11 +18,15 @@ import AdminDashboard from "./AdminDashboard/AdminDashboard";
 import BlogApprove from "./AdminFunction/BlogManagement/BlogApprove/BlogApprove";
 import UserManagement from "./AdminFunction/UserManagement/UserManagement";
 import SellingBlogManagement from "./AdminFunction/SellingBlogManagement/SellingBlogManagement";
+// import { useEffect, useState } from "react";
+// import { jwtDecode } from "jwt-decode";
 import AdminRoute from "./AdminFunction/AdminRoute/AdminRoute";
 import Calculate from "./calculate/Calculate";
 import UserProfile from "./User/UserComponent/UserProfile/UserProfile";
 function App() {
-  // const [user, setUser] = useState({})
+
+  // const [user, setUser] = useState(null);
+  // const navigate = useNavigate();
 
   // const handleCredentialResponse = (response) => {
   //   console.log("Encoded JWT ID token: " + response.credential);
@@ -28,16 +34,20 @@ function App() {
   //   console.log(decoded);
   //   setUser(decoded);
   //   document.getElementById('buttonDiv').hidden = true;
-  // }
+  //   navigate('/');
+  // };
+
   // const handleLogOut = (e) => {
-  //   setUser({});
+  //   setUser(null);
   //   document.getElementById('buttonDiv').hidden = false;
-  // }
+  //   navigate('/');
+  // };
+
   // useEffect(() => {
-  // /* global google*/
+  //   /* global google */
   //   window.onload = function () {
   //     google.accounts.id.initialize({
-  //       client_id: "445671209507-ttfcqdr2jogd8laupl5dg38d6h8fe3a2.apps.googleusercontent.com",
+  //       client_id: "423770878382-akbp1pkmgfgfjr2dmk70hh3l61l2131g.apps.googleusercontent.com",
   //       callback: handleCredentialResponse
   //     });
 
@@ -46,11 +56,25 @@ function App() {
   //       { theme: "outline", size: "large" }
   //     );
   //     google.accounts.id.prompt();
-  //   }
+  //   };
   // }, []);
 
   return (
     <div className="App">
+      {/* <div id="buttonDiv"></div>
+      {user && (
+        <div style={{ alignItems: 'right', textAlign: 'right', marginRight: '50px' }}>
+          <img
+            src={user.picture}
+            alt="User Avatar"
+            style={{ width: '50px', borderRadius: '50%' }}
+          />
+          <h6 style={{ padding: '0', marginBottom: '5px', margin: '0' }}>
+            {user.name}
+          </h6>
+          <button onClick={handleLogOut}>Log Out</button>
+        </div>
+      )} */}
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/login" element={<Login />}></Route>
