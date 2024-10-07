@@ -1,85 +1,88 @@
+import { Avatar, Dropdown, Input, Menu, Space } from "antd";
 import React, { useEffect, useState } from "react";
-import "./Header.css";
 import { Link, useNavigate } from "react-router-dom";
-import { Input, Space, Dropdown, Menu, Avatar } from "antd";
-import { UserOutlined } from "@ant-design/icons";
+import "./Header.css";
 const { Search } = Input;
 
 export default function Header() {
-    const [username, setUsername] = useState();
-    const token = localStorage.getItem("token");
-    const username1 = localStorage.getItem("username");
-    const avatarUrl = localStorage.getItem("userImg");
-    const navigate = useNavigate();
+  const [username, setUsername] = useState();
+  const token = localStorage.getItem("token");
+  const username1 = localStorage.getItem("username");
+  const avatarUrl = localStorage.getItem("userImg");
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (token) {
+      setUsername(username1);
+    }
+  }, []);
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setUsername(null);
+    navigate("/");
+  };
 
-    useEffect(() => {
-        if (token) {
-            setUsername(username1);
-        }
-    }, [token, username1]);
+  const userMenu = (
+    <Menu>
+      <Menu.Item key="1">
+        <Link to="/MyBlog">My Blog</Link>
+      </Menu.Item>
+      <Menu.Item key="2">
+        <Link to="/user-profile">My Profile</Link>
+      </Menu.Item>
+      <Menu.Item key="3">
+        <span onClick={handleLogout}>Logout</span>
+      </Menu.Item>
+    </Menu>
+  );
+  return (
+    <div className="header-form">
+      <div className="home-logo">
+        <Link to={"/"}>
+          <img className="logo-home" src="./img/Koi-logo.png" alt=""></img>
+        </Link>
+      </div>
 
-    const handleLogout = () => {
-        localStorage.removeItem("token");
-        setUsername(null);
-        navigate("/");
-    };
+      <ul className="list-active">
+        <li className="active">
+          <Link className="link" to={"/Calculate"}>
+            Feng Shui Calculating
+          </Link>
+        </li>
+        <li className="active">
+          <Link className="link" to={"/blogs"}>
+            Blog
+          </Link>
+        </li>
+        {token ? (
+          <li className="active">
+            <Link className="link" to={"/blog-posting"}>
+              Blog Posting
+            </Link>
+          </li>
+        ) : null}
 
-    const userMenu = (
-        <Menu>
-            <Menu.Item key="1">
-                <Link to="/MyBlog">My Blog</Link>
-            </Menu.Item>
-            <Menu.Item key="2">
-                <span onClick={handleLogout}>Logout</span>
-            </Menu.Item>
-        </Menu>
-    );
+        {token ? (
+          <li className="active">
+            <Link className="link" to={"/MyBlog"}>
+              My Blog
+            </Link>
+          </li>
+        ) : null}
+        <li className="active">
+          <Link className="link" to={"/"}>
+            Product Posting
+          </Link>
+        </li>
+        <li className="active">
+          <Link className="link" to={"/"}>
+            News
+          </Link>
+        </li>
+      </ul>
 
-    return (
-        <div className='header-form'>
-            <div className='home-logo'>
-                <Link to={'/'}>
-                    <img className='logo-home' src='./img/Koi-logo.png' alt=''></img>
-                </Link>
-            </div>
-
-            <ul className='list-active'>
-                <li className='active'>
-                    <Link className='link' to={'/Advise'}>Feng Shui Calculating</Link>
-                </li>
-                <li className="active">
-                    <Link className="link" to={"/blogs"}>
-                        Blog
-                    </Link>
-                </li>
-                <li className="active">
-                    <Link className="link" to={"/blog-posting"}>
-                        Blog Posting
-                    </Link>
-                </li>
-                {token ? (
-                    <li className="active">
-                        <Link className="link" to={"/MyBlog"}>
-                            My Blog
-                        </Link>
-                    </li>
-                ) : null}
-                <li className="active">
-                    <Link className="link" to={"/Product"}>
-                        Product Posting
-                    </Link>
-                </li>
-                <li className="active">
-                    <Link className="link" to={"/News"}>
-                        News
-                    </Link>
-                </li>
-            </ul>
-
-            <Space direction="vertical">
-                <Search placeholder="input search text" />
-            </Space>
-
+      <Space direction="vertical">
+        <Search placeholder="input search text" />
+      </Space>
             <div className="authorization-box">
                 {username ? (
                     <Dropdown overlay={userMenu} trigger={["click"]}>

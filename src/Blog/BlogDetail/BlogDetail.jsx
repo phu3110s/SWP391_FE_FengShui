@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"; // Để lấy id từ URL
 import blogApi from "../../apis/blogApi";
 import Header from "../../components/header/Header";
+import "./BlogDetail.css";
 const BlogDetail = () => {
   const { id } = useParams();
   const [blog, setBlog] = useState(null);
@@ -13,10 +14,14 @@ const BlogDetail = () => {
       setLoading(true);
       try {
         const response = await blogApi.getBlogById(id);
-        setBlog(response.data);
-        setLoading(false);
+        if (response && response.data) {
+          setBlog(response.data);
+        } else {
+          throw new Error("No blog data found");
+        }
       } catch (err) {
-        setError(err.message);
+        setError(err.message || "Lỗi");
+      } finally {
         setLoading(false);
       }
     };

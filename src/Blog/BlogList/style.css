@@ -5,6 +5,10 @@
     gap: 20px;
     margin:20px;
 }
+.dashboard-content{
+    width: 60%;
+    margin-left: 110px;
+}
 .blog-item{
     width: 300px;
     border: 1px solid;
@@ -27,6 +31,8 @@
     font-size: 0.9em;
 }
 .pagination {
-    margin-top: 20px;
-    text-align: center;
-}
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    margin-top: 20px; 
+  }

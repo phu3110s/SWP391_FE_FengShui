@@ -57,7 +57,7 @@ export default function BlogPosting() {
           "Lỗi. Không thể đăng bài. Hết phiên đăng nhập vui lòng đăng nhập lại"
         );
       } else {
-        alert("Lỗi gì éo biết. Chịu");
+        alert("Lỗi gì bất định");
       }
     } catch (error) {
       message.error(error.message || "Có lỗi xảy ra khi đăng blog");

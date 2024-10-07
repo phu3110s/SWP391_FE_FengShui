@@ -1,4 +1,6 @@
+
 import { Route, Routes, useNavigate } from "react-router-dom";
+
 import "./App.css";
 import Login from "./login/Login";
 import Home from "./home/Home";
@@ -13,11 +15,14 @@ import MyBlog from "./Blog/MyBlog/MyBlog";
 import News from "./News/News";
 import Advise from "./advise/Advise";
 import AdminDashboard from "./AdminDashboard/AdminDashboard";
-import BlogApprove from "./AdminFunction/BlogApprove/BlogApprove";
+import BlogApprove from "./AdminFunction/BlogManagement/BlogApprove/BlogApprove";
 import UserManagement from "./AdminFunction/UserManagement/UserManagement";
 import SellingBlogManagement from "./AdminFunction/SellingBlogManagement/SellingBlogManagement";
 // import { useEffect, useState } from "react";
 // import { jwtDecode } from "jwt-decode";
+import AdminRoute from "./AdminFunction/AdminRoute/AdminRoute";
+import Calculate from "./calculate/Calculate";
+import UserProfile from "./User/UserComponent/UserProfile/UserProfile";
 function App() {
 
   // const [user, setUser] = useState(null);
@@ -74,15 +79,24 @@ function App() {
         <Route path="/" element={<Home />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>
+        <Route path="/user-profile" element={<UserProfile />} />
         <Route path="/policy" element={<Policy />}></Route>
         <Route path="/Advise" element={<Advise />} />
+        <Route path="/Calculate" element={<Calculate />}></Route>
         <Route path="/blogs" element={<BlogList />} />{" "}
         <Route path="/blogs/:id" element={<BlogDetail />} />
         <Route path="/product" element={<Product />} />
         <Route path="/blog-posting" element={<BlogPosting />} />
         <Route path="/MyBlog" element={<MyBlog />} />
         <Route path="/News" element={<News />} />
-        <Route path="/AdminDashboard" element={<AdminDashboard />}>
+        <Route
+          path="/AdminDashboard"
+          element={
+            <AdminRoute>
+              <AdminDashboard />
+            </AdminRoute>
+          }
+        >
           <Route path="ApprovePost" element={<BlogApprove />} />
           <Route path="UserManagement" element={<UserManagement />} />
           <Route path="ApproveSell" element={<SellingBlogManagement />} />
