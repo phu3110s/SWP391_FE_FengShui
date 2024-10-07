@@ -21,9 +21,9 @@ const userApi = {
     const url = `users/${id}/info`;
     return axiosClient.put(url, userInfo);
   },
-  updateUserImage: (id) => {
-    const url = `users/${id}`;
-    return axiosClient.put(url, id);
+  updateUserImage: (id, image) => {
+    const url = `users/${id}/image`;
+    return axiosClient.put(url, image);
   },
 };
 

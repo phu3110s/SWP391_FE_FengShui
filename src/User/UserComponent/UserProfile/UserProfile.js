@@ -1,4 +1,4 @@
-import { Button, Input, Spin } from "antd";
+import { Button, Form, Input, Spin } from "antd";
 import React, { useEffect, useState } from "react";
 import userApi from "../../../apis/userApi";
 import Header from "../../../components/header/Header";
@@ -15,45 +15,52 @@ export default function UserProfile() {
     gender: "",
     birthdate: "",
   });
+
+  const [image, setImage] = useState(null);
   const userId = localStorage.getItem("userId");
   const token = localStorage.getItem("token");
-
-  useEffect(() => {
-    const fetchUserProfile = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        const response = await userApi.getUserProfile(userId, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+  const handleImageInput = (e) => {
+    console.log("koko");
+    const file = e.target.files[0];
+    if (file) {
+      setImage(file);
+    }
+  };
+  const fetchUserProfile = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await userApi.getUserProfile(userId, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (response && response.data) {
+        setUserProfile(response.data);
+        setFormData({
+          fullName: response.data.fullName,
+          email: response.data.email,
+          gender: response.data.gender,
+          birthdate: response.data.birthdate,
         });
-        if (response && response.data) {
-          setUserProfile(response.data);
-          setFormData({
-            fullName: response.data.fullName,
-            email: response.data.email,
-            gender: response.data.gender,
-            birthdate: response.data.birthdate,
-          });
-        } else {
-          throw new Error("No user Profile found");
-        }
-      } catch (error) {
-        if (error.response) {
-          const { data, status } = error.response;
-          if (status === 401) {
-            alert(data.error);
-          }
-        } else {
-          alert("Lỗi kết nối");
-        }
-        setError(error.message);
-      } finally {
-        setLoading(false);
+      } else {
+        throw new Error("No user Profile found");
       }
-    };
-
+    } catch (error) {
+      if (error.response) {
+        const { data, status } = error.response;
+        if (status === 401) {
+          alert(data.error);
+        }
+      } else {
+        alert("Lỗi kết nối");
+      }
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
     fetchUserProfile();
   }, [userId, token]);
 
@@ -68,21 +75,33 @@ export default function UserProfile() {
   const handleEditClick = () => {
     setIsEditing(true);
   };
-
   const handleSaveClick = async () => {
     setLoading(true);
     try {
-      await userApi.updateUserProfile(userId, formData, {
+      const response = await userApi.updateUserProfile(userId, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
+      if (image) {
+        const formDataToUpdateImage = new FormData();
+        formDataToUpdateImage.append("imgFile", image);
+        const response2 = await userApi.updateUserImage(
+          userId,
+          formDataToUpdateImage,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+      }
+
       setIsEditing(false);
       setUserProfile(formData);
       alert("Profile updated successfully!");
+      fetchUserProfile();
     } catch (error) {
       if (error.response) {
-        const { data, status } = error.response;
+        const { status } = error.response;
         if (status === 401) {
           alert(error.message);
         } else {
@@ -96,20 +115,42 @@ export default function UserProfile() {
   };
 
   if (loading) return <Spin size="large" style={{ marginRight: 8 }} />;
-
   if (error) return <div>Error: {error}</div>;
+
+  if (!userProfile) return <div>No user profile found</div>;
 
   return (
     <div>
       <Header />
-      {/* <h1>User Profile</h1>
+      <h1>User Profile</h1>
       <div className="user-profile-container">
         <div className="user-profile-header">
           {userProfile && (
-            <img
-              className="user-avatar"
-              src={userProfile.urlImg}
-              alt={"userImg"}
+            <>
+              {isEditing ? (
+                <img
+                  className="user-avatar"
+                  src={userProfile.urlImg}
+                  alt={"userImg"}
+                  onClick={() => document.getElementById("imageUpload").click()}
+                  style={{ cursor: "pointer" }}
+                />
+              ) : (
+                <img
+                  className="user-avatar"
+                  src={userProfile.urlImg}
+                  alt={"userImg"}
+                />
+              )}
+            </>
+          )}
+          {isEditing && (
+            <input
+              type="file"
+              id="imageUpload"
+              style={{ display: "none" }}
+              onChange={handleImageInput}
+              accept="image/*"
             />
           )}
           <h2 className="user-fullname">{userProfile.fullName}</h2>
@@ -125,7 +166,6 @@ export default function UserProfile() {
                   onChange={handleInputChange}
                 />
               </h3>
-              (formData.email ?(
               <h3>
                 Email:{" "}
                 <Input
@@ -134,7 +174,7 @@ export default function UserProfile() {
                   onChange={handleInputChange}
                 />
               </h3>
-              ): null)
+
               <h3>
                 Gender:{" "}
                 <Input
@@ -146,6 +186,7 @@ export default function UserProfile() {
               <h3>
                 Birthdate:{" "}
                 <Input
+                  type="date"
                   name="birthdate"
                   value={formData.birthdate}
                   onChange={handleInputChange}
@@ -182,7 +223,7 @@ export default function UserProfile() {
             Edit Profile
           </Button>
         )}
-      </div> */}
+      </div>
     </div>
   );
 }

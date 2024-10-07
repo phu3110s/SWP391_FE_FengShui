@@ -10,7 +10,7 @@ export default function Header() {
   const username1 = localStorage.getItem("username");
   const avatarUrl = localStorage.getItem("userImg");
   const navigate = useNavigate();
-
+  console.log(avatarUrl);
   useEffect(() => {
     if (token) {
       setUsername(username1);

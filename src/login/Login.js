@@ -37,7 +37,7 @@ export default function Login() {
       if (error.response) {
         const { data, status } = error.response;
         if (status === 400) {
-          alert(data.Error);
+          alert("Thông tin sai. Vui lòng nhập lại");
         } else {
           alert("Lỗi bất định");
         }
@@ -75,7 +75,7 @@ export default function Login() {
         </div>
 
         <div className="login-email">
-          <p className="name-field">E-mail</p>
+          <p className="name-field">E-mail or Phone Number</p>
           <input
             type="email"
             onChange={(e) => setUsername(e.target.value)}
