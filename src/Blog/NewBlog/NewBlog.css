@@ -70,4 +70,9 @@
     color: #333;
     margin-bottom: 20px;
   }
-  
+  .show-blog-link{
+    display: block;
+    margin-top: 20px;
+    margin-bottom:20px;
+    text-align: center;
+  }

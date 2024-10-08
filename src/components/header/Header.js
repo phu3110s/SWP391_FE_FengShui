@@ -2,13 +2,40 @@ import { Avatar, Dropdown, Input, Menu, Space } from "antd";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Header.css";
+import userApi from "../../apis/userApi";
 const { Search } = Input;
 
 export default function Header() {
   const [username, setUsername] = useState();
   const token = localStorage.getItem("token");
   const username1 = localStorage.getItem("username");
-  const avatarUrl = localStorage.getItem("userImg");
+  const userId = localStorage.getItem("userId");
+  const [loginStatus, setLogin] = useState(false);
+  const [avatarUrl, setAvatar] = useState(null);
+  const fetchUserProfile = async () => {
+    try {
+      const response = await userApi.getUserProfile(userId, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (response && response.data) {
+        setAvatar(response.data.urlImg);
+      }
+    } catch (error) {
+      if (error.response) {
+        const { data, status } = error.response;
+        if (status === 401) {
+          alert(data.error);
+        } else {
+          alert("Lỗi kết nối");
+        }
+      }
+    }
+  };
+  if (username) {
+    fetchUserProfile();
+  }
   const navigate = useNavigate();
   useEffect(() => {
     if (token) {
@@ -83,34 +110,34 @@ export default function Header() {
       <Space direction="vertical">
         <Search placeholder="input search text" />
       </Space>
-            <div className="authorization-box">
-                {username ? (
-                    <Dropdown overlay={userMenu} trigger={["click"]}>
-                        <div
-                            style={{
-                                cursor: "pointer",
-                                display: "flex",
-                                alignItems: "center",
-                            }}
-                        >
-                            <Avatar src={avatarUrl} alt="User Avatar" />
-                        </div>
-                    </Dropdown>
-                ) : (
-                    <>
-                        <div className="button-link-signin">
-                            <Link className="link_to_signin" to="/SignUp">
-                                Sign In
-                            </Link>
-                        </div>
-                        <div className="button-link-login">
-                            <Link className="link_to_login" to="/Login">
-                                Login
-                            </Link>
-                        </div>
-                    </>
-                )}
+      <div className="authorization-box">
+        {username ? (
+          <Dropdown overlay={userMenu} trigger={["click"]}>
+            <div
+              style={{
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <Avatar src={avatarUrl} alt="User Avatar" />
             </div>
-        </div>
-    );
+          </Dropdown>
+        ) : (
+          <>
+            <div className="button-link-signin">
+              <Link className="link_to_signin" to="/SignUp">
+                Sign In
+              </Link>
+            </div>
+            <div className="button-link-login">
+              <Link className="link_to_login" to="/Login">
+                Login
+              </Link>
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  );
 }

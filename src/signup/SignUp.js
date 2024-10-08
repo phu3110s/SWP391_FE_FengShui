@@ -22,13 +22,6 @@ export default function SignUp() {
     };
     console.log(userRegisterInfo);
   };
-  // try{
-  //   const response = await userApi.register(userRegisterInfo)
-  // }
-  // catch{
-
-  // }
-
   return (
     <div className="signup-background">
       <div className="signup-ui">

@@ -1,13 +1,24 @@
 import { Avatar, Dropdown, Menu } from "antd";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import "./styles.css";
+import SubMenu from "antd/es/menu/SubMenu";
 
 const AdminDashboard = () => {
   const [username, setUsername] = useState();
+  const token = localStorage.getItem(token);
   const avatarUrl = localStorage.getItem("userImg");
   const navigate = useNavigate();
-
+  useEffect(
+    () => {
+      if (!token) {
+        alert("Phiên đăng nhập hết hạn");
+      }
+      navigate("/Login");
+    },
+    [token],
+    navigate
+  );
   const handleLogout = () => {
     localStorage.removeItem("token");
     setUsername(null);
@@ -51,14 +62,14 @@ const Sidebar = () => {
             <Menu.Item
               key="1"
               className="Approved-Articles"
-              onClick={() => navigate("/AdminDashboard/...")}
+              onClick={() => navigate("/AdminDashboard")}
             >
               Các bài viết đã được duyệt
             </Menu.Item>
-            <Menu.Item key="2" onClick={() => navigate("/AdminDashboard/...")}>
+            <Menu.Item key="2" onClick={() => navigate("/AdminDashboard")}>
               Pending Blog
             </Menu.Item>
-            <Menu.Item key="3" onClick={() => navigate("/AdminDashboard/..")}>
+            <Menu.Item key="3" onClick={() => navigate("/AdminDashboard")}>
               Rejected Blog
             </Menu.Item>
           </Menu.SubMenu>
@@ -82,7 +93,35 @@ const Sidebar = () => {
         >
           Quản lý blog mua bán
         </Menu.Item>
-        <Menu.Item key="7" onClick={() => navigate("/AdminDashboard/settings")}>
+        <Menu.SubMenu key="sub3" title="Quản lí cá">
+          <Menu.Item
+            key="7"
+            onClick={() => navigate("/AdminDashboard/FishGenerate")}
+          >
+            Quản lí cá
+          </Menu.Item>
+          <Menu.Item
+            key="8"
+            onClick={() => navigate("/AdminDashboard/FishViewing")}
+          >
+            Thêm giống cá mới
+          </Menu.Item>
+        </Menu.SubMenu>
+        <Menu.SubMenu key="sub4" title="Quản lí hồ">
+          <Menu.Item
+            key="7"
+            onClick={() => navigate("/AdminDashboard/PondGenerate")}
+          >
+            Quản lí hồ
+          </Menu.Item>
+          <Menu.Item
+            key="8"
+            onClick={() => navigate("/AdminDashboard/PondViewing")}
+          >
+            Thêm kiểu hồ mới
+          </Menu.Item>
+        </Menu.SubMenu>
+        <Menu.Item key="9" onClick={() => navigate("/AdminDashboard/settings")}>
           Cài đặt
         </Menu.Item>
       </Menu>

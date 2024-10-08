@@ -1,4 +1,3 @@
-
 import { Route, Routes, useNavigate } from "react-router-dom";
 
 import "./App.css";
@@ -22,9 +21,8 @@ import SellingBlogManagement from "./AdminFunction/SellingBlogManagement/Selling
 // import { jwtDecode } from "jwt-decode";
 import AdminRoute from "./AdminFunction/AdminRoute/AdminRoute";
 import Calculate from "./calculate/Calculate";
-import UserProfile from "./User/UserComponent/UserProfile/UserProfile";
+import UserProfile from "./User/UserComponent/UserProfile/MyProfile/UserProfile";
 function App() {
-
   // const [user, setUser] = useState(null);
   // const navigate = useNavigate();
 

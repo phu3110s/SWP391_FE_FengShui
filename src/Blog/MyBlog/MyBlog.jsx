@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import Header from "../../components/header/Header";
 import blogApi from "../../apis/blogApi";
 import { Link } from "react-router-dom";
-import './MyBlog.css'
+import "./MyBlog.css";
+import { Pagination } from "antd";
 
 export default function MyBlog() {
   const userId = localStorage.getItem("userId");
@@ -10,9 +11,14 @@ export default function MyBlog() {
   const [approveBlogs, setApproveBlogs] = useState([]);
   const [pendingBlogs, setPendingBlogs] = useState([]);
   const [page, setPage] = useState(1);
-  const [size] = useState(10);
+  const [size, setSize] = useState(5);
+  const [totalPage, setTotalPage] = useState(0);
   const [loading, setLoading] = useState(false);
   const [viewType, setViewType] = useState("Approved");
+  const handlePageChange = (page, pageSize) => {
+    setPage(page);
+    setSize(pageSize);
+  };
   const fetchBlogs = async () => {
     setLoading(true);
     try {
@@ -24,6 +30,7 @@ export default function MyBlog() {
           "Approved"
         );
         setApproveBlogs(responseApproveBlogs.data.items);
+        setTotalPage(responseApproveBlogs.data.totalPages);
       } else {
         const responsePendingBlogs = await blogApi.getUserBlog(
           userId,
@@ -32,6 +39,7 @@ export default function MyBlog() {
           "Pending"
         );
         setPendingBlogs(responsePendingBlogs.data.items);
+        setTotalPage(responsePendingBlogs.data.totalPages);
       }
       setLoading(false);
     } catch (err) {
@@ -56,8 +64,15 @@ export default function MyBlog() {
       <Header />
       <h1 className="blog-title">My Blogs</h1>
       <div>
-        <button className="button-blogs" onClick={() => setViewType("Approved")}>Approved Blogs</button>
-        <button className="button-blogs" onClick={() => setViewType("Pending")}>Pending Blogs</button>
+        <button
+          className="button-blogs"
+          onClick={() => setViewType("Approved")}
+        >
+          Approved Blogs
+        </button>
+        <button className="button-blogs" onClick={() => setViewType("Pending")}>
+          Pending Blogs
+        </button>
       </div>
 
       {loading && <p>Loading...</p>}
@@ -80,7 +95,9 @@ export default function MyBlog() {
         </div>
       ) : (
         <div>
-          <h2 className="blog-title">Các bài post đang chờ được duyệt của bạn</h2>
+          <h2 className="blog-title">
+            Các bài post đang chờ được duyệt của bạn
+          </h2>
           <div className="pending-blog-container">
             {pendingBlogs.length > 0 ? (
               pendingBlogs.map((blog) => (
@@ -91,24 +108,20 @@ export default function MyBlog() {
                 </div>
               ))
             ) : (
-              <p className="blog-title">Bạn chưa có bài post nào đang chờ duyệt.</p>
+              <p className="blog-title">
+                Bạn chưa có bài post nào đang chờ duyệt.
+              </p>
             )}
           </div>
         </div>
       )}
       <div className="pagination">
-        <label>
-          Page:
-          <input
-            className="input-blog"
-            type="number"
-            value={page}
-            onChange={(e) => setPage(Number(e.target.value))}
-            min="1"
-          />
-          <button onClick={fetchBlogs}>Find</button>
-          {/* <button className="button-blogs" onClick={fetchBlogs}>Fetch Blogs</button> */}
-        </label>
+        <Pagination
+          current={page}
+          pageSize={size}
+          total={totalPage}
+          onChange={handlePageChange}
+        />
       </div>
     </div>
   );
