@@ -1,11 +1,13 @@
 import axios from "axios";
 import userApi from "./userApi";
 const axiosClient = axios.create({
-  // baseURL: "https://feng-shui-koi.onrender.com/api/v1",
-  baseURL: "http://localhost:8080/api/v1",
+  baseURL:
+    "https://fengshuikoiapi-eahsenh5ckgqbzf7.southeastasia-01.azurewebsites.net/api/v1",
+
   headers: {
-    accept: "text/plain",
-    "Content-Type": "application/json",
+    "Content-Type": "application/json; charset=UTF-8",
+    Accept: "application/json",
+    "Accept-Language": "vi",
   },
 });
 axiosClient.interceptors.request.use(

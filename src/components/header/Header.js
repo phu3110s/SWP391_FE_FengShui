@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Header.css";
 import { Link, useNavigate } from "react-router-dom";
-import { Input, Space, Dropdown, Menu, Avatar } from "antd";
+import { Input, Space, Dropdown, Menu, Avatar, message } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 const { Search } = Input;
 
@@ -21,7 +21,9 @@ export default function Header() {
     const handleLogout = () => {
         localStorage.removeItem("token");
         setUsername(null);
+        message('logout thành công');
         navigate("/");
+
     };
 
     const userMenu = (
