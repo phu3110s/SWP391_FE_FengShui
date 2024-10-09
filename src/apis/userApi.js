@@ -5,9 +5,9 @@ const userApi = {
     const url = "/auth/login";
     return axiosClient.post(url, userInfo);
   },
-  register: (userInfo) => {
-    const url = "/api/v1/user";
-    return axiosClient.post(url, userInfo);
+  register: (data) => {
+    const url = "/users";
+    return axiosClient.post(url, data);
   },
   getAll: (page, size) => {
     const url = `/users?page=${page}&status=${size}`;

@@ -1,0 +1,66 @@
+.generate-fish{
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #E6F0F4;
+}
+.gen-fish-form{
+  width: 60%;
+}
+.gen-fish-form h1{
+    color: whitesmoke;
+    text-shadow: 
+    -1px 0 black, 
+    0 1px black,      
+    1px 0 black, 
+    0 -1px black;
+}
+.gen-fish-text{
+    text-align: left;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 15px 10px 15px 10px;
+}
+.gen-fish-text label{
+    font-weight: bolder;
+}
+
+.gen-fish-description{
+    text-align: left;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 15px 10px 15px 10px;
+}
+.gen-fish-description label{
+    font-weight: bolder;
+}
+
+.gen-fish-image{
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 15px 10px 15px 10px;
+    
+}
+
+.gen-fish-image input{
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.gen-fish-image label{
+    font-weight: bolder;
+}
+.submit-button{
+    width: 100px;
+    height: 50px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: #0061A0;
+    color: white;
+}

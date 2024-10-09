@@ -1,33 +1,56 @@
 import React from "react";
 import "./SignUp.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { EyeTwoTone, EyeInvisibleOutlined } from "@ant-design/icons";
-import { Input, Spin } from "antd";
+import { Input, message, Radio, Spin } from "antd";
 import { useState } from "react";
 import userApi from "../apis/userApi";
 export default function SignUp() {
   const [fullname, setFullname] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
-  const [gender, setGender] = useState("");
+  const [gender, setGender] = useState(null);
   const [birthDate, setBirthDate] = useState("");
+  const [loading, setLoading] = useState(false);
+  const Navigate = useNavigate()
+  const validatePhone = (phoneNumber) => {
+    const phoneRegex = /^[0-9]{10}$/;
+    return phoneRegex.test(phoneNumber);
+  };
   const handleRegister = async (e) => {
     e.preventDefault();
-    const userRegisterInfo = {
-      fullname: fullname,
-      phoneNumber: phoneNumber,
-      password: password,
-      gender: gender,
-      birthDate: birthDate,
-    };
-    console.log(userRegisterInfo);
-  };
-  // try{
-  //   const response = await userApi.register(userRegisterInfo)
-  // }
-  // catch{
+    setLoading(true);
+    if (!validatePhone(phoneNumber)) {
+      message.error("Nhập sai format điện thoại. Vui lòng nhập lại");
+      return;
+    }
+    if(!birthDate){
+      message.error("Vui lòng nhập ngày tháng");
+      return;
 
-  // }
+    }
+      const userRegisterInfo = {
+        fullname: fullname,
+        phoneNumber: phoneNumber,
+        password: password,
+        gender: gender,
+        birthDate: birthDate,
+      };
+      try {
+        const response = await userApi.register(userRegisterInfo);
+        if(response && response.data){
+          message.success("Tạo tài khoản thành công.Chúng tôi sẽ điều hướng bạn đến trang đăng nhập");
+          Navigate("/login")
+        }
+      } catch (error) {
+        if (error.response === 401) {
+          return;
+        } else {
+          message.error("Lỗi kết nối");
+        }
+      }
+  }
+  if(loading) return<div><Spin size="big"/></div>
 
   return (
     <div className="signup-background">
@@ -78,7 +101,6 @@ export default function SignUp() {
               required
             />
           </div>
-
           <div>
             <p className="name-field">Password</p>
             <Input
@@ -93,38 +115,14 @@ export default function SignUp() {
             />
           </div>
           <div>
-            <p className="name-field">Gender</p>
+            <p className="gender-field">Gender</p>
             <div>
-              <label className="label-gender">
-                <input
-                  type="radio"
-                  name="gender"
-                  value="male"
-                  checked={gender === "male"}
-                  onChange={(e) => setGender(e.target.value)}
-                />
-                Male
-              </label>
-              <label className="label-gender">
-                <input
-                  type="radio"
-                  name="gender"
-                  value="female"
-                  checked={gender === "female"}
-                  onChange={(e) => setGender(e.target.value)}
-                />
-                Female
-              </label>
-              <label className="label-gender">
-                <input
-                  type="radio"
-                  name="gender"
-                  value="other"
-                  checked={gender === "other"}
-                  onChange={(e) => setGender(e.target.value)}
-                />
-                Other
-              </label>
+            <Radio.Group onChange = {(e)=>setGender(e.target.value)} value={gender}>
+              <Radio value="Male">Male</Radio>
+              <Radio value="Female">Female</Radio>
+              <Radio value="Other">Other</Radio>
+            </Radio.Group>
+              
             </div>
           </div>
           <div>
@@ -133,7 +131,7 @@ export default function SignUp() {
               type="date"
               className="input-field"
               value={birthDate}
-              onChange={(e) => setBirthDate(e.target.value)} // Cập nhật giá trị birthDate
+              onChange={(e) => setBirthDate(e.target.value)} 
               required
             />
           </div>
@@ -151,6 +149,7 @@ export default function SignUp() {
               className="signin-button"
               type="submit"
               onClick={handleRegister}
+              disabled={loading}
             >
               Sign In
             </button>

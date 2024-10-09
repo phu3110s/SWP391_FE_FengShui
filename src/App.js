@@ -1,4 +1,3 @@
-
 import { Route, Routes, useNavigate } from "react-router-dom";
 
 import "./App.css";
@@ -22,9 +21,12 @@ import SellingBlogManagement from "./AdminFunction/SellingBlogManagement/Selling
 // import { jwtDecode } from "jwt-decode";
 import AdminRoute from "./AdminFunction/AdminRoute/AdminRoute";
 import Calculate from "./calculate/Calculate";
-import UserProfile from "./User/UserComponent/UserProfile/UserProfile";
+import UserProfile from "./User/UserComponent/UserProfile/MyProfile/UserProfile";
+import PondAdding from "./AdminFunction/PondManagement/PondAdding/PondAdding";
+import FishAdding from "./AdminFunction/FishManagement/FishAdding/FishAdding";
+import FishViewing from "./AdminFunction/FishManagement/FishViewing/FishViewing";
+import PondViewing from "./AdminFunction/PondManagement/PondViewing/PondViewing";
 function App() {
-
   // const [user, setUser] = useState(null);
   // const navigate = useNavigate();
 
@@ -100,6 +102,10 @@ function App() {
           <Route path="ApprovePost" element={<BlogApprove />} />
           <Route path="UserManagement" element={<UserManagement />} />
           <Route path="ApproveSell" element={<SellingBlogManagement />} />
+          <Route path="PondGenerating" element={<PondAdding />} />
+          <Route path="FishGenerating" element={<FishAdding />} />
+          <Route path="FishManagement" element={<FishViewing />} />
+          <Route path="PondManagement" element={<PondViewing/>}/>
         </Route>
       </Routes>
     </div>
