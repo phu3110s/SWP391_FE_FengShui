@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { Table, Button, Modal, Popconfirm, message } from "antd";
-import fishApi from "../../../apis/fishApi";
-import "./FishViewing.css"
-const FishViewing = () => {
+import { Table, Button, Modal, Popconfirm, message } from "antd"
+import pondApi from "../../../apis/pondApi";
+import "./PondViewing.css"
+const PondViewing = () => {
   const token = localStorage.getItem("token");
   const [page, setPage] = useState(1);
-  const [size, setSize] = useState(10); // Số lượng item trên mỗi trang
-  const [total, setTotal] = useState(0); // Tổng số item
-  const [fishList, setFishList] = useState([]);
+  const [size, setSize] = useState(10); 
+  const [total, setTotal] = useState(0); 
+  const [PondList, setPondList] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fishApi.getFish(page, size, {
+        const response = await pondApi.getPond(page, size, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-        setFishList(response.data.items);
-        setTotal(response.data.total);
+        setPondList(response.data.items);
+        setTotal(response.data.total); 
       } catch (error) {
         message.error("Lỗi khi tải dữ liệu.");
       }
@@ -27,11 +27,11 @@ const FishViewing = () => {
     fetchData();
   }, [page, size]);
 
-  const [selectedFish, setSelectedFish] = useState(null);
+  const [selectedPond, setSelectedPond] = useState(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const showFishDetails = (fish) => {
-    setSelectedFish(fish);
+  const showPondDetails = (Pond) => {
+    setSelectedPond(Pond);
     setIsModalVisible(true);
   };
 
@@ -39,32 +39,33 @@ const FishViewing = () => {
     setIsModalVisible(false);
   };
 
-  const handleDeleteFish = (key) => {
+  const handleDeletePond = (key) => {
+    setPondList(PondList.filter((Pond) => Pond.key !== key));
     message.success("Xóa thành công!");
   };
 
   const columns = [
     {
-      title: "Name",
-      dataIndex: "name",
-      key: "namae",
+      title: "Material",
+      dataIndex: "material",
+      key: "material",
     },
     {
-      title: "Size",
-      dataIndex: "size",
-      key: "size",
+      title: "Shape",
+      dataIndex: "shape",
+      key: "shape",
     },
     {
-      title: "Color",
-      dataIndex: "color",
-      key: "color",
+      title: "Water Level",
+      dataIndex: "waterLevel",
+      key: "Water Level",
     },
     {
       title: "Description",
       dataIndex: "description",
       key: "description",
-      render: (_, fish) => (
-        <Button type="link" onClick={() => showFishDetails(fish)}>
+      render: (_, Pond) => (
+        <Button type="link" onClick={() => showPondDetails(Pond)}>
           Bấm vào đây để xem chi tiết
         </Button>
       ),
@@ -72,7 +73,7 @@ const FishViewing = () => {
     {
       title: "Action",
       key: "action",
-      render: (_, fish) => (
+      render: (_, Pond) => (
         <>
           <Button
             type="primary"
@@ -82,7 +83,7 @@ const FishViewing = () => {
           </Button>
           <Popconfirm
             title="Bạn có chắc chắn muốn xóa?"
-            onConfirm={() => handleDeleteFish(fish.key)}
+            onConfirm={() => handleDeletePond(Pond.key)}
             okText="Yes"
             cancelText="No"
           >
@@ -100,10 +101,10 @@ const FishViewing = () => {
 
   return (
     <div style={{ marginLeft: '100px' }}>
-      <h1>Admin - Danh Sách Cá</h1>
+      <h1>Admin - Danh Sách Hồ</h1>
       <Table
         columns={columns}
-        dataSource={fishList}
+        dataSource={PondList}
         pagination={{
           current: page,
           pageSize: size,
@@ -122,24 +123,25 @@ const FishViewing = () => {
           </Button>,
         ]}
       >
-        {selectedFish && (
+        {selectedPond && (
           <div>
             <p>
-              <strong>Name:</strong> {selectedFish.name}
+              <strong>Name:</strong> {selectedPond.material}
             </p>
             <p>
-              <strong>Size:</strong> {selectedFish.size}
+              <strong>Size:</strong> {selectedPond.shape}
             </p>
             <p>
-              <strong>Color:</strong> {selectedFish.color}
+              <strong>Color:</strong> {selectedPond.waterLevel}
             </p>
             <p>
-              <strong>Description:</strong> {selectedFish.description}
+              <strong>Description:</strong> {selectedPond.description}
             </p>
-            <p>
+            <div className="image-container"><p>
               <strong>Image:</strong><br></br>
-              <img className="popup-image" src={selectedFish.urlImg} title="Ảnh thoi có gì đâu mà bấm vô"/>
-            </p>
+              <img className="popup-image" src={selectedPond.urlImg} title="Ảnh thoi có gì đâu mà bấm vô"/>
+            </p></div>
+            
           </div>
         )}
       </Modal>
@@ -147,4 +149,4 @@ const FishViewing = () => {
   );
 };
 
-export default FishViewing;
+export default PondViewing;

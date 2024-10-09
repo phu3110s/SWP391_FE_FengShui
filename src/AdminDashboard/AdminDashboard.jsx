@@ -107,7 +107,7 @@ const Sidebar = () => {
           </Menu.Item>
         </Menu.SubMenu>
         <Menu.SubMenu key="sub4" title="Quản lí hồ">
-          <Menu.Item key="9" onClick={() => navigate("/AdminDashboard/")}>
+          <Menu.Item key="9" onClick={() => navigate("/AdminDashboard/PondManagement")}>
             Quản lí hồ
           </Menu.Item>
           <Menu.Item

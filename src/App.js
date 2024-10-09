@@ -25,6 +25,7 @@ import UserProfile from "./User/UserComponent/UserProfile/MyProfile/UserProfile"
 import PondAdding from "./AdminFunction/PondManagement/PondAdding/PondAdding";
 import FishAdding from "./AdminFunction/FishManagement/FishAdding/FishAdding";
 import FishViewing from "./AdminFunction/FishManagement/FishViewing/FishViewing";
+import PondViewing from "./AdminFunction/PondManagement/PondViewing/PondViewing";
 function App() {
   // const [user, setUser] = useState(null);
   // const navigate = useNavigate();
@@ -104,6 +105,7 @@ function App() {
           <Route path="PondGenerating" element={<PondAdding />} />
           <Route path="FishGenerating" element={<FishAdding />} />
           <Route path="FishManagement" element={<FishViewing />} />
+          <Route path="PondManagement" element={<PondViewing/>}/>
         </Route>
       </Routes>
     </div>
