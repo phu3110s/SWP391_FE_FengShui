@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import userApi from "../../../../apis/userApi";
 import Header from "../../../../components/header/Header";
 import "./UserProfile.css";
+import Radio from "antd/es/radio/radio";
 
 export default function UserProfile() {
   const [userProfile, setUserProfile] = useState(null);
@@ -185,15 +186,15 @@ export default function UserProfile() {
 
               <h3>
                 Gender:{" "}
-                <Select
+                <Radio.Group
                   name="gender"
-                  value={formData.gender}
                   onChange={handleGenderChange}
+                  value={formData.gender}
                 >
-                  <Select.Option value="Male">Male</Select.Option>
-                  <Select.Option value="Female">Female</Select.Option>
-                  <Select.Option value="Other">Other</Select.Option>
-                </Select>
+                  <Radio value="Male">Male</Radio>
+                  <Radio value="Female">Female</Radio>
+                  <Radio value="Other">Other</Radio>
+                </Radio.Group>
               </h3>
               <h3>
                 Birthdate:{" "}

@@ -6,15 +6,15 @@ import SubMenu from "antd/es/menu/SubMenu";
 
 const AdminDashboard = () => {
   const [username, setUsername] = useState();
-  const token = localStorage.getItem(token);
+  const token = localStorage.getItem("token");
   const avatarUrl = localStorage.getItem("userImg");
   const navigate = useNavigate();
   useEffect(
     () => {
       if (!token) {
         alert("Phiên đăng nhập hết hạn");
+        navigate("/Login");
       }
-      navigate("/Login");
     },
     [token],
     navigate
@@ -38,7 +38,6 @@ const AdminDashboard = () => {
       <div className="dashboard-content">
         <Header avatarUrl={avatarUrl} userMenu={userMenu} />
         <div className="dashboard-main-content">
-          <h1>Hello my friend</h1>
           <Outlet />
         </div>
       </div>
@@ -96,32 +95,29 @@ const Sidebar = () => {
         <Menu.SubMenu key="sub3" title="Quản lí cá">
           <Menu.Item
             key="7"
-            onClick={() => navigate("/AdminDashboard/FishGenerate")}
+            onClick={() => navigate("/AdminDashboard/FishManagement")}
           >
             Quản lí cá
           </Menu.Item>
           <Menu.Item
             key="8"
-            onClick={() => navigate("/AdminDashboard/FishViewing")}
+            onClick={() => navigate("/AdminDashboard/FishGenerating")}
           >
             Thêm giống cá mới
           </Menu.Item>
         </Menu.SubMenu>
         <Menu.SubMenu key="sub4" title="Quản lí hồ">
-          <Menu.Item
-            key="7"
-            onClick={() => navigate("/AdminDashboard/PondGenerate")}
-          >
+          <Menu.Item key="9" onClick={() => navigate("/AdminDashboard/")}>
             Quản lí hồ
           </Menu.Item>
           <Menu.Item
-            key="8"
-            onClick={() => navigate("/AdminDashboard/PondViewing")}
+            key="10"
+            onClick={() => navigate("/AdminDashboard/PondGenerating")}
           >
-            Thêm kiểu hồ mới
+            Thêm kiểu hồ
           </Menu.Item>
         </Menu.SubMenu>
-        <Menu.Item key="9" onClick={() => navigate("/AdminDashboard/settings")}>
+        <Menu.Item key="11" onClick={() => navigate("/AdminDashboard/")}>
           Cài đặt
         </Menu.Item>
       </Menu>

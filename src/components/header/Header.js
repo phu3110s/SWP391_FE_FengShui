@@ -26,7 +26,7 @@ export default function Header() {
       if (error.response) {
         const { data, status } = error.response;
         if (status === 401) {
-          alert(data.error);
+          return;
         } else {
           alert("Lỗi kết nối");
         }

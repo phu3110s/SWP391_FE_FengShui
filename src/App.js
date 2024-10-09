@@ -22,6 +22,9 @@ import SellingBlogManagement from "./AdminFunction/SellingBlogManagement/Selling
 import AdminRoute from "./AdminFunction/AdminRoute/AdminRoute";
 import Calculate from "./calculate/Calculate";
 import UserProfile from "./User/UserComponent/UserProfile/MyProfile/UserProfile";
+import PondAdding from "./AdminFunction/PondManagement/PondAdding/PondAdding";
+import FishAdding from "./AdminFunction/FishManagement/FishAdding/FishAdding";
+import FishViewing from "./AdminFunction/FishManagement/FishViewing/FishViewing";
 function App() {
   // const [user, setUser] = useState(null);
   // const navigate = useNavigate();
@@ -98,6 +101,9 @@ function App() {
           <Route path="ApprovePost" element={<BlogApprove />} />
           <Route path="UserManagement" element={<UserManagement />} />
           <Route path="ApproveSell" element={<SellingBlogManagement />} />
+          <Route path="PondGenerating" element={<PondAdding />} />
+          <Route path="FishGenerating" element={<FishAdding />} />
+          <Route path="FishManagement" element={<FishViewing />} />
         </Route>
       </Routes>
     </div>
