@@ -1,3 +1,4 @@
+import { message } from "antd";
 import axios from "axios";
 
 const axiosClient = axios.create({
@@ -36,7 +37,7 @@ axiosClient.interceptors.response.use(
   function (error) {
     if (error.response && error.response.status === 401) {
       localStorage.removeItem("token");
-      alert("Phiên đăng nhập đã hết hạn, vui lòng đăng nhập lại");
+      message.error("Tính năng này yêu cầu đăng nhập/ Phiên đăng nhập hết hạn")
       window.location.href = "/login";
     }
     return Promise.reject(error);

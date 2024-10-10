@@ -6,6 +6,7 @@ import "./UserProfile.css";
 import Radio from "antd/es/radio/radio";
 
 export default function UserProfile() {
+  const loggedInUserId = localStorage.getItem("userId");
   const [userProfile, setUserProfile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -19,7 +20,7 @@ export default function UserProfile() {
 
   const [image, setImage] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
-  const userId = localStorage.getItem("userId");
+  
   const token = localStorage.getItem("token");
   const handleImageInput = (e) => {
     const file = e.target.files[0];
@@ -32,7 +33,7 @@ export default function UserProfile() {
     setLoading(true);
     setError(null);
     try {
-      const response = await userApi.getUserProfile(userId, {
+      const response = await userApi.getUserProfile(loggedInUserId, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -65,7 +66,7 @@ export default function UserProfile() {
   };
   useEffect(() => {
     fetchUserProfile();
-  }, [userId, token]);
+  }, [loggedInUserId, token]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -87,7 +88,7 @@ export default function UserProfile() {
   const handleSaveClick = async () => {
     setLoading(true);
     try {
-      const response = await userApi.updateUserProfile(userId, formData, {
+      const response = await userApi.updateUserProfile(loggedInUserId, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -96,7 +97,7 @@ export default function UserProfile() {
         const formDataToUpdateImage = new FormData();
         formDataToUpdateImage.append("imgFile", image);
         const response2 = await userApi.updateUserImage(
-          userId,
+          loggedInUserId,
           formDataToUpdateImage,
           {
             headers: { Authorization: `Bearer ${token}` },

@@ -26,6 +26,7 @@ import PondAdding from "./AdminFunction/PondManagement/PondAdding/PondAdding";
 import FishAdding from "./AdminFunction/FishManagement/FishAdding/FishAdding";
 import FishViewing from "./AdminFunction/FishManagement/FishViewing/FishViewing";
 import PondViewing from "./AdminFunction/PondManagement/PondViewing/PondViewing";
+import OtherUserProfile from "./User/OtherUser/OtherUserProfile";
 function App() {
   // const [user, setUser] = useState(null);
   // const navigate = useNavigate();
@@ -82,6 +83,7 @@ function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>
         <Route path="/user-profile" element={<UserProfile />} />
+        <Route path="/user-profile/:userId" element={<OtherUserProfile/>}/>
         <Route path="/policy" element={<Policy />}></Route>
         <Route path="/Advise" element={<Advise />} />
         <Route path="/Calculate" element={<Calculate />}></Route>
@@ -91,6 +93,7 @@ function App() {
         <Route path="/blog-posting" element={<BlogPosting />} />
         <Route path="/MyBlog" element={<MyBlog />} />
         <Route path="/News" element={<News />} />
+       
         <Route
           path="/AdminDashboard"
           element={
