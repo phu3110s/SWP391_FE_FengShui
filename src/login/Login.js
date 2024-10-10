@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
-import { Input, Spin } from "antd";
+import { Input, message, Spin } from "antd";
 import { EyeTwoTone, EyeInvisibleOutlined } from "@ant-design/icons";
 // import { login } from "../apis/auth";
 import userApi from "../apis/userApi";
@@ -17,7 +17,7 @@ export default function Login() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      navigate("/");
+      return;
     }
   }, [navigate]);
   const handleLogin = async () => {
@@ -34,7 +34,7 @@ export default function Login() {
       localStorage.setItem("userId", response.data.id);
       localStorage.setItem("userImg", response.data.urlImg);
       localStorage.setItem("userRole", response.data.role);
-      console.log("Login Successful:", response);
+      message.success("login thành công")
       if (userRole === "Admin") {
         navigate("/AdminDashboard");
       } else {
@@ -44,7 +44,7 @@ export default function Login() {
       if (error.response) {
         const { data, status } = error.response;
         if (status === 400) {
-          alert("Thông tin sai. Vui lòng nhập lại");
+          message.error("Thông tin sai. Vui lòng nhập lại!!");
         } else {
           alert("Lỗi bất định");
         }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 import Footer from "../components/footer/Footer";
 import Navigation from "../components/navbar/Navigation";
 import { Link } from "react-router-dom";
@@ -13,10 +13,12 @@ export default function Home() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     const username = localStorage.getItem("username");
-    console.log(token);
-    console.log(username);
+    const role = localStorage.getItem("userRole");
     if (token) {
       setUsername(username);
+    }
+    if(role === "Admin"){
+      navigate("/AdminDashboard")
     }
   }, []);
   const handleLogout = () => {

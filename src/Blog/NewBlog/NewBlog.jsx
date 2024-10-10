@@ -5,29 +5,30 @@ import blogApi from "../../apis/blogApi";
 // import "../BlogList/style.css";
 import { Spin } from "antd";
 import "./NewBlog.css";
+
 const NewBlog = () => {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [page, setPage] = useState(1);
+  const [page] = useState(1);
   const [size] = useState(12);
-
   const fetchBlogs = async () => {
-    setLoading(true);
     try {
+      setLoading(true);  // Đặt loading trước khi gọi API
       const response = await blogApi.getBlogs(page, size, "Approved");
       setBlogs(response.data.items);
-      setLoading(false);
     } catch (err) {
       setError(err.message);
-      setLoading(false);
+    } finally {
+      setLoading(false);  // Kết thúc loading sau khi hoàn tất hoặc lỗi
     }
   };
 
   useEffect(() => {
     fetchBlogs();
-  }, []);
-  if (loading) return <Spin size="big" style={{ marginRight: 8 }} />;
+  }, [page, size]);
+
+  if (loading) return <Spin size="large" style={{ margin: "0 auto", display: "block" }} />;
   if (error) return <p>Error: {error}</p>;
 
   return (
@@ -46,7 +47,7 @@ const NewBlog = () => {
         ))}
       </div>
       <div className="show-blog-link">
-        <Link to="/blogs">Show more blog...</Link>
+        <Link to="/blogs">Show more blogs...</Link>
       </div>
     </div>
   );

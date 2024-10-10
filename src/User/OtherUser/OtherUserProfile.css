@@ -1,0 +1,66 @@
+.user-profile-container {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  transition: all 0.3s ease;
+}
+
+.user-profile-container:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+.user-profile-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.user-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 15px;
+  border: 2px solid #007bff;
+  object-fit: cover;
+  transition: border-color 0.3s;
+}
+
+.user-avatar:hover {
+  border-color: #0056b3; /* Darker blue on hover */
+}
+
+.user-fullName {
+  font-size: 28px;  /* Larger font size for the full name */
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px; /* Space below the name */
+}
+
+.user-profile-bio {
+  margin-top: 10px;
+  background-color: #f9f9f9; /* Light background for bio section */
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+
+.user-profile-bio h3 {
+  font-size: 18px;  /* Slightly larger font size for bio details */
+  margin: 5px 0;
+  color: #555;
+}
+
+.user-profile-bio h3 span {
+  font-weight: normal; /* Regular weight for span text */
+  color: #007bff; /* Blue color for values */
+}
+
+.user-profile-bio h3 span:hover {
+  text-decoration: underline; /* Underline on hover */
+  cursor: pointer; /* Pointer cursor on hover */
+}

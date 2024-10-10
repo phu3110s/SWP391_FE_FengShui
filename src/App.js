@@ -21,16 +21,14 @@ import SellingBlogManagement from "./AdminFunction/SellingBlogManagement/Selling
 // import { jwtDecode } from "jwt-decode";
 import AdminRoute from "./AdminFunction/AdminRoute/AdminRoute";
 import Calculate from "./calculate/Calculate";
-<<<<<<< HEAD
-import UserProfile from "./User/UserComponent/UserProfile/UserProfile";
-import AdvertisingPosting from "./advertising/AdvertisingPosting/AdvertisingPosting";
-=======
 import UserProfile from "./User/UserComponent/UserProfile/MyProfile/UserProfile";
 import PondAdding from "./AdminFunction/PondManagement/PondAdding/PondAdding";
 import FishAdding from "./AdminFunction/FishManagement/FishAdding/FishAdding";
 import FishViewing from "./AdminFunction/FishManagement/FishViewing/FishViewing";
 import PondViewing from "./AdminFunction/PondManagement/PondViewing/PondViewing";
->>>>>>> 749f880488e718827c45d02c09c2c483b14039ac
+import OtherUserProfile from "./User/OtherUser/OtherUserProfile";
+import AdvertisingPosting from "./advertising/AdvertisingPosting/AdvertisingPosting";
+
 function App() {
   // const [user, setUser] = useState(null);
   // const navigate = useNavigate();
@@ -87,6 +85,7 @@ function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>
         <Route path="/user-profile" element={<UserProfile />} />
+        <Route path="/user-profile/:userId" element={<OtherUserProfile />} />
         <Route path="/policy" element={<Policy />}></Route>
         <Route path="/Advise" element={<Advise />} />
         <Route path="/Calculate" element={<Calculate />}></Route>
@@ -111,7 +110,7 @@ function App() {
           <Route path="PondGenerating" element={<PondAdding />} />
           <Route path="FishGenerating" element={<FishAdding />} />
           <Route path="FishManagement" element={<FishViewing />} />
-          <Route path="PondManagement" element={<PondViewing/>}/>
+          <Route path="PondManagement" element={<PondViewing />} />
         </Route>
       </Routes>
     </div>
