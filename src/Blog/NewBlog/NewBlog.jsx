@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import blogApi from "../../apis/blogApi";
+// import Header from "../../components/header/Header";
+// import "../BlogList/style.css";
 import { Spin } from "antd";
 import "./NewBlog.css";
 
@@ -9,7 +11,7 @@ const NewBlog = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [page] = useState(1);
-  const [size] = useState(12);  
+  const [size] = useState(12);
   const fetchBlogs = async () => {
     try {
       setLoading(true);  // Đặt loading trước khi gọi API
@@ -23,22 +25,24 @@ const NewBlog = () => {
   };
 
   useEffect(() => {
-    fetchBlogs(); 
-  }, [page, size]); 
+    fetchBlogs();
+  }, [page, size]);
 
   if (loading) return <Spin size="large" style={{ margin: "0 auto", display: "block" }} />;
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div>
-      <h1>Blogs</h1>
-      <div className="blog-container">
+    <div className="new-blog">
+      <h1 style={{ backgroundColor: '#FFFFFF', margin: '0', padding: '30px' }}>Blogs</h1>
+
+      <div className="blog-container" style={{ backgroundColor: '#071C5F' }}>
         {blogs.map((blog) => (
           <div className="blog-info" key={blog.id}>
-            <h2>{blog.title}</h2>
-            <img src={blog.urlImg} width="500px" alt={blog.title} />
-            <Link to={`/blogs/${blog.id}`}>Detail</Link>
-            <p>Author: {blog.userInfo.fullName}</p>
+            <Link className="link-to-detail" to={`/blogs/${blog.id}`}>
+              <h2>{blog.title}</h2>
+              <img src={blog.urlImg} width="500px" alt={blog.title} />
+              <p>Author: {blog.userInfo.fullName}</p>
+            </Link>
           </div>
         ))}
       </div>

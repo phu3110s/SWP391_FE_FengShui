@@ -2,8 +2,14 @@ import React, { useEffect, useState } from "react";
 import Header from "../../components/header/Header";
 import blogApi from "../../apis/blogApi";
 import { Link } from "react-router-dom";
+<<<<<<< HEAD
+import './MyBlog.css'
+import Navigation from "../../components/navbar/Navigation";
+import Footer from "../../components/footer/Footer";
+=======
 import "./MyBlog.css";
 import { Pagination } from "antd";
+>>>>>>> 749f880488e718827c45d02c09c2c483b14039ac
 
 export default function MyBlog() {
   const userId = localStorage.getItem("userId");
@@ -62,7 +68,13 @@ export default function MyBlog() {
   return (
     <div className="my-blog">
       <Header />
+      <Navigation />
       <h1 className="blog-title">My Blogs</h1>
+<<<<<<< HEAD
+      <div className="blog-btn">
+        <button className="button-blogs" onClick={() => setViewType("Approved")}>Approved Blogs</button>
+        <button className="button-blogs" onClick={() => setViewType("Pending")}>Pending Blogs</button>
+=======
       <div>
         <button
           className="button-blogs"
@@ -73,19 +85,21 @@ export default function MyBlog() {
         <button className="button-blogs" onClick={() => setViewType("Pending")}>
           Pending Blogs
         </button>
+>>>>>>> 749f880488e718827c45d02c09c2c483b14039ac
       </div>
 
       {loading && <p>Loading...</p>}
       {viewType === "Approved" ? (
-        <div>
+        <div className="blogs">
           <h2 className="blog-title">Các bài post đã được duyệt của bạn</h2>
           <div className="approve-blog-container">
             {approveBlogs.length > 0 ? (
               approveBlogs.map((blog) => (
-                <div className="blog-info" key={blog.id}>
-                  <h2>{blog.title}</h2>
-                  <img src={blog.urlImg} width="500px" alt={blog.title} />
-                  <Link to={`/blogs/${blog.id}`}>Detail</Link>
+                <div className="blog-information" key={blog.id}>
+                  <Link to={`/blogs/${blog.id}`}>
+                    <h2>{blog.title}</h2>
+                    <img src={blog.urlImg} width="500px" alt={blog.title} />
+                  </Link>
                 </div>
               ))
             ) : (
@@ -94,17 +108,23 @@ export default function MyBlog() {
           </div>
         </div>
       ) : (
+<<<<<<< HEAD
+        <div className="blogs">
+          <h2 className="blog-title">Các bài post đang chờ được duyệt của bạn</h2>
+=======
         <div>
           <h2 className="blog-title">
             Các bài post đang chờ được duyệt của bạn
           </h2>
+>>>>>>> 749f880488e718827c45d02c09c2c483b14039ac
           <div className="pending-blog-container">
             {pendingBlogs.length > 0 ? (
               pendingBlogs.map((blog) => (
-                <div className="blog-info" key={blog.id}>
-                  <h2>{blog.title}</h2>
-                  <img src={blog.urlImg} width="500px" alt={blog.title} />
-                  <Link to={`/blogs/${blog.id}`}>Detail</Link>
+                <div className="blog-information" key={blog.id}>
+                  <Link to={`/blogs/${blog.id}`}>
+                    <h2>{blog.title}</h2>
+                    <img src={blog.urlImg} width="500px" alt={blog.title} />
+                  </Link>
                 </div>
               ))
             ) : (
@@ -123,6 +143,7 @@ export default function MyBlog() {
           onChange={handlePageChange}
         />
       </div>
+      <Footer />
     </div>
   );
 }

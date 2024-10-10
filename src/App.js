@@ -27,6 +27,8 @@ import FishAdding from "./AdminFunction/FishManagement/FishAdding/FishAdding";
 import FishViewing from "./AdminFunction/FishManagement/FishViewing/FishViewing";
 import PondViewing from "./AdminFunction/PondManagement/PondViewing/PondViewing";
 import OtherUserProfile from "./User/OtherUser/OtherUserProfile";
+import AdvertisingPosting from "./advertising/AdvertisingPosting/AdvertisingPosting";
+
 function App() {
   // const [user, setUser] = useState(null);
   // const navigate = useNavigate();
@@ -83,7 +85,7 @@ function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>
         <Route path="/user-profile" element={<UserProfile />} />
-        <Route path="/user-profile/:userId" element={<OtherUserProfile/>}/>
+        <Route path="/user-profile/:userId" element={<OtherUserProfile />} />
         <Route path="/policy" element={<Policy />}></Route>
         <Route path="/Advise" element={<Advise />} />
         <Route path="/Calculate" element={<Calculate />}></Route>
@@ -93,7 +95,7 @@ function App() {
         <Route path="/blog-posting" element={<BlogPosting />} />
         <Route path="/MyBlog" element={<MyBlog />} />
         <Route path="/News" element={<News />} />
-       
+        <Route path="/AdvertisingPosting" element={<AdvertisingPosting />} />
         <Route
           path="/AdminDashboard"
           element={
@@ -108,7 +110,7 @@ function App() {
           <Route path="PondGenerating" element={<PondAdding />} />
           <Route path="FishGenerating" element={<FishAdding />} />
           <Route path="FishManagement" element={<FishViewing />} />
-          <Route path="PondManagement" element={<PondViewing/>}/>
+          <Route path="PondManagement" element={<PondViewing />} />
         </Route>
       </Routes>
     </div>

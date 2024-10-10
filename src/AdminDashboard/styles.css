@@ -34,7 +34,11 @@
 }
 .dashboard-content {
   flex-grow: 1;
+<<<<<<< HEAD
+  padding: 0;
+=======
   padding: 0 20px;
+>>>>>>> 749f880488e718827c45d02c09c2c483b14039ac
 }
 
 .authorization-box {

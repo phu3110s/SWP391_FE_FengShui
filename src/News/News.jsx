@@ -1,9 +1,27 @@
 import React from "react";
 import './News.css'
 import Header from "../components/header/Header";
+import Footer from "../components/footer/Footer";
 
 function News() {
 
+  const $ = document.querySelector.bind(document)
+  const $$ = document.querySelectorAll.bind(document)
+
+  const tabs = $$('.tab-item')
+  const panes = $$('.tab-pane')
+
+  tabs.forEach((tab, index) => {
+    const pane = panes[index]
+
+    tab.onclick = function () {
+      $('.tab-item.active').classList.remove('active')
+      $('.tab-pane.active').classList.remove('active')
+
+      this.classList.add('active')
+      pane.classList.add('active')
+    }
+  });
 
   return (
     <div>
@@ -23,7 +41,6 @@ function News() {
         </div>
         <div class="line"></div>
       </div>
-
 
       <div class="tab-content">
         <div class="tab-pane active">
@@ -103,18 +120,18 @@ function News() {
         </div>
         <div class="tab-pane">
           <h2>News 2</h2>
-          <p></p>
+          <p>ăng nhăng nhăng nhăng</p>
         </div>
         <div class="tab-pane">
           <h2>News 3</h2>
-          <p></p>
+          <p>nhé nhô</p>
         </div>
         <div class="tab-pane">
           <h2>News 4</h2>
-          <p></p>
+          <p>chin chào</p>
         </div>
       </div>
-
+      <Footer />
     </div>
   );
 }

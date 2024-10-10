@@ -7,40 +7,56 @@
 .signup-ui{
     width: 50%;
     height: 100vh;
-    background-color: #353945;
+    background-image: url('https://i.pinimg.com/564x/9a/69/1e/9a691ef8ca30394b4e5522e2ffb7e736.jpg');
+    background-size: cover;
+    background-position: center;
 }
 
 .signup-logo{
-    width: 15%;
+    width: 50px;
+    height: 50px;
+    display: flex;
     text-align: center;
-    background-color: white;
-    margin-top: 60px;
+    align-items: center;
+    padding: 0;
+    margin-top: 50px;
     margin-left: 50px;
-    border-radius: 50px;
+    border-radius: 50%;
+    background-color: white;
+    border: 1px solid white;
+    /* background-image: url(''); */
 }
 
 .logo{
-    width: 30%;
+    width: 70%;
     height: auto;
-    /* transform: rotate(-60deg); */
 }
 
 .signup-title{
-    color: aliceblue;
+    color: #071C5F;
+    margin-top: 100px;
     text-align: center;
-    margin-left: 200px;
+    font-size: 35px; 
+    font-weight: bold;
+    text-shadow: 
+        1.5px 1.5px 0 white, 
+        -1.5px 1.5px 0 white, 
+        1.5px -1.5px 0 white, 
+        -1.5px -1.5px 0 white;
 }
 .title{
-    text-align: left;
+    display: flex;
+    text-align: center;
+    align-items: center;
 }
 
-.signup-img{
+/* .signup-img{
     width: 100%;
 }
 .Koi-imgsignup{
     width: 97%;
     height: auto;
-}
+} */
 
 .signup-form{
     width: 50%;
@@ -87,24 +103,25 @@
 
 .signin-button{
     display: inline-block;
-    border: 1px solid black;
+    border: 1px solid #071C5F;
     width: 60%;
     height: 40px;
     justify-content: space-between;
     border-radius: 20px;
-    background-color: black;
+    background-color: #071C5F;
     margin-top: 20px;
     margin-bottom: 10px;
     color: white;
 }
 
 .signin-button:hover{
-    background-color: #353945;
+    background-color: #DAD2CF;
+    color: black;
 }
 
 .link-to-signin{
     text-decoration: none;
-    color: black;
+    color: #071C5F;
     font-weight: bold;
 }
 

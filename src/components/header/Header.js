@@ -1,4 +1,4 @@
-import { Avatar, Dropdown, Input, Menu, Space } from "antd";
+import { Avatar, Dropdown, Input, Menu, message, Space } from "antd";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Header.css";
@@ -6,6 +6,7 @@ import userApi from "../../apis/userApi";
 const { Search } = Input;
 
 export default function Header() {
+
   const [username, setUsername] = useState();
   const token = localStorage.getItem("token");
   const userId = localStorage.getItem("userId");
@@ -55,6 +56,7 @@ export default function Header() {
       </Menu.Item>
     </Menu>
   );
+
   return (
     <div className="header-form">
       <div className="home-logo">
@@ -90,12 +92,12 @@ export default function Header() {
           </li>
         ) : null}
         <li className="active">
-          <Link className="link" to={"/"}>
+          <Link className="link" to={"/AdvertisingPosting"}>
             Product Posting
           </Link>
         </li>
         <li className="active">
-          <Link className="link" to={"/"}>
+          <Link className="link" to={"/News"}>
             News
           </Link>
         </li>
@@ -104,8 +106,9 @@ export default function Header() {
       <Space direction="vertical">
         <Search placeholder="input search text" />
       </Space>
+
       <div className="authorization-box">
-        {token ? (
+        {username ? (
           <Dropdown overlay={userMenu} trigger={["click"]}>
             <div
               style={{
@@ -131,6 +134,38 @@ export default function Header() {
             </div>
           </>
         )}
+
+        <Space direction="vertical">
+          <Search placeholder="input search text" />
+        </Space>
+        <div className="authorization-box">
+          {token ? (
+            <Dropdown overlay={userMenu} trigger={["click"]}>
+              <div
+                style={{
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                <Avatar src={avatarUrl} alt="User Avatar" />
+              </div>
+            </Dropdown>
+          ) : (
+            <>
+              <div className="button-link-signin">
+                <Link className="link_to_signin" to="/SignUp">
+                  Sign In
+                </Link>
+              </div>
+              <div className="button-link-login">
+                <Link className="link_to_login" to="/Login">
+                  Login
+                </Link>
+              </div>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

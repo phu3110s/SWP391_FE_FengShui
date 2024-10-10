@@ -55,7 +55,7 @@ const BlogList = () => {
       <h1>Blogs</h1>
 
       {/* Blog List */}
-      <div className="blog-container">
+      <div className="blog-container" style={{ backgroundColor: '#071C5F' }}>
         {blogs.map((blog) => (
           <div className="blog-info" key={blog.id}>
             <h2>{blog.title}</h2>

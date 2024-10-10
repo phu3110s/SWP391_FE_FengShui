@@ -62,15 +62,13 @@ export default function SignUp() {
         </div>
 
         <div className="signup-title">
-          <h1 className="title">
-            Welcome to <br />
-            FengShui Koi Consulting
-          </h1>
+          Welcome to <br />
+          FengShui Koi Consulting
         </div>
 
-        <div className="signup-img">
+        {/* <div className="signup-img">
           <img className="Koi-imgsignup" src="./img/Koi-login.jpg" alt="Koi" />
-        </div>
+        </div> */}
       </div>
 
       <div className="signup-form">

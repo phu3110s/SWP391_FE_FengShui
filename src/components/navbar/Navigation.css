@@ -6,8 +6,10 @@
 }
 
 .img-background{
-    width: 100%;
+    width: 99.6%;
     height: 500px;
+    border: 2px solid #040A3D;
+    border-radius: 10px;
     /* transform: rotate(90deg); */
 }
 
@@ -48,7 +50,7 @@ li.active-navbar {
 }
 
 a.link-advise:hover {
-    background-color: #FF7878;
+    background-color: #4D63A2;
     color: white;
 }
 

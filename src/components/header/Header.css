@@ -3,14 +3,15 @@
     height: 50px;
     display: flex;
     align-items: center;
-    background-image: url('https://i.pinimg.com/originals/c9/bb/4c/c9bb4cf31417f2a8d59c5931d34ca67f.gif');
+    /* background-image: url('https://i.pinimg.com/originals/c9/bb/4c/c9bb4cf31417f2a8d59c5931d34ca67f.gif'); */
+    background-color: #071C5F;
     background-size: cover;
     background-position: center;
 }
 
 .home-logo{
     width: 65px;
-    height: 43px;
+    height: 40px;
     display: flex;
     text-align: center;
     align-items: center;
@@ -18,11 +19,11 @@
     margin-left: 50px;
     border-radius: 50%;
     background-color: white;
-    border: 1px solid #D35D6E;
+    border: 1px solid white;
 }
 
 .home-logo:hover{
-    background-color: #FF9B9B;
+    background-color: #CAF4FF;
 }
 
 .logo-home{
@@ -50,19 +51,19 @@
 }
 
 .button-link-signin{
-    background-color: #FF8080;
+    background-color: #FFFFFF;
     color: black;
     display: inline;
     padding: 7px 25px 7px 25px;
     margin: 5px 10px 5px 22px;
     font-size: 15px;
-    border: 1px solid #D35D6E;
+    border: 1px solid blueviolet;
     border-radius: 10px;
     white-space: nowrap;
 }
 
 .button-link-signin:hover{
-    background-color: #FF9B9B;
+    background-color: #CAF4FF;
 }
 
 .link_to_signin{
@@ -71,18 +72,18 @@
 }
 
 .button-link-login{
-    background-color: #FF8080;
+    background-color: #FFFFFF;
     color: black;
     display: inline;
     padding: 7px 25px 7px 25px;
     margin: 5px 40px 5px 10px;
     font-size: 15px;
-    border: 1px solid #D35D6E;
+    border: 1px solid blueviolet;
     border-radius: 10px;
 }
 
 .button-link-login:hover{
-    background-color: #FF9B9B;
+    background-color: #CAF4FF;
 }
 
 .link_to_login{
