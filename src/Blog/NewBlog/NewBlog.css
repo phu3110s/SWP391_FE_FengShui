@@ -95,4 +95,13 @@
     color: #333;
     margin-bottom: 20px;
   }
+<<<<<<< HEAD
    */
+=======
+  .show-blog-link{
+    display: block;
+    margin-top: 20px;
+    margin-bottom:20px;
+    text-align: center;
+  }
+>>>>>>> 749f880488e718827c45d02c09c2c483b14039ac

@@ -2,9 +2,11 @@ import { Avatar, Dropdown, Input, Menu, message, Space } from "antd";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Header.css";
+import userApi from "../../apis/userApi";
 const { Search } = Input;
 
 export default function Header() {
+<<<<<<< HEAD
     const [username, setUsername] = useState();
     const token = localStorage.getItem("token");
     const username1 = localStorage.getItem("username");
@@ -21,6 +23,49 @@ export default function Header() {
         message.success('logout thành công');
         navigate("/");
     };
+=======
+  const [username, setUsername] = useState();
+  const token = localStorage.getItem("token");
+  const username1 = localStorage.getItem("username");
+  const userId = localStorage.getItem("userId");
+  const [loginStatus, setLogin] = useState(false);
+  const [avatarUrl, setAvatar] = useState(null);
+  const fetchUserProfile = async () => {
+    try {
+      const response = await userApi.getUserProfile(userId, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (response && response.data) {
+        setAvatar(response.data.urlImg);
+      }
+    } catch (error) {
+      if (error.response) {
+        const { data, status } = error.response;
+        if (status === 401) {
+          return;
+        } else {
+          alert("Lỗi kết nối");
+        }
+      }
+    }
+  };
+  if (username) {
+    fetchUserProfile();
+  }
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (token) {
+      setUsername(username1);
+    }
+  }, []);
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setUsername(null);
+    navigate("/");
+  };
+>>>>>>> 749f880488e718827c45d02c09c2c483b14039ac
 
     const userMenu = (
         <Menu>
@@ -81,6 +126,7 @@ export default function Header() {
                 </li>
             </ul>
 
+<<<<<<< HEAD
             <Space direction="vertical">
                 <Search placeholder="input search text" />
             </Space>
@@ -111,7 +157,39 @@ export default function Header() {
                         </div>
                     </>
                 )}
+=======
+      <Space direction="vertical">
+        <Search placeholder="input search text" />
+      </Space>
+      <div className="authorization-box">
+        {username ? (
+          <Dropdown overlay={userMenu} trigger={["click"]}>
+            <div
+              style={{
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <Avatar src={avatarUrl} alt="User Avatar" />
+>>>>>>> 749f880488e718827c45d02c09c2c483b14039ac
             </div>
-        </div>
-    );
+          </Dropdown>
+        ) : (
+          <>
+            <div className="button-link-signin">
+              <Link className="link_to_signin" to="/SignUp">
+                Sign In
+              </Link>
+            </div>
+            <div className="button-link-login">
+              <Link className="link_to_login" to="/Login">
+                Login
+              </Link>
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  );
 }

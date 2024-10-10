@@ -45,7 +45,9 @@ const NewBlog = () => {
           </div>
         ))}
       </div>
-      <Link to="/blogs">Show more blog...</Link>
+      <div className="show-blog-link">
+        <Link to="/blogs">Show more blog...</Link>
+      </div>
     </div>
   );
 };

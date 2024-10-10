@@ -1,8 +1,9 @@
-import { Button, Form, Input, Spin } from "antd";
+import { Button, Form, Input, Select, Spin } from "antd";
 import React, { useEffect, useState } from "react";
-import userApi from "../../../apis/userApi";
-import Header from "../../../components/header/Header";
+import userApi from "../../../../apis/userApi";
+import Header from "../../../../components/header/Header";
 import "./UserProfile.css";
+import Radio from "antd/es/radio/radio";
 
 export default function UserProfile() {
   const [userProfile, setUserProfile] = useState(null);
@@ -17,14 +18,15 @@ export default function UserProfile() {
   });
 
   const [image, setImage] = useState(null);
+  const [previewImage, setPreviewImage] = useState(null);
   const userId = localStorage.getItem("userId");
   const token = localStorage.getItem("token");
   const handleImageInput = (e) => {
-    console.log("koko");
     const file = e.target.files[0];
     if (file) {
       setImage(file);
     }
+    setPreviewImage(URL.createObjectURL(file));
   };
   const fetchUserProfile = async () => {
     setLoading(true);
@@ -43,8 +45,9 @@ export default function UserProfile() {
           gender: response.data.gender,
           birthdate: response.data.birthdate,
         });
+        setPreviewImage(response.data.urlImg);
       } else {
-        throw new Error("No user Profile found");
+        throw new Error("Không tìm thấy thông tin người dùng");
       }
     } catch (error) {
       if (error.response) {
@@ -75,6 +78,12 @@ export default function UserProfile() {
   const handleEditClick = () => {
     setIsEditing(true);
   };
+  const handleGenderChange = (value) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      gender: value.target.value,
+    }));
+  };
   const handleSaveClick = async () => {
     setLoading(true);
     try {
@@ -94,10 +103,10 @@ export default function UserProfile() {
           }
         );
       }
-
+      localStorage.setItem("urlImg", response.data.urlImg);
       setIsEditing(false);
       setUserProfile(formData);
-      alert("Profile updated successfully!");
+      alert("Update thông tin người dùng thành công!");
       fetchUserProfile();
     } catch (error) {
       if (error.response) {
@@ -117,7 +126,7 @@ export default function UserProfile() {
   if (loading) return <Spin size="large" style={{ marginRight: 8 }} />;
   if (error) return <div>Error: {error}</div>;
 
-  if (!userProfile) return <div>No user profile found</div>;
+  if (!userProfile) return <div>Không tìm thấy thông tin người dùng</div>;
 
   return (
     <div>
@@ -130,7 +139,7 @@ export default function UserProfile() {
               {isEditing ? (
                 <img
                   className="user-avatar"
-                  src={userProfile.urlImg}
+                  src={previewImage}
                   alt={"userImg"}
                   onClick={() => document.getElementById("imageUpload").click()}
                   style={{ cursor: "pointer" }}
@@ -177,11 +186,15 @@ export default function UserProfile() {
 
               <h3>
                 Gender:{" "}
-                <Input
+                <Radio.Group
                   name="gender"
+                  onChange={handleGenderChange}
                   value={formData.gender}
-                  onChange={handleInputChange}
-                />
+                >
+                  <Radio value="Male">Male</Radio>
+                  <Radio value="Female">Female</Radio>
+                  <Radio value="Other">Other</Radio>
+                </Radio.Group>
               </h3>
               <h3>
                 Birthdate:{" "}

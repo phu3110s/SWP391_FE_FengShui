@@ -50,6 +50,7 @@ export default function BlogPosting() {
       });
       if (response.status === 201) {
         message.success("Đăng blog thành công. Chờ duyệt");
+        navigate("/MyBlog");
         setTitle("");
         setDesription("");
         setImage("");
@@ -96,8 +97,10 @@ export default function BlogPosting() {
             />
           </div>
           <div className="posting-blog-inputImage">
-            <label>Upload Image</label><br />
-            Share photos or a video<br />
+            <label>Upload Image</label>
+            <br />
+            Share photos or a video
+            <br />
             <input type="file" onChange={handleImageInput} accept="image/*" />
           </div>
           <div>

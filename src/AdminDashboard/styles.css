@@ -3,7 +3,7 @@
 }
 
 .sidebar {
-  width: 180px;
+  width: 220px;
   height: 100vh;
   position: fixed;
   background-color: #001529;
@@ -34,7 +34,11 @@
 }
 .dashboard-content {
   flex-grow: 1;
+<<<<<<< HEAD
   padding: 0;
+=======
+  padding: 0 20px;
+>>>>>>> 749f880488e718827c45d02c09c2c483b14039ac
 }
 
 .authorization-box {
@@ -47,14 +51,13 @@
   padding: 40px;
 }
 
-/* Sidebar menu item */
 .menu-item {
   padding: 15px;
   cursor: pointer;
 }
 
 .menu-item:hover {
-  background-color: #1890ff; /* Màu khi hover */
+  background-color: #1890ff; 
   color: white;
 }
 .header {
@@ -64,16 +67,18 @@
   width: calc(100%-250px); 
   height: 60px; 
   background-color: #1c2b36; 
-  padding: 0 20px;
+  padding: 0 0px;
 }
 
 .header-titles {
+
   margin: 0;
   flex-grow: 1;
   font-size: 24px;
   text-align: center;
   font-weight: bold;
-  color:white
+  color:white;
+  padding:0px 0px;
 }
 
 .header-actions {

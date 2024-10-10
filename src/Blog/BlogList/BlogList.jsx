@@ -10,9 +10,8 @@ const BlogList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
-  const [size, setSize] = useState(10); // Page size
-  const [totalItems, setTotalItems] = useState(0); // Total number of blog posts
-
+  const [size, setSize] = useState(10);
+  const [totalPage, setTotalPage] = useState(0);
   const handlePageChange = (page, pageSize) => {
     setPage(page);
     setSize(pageSize);
@@ -21,14 +20,12 @@ const BlogList = () => {
   const fetchBlogs = async () => {
     setLoading(true);
     try {
-      // Call the API with current page and size
       const response = await blogApi.getBlogs(page, size, "Approved");
 
-      setBlogs(response.data.items); // Set the blogs data
-      setTotalItems(response.data.total); // Set the total number of items (this is important for pagination)
+      setBlogs(response.data.items);
+      setTotalPage(response.data.totalPages);
       setLoading(false);
     } catch (err) {
-      // Error handling
       if (err.response) {
         const { status } = err.response;
         if (status === 401) {
@@ -73,7 +70,7 @@ const BlogList = () => {
         <Pagination
           current={page}
           pageSize={size}
-          total={totalItems}
+          total={totalPage}
           onChange={handlePageChange}
         />
       </div>
