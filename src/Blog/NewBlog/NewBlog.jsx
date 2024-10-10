@@ -8,7 +8,7 @@ const NewBlog = () => {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [page, setPage] = useState(1);
+  const [page] = useState(1);
   const [size] = useState(12);  
   const fetchBlogs = async () => {
     try {

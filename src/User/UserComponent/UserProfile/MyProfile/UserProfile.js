@@ -4,12 +4,9 @@ import userApi from "../../../../apis/userApi";
 import Header from "../../../../components/header/Header";
 import "./UserProfile.css";
 import Radio from "antd/es/radio/radio";
-import { useParams } from "react-router-dom";
 
 export default function UserProfile() {
-  const {userId} = useParams();
   const loggedInUserId = localStorage.getItem("userId");
- 
   const [userProfile, setUserProfile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -69,7 +66,7 @@ export default function UserProfile() {
   };
   useEffect(() => {
     fetchUserProfile();
-  }, [userId, token]);
+  }, [loggedInUserId, token]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -91,7 +88,7 @@ export default function UserProfile() {
   const handleSaveClick = async () => {
     setLoading(true);
     try {
-      const response = await userApi.updateUserProfile(userId, formData, {
+      const response = await userApi.updateUserProfile(loggedInUserId, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -100,7 +97,7 @@ export default function UserProfile() {
         const formDataToUpdateImage = new FormData();
         formDataToUpdateImage.append("imgFile", image);
         const response2 = await userApi.updateUserImage(
-          userId,
+          loggedInUserId,
           formDataToUpdateImage,
           {
             headers: { Authorization: `Bearer ${token}` },
