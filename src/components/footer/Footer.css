@@ -1,15 +1,17 @@
 .footer{
     bottom: 0;
     width: 100%;
-    background-color: #47B0AE;
+    background-color: #071C5F;
     padding: 10px 0;
     height: auto;
 }
 .footer-infor{
     text-align: center;
+    color: white
     /* margin: 0 0 0 70px; */
 }
 
 .copyright{
     text-align: center;
+    color: white;
 }

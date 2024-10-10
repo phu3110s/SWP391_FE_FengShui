@@ -7,48 +7,55 @@
     width: 50%;
     height: 100vh;
     /* background-color: #353945; */
-    background-image: url('https://pa1.aminoapps.com/6547/269f5957ecaa4dc4dd61f50eeba94721a9a79c2e_00.gif');
+    background-image: url('https://i.pinimg.com/564x/9a/69/1e/9a691ef8ca30394b4e5522e2ffb7e736.jpg');
     background-size: cover;
     background-position: center;
 
 }
 
 .login-logo{
-    width: 15%;
+    width: 50px;
+    height: 50px;
+    display: flex;
     text-align: center;
-    background-color: white;
-    margin-top: 60px;
+    align-items: center;
+    padding: 0;
+    margin-top: 50px;
     margin-left: 50px;
-    border-radius: 50px;
+    border-radius: 50%;
+    background-color: white;
+    border: 1px solid white;
+    /* background-image: url(''); */
 }
 
 .logo{
-    width: 30%;
+    width: 70%;
     height: auto;
-    /* transform: rotate(-60deg); */
 }
 
 .login-title{
-    color: white;
+    color: #071C5F;
     margin-top: 100px;
     text-align: center;
     font-size: 35px; 
     font-weight: bold;
+    text-shadow: 
+        1.5px 1.5px 0 white, 
+        -1.5px 1.5px 0 white, 
+        1.5px -1.5px 0 white, 
+        -1.5px -1.5px 0 white;
 }
 .title{
-    display: flex;
-    text-align: center;
-    align-items: center;
     
 }
 
-.login-img{
+/* .login-img{
     width: 100%;
 }
 .Koi-imglogin{
     width: 100%;
     height: 500px;
-}
+} */
 
 .login-form{
     width: 50%;
@@ -63,6 +70,7 @@
     text-align: left;
     padding-left: 160px;
     margin: 0;
+    color: #071C5F;
 }
 
 .name-field{
@@ -71,6 +79,7 @@
     margin: 0;
     margin-top: 30px;
     margin-bottom: 7px;
+    color: #071C5F;
 }
 
 .input-field{
@@ -90,24 +99,25 @@
 
 .signin-button{
     display: inline-block;
-    border: 1px solid black;
+    border: 1px solid #1d45cb;
     width: 60%;
     height: 40px;
     justify-content: space-between;
     border-radius: 20px;
-    background-color: black;
+    background-color: #071C5F;
     margin-top: 50px;
     margin-bottom: 50px;
     color: white;
 }
 
 .signin-button:hover{
-    background-color: #17389c;
+    background-color: #DAD2CF;
+    color: black;
 }
 
 .link-to-signup{
     text-decoration: none;
-    color: black;
+    color: #071C5F;
     font-weight: bold;
 }
 

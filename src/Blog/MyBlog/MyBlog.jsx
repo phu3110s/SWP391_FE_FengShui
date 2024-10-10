@@ -3,6 +3,8 @@ import Header from "../../components/header/Header";
 import blogApi from "../../apis/blogApi";
 import { Link } from "react-router-dom";
 import './MyBlog.css'
+import Navigation from "../../components/navbar/Navigation";
+import Footer from "../../components/footer/Footer";
 
 export default function MyBlog() {
   const userId = localStorage.getItem("userId");
@@ -54,23 +56,25 @@ export default function MyBlog() {
   return (
     <div className="my-blog">
       <Header />
+      <Navigation />
       <h1 className="blog-title">My Blogs</h1>
-      <div>
+      <div className="blog-btn">
         <button className="button-blogs" onClick={() => setViewType("Approved")}>Approved Blogs</button>
         <button className="button-blogs" onClick={() => setViewType("Pending")}>Pending Blogs</button>
       </div>
 
       {loading && <p>Loading...</p>}
       {viewType === "Approved" ? (
-        <div>
+        <div className="blogs">
           <h2 className="blog-title">Các bài post đã được duyệt của bạn</h2>
           <div className="approve-blog-container">
             {approveBlogs.length > 0 ? (
               approveBlogs.map((blog) => (
-                <div className="blog-info" key={blog.id}>
-                  <h2>{blog.title}</h2>
-                  <img src={blog.urlImg} width="500px" alt={blog.title} />
-                  <Link to={`/blogs/${blog.id}`}>Detail</Link>
+                <div className="blog-information" key={blog.id}>
+                  <Link to={`/blogs/${blog.id}`}>
+                    <h2>{blog.title}</h2>
+                    <img src={blog.urlImg} width="500px" alt={blog.title} />
+                  </Link>
                 </div>
               ))
             ) : (
@@ -79,15 +83,16 @@ export default function MyBlog() {
           </div>
         </div>
       ) : (
-        <div>
+        <div className="blogs">
           <h2 className="blog-title">Các bài post đang chờ được duyệt của bạn</h2>
           <div className="pending-blog-container">
             {pendingBlogs.length > 0 ? (
               pendingBlogs.map((blog) => (
-                <div className="blog-info" key={blog.id}>
-                  <h2>{blog.title}</h2>
-                  <img src={blog.urlImg} width="500px" alt={blog.title} />
-                  <Link to={`/blogs/${blog.id}`}>Detail</Link>
+                <div className="blog-information" key={blog.id}>
+                  <Link to={`/blogs/${blog.id}`}>
+                    <h2>{blog.title}</h2>
+                    <img src={blog.urlImg} width="500px" alt={blog.title} />
+                  </Link>
                 </div>
               ))
             ) : (
@@ -110,6 +115,7 @@ export default function MyBlog() {
           {/* <button className="button-blogs" onClick={fetchBlogs}>Fetch Blogs</button> */}
         </label>
       </div>
+      <Footer />
     </div>
   );
 }

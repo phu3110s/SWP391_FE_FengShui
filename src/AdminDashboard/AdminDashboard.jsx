@@ -45,25 +45,44 @@ const Sidebar = () => {
         </Link>
       </div>
       <Menu mode="inline" theme="dark">
+        <Menu.SubMenu key="sub1" title="Blog Management">
+          {/* All Blog Sub Menu */}
+          <Menu.SubMenu key="sub2" title="All Blog">
+            <Menu.Item
+              key="1"
+              className="Approved-Articles"
+              onClick={() => navigate("/AdminDashboard/...")}
+            >
+              Các bài viết đã được duyệt
+            </Menu.Item>
+            <Menu.Item key="2" onClick={() => navigate("/AdminDashboard/...")}>
+              Pending Blog
+            </Menu.Item>
+            <Menu.Item key="3" onClick={() => navigate("/AdminDashboard/..")}>
+              Rejected Blog
+            </Menu.Item>
+          </Menu.SubMenu>
+
+          <Menu.Item
+            key="4"
+            onClick={() => navigate("/AdminDashboard/ApprovePost")}
+          >
+            Blog Approve
+          </Menu.Item>
+        </Menu.SubMenu>
         <Menu.Item
-          key="1"
-          onClick={() => navigate("/AdminDashboard/ApprovePost")}
-        >
-          Duyệt bài
-        </Menu.Item>
-        <Menu.Item
-          key="2"
+          key="5"
           onClick={() => navigate("/AdminDashboard/UserManagement")}
         >
           Quản lý người dùng
         </Menu.Item>
         <Menu.Item
-          key="3"
+          key="6"
           onClick={() => navigate("/AdminDashboard/ApproveSell")}
         >
           Quản lý blog mua bán
         </Menu.Item>
-        <Menu.Item key="4" onClick={() => navigate("/AdminDashboard/settings")}>
+        <Menu.Item key="7" onClick={() => navigate("/AdminDashboard/settings")}>
           Cài đặt
         </Menu.Item>
       </Menu>
@@ -74,7 +93,7 @@ const Header = ({ avatarUrl, userMenu }) => {
   const navigate = useNavigate();
   return (
     <div className="header">
-      <h2>Admin Dashboard</h2>
+      <h2 className="header-titles">Admin Dashboard</h2>
       <div className="header-actions">
         <button className="notification-btn">Thông báo</button>
         <Dropdown overlay={userMenu} trigger={["click"]}>

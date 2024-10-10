@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import blogApi from "../../apis/blogApi";
-import Header from "../../components/header/Header";
-import "../BlogList/style.css";
+// import Header from "../../components/header/Header";
+// import "../BlogList/style.css";
 import { Spin } from "antd";
+import "./NewBlog.css";
 const NewBlog = () => {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -30,16 +31,17 @@ const NewBlog = () => {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div>
-      <h1>Blogs</h1>
+    <div className="new-blog">
+      <h1 style={{ backgroundColor: '#FFFFFF', margin: '0', padding: '30px' }}>Blogs</h1>
 
-      <div className="blog-container">
+      <div className="blog-container" style={{ backgroundColor: '#071C5F' }}>
         {blogs.map((blog) => (
           <div className="blog-info" key={blog.id}>
-            <h2>{blog.title}</h2>
-            <img src={blog.urlImg} width="500px" alt={blog.title} />
-            <Link to={`/blogs/${blog.id}`}>Detail</Link>
-            <p>Author: {blog.userInfo.fullName}</p>
+            <Link className="link-to-detail" to={`/blogs/${blog.id}`}>
+              <h2>{blog.title}</h2>
+              <img src={blog.urlImg} width="500px" alt={blog.title} />
+              <p>Author: {blog.userInfo.fullName}</p>
+            </Link>
           </div>
         ))}
       </div>

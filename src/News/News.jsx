@@ -1,6 +1,7 @@
 import React from "react";
 import './News.css'
 import Header from "../components/header/Header";
+import Footer from "../components/footer/Footer";
 
 function News() {
 
@@ -130,7 +131,7 @@ function News() {
           <p>chin chào</p>
         </div>
       </div>
-
+      <Footer />
     </div>
   );
 }

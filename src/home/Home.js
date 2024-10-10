@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
-import Footer from '../components/footer/Footer'
-import Navigation from '../components/navbar/Navigation'
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Footer from "../components/footer/Footer";
+import Navigation from "../components/navbar/Navigation";
+import { Link } from "react-router-dom";
+
 import Header from "../components/header/Header";
 import NewBlog from "../Blog/NewBlog/NewBlog";
 
@@ -22,26 +24,10 @@ export default function Home() {
     setUsername(null);
     navigate("/");
   };
-
   return (
     <div className="Log-container">
       <Header />
       <Navigation />
-
-      <div className="authorization-box">
-        <h1>
-          {username ? (
-            <>
-              <span>Welcome {username}</span>
-              <button className="logout-button" onClick={handleLogout}>
-                Logout
-              </button>
-            </>
-          ) : (
-            <></>
-          )}
-        </h1>
-      </div>
 
       <NewBlog />
 

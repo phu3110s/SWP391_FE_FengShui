@@ -26,6 +26,7 @@ export default function Login() {
       localStorage.setItem("username", response.data.fullName);
       localStorage.setItem("userId", response.data.id);
       localStorage.setItem("userImg", response.data.urlImg);
+      localStorage.setItem("userRole", response.data.role);
       console.log("Login Successful:", response);
       if (userRole === "Admin") {
         navigate("/AdminDashboard");
@@ -36,7 +37,7 @@ export default function Login() {
       if (error.response) {
         const { data, status } = error.response;
         if (status === 400) {
-          alert(data.Error);
+          alert("Thông tin sai. Vui lòng nhập lại");
         } else {
           alert("Lỗi bất định");
         }
@@ -74,7 +75,7 @@ export default function Login() {
         </div>
 
         <div className="login-email">
-          <p className="name-field">E-mail</p>
+          <p className="name-field">E-mail or Phone Number</p>
           <input
             type="email"
             onChange={(e) => setUsername(e.target.value)}

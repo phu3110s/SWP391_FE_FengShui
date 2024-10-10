@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import blogApi from "../../apis/blogApi";
 import Header from "../../components/header/Header";
 import "./styles.css";
+import Navigation from "../../components/navbar/Navigation";
 
 export default function BlogPosting() {
   const userId = localStorage.getItem("userId");
@@ -57,7 +58,7 @@ export default function BlogPosting() {
           "Lỗi. Không thể đăng bài. Hết phiên đăng nhập vui lòng đăng nhập lại"
         );
       } else {
-        alert("Lỗi gì éo biết. Chịu");
+        alert("Lỗi gì bất định");
       }
     } catch (error) {
       message.error(error.message || "Có lỗi xảy ra khi đăng blog");
@@ -69,6 +70,7 @@ export default function BlogPosting() {
   return (
     <div className="posting-blog">
       <Header />
+      <Navigation />
       <div className="bl-pt-form">
         <h1>Blog Posting Page</h1>
         <h3>Creating new blog</h3>

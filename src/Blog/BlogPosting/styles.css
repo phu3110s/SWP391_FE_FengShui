@@ -1,16 +1,16 @@
 .posting-blog{
     width: 100%;
-    height: 100vh;
+    height: 160vh;
     display: flex;
     align-items: center;
     flex-direction: column;
-    background-color: #E6F0F4;
+    background-color: #FFFFFF;
 }
 .bl-pt-form{
     width: 60%;
 }
 .bl-pt-form h1{
-    color: whitesmoke;
+    color: #a6b9ec;
     text-shadow: 
     -1px 0 black, 
     0 1px black,      
@@ -19,7 +19,7 @@
 }
 .bl-pt-form h3{
     font-family: inherit;
-    color: whitesmoke;
+    color: #a6b9ec;
     text-shadow: 
     -1px 0 black, 
     0 1px black,      
@@ -28,7 +28,7 @@
 }
 .posting-blog-title{
     text-align: left;
-    background-color: white;
+    background-color: #a6b9ec;
     padding: 20px;
     border-radius: 10px;
     margin: 15px 10px 15px 10px;
@@ -39,7 +39,7 @@
 
 .posting-blog-description{
     text-align: left;
-    background-color: white;
+    background-color: #a6b9ec;
     padding: 20px;
     border-radius: 10px;
     margin: 15px 10px 15px 10px;
@@ -49,7 +49,7 @@
 }
 
 .posting-blog-inputImage{
-    background-color: white;
+    background-color: #a6b9ec;
     padding: 20px;
     border-radius: 10px;
     margin: 15px 10px 15px 10px;
@@ -71,6 +71,6 @@
     height: 40px;
     border: 1px solid black;
     border-radius: 10px;
-    background-color: #0061A0;
+    background-color: #071C5F;
     color: white;
 }

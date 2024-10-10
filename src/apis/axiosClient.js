@@ -1,5 +1,5 @@
 import axios from "axios";
-import userApi from "./userApi";
+
 const axiosClient = axios.create({
   baseURL:
     "https://fengshuikoiapi-eahsenh5ckgqbzf7.southeastasia-01.azurewebsites.net/api/v1",
@@ -10,6 +10,7 @@ const axiosClient = axios.create({
     "Accept-Language": "vi",
   },
 });
+
 axiosClient.interceptors.request.use(
   function (config) {
     const token = localStorage.getItem("token");
@@ -33,6 +34,11 @@ axiosClient.interceptors.response.use(
     return response;
   },
   function (error) {
+    if (error.response && error.response.status === 401) {
+      localStorage.removeItem("token");
+      alert("Phiên đăng nhập đã hết hạn, vui lòng đăng nhập lại");
+      window.location.href = "/login";
+    }
     return Promise.reject(error);
   }
 );
