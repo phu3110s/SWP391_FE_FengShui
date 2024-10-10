@@ -1,39 +1,37 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import blogApi from "../../apis/blogApi";
-import Header from "../../components/header/Header";
-import "../BlogList/style.css";
 import { Spin } from "antd";
 import "./NewBlog.css";
+
 const NewBlog = () => {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
-  const [size] = useState(12);
-
+  const [size] = useState(12);  
   const fetchBlogs = async () => {
-    setLoading(true);
     try {
+      setLoading(true);  // Đặt loading trước khi gọi API
       const response = await blogApi.getBlogs(page, size, "Approved");
       setBlogs(response.data.items);
-      setLoading(false);
     } catch (err) {
       setError(err.message);
-      setLoading(false);
+    } finally {
+      setLoading(false);  // Kết thúc loading sau khi hoàn tất hoặc lỗi
     }
   };
 
   useEffect(() => {
-    fetchBlogs();
-  }, []);
-  if (loading) return <Spin size="big" style={{ marginRight: 8 }} />;
+    fetchBlogs(); 
+  }, [page, size]); 
+
+  if (loading) return <Spin size="large" style={{ margin: "0 auto", display: "block" }} />;
   if (error) return <p>Error: {error}</p>;
 
   return (
     <div>
       <h1>Blogs</h1>
-
       <div className="blog-container">
         {blogs.map((blog) => (
           <div className="blog-info" key={blog.id}>
@@ -45,7 +43,7 @@ const NewBlog = () => {
         ))}
       </div>
       <div className="show-blog-link">
-        <Link to="/blogs">Show more blog...</Link>
+        <Link to="/blogs">Show more blogs...</Link>
       </div>
     </div>
   );

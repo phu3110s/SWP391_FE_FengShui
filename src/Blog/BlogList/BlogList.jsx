@@ -47,7 +47,6 @@ const BlogList = () => {
     fetchBlogs();
   }, [page, size]);
   if (loading) return <Spin size="Big" style={{ margin: 8 }} />;
-
   if (error) return <p>Lỗi: {error}</p>;
 
   return (
@@ -62,7 +61,8 @@ const BlogList = () => {
             <h2>{blog.title}</h2>
             <img src={blog.urlImg} width="500px" alt={blog.title} />
             <Link to={`/blogs/${blog.id}`}>Detail</Link>
-            <p>Author: {blog.userInfo.fullName}</p>
+            <Link to={`/user-profile/${blog.userInfo.id}`}><p>Author: {blog.userInfo.fullName}</p></Link>
+            
           </div>
         ))}
       </div>

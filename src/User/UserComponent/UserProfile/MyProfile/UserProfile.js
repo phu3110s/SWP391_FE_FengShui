@@ -4,8 +4,12 @@ import userApi from "../../../../apis/userApi";
 import Header from "../../../../components/header/Header";
 import "./UserProfile.css";
 import Radio from "antd/es/radio/radio";
+import { useParams } from "react-router-dom";
 
 export default function UserProfile() {
+  const {userId} = useParams();
+  const loggedInUserId = localStorage.getItem("userId");
+ 
   const [userProfile, setUserProfile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -19,7 +23,7 @@ export default function UserProfile() {
 
   const [image, setImage] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
-  const userId = localStorage.getItem("userId");
+  
   const token = localStorage.getItem("token");
   const handleImageInput = (e) => {
     const file = e.target.files[0];
@@ -32,7 +36,7 @@ export default function UserProfile() {
     setLoading(true);
     setError(null);
     try {
-      const response = await userApi.getUserProfile(userId, {
+      const response = await userApi.getUserProfile(loggedInUserId, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

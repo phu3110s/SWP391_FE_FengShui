@@ -8,7 +8,6 @@ const { Search } = Input;
 export default function Header() {
   const [username, setUsername] = useState();
   const token = localStorage.getItem("token");
-  const username1 = localStorage.getItem("username");
   const userId = localStorage.getItem("userId");
   const [loginStatus, setLogin] = useState(false);
   const [avatarUrl, setAvatar] = useState(null);
@@ -33,15 +32,10 @@ export default function Header() {
       }
     }
   };
-  if (username) {
+  if (token) {
     fetchUserProfile();
   }
   const navigate = useNavigate();
-  useEffect(() => {
-    if (token) {
-      setUsername(username1);
-    }
-  }, []);
   const handleLogout = () => {
     localStorage.removeItem("token");
     setUsername(null);
@@ -111,7 +105,7 @@ export default function Header() {
         <Search placeholder="input search text" />
       </Space>
       <div className="authorization-box">
-        {username ? (
+        {token ? (
           <Dropdown overlay={userMenu} trigger={["click"]}>
             <div
               style={{

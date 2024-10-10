@@ -41,13 +41,16 @@ const FishViewing = () => {
 
   const handleDeleteFish = (key) => {
     message.success("Xóa thành công!");
+    
   };
-
+  const handleUpdateFish = (key)=>{
+    message.success("Update ")
+  }
   const columns = [
     {
       title: "Name",
       dataIndex: "name",
-      key: "namae",
+      key: "name",
     },
     {
       title: "Size",
