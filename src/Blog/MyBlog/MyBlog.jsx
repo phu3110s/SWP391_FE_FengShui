@@ -2,14 +2,11 @@ import React, { useEffect, useState } from "react";
 import Header from "../../components/header/Header";
 import blogApi from "../../apis/blogApi";
 import { Link } from "react-router-dom";
-<<<<<<< HEAD
 import './MyBlog.css'
 import Navigation from "../../components/navbar/Navigation";
 import Footer from "../../components/footer/Footer";
-=======
-import "./MyBlog.css";
 import { Pagination } from "antd";
->>>>>>> 749f880488e718827c45d02c09c2c483b14039ac
+
 
 export default function MyBlog() {
   const userId = localStorage.getItem("userId");
@@ -70,22 +67,11 @@ export default function MyBlog() {
       <Header />
       <Navigation />
       <h1 className="blog-title">My Blogs</h1>
-<<<<<<< HEAD
+
       <div className="blog-btn">
         <button className="button-blogs" onClick={() => setViewType("Approved")}>Approved Blogs</button>
         <button className="button-blogs" onClick={() => setViewType("Pending")}>Pending Blogs</button>
-=======
-      <div>
-        <button
-          className="button-blogs"
-          onClick={() => setViewType("Approved")}
-        >
-          Approved Blogs
-        </button>
-        <button className="button-blogs" onClick={() => setViewType("Pending")}>
-          Pending Blogs
-        </button>
->>>>>>> 749f880488e718827c45d02c09c2c483b14039ac
+
       </div>
 
       {loading && <p>Loading...</p>}
@@ -108,15 +94,10 @@ export default function MyBlog() {
           </div>
         </div>
       ) : (
-<<<<<<< HEAD
-        <div className="blogs">
-          <h2 className="blog-title">Các bài post đang chờ được duyệt của bạn</h2>
-=======
         <div>
           <h2 className="blog-title">
             Các bài post đang chờ được duyệt của bạn
           </h2>
->>>>>>> 749f880488e718827c45d02c09c2c483b14039ac
           <div className="pending-blog-container">
             {pendingBlogs.length > 0 ? (
               pendingBlogs.map((blog) => (

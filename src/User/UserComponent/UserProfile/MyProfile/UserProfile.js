@@ -4,7 +4,7 @@ import userApi from "../../../../apis/userApi";
 import Header from "../../../../components/header/Header";
 import "./UserProfile.css";
 import Radio from "antd/es/radio/radio";
-
+  
 export default function UserProfile() {
   const loggedInUserId = localStorage.getItem("userId");
   const [userProfile, setUserProfile] = useState(null);
