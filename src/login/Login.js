@@ -35,7 +35,7 @@ export default function Login() {
       localStorage.setItem("userImg", response.data.urlImg);
       localStorage.setItem("userRole", response.data.role);
       message.success("login thành công")
-      if (userRole === "Admin") {
+      if (token && userRole === "Admin") {
         navigate("/AdminDashboard");
       } else {
         navigate("/");

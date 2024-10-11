@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 import './MyBlog.css'
 import Navigation from "../../components/navbar/Navigation";
 import Footer from "../../components/footer/Footer";
-import "./MyBlog.css";
 import { Pagination } from "antd";
+
 
 export default function MyBlog() {
   const userId = localStorage.getItem("userId");
@@ -71,17 +71,7 @@ export default function MyBlog() {
       <div className="blog-btn">
         <button className="button-blogs" onClick={() => setViewType("Approved")}>Approved Blogs</button>
         <button className="button-blogs" onClick={() => setViewType("Pending")}>Pending Blogs</button>
-      </div>
-      <div>
-        <button
-          className="button-blogs"
-          onClick={() => setViewType("Approved")}
-        >
-          Approved Blogs
-        </button>
-        <button className="button-blogs" onClick={() => setViewType("Pending")}>
-          Pending Blogs
-        </button>
+
       </div>
 
       {loading && <p>Loading...</p>}
@@ -104,8 +94,10 @@ export default function MyBlog() {
           </div>
         </div>
       ) : (
-        <div className="blogs">
-          <h2 className="blog-title">Các bài post đang chờ được duyệt của bạn</h2>
+        <div>
+          <h2 className="blog-title">
+            Các bài post đang chờ được duyệt của bạn
+          </h2>
           <div className="pending-blog-container">
             {pendingBlogs.length > 0 ? (
               pendingBlogs.map((blog) => (

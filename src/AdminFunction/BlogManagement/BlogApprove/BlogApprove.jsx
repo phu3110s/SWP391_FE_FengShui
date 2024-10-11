@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import blogApi from "../../../apis/blogApi";
 import { Spin, Button, message } from "antd";
 import "./BlogApprove.css";
+import { Link } from "react-router-dom";
 export default function BlogApprove() {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -67,13 +68,14 @@ export default function BlogApprove() {
   return (
     <div>
       <h1>Những bài blog đang chờ duyệt</h1>
-      <div className="blog-container">
+      <div className="blog-container" style={{ marginLeft: 200 }}>
         {blogs.map((blog) => (
           <div className="blog-info" key={blog.id}>
             <h2>{blog.title}</h2>
             <img src={blog.urlImg} width="100%" alt={blog.title} />
             <h3>{blog.description}</h3>
-            <p>Author: {blog.userInfo.fullName}</p>
+            <Link to={`/user-profile/${blog.userInfo.id}`}><p>Author: {blog.userInfo.fullName}</p></Link>
+
             <div className="action-buttons">
               <Button
                 type="primary"
