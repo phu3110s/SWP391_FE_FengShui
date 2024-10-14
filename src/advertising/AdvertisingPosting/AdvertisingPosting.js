@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import postingApi from '../../apis/postingApi'
 import postPayment from '../../apis/payosApi'
 import paymentPlan from '../../apis/paymentApi'
+import createPaymentLink from '../../apis/payosApi'
 
 export default function AdvertisingPosting() {
 
@@ -62,9 +63,9 @@ export default function AdvertisingPosting() {
         formData.append("PaymentPlanId", planID);
         formData.append("ItemTypeName", title);
 
-        for (let pair of formData.entries()) {
-            console.log(pair[0] + ': ' + pair[1]);
-        }
+        // for (let pair of formData.entries()) {
+        //     console.log(pair[0] + ': ' + pair[1]);
+        // }
         try {
             const response = await postingApi.uploadAdvertisings(formData, {
                 headers: {
@@ -72,25 +73,24 @@ export default function AdvertisingPosting() {
                 },
             });
             if (response.status === 201) {
+                // console.log(response.data);
+
                 message.success("Đăng blog thành công. Chờ duyệt");
-                // const data = new FormData();
-                // data.append("advertisingId", advertisingId);
-                // data.append("description", description);
-                // data.append("returnUrl", 'http://localhost:3000');
-                // data.append("canceUrl", 'http://localhost:3000');
                 const paymentData = {
                     advertisingId: response.data.id,
-                    description: description,
-                    returnUrl: 'http://localhost:3000',
-                    // canceUrl: 'http://localhost:3000'
+                    description: response.data.description,
+                    returnUrl: 'http://localhost:3000/AdvertisingPosting',
+                    canceUrl: 'http://localhost:3000/AdvertisingPosting'
                 };
 
-                const paymentResponse = await postPayment(paymentData);
-
-                if (paymentResponse.status === 200 && paymentResponse.data.paymentUrl) {
-                    window.location.href = paymentResponse.data.paymentUrl;
-                } else {
-                    message.error("Không thể tạo link thanh toán");
+                const responsePayment = await createPaymentLink.postPayment(paymentData, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                    },
+                });
+                // console.log(responsePayment);
+                if (responsePayment.status == 200) {
+                    window.location.href = responsePayment.data
                 }
 
                 setTitle("");
