@@ -1,0 +1,23 @@
+.dashboard-chart-container{
+    display: flex;
+    flex-direction: column;
+}
+.chart-row{
+    display: flex;
+    justify-content: space-between;
+    
+}
+.chart-container{
+    flex:1;
+    margin: 0 10px;
+}
+.pie-chart{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom: 20px;
+    width: 90%;
+}
+.chart-row{
+    display: flex;
+    justify-content: space-between;
+}

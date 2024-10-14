@@ -1,80 +1,116 @@
+/* Reset margins and paddings for consistency */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  font-family: 'Inter', sans-serif;
+  background-color: #F4F7FE;
+}
+
+/* Admin Dashboard Layout */
 .admin-dashboard {
   display: flex;
+  min-height: 100vh;
+  background-color: #F4F7FE;
 }
 
+/* ====================================== SIDE BAR ============================= */
 .sidebar {
-  width: 220px;
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/fengshuikoi.appspot.com/o/5a8176e5-8962-4fbd-ab9e-e328a0e6350a.jpg?alt=media" );
+  background-position: center;
+  width: 280px;
+  background-color: #1F2937;
+  padding: 30px 0;
+  position: fixed;
+  height: 100%;
+  box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.home-logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+  margin-top: 40px  ;
+
+}
+
+.logo-home {
+  width: 80 px;
+}
+.sidebar {
+  width: 250px;
   height: 100vh;
   position: fixed;
-  background-color: #001529;
-  display: flex;
-  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.3); 
+  color: #ffffff; 
+  padding-top: 20px;
+  transition: all 0.3s ease;
 }
 
-.home-logo{
-  width: 65px;
-  height: 43px;
-  display: flex;
-  text-align: center;
-  align-items: center;
-  padding: 0;
-  margin-left: 50px;
-  border-radius: 50%;
-  background-color: white;
-  border: 1px solid #D35D6E;
+.sidebar .home-logo img {
+  width: 60%;
+  margin: 0 auto;
+  display: block;
+  padding-bottom: 20px;
+  margin-top: 20px;
 }
 
-.home-logo:hover{
-  background-color: #FF9B9B;
+.sidebar .ant-menu {
+  background-color: transparent !important;
+  color: #ffffff; 
 }
 
-.logo-home{
-  width: 50%;
-  height: auto;
-}
-.dashboard-content {
-  flex-grow: 1;
-  padding: 0;
-}
-
-.authorization-box {
-  display: flex;
-  justify-content: flex-end;
-  padding: 20px;
+.sidebar .ant-menu-item {
+  font-weight: bold;
+  color: #ffffff; 
+  padding-left: 20px;
+  border-left: 3px solid transparent;
+  transition: all 0.3s ease;
 }
 
-.dashboard-main-content {
-  padding: 40px;
+.sidebar .ant-menu-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-left: 3px solid #ffffff; 
 }
 
-.menu-item {
-  padding: 15px;
-  cursor: pointer;
+.sidebar .ant-menu-item-selected {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-left: 3px solid #ffffff;
 }
 
-.menu-item:hover {
-  background-color: #1890ff; 
-  color: white;
+.sidebar .ant-menu-submenu-title {
+  font-weight: bold;
+  color: #ffffff; 
 }
+
+.sidebar .ant-menu-submenu-arrow {
+  color: #ffffff; 
+}
+
+.sidebar .ant-menu-submenu:hover {
+  background-color: rgba(255, 255, 255, 0.1); 
+}
+
 .header {
+  background-color: #ffffff;
   display: flex;
-  justify-content: space-between; 
+  justify-content: space-between;
   align-items: center;
-  width: calc(100%-250px); 
-  height: 60px; 
-  background-color: #1c2b36; 
-  padding: 0 0px;
+  padding: 20px;
+  box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.08);
+  width: calc(100% - 280px);
+  position: fixed;
+  top: 0;
+  left: 280px;
+  z-index: 999;
 }
 
 .header-titles {
-
-  margin: 0;
-  flex-grow: 1;
-  font-size: 24px;
-  text-align: center;
-  font-weight: bold;
-  color:white;
-  padding:0px 0px;
+  font-size: 22px;
+  color: #1F2937;
 }
 
 .header-actions {
@@ -83,15 +119,54 @@
 }
 
 .notification-btn {
-  background-color: #1890ff;
+  background-color: #6366F1;
   color: white;
-  padding: 8px 16px;
   border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
   cursor: pointer;
-  border-radius: 4px;
-  font-size: 14px;
+  font: 16px;
+}
+.notification-btn:hover {
+  background-color: #4F46E5;
 }
 
-.notification-btn:hover {
-  background-color: #40a9ff;
+.ant-avatar {
+  width: 40px;
+  height: 40px;
+}
+
+/* Dashboard Content Styling */
+.dashboard-content {
+  flex-grow: 1;
+  padding: 80px 30px 30px;
+  margin-left: 280px;
+  background-color: #F4F7FE;
+  min-height: 100vh;
+  /* background-image: url("https://as1.ftcdn.net/v2/jpg/08/09/95/38/1000_F_809953860_9PelITlTOh5imav5RgDmbQlLRszuIySa.jpg");
+  background-position: center;
+  opacity: 30%; */
+}
+
+.dashboard-main-content {
+ /* background-image: url("https://as2.ftcdn.net/v2/jpg/08/09/95/33/1000_F_809953303_KYFWlNWc0NngZEfS7wDD7bPnalcBrlNv.jpg"); */
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 200px;
+  }
+
+  .header {
+    width: calc(100% - 200px);
+    left: 200px;
+  }
+
+  .dashboard-content {
+    margin-left: 200px;
+  }
 }

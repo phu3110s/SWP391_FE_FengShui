@@ -102,7 +102,7 @@ const PondViewing = () => {
   return (
     <div style={{ marginLeft: '100px' }}>
       <h1>Admin - Danh Sách Hồ</h1>
-      <Table
+      <Table className="table"
         columns={columns}
         dataSource={PondList}
         pagination={{
