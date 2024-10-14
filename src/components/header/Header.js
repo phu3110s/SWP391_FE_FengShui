@@ -33,9 +33,12 @@ export default function Header() {
       }
     }
   };
-  if (token) {
-    fetchUserProfile();
-  }
+  useEffect(()=>{
+    if (token) {
+      fetchUserProfile();
+    }
+  },[])
+  
   const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem("token");

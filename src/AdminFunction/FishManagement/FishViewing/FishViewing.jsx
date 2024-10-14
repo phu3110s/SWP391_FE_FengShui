@@ -44,9 +44,13 @@ const FishViewing = () => {
     message.success("Xóa thành công!");
 
   };
-  const handleUpdateFish = (key) => {
-    message.success("Update ")
+
+  const handleUpdateFish = (key)=>{
+        message.success("Update ")
   }
+
+
+  
   const columns = [
     {
       title: "Name",
@@ -97,15 +101,14 @@ const FishViewing = () => {
     },
   ];
 
-
   const handlePageChange = (e) => {
     setPage(e.current);
   };
 
   return (
-    <div style={{ marginLeft: '210px' }}>
+    <div>
       <h1>Admin - Danh Sách Cá</h1>
-      <Table
+      <Table className="table"
         columns={columns}
         dataSource={fishList}
         pagination={{
@@ -149,6 +152,6 @@ const FishViewing = () => {
       </Modal>
     </div>
   );
-};
+}
 
 export default FishViewing;

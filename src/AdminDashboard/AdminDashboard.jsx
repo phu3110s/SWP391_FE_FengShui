@@ -2,12 +2,12 @@ import { Avatar, Dropdown, Menu } from "antd";
 import React, { useEffect, useState } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import "./styles.css";
-import SubMenu from "antd/es/menu/SubMenu";
 
 const AdminDashboard = () => {
   const [username, setUsername] = useState();
   const token = localStorage.getItem("token");
   const avatarUrl = localStorage.getItem("userImg");
+  const role = localStorage.getItem("userRole");
   const navigate = useNavigate();
   useEffect(
     () => {
@@ -20,9 +20,10 @@ const AdminDashboard = () => {
     navigate
   );
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    setUsername(null);
-    navigate("/");
+    if(window.confirm('Bạn chắc chắn muốn đăng xuất?')){localStorage.removeItem("token");
+      localStorage.removeItem("userRole")
+      navigate("/");}
+    
   };
 
   const userMenu = (
@@ -34,11 +35,11 @@ const AdminDashboard = () => {
   );
   return (
     <div className="admin-dashboard">
-      <Sidebar />
+      <Sidebar /> 
       <div className="dashboard-content">
         <Header avatarUrl={avatarUrl} userMenu={userMenu} />
         <div className="dashboard-main-content">
-          <Outlet />
+          <Outlet />  
         </div>
       </div>
     </div>
@@ -56,7 +57,6 @@ const Sidebar = () => {
       </div>
       <Menu mode="inline" theme="dark">
         <Menu.SubMenu key="sub1" title="Blog Management">
-          {/* All Blog Sub Menu */}
           <Menu.SubMenu key="sub2" title="All Blog">
             <Menu.Item
               key="1"
@@ -117,7 +117,10 @@ const Sidebar = () => {
             Thêm kiểu hồ
           </Menu.Item>
         </Menu.SubMenu>
-        <Menu.Item key="11" onClick={() => navigate("/AdminDashboard/")}>
+        <Menu.Item key="11" onClick={() => navigate("/AdminDashboard/AdminChart")}>
+          Admin Dashboard 
+        </Menu.Item>
+        <Menu.Item key="12" onClick={() => navigate("/AdminDashboard/")}>
           Cài đặt
         </Menu.Item>
       </Menu>

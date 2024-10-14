@@ -20,12 +20,7 @@ export default function Home() {
     if(role === "Admin"){
       navigate("/AdminDashboard")
     }
-  }, []);
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    setUsername(null);
-    navigate("/");
-  };
+  },[]);
   return (
     <div className="Log-container">
       <Header />

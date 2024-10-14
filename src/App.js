@@ -28,6 +28,7 @@ import FishViewing from "./AdminFunction/FishManagement/FishViewing/FishViewing"
 import PondViewing from "./AdminFunction/PondManagement/PondViewing/PondViewing";
 import OtherUserProfile from "./User/OtherUser/OtherUserProfile";
 import AdvertisingPosting from "./advertising/AdvertisingPosting/AdvertisingPosting";
+import DashboardChart from "./AdminFunction/DashboardChart/DashboardChart";
 
 function App() {
   // const [user, setUser] = useState(null);
@@ -111,6 +112,7 @@ function App() {
           <Route path="FishGenerating" element={<FishAdding />} />
           <Route path="FishManagement" element={<FishViewing />} />
           <Route path="PondManagement" element={<PondViewing />} />
+          <Route path="AdminChart" element={<DashboardChart/>}/>
         </Route>
       </Routes>
     </div>
