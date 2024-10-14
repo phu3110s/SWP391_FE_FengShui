@@ -3,7 +3,7 @@ import axios from "axios";
 
 const axiosClient = axios.create({
   baseURL:
-    "https://fengshuikoiapi-eahsenh5ckgqbzf7.southeastasia-01.azurewebsites.net/api/v1",
+    "https://feng-shui-koi-dgedbqdqaebyhgc4.southeastasia-01.azurewebsites.net/api/v1",
 
   headers: {
     "Content-Type": "application/json; charset=UTF-8",
