@@ -50,7 +50,7 @@ const FishViewing = () => {
   }
 
 
-  }
+  
   const columns = [
     {
       title: "Name",
@@ -101,13 +101,12 @@ const FishViewing = () => {
     },
   ];
 
-
   const handlePageChange = (e) => {
     setPage(e.current);
   };
 
   return (
-    <div style={{ marginLeft: '210px' }}>
+    <div>
       <h1>Admin - Danh Sách Cá</h1>
       <Table className="table"
         columns={columns}
@@ -153,6 +152,6 @@ const FishViewing = () => {
       </Modal>
     </div>
   );
-};
+}
 
 export default FishViewing;
