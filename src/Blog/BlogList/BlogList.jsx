@@ -4,13 +4,14 @@ import blogApi from "../../apis/blogApi";
 import Header from "../../components/header/Header";
 import "../BlogList/style.css";
 import { Pagination, Spin } from "antd";
+import Navigation from "../../components/navbar/Navigation";
 
 const BlogList = () => {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
-  const [size, setSize] = useState(10);
+  const [size, setSize] = useState(11);
   const [totalPage, setTotalPage] = useState(0);
   const handlePageChange = (page, pageSize) => {
     setPage(page);
@@ -52,6 +53,7 @@ const BlogList = () => {
   return (
     <div>
       <Header />
+      <Navigation/>
       <h1>Blogs</h1>
 
       {/* Blog List */}

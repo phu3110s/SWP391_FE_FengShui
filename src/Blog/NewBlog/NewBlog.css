@@ -6,20 +6,20 @@
 }
 
 .blog-container {
-  height: 100%;
-  background-color: #071C5F;
-  
+
+  height: auto;
+  background-color: #fa91a6;
 }
 
 .blog-info {
   height: 93%;
   background-color: #FFFFFF;
-  border: 2px solid #071C5F;
+  border: 2px solid #fa91a6;
 }
 
 .blog-info a {
   text-decoration: none;
-  color: #071C5F;
+  color: #fa91a6;
 }
 
 .blog-container {
@@ -41,9 +41,9 @@
   flex-direction: column;
   justify-content: space-between;
   height: 90%;
-  border: 5px solid #082480;
+  border: 5px solid #fa91a6;
   border-radius: 10px;
-  background-color: #082480;
+  background-color: #ebf0ff;
 }
 
 .blog-info:hover {
@@ -85,7 +85,7 @@
 }
 
 .blog-info a:hover {
-  background-color: #1a73e8;
+  background-color: #fdfdfd;
   color: white;
 }
 

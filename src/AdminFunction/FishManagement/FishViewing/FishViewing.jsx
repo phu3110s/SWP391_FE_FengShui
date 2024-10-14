@@ -44,8 +44,12 @@ const FishViewing = () => {
     message.success("Xóa thành công!");
 
   };
-  const handleUpdateFish = (key) => {
-    message.success("Update ")
+
+  const handleUpdateFish = (key)=>{
+        message.success("Update ")
+  }
+
+
   }
   const columns = [
     {
@@ -105,7 +109,7 @@ const FishViewing = () => {
   return (
     <div style={{ marginLeft: '210px' }}>
       <h1>Admin - Danh Sách Cá</h1>
-      <Table
+      <Table className="table"
         columns={columns}
         dataSource={fishList}
         pagination={{
