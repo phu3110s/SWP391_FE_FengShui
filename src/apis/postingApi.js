@@ -5,7 +5,7 @@ const postingApi = {
         const url = "/advertisings";
         return axiosClient.post(url, data);
     },
-    getAdvertisings: (page, size, status) => {
+    getAdvertisings: (status, page, size) => {
         const url = `/advertisings?status=${status}&page=${page}&size=${size}`;
         return axiosClient.get(url);
     },
@@ -16,6 +16,7 @@ const postingApi = {
     uploadAdvertisings: (FormData) => {
         const url = "/advertisings";
         return axiosClient.post(url, FormData);
+
     },
     getUserAdvertisings: (id, page, size, status) => {
         const url = `users/${id}/advertisings?status=${status}&page=${page}&size=${size}`;
@@ -25,7 +26,6 @@ const postingApi = {
         const url = `advertisings/${id}/status`;
         return axiosClient.put(url, status);
     },
-
 };
 
 export default postingApi;

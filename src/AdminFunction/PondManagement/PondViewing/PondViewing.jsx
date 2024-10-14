@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { Table, Button, Modal, Popconfirm, message } from "antd"
+import { Table, Button, Modal, Popconfirm, message, Spin } from "antd"
 import pondApi from "../../../apis/pondApi";
 import "./PondViewing.css"
 const PondViewing = () => {
   const token = localStorage.getItem("token");
   const [page, setPage] = useState(1);
-  const [size, setSize] = useState(10); 
-  const [total, setTotal] = useState(0); 
+  const [size, setSize] = useState(10);
+  const [total, setTotal] = useState(0);
   const [PondList, setPondList] = useState([]);
-
+  const [loading, setLoading] = useState(false)
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true)
       try {
         const response = await pondApi.getPond(page, size, {
           headers: {
@@ -18,9 +19,11 @@ const PondViewing = () => {
           },
         });
         setPondList(response.data.items);
-        setTotal(response.data.total); 
+        setTotal(response.data.total);
       } catch (error) {
         message.error("Lỗi khi tải dữ liệu.");
+      } finally {
+        setLoading(false)
       }
     };
 
@@ -29,7 +32,7 @@ const PondViewing = () => {
 
   const [selectedPond, setSelectedPond] = useState(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
-
+  if (loading) return <Spin size="large" style={{ marginLeft: 120 }} />
   const showPondDetails = (Pond) => {
     setSelectedPond(Pond);
     setIsModalVisible(true);
@@ -109,9 +112,9 @@ const PondViewing = () => {
           current: page,
           pageSize: size,
           total: total,
-          showSizeChanger: false, 
+          showSizeChanger: false,
         }}
-        onChange={handlePageChange} 
+        onChange={handlePageChange}
       />
       <Modal
         title="Thông tin chi tiết"
@@ -139,9 +142,9 @@ const PondViewing = () => {
             </p>
             <div className="image-container"><p>
               <strong>Image:</strong><br></br>
-              <img className="popup-image" src={selectedPond.urlImg} title="Ảnh thoi có gì đâu mà bấm vô"/>
+              <img className="popup-image" src={selectedPond.urlImg} title="Ảnh thoi có gì đâu mà bấm vô" />
             </p></div>
-            
+
           </div>
         )}
       </Modal>

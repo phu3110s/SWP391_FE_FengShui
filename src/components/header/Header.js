@@ -42,7 +42,8 @@ export default function Header() {
   const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem("token");
-    setUsername(null);
+    localStorage.removeItem("userId");
+    localStorage.removeItem("username");
     navigate("/");
   };
 

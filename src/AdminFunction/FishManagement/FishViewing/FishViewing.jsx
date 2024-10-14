@@ -1,16 +1,17 @@
+import { Button, Modal, Popconfirm, Table, message } from "antd";
 import React, { useEffect, useState } from "react";
-import { Table, Button, Modal, Popconfirm, message } from "antd";
 import fishApi from "../../../apis/fishApi";
-import "./FishViewing.css"
+import "./FishViewing.css";
 const FishViewing = () => {
   const token = localStorage.getItem("token");
   const [page, setPage] = useState(1);
   const [size, setSize] = useState(10); // Số lượng item trên mỗi trang
   const [total, setTotal] = useState(0); // Tổng số item
   const [fishList, setFishList] = useState([]);
-
+  const [loading, setLoading] = useState(false)
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true)
       try {
         const response = await fishApi.getFish(page, size, {
           headers: {
@@ -41,11 +42,14 @@ const FishViewing = () => {
 
   const handleDeleteFish = (key) => {
     message.success("Xóa thành công!");
-    
+
   };
+
   const handleUpdateFish = (key)=>{
-    
-    message.success("Update ")
+        message.success("Update ")
+  }
+
+
   }
   const columns = [
     {
@@ -103,7 +107,7 @@ const FishViewing = () => {
   };
 
   return (
-    <div style={{ marginLeft: '100px' }}>
+    <div style={{ marginLeft: '210px' }}>
       <h1>Admin - Danh Sách Cá</h1>
       <Table className="table"
         columns={columns}
@@ -112,9 +116,9 @@ const FishViewing = () => {
           current: page,
           pageSize: size,
           total: total,
-          showSizeChanger: false, 
+          showSizeChanger: false,
         }}
-        onChange={handlePageChange} 
+        onChange={handlePageChange}
       />
       <Modal
         title="Thông tin chi tiết"
@@ -142,7 +146,7 @@ const FishViewing = () => {
             </p>
             <p>
               <strong>Image:</strong><br></br>
-              <img className="popup-image" src={selectedFish.urlImg} title="Ảnh thoi có gì đâu mà bấm vô"/>
+              <img className="popup-image" src={selectedFish.urlImg} title="Ảnh thoi có gì đâu mà bấm vô" />
             </p>
           </div>
         )}

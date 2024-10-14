@@ -71,9 +71,14 @@ body, html {
   transition: all 0.3s ease;
 }
 
+
 .sidebar .ant-menu-item:hover {
   background-color: rgba(255, 255, 255, 0.1);
   border-left: 3px solid #ffffff; 
+}
+
+.dashboard-main-content {
+  padding: 40px;
 }
 
 .sidebar .ant-menu-item-selected {

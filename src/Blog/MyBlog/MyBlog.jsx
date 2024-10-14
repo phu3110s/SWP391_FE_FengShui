@@ -109,13 +109,12 @@ export default function MyBlog() {
                 </div>
               ))
             ) : (
-              <p className="blog-title">
-                Bạn chưa có bài post nào đang chờ duyệt.
-              </p>
+              <p className="blog-title">Bạn chưa có bài post nào đang chờ duyệt.</p>
             )}
           </div>
         </div>
       )}
+
       <div className="pagination">
         <Pagination
           current={page}
@@ -126,5 +125,6 @@ export default function MyBlog() {
       </div>
       <Footer />
     </div>
+
   );
 }
