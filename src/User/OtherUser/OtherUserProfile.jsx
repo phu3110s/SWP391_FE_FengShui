@@ -23,13 +23,11 @@ export default function OtherUserProfile() {
             if (response && response.data) {
                 setUserProfile(response.data);
                 console.log(response.data)
-            } else {
-                setError("Không tìm thấy thông tin người dùng");
             }
         } catch (error) {
             if (error.response) {
                 if (error.response.status === 400) {
-                    setError("Lỗi kết nối hoặc người dùng không tồn tại");
+                    setError("Tính năng này hoặc người dùng không tồn tại");
                     message.error("Lỗi");
                 }
             } else {
@@ -43,9 +41,8 @@ export default function OtherUserProfile() {
     useEffect(() => {
         fetchUserProfile();
     }, [userId]);
-    if (loading) return <Spin size="large" style={{ marginRight: 8 }} />;
+    if (loading) return <Spin size="large" style={{ marginRight: 8, marginTop: 100 }} />;
     if (error) return <div>{error}</div>;
-    if (!userProfile) return <div>Không tìm thấy thông tin người dùng</div>;
 
     return (
         <div>
@@ -53,25 +50,25 @@ export default function OtherUserProfile() {
             <h1>User profile</h1>
             <div className="user-profile-container">
                 <div className="user-profile-header">
-                    <img className="user-avatar" src={userProfile.urlImg} alt="...."/>
+                    <img className="user-avatar" src={userProfile.profileImageUrl} alt="...." />
                     <h2 className="user-fullName">{userProfile.fullName}</h2>
                 </div>
                 <div className="user-profile-bio">
-                <h3>
-                Ngày sinh: <span>{userProfile.birthdate}</span>
-              </h3>
-              <h3>
-                Giới tính: <span>{userProfile.gender}</span>
-              </h3>
-              <h3>
-                Email: <span>{userProfile.email}</span>
-              </h3>
-              <h3>
-                Số điện thoại: <span>{userProfile.phoneNumber}</span>
-              </h3>
-              <h3>
-                Mệnh: <span>{userProfile.fengShui}</span>
-              </h3>
+                    <h3>
+                        Ngày sinh: <span>{userProfile.birthdate}</span>
+                    </h3>
+                    <h3>
+                        Giới tính: <span>{userProfile.gender}</span>
+                    </h3>
+                    <h3>
+                        Email: <span>{userProfile.email}</span>
+                    </h3>
+                    <h3>
+                        Số điện thoại: <span>{userProfile.phoneNumber}</span>
+                    </h3>
+                    <h3>
+                        Mệnh: <span>{userProfile.fengShui}</span>
+                    </h3>
                 </div>
             </div>
         </div>

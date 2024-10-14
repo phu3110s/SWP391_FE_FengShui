@@ -32,7 +32,8 @@ const NewBlog = () => {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div className="new-blog">
+    <div className="new-blog" style={{ height: '270vh' }}>
+
       <h1 style={{ backgroundColor: '#FFFFFF', margin: '0', padding: '30px' }}>Blogs</h1>
 
       <div className="blog-container" style={{ backgroundColor: '#071C5F' }}>

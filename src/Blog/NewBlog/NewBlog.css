@@ -1,12 +1,14 @@
 .new-blog {
   width: 100%;
-  height: 240vh;
+  height: auto;
   background-color: #FFFFFF;
+
 }
 
 .blog-container {
-  height: auto;
+  height: 100%;
   background-color: #071C5F;
+  
 }
 
 .blog-info {
