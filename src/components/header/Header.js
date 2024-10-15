@@ -21,6 +21,7 @@ export default function Header() {
       });
       if (response && response.data) {
         setAvatar(response.data.urlImg);
+        localStorage.setItem("fengShuiID",response.data.fengShuiId);
       }
     } catch (error) {
       if (error.response) {

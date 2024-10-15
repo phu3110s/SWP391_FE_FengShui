@@ -222,7 +222,7 @@ export default function UserProfile() {
                 Số điện thoại: <span>{userProfile.phoneNumber}</span>
               </h3>
               <h3>
-                Mệnh: <span>{userProfile.fengShui}</span>
+                Mệnh: <span>{userProfile.fengShuiName}</span>
               </h3>
             </>
           )}
