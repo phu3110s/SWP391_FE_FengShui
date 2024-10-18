@@ -29,6 +29,9 @@ import PondViewing from "./AdminFunction/PondManagement/PondViewing/PondViewing"
 import OtherUserProfile from "./User/OtherUser/OtherUserProfile";
 import AdvertisingPosting from "./advertising/AdvertisingPosting/AdvertisingPosting";
 import DashboardChart from "./AdminFunction/DashboardChart/DashboardChart";
+import HarmonyAdding from "./AdminFunction/Harmony/HarmonyInput/HarmonyAdding";
+import HarmonyRating from "./Harmony/HarmonyRating";
+import HarmonyViewing from "./AdminFunction/Harmony/HarmonyView/HarmonyViewing";
 
 function App() {
   // const [user, setUser] = useState(null);
@@ -97,6 +100,7 @@ function App() {
         <Route path="/MyBlog" element={<MyBlog />} />
         <Route path="/News" element={<News />} />
         <Route path="/AdvertisingPosting" element={<AdvertisingPosting />} />
+        <Route path="/Harmony-Rating" element={<HarmonyRating/>}/>
         <Route
           path="/AdminDashboard"
           element={
@@ -113,6 +117,8 @@ function App() {
           <Route path="FishManagement" element={<FishViewing />} />
           <Route path="PondManagement" element={<PondViewing />} />
           <Route path="AdminChart" element={<DashboardChart/>}/>
+          <Route path="Harmony-Adding" element={<HarmonyAdding/>}/>
+          <Route path="Harmony-Viewing" element={<HarmonyViewing/>}/>
         </Route>
       </Routes>
     </div>

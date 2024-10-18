@@ -10,7 +10,6 @@ body, html {
   background-color: #F4F7FE;
 }
 
-/* Admin Dashboard Layout */
 .admin-dashboard {
   display: flex;
   min-height: 100vh;
@@ -19,10 +18,11 @@ body, html {
 
 /* ====================================== SIDE BAR ============================= */
 .sidebar {
-  background-image: url("https://firebasestorage.googleapis.com/v0/b/fengshuikoi.appspot.com/o/5a8176e5-8962-4fbd-ab9e-e328a0e6350a.jpg?alt=media" );
+  /* background-image: url("https://firebasestorage.googleapis.com/v0/b/fengshuikoi.appspot.com/o/5a8176e5-8962-4fbd-ab9e-e328a0e6350a.jpg?alt=media" ); */
+  background-image: url("https://as1.ftcdn.net/v2/jpg/05/95/22/42/1000_F_595224284_ptGqy1Jc7SVPcuh0cNnT37YZIHQCQk3y.jpg");
   background-position: center;
   width: 280px;
-  background-color: #1F2937;
+  background-color: #134892;
   padding: 30px 0;
   position: fixed;
   height: 100%;
@@ -82,7 +82,7 @@ body, html {
 }
 
 .sidebar .ant-menu-item-selected {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(78, 28, 28, 0.2);
   border-left: 3px solid #ffffff;
 }
 
@@ -92,12 +92,13 @@ body, html {
 }
 
 .sidebar .ant-menu-submenu-arrow {
-  color: #ffffff; 
+  color: #490a0a; 
 }
 
 .sidebar .ant-menu-submenu:hover {
-  background-color: rgba(255, 255, 255, 0.1); 
+  background-color: rgba(68, 17, 17, 0.1); 
 }
+
 
 .header {
   background-color: #ffffff;

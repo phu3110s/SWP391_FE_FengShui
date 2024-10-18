@@ -139,6 +139,7 @@ export default function DashboardChart() {
 
   useEffect(() => {
     fetchPieDataToday();
+    fetchPieRangeData(today, today);
   }, []);
 
   const lineData = {
@@ -211,7 +212,7 @@ export default function DashboardChart() {
 
   const handleStartDateChange = (date) => {
     if (date === null) {
-      setStartDate(null);
+      setStartDate(date);
     } else {
       setStartDate(date);
     }
@@ -229,8 +230,6 @@ export default function DashboardChart() {
     } else {
       setEndDate(date);
     }
-
-    setEndDate(date);
     if (startDate && date) {
       const formattedStartDate = moment(startDate).format("YYYY-MM-DD");
       const formattedEndDate = moment(date).format("YYYY-MM-DD");
@@ -269,20 +268,25 @@ export default function DashboardChart() {
         <div className="pie-chart chart-container">
           <div className="pie-chart-range">
             {pieDataRange ? (
-              pieDataRange.datasets[0].data.every((value) => value === 0) ? (
-                <p>
-                  Không có dữ liệu bài đăng từ {startDate.format("YYYY-MM-DD")}{" "}
-                  đến {endDate.format("YYYY-MM-DD")}.
-                </p>
-              ) : (
-                <div className="pie-range-container">
-                  <Pie data={pieDataRange} />
-                  <strong className="chart-title">
-                    Tổng hợp số bài đăng bán từ ngày{" "}
+              startDate && endDate ? (
+                pieDataRange.datasets[0].data.every((value) => value === 0) ? (
+                  <p>
+                    Không có dữ liệu bài đăng từ{" "}
                     {startDate.format("YYYY-MM-DD")} đến{" "}
-                    {endDate.format("YYYY-MM-DD")}
-                  </strong>
-                </div>
+                    {endDate.format("YYYY-MM-DD")}.
+                  </p>
+                ) : (
+                  <div className="pie-range-container">
+                    <Pie data={pieDataRange} />
+                    <strong className="chart-title">
+                      Tổng hợp số bài đăng bán từ ngày{" "}
+                      {startDate.format("YYYY-MM-DD")} đến{" "}
+                      {endDate.format("YYYY-MM-DD")}
+                    </strong>
+                  </div>
+                )
+              ) : (
+                <p>Vui lòng chọn cả ngày bắt đầu và ngày kết thúc.</p> 
               )
             ) : (
               <p>
@@ -290,7 +294,7 @@ export default function DashboardChart() {
               </p>
             )}
           </div>
-          {/* DatePicker chỉ đặt dưới biểu đồ range */}
+          {/* Cái chọn ngày linh tinh , đang không config được nên chưa sửa */}
           <div className="date-picker">
             <DatePicker
               value={startDate}

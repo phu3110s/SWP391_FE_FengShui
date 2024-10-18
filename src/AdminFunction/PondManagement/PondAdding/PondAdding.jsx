@@ -1,4 +1,4 @@
-import { Descriptions, Input, message, Spin } from "antd";
+  import { Descriptions, Input, message, Spin } from "antd";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import pondApi from "../../../apis/pondApi";
@@ -25,7 +25,7 @@ export default function PondAdding() {
       const response = await pondApi.createPond(formData, {
         headers: {
           Authorization: `Bearer ${token}`,
-        },
+        },  
       });
       if (response) {
         message.success("Tạo loại hồ thành công");
