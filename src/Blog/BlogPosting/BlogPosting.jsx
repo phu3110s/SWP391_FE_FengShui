@@ -1,10 +1,12 @@
 import { Input, message } from "antd";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import blogApi from "../../apis/blogApi";
 import Header from "../../components/header/Header";
 import "./styles.css";
 import Navigation from "../../components/navbar/Navigation";
+import Footer from "../../components/footer/Footer";
+
 
 export default function BlogPosting() {
   const userId = localStorage.getItem("userId");
@@ -69,7 +71,7 @@ export default function BlogPosting() {
   };
 
   return (
-    <div className="posting-blog">
+    <div className="posting-blog" >
       <Header />
       <Navigation />
       <div className="bl-pt-form">
@@ -103,6 +105,7 @@ export default function BlogPosting() {
             <br />
             <input type="file" onChange={handleImageInput} accept="image/*" />
           </div>
+          Hãy xem thêm <Link to='/policy'>Quy định đăng tin</Link> để đăng bài một cách tốt nhất.
           <div>
             <button className="subm-pt-button" type="submit" disabled={loading}>
               {loading ? "Posting..." : "Post Blog"}
@@ -110,6 +113,7 @@ export default function BlogPosting() {
           </div>
         </form>
       </div>
+      <Footer />
     </div>
   );
 }

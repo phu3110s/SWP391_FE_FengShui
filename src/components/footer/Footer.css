@@ -1,17 +1,19 @@
 .footer{
     bottom: 0;
     width: 100%;
-    background-color: #071C5F;
+    background-image: url('https://i.pinimg.com/564x/a9/32/70/a93270bd7a00346bfe45cf8fa451d054.jpg');
+    background-size: cover;
+    background-position: center;
     padding: 10px 0;
     height: auto;
 }
 .footer-infor{
     text-align: center;
-    color: white
+    color: #1A5319
     /* margin: 0 0 0 70px; */
 }
 
 .copyright{
     text-align: center;
-    color: white;
+    color: #1A5319;
 }

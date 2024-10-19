@@ -17,10 +17,10 @@ export default function Home() {
     if (token) {
       setUsername(username);
     }
-    if(role === "Admin"){
+    if (role === "Admin") {
       navigate("/AdminDashboard")
     }
-  },[]);
+  }, []);
   return (
     <div className="Log-container">
       <Header />
