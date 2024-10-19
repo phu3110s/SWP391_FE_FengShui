@@ -7,6 +7,7 @@ import Footer from '../components/footer/Footer'
 import { message, Modal, Spin } from 'antd'
 import fengshuiApi from '../apis/fengshui'
 import userApi from '../apis/userApi'
+import { ConsoleSqlOutlined } from '@ant-design/icons'
 
 export default function Calculate() {
     const [yearOfBirth, setYearOfBirth] = useState('');
@@ -15,10 +16,10 @@ export default function Calculate() {
     const [gender, setGender] = useState(null);
     const [birthDate, setBirthDate] = useState(null);
     const [loading, setLoading] = useState(false);
-    const [element, setElement] = useState(null);
+    const [guestElementInfo, setGuestElementInfo] = useState("");
     const [isVisible, setIsVisible] = useState(false);
-    const [fengShui, setFengShui] = useState(null);
-
+    const [userFengShuiInfo,setUserFengShuiInfo] = useState(null)
+    const [userFengShuiId,setUserFengShuiId] = useState(null)
     const fetchUserProfile = async () => {
         try {
             const response = await userApi.getUserProfile(userId, {
@@ -27,7 +28,8 @@ export default function Calculate() {
                 }
             });
             if (response && response.data) {
-                setFengShui(response.data.fengShui);
+                setUserFengShuiId(response.data.fengShuiId);
+                // console.log(response.data.fengShuiId)
             }
         } catch (error) {
             if (error.response) {
@@ -41,12 +43,43 @@ export default function Calculate() {
             }
         }
     };
-
+    const getUserFengShuiInfo = async(e) =>{
+        setLoading(true);
+        try{
+            const response = await fengshuiApi.getFengShuiById(userFengShuiId,{
+                headers:{
+                    Authorization:`Bearer ${token}`,
+                }
+            });
+            setUserFengShuiInfo(response.data)
+            
+        }catch(error){
+            if(error.response){
+                const {status} = error.response;
+                if(status === 400){
+                    message.error("Mệnh của bạn không có trong hệ thống");
+                }else if(status === 401){
+                    message.error("Phiên đăng nhập hết hạn")
+                }else {
+                    alert("Lỗi kết nối vui lòng thử lại sau")
+                }
+            }
+        }finally{
+            setLoading(false)
+        }
+    }
     useEffect(() => {
         if (token) {
             fetchUserProfile();
         }
-    }, []);
+    }, [token]);
+    
+    useEffect(() => {
+        if (userFengShuiId) {
+            getUserFengShuiInfo();
+        }
+    }, [userFengShuiId]);
+    
 
     const handlePressButtonCalFengShui = (birthDate) => {
         if (birthDate && gender) {
@@ -60,10 +93,9 @@ export default function Calculate() {
         setLoading(true);
         try {
             const response = await fengshuiApi.getFengShuiElementByDate(birthDate);
-            if (response.status === 200) {
-                setElement(response.data.element);
+                setGuestElementInfo(response.data)
                 setIsVisible(true);
-            }
+
         } catch (error) {
             if (error.response) {
                 const { status } = error.response;
@@ -99,7 +131,7 @@ export default function Calculate() {
             alert('Please enter year of birth and select gender.');
         }
     };
-
+    if(loading) return <Spin size='large' style={{marginTop:12}}/>
     return (
         <>
             <Header />
@@ -108,13 +140,16 @@ export default function Calculate() {
                 <img className='cal-background' src='./img/koi-background.jpg' alt=''></img>
                 <h2 className='calculate-title'>Calculation System</h2>
                 <div className='calculate-board'>
-                    {fengShui ? (
-                        // Nếu người dùng đã đăng nhập, hiển thị phong thủy từ server
+                    {userFengShuiInfo ? (
                         <div className='fengshui-result'>
-                            <h4>Your Feng Shui Element: {fengShui}</h4>
+                            <h4>Your Feng Shui Element: {userFengShuiInfo.element}</h4>
+                            <h4>Suitable color: {userFengShuiInfo.color}</h4>
+                            <h4>Suitable Direction:{userFengShuiInfo.direction}</h4>
+                            <h4>Lucky Number: {userFengShuiInfo.luckyNumber}</h4>
+                            <h4>Description: {userFengShuiInfo.description}</h4>
                         </div>
                     ) : (
-                        // Nếu người dùng chưa đăng nhập hoặc muốn tính phong thủy theo ngày sinh và giới tính nhập vào
+                        // Code của người dùng chưa đăng nhập ở đây
                         <>
                             <h4 className='form-title'>Enter year of birth and select gender</h4>
                             <div className='form-input'>
@@ -174,8 +209,12 @@ export default function Calculate() {
                         </>
                     )}
 
-                    <Modal title="Your Feng Shui element" visible={isVisible} onOk={handleOK} onCancel={handleOK}>
-                        <p>Your Feng Shui Element is: {element}</p>
+                    <Modal title="Your Feng Shui Info" visible={isVisible} onOk={handleOK} onCancel={handleOK}>
+                    <h4>Your Feng Shui Element: {guestElementInfo.element}</h4>
+                            <h4>Suitable color: {guestElementInfo.color}</h4>
+                            <h4>Suitable Direction:{guestElementInfo.direction}</h4>
+                            <h4>Lucky Number: {guestElementInfo.luckyNumber}</h4>
+                            <h4>Description: {guestElementInfo.description}</h4>
                     </Modal>
                 </div>
             </div>

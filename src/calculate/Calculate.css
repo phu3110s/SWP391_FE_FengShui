@@ -65,3 +65,8 @@
 .choose-button:hover{
     background-color: #FF9B9B;
 }
+.fengshui-result h4{
+    margin-top: 12px;
+    font-style: italic;
+    color: #cc8787;
+}

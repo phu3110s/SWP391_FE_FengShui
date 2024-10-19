@@ -169,6 +169,24 @@ export default function UserProfile() {
               Save
             </Button>
           ) : (
+// <<<<<<< phu-harmony
+//             <>
+//               <h3>
+//                 Ngày sinh: <span>{userProfile.birthdate}</span>
+//               </h3>
+//               <h3>
+//                 Giới tính: <span>{userProfile.gender}</span>
+//               </h3>
+//               <h3>
+//                 Email: <span>{userProfile.email}</span>
+//               </h3>
+//               <h3>
+//                 Số điện thoại: <span>{userProfile.phoneNumber}</span>
+//               </h3>
+//               <h3>
+//                 Mệnh: <span>{userProfile.fengShuiName}</span>
+//               </h3>
+//             </>
             <Button onClick={handleEditClick} type="default">
               Edit Profile
             </Button>

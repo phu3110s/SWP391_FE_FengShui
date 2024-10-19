@@ -13,7 +13,7 @@ export default function MyBlog() {
   const [approveBlogs, setApproveBlogs] = useState([]);
   const [pendingBlogs, setPendingBlogs] = useState([]);
   const [page, setPage] = useState(1);
-  const [size, setSize] = useState(1);
+  const [size, setSize] = useState(2);
   const [totalPage, setTotalPage] = useState(0);
   const [loading, setLoading] = useState(false);
   const [viewType, setViewType] = useState("Approved");

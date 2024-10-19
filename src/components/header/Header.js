@@ -21,6 +21,7 @@ export default function Header() {
       });
       if (response && response.data) {
         setAvatar(response.data.urlImg);
+        localStorage.setItem("fengShuiID",response.data.fengShuiId);
       }
     } catch (error) {
       if (error.response) {
@@ -94,12 +95,21 @@ export default function Header() {
               My Blog
             </Link>
           </li>
+          
         ) : null}
+        {token &&  
         <li className="active">
           <Link className="link" to={"/AdvertisingPosting"}>
             Product Posting
           </Link>
+        </li>}
+          {token && 
+            <li className="active">
+          <Link className="link" to={"/Harmony-Rating"}>
+            Harmony Rating
+          </Link>
         </li>
+        }
         <li className="active">
           <Link className="link" to={"/News"}>
             News

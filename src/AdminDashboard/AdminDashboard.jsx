@@ -57,7 +57,7 @@ const Sidebar = () => {
           <img className="logo-home" src="./img/Koi-logo.png" alt="Logo" />
         </Link>
       </div>
-      <Menu mode="inline" theme="dark">
+      <Menu mode="inline" theme="dark" style={{color:"black"}}>
         <Menu.SubMenu key="sub1" title="Blog Management">
           <Menu.SubMenu key="sub2" title="All Blog">
             <Menu.Item
@@ -131,6 +131,15 @@ const Sidebar = () => {
         <Menu.Item key="13" onClick={() => navigate("/AdminDashboard/")}>
           Cài đặt
         </Menu.Item>
+        <Menu.SubMenu key="sub5" title="Quản lí độ hòa hợp">
+          <Menu.Item key="13" onClick={()=>navigate("/AdminDashboard/Harmony-Adding")}>
+             Nhập vào đồ hòa hợp
+          </Menu.Item>
+          <Menu.Item key="14" onClick={()=>navigate("/AdminDashboard/Harmony-Viewing")}>
+              List hòa hợp
+          </Menu.Item>
+        </Menu.SubMenu>
+        {/* Harmony-Adding */}
       </Menu>
     </div>
   );
