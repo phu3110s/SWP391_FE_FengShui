@@ -24,33 +24,33 @@ export default function SignUp() {
       message.error("Nhập sai format điện thoại. Vui lòng nhập lại");
       return;
     }
-    if(!birthDate){
+    if (!birthDate) {
       message.error("Vui lòng nhập ngày tháng");
       return;
 
     }
-      const userRegisterInfo = {
-        fullname: fullname,
-        phoneNumber: phoneNumber,
-        password: password,
-        gender: gender,
-        birthDate: birthDate,
-      };
-      try {
-        const response = await userApi.register(userRegisterInfo);
-        if(response && response.data){
-          message.success("Tạo tài khoản thành công.Chúng tôi sẽ điều hướng bạn đến trang đăng nhập");
-          Navigate("/login")
-        }
-      } catch (error) {
-        if (error.response === 401) {
-          return;
-        } else {
-          message.error("Lỗi kết nối");
-        }
+    const userRegisterInfo = {
+      fullname: fullname,
+      phoneNumber: phoneNumber,
+      password: password,
+      gender: gender,
+      birthDate: birthDate,
+    };
+    try {
+      const response = await userApi.register(userRegisterInfo);
+      if (response && response.data) {
+        message.success("Tạo tài khoản thành công.Chúng tôi sẽ điều hướng bạn đến trang đăng nhập");
+        Navigate("/login")
       }
+    } catch (error) {
+      if (error.response === 401) {
+        return;
+      } else {
+        message.error("Lỗi kết nối");
+      }
+    }
   }
-  if(loading) return<div><Spin size="big"/></div>
+  if (loading) return <div><Spin size="big" /></div>
 
   return (
     <div className="signup-background">
@@ -113,26 +113,28 @@ export default function SignUp() {
             />
           </div>
           <div>
-            <p className="gender-field">Gender</p>
-            <div>
-            <Radio.Group onChange = {(e)=>setGender(e.target.value)} value={gender}>
-              <Radio value="Male">Male</Radio>
-              <Radio value="Female">Female</Radio>
-              <Radio value="Other">Other</Radio>
-            </Radio.Group>
-              
-            </div>
-          </div>
-          <div>
             <p className="name-field">Birth Date</p>
             <input
               type="date"
               className="input-field"
               value={birthDate}
-              onChange={(e) => setBirthDate(e.target.value)} 
+              onChange={(e) => setBirthDate(e.target.value)}
               required
             />
           </div>
+
+          <div>
+            <p className="gender-field">Gender</p>
+            <div className="gender-radio">
+              <Radio.Group onChange={(e) => setGender(e.target.value)} value={gender}>
+                <Radio value="Male">Male</Radio>
+                <Radio value="Female">Female</Radio>
+                <Radio value="Other">Other</Radio>
+              </Radio.Group>
+
+            </div>
+          </div>
+
           <div className="check-policy">
             <label>
               <input type="checkbox" name="terms" required />
@@ -142,9 +144,9 @@ export default function SignUp() {
             </label>
           </div>
 
-          <div className="signup-button">
+          <div>
             <button
-              className="signin-button"
+              className="signup-button"
               type="submit"
               onClick={handleRegister}
               disabled={loading}

@@ -3,13 +3,12 @@
     height: 60px;
     display: flex;
     align-items: center;
-    /* background-image: url('https://i.pinimg.com/originals/c9/bb/4c/c9bb4cf31417f2a8d59c5931d34ca67f.gif'); */
+    background-image: url('https://i.pinimg.com/564x/b8/c8/35/b8c835a7ce6c8fd5a8c4040adc957654.jpg');
     background-color: #f38393
     ;
     background-size: cover;
-    background-image: url("https://as2.ftcdn.net/v2/jpg/08/09/95/33/1000_F_809953303_KYFWlNWc0NngZEfS7wDD7bPnalcBrlNv.jpg");
+    /* background-image: url("https://as2.ftcdn.net/v2/jpg/08/09/95/33/1000_F_809953303_KYFWlNWc0NngZEfS7wDD7bPnalcBrlNv.jpg"); */
     background-position: center;
-    opacity: 80%;
 }
 
 .home-logo{
@@ -48,10 +47,21 @@
     font-size: 15px;
     
 }
+.active a{
+    color: whitesmoke;
+    text-shadow: 
+        1.5px 1.5px 0 black, 
+        -1.5px 1.5px 0 black, 
+        1.5px -1.5px 0 black, 
+        -1.5px -1.5px 0 black;
+}
+.active menu{
+    background-color: pink;
+}
 
 .link{
     text-decoration: none;
-    color: white;
+    color: black;
     text-align: right;
     color: #f0f8ff; /* Xanh nhạt */
     text-decoration: none;

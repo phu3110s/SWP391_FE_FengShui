@@ -4,7 +4,7 @@ import userApi from "../../../../apis/userApi";
 import Header from "../../../../components/header/Header";
 import "./UserProfile.css";
 import Radio from "antd/es/radio/radio";
-  
+
 export default function UserProfile() {
   const loggedInUserId = localStorage.getItem("userId");
   const [userProfile, setUserProfile] = useState(null);
@@ -20,7 +20,7 @@ export default function UserProfile() {
 
   const [image, setImage] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
-  
+
   const token = localStorage.getItem("token");
   const handleImageInput = (e) => {
     const file = e.target.files[0];
@@ -130,9 +130,8 @@ export default function UserProfile() {
   if (!userProfile) return <div>Không tìm thấy thông tin người dùng</div>;
 
   return (
-    <div>
+    <>
       <Header />
-      <h1>User Profile</h1>
       <div className="user-profile-container">
         <div className="user-profile-header">
           {userProfile && (
@@ -163,81 +162,143 @@ export default function UserProfile() {
               accept="image/*"
             />
           )}
-          <h2 className="user-fullname">{userProfile.fullName}</h2>
+          <br />
+          <br />
+          {isEditing ? (
+            <Button onClick={handleSaveClick} type="primary">
+              Save
+            </Button>
+          ) : (
+// <<<<<<< phu-harmony
+//             <>
+//               <h3>
+//                 Ngày sinh: <span>{userProfile.birthdate}</span>
+//               </h3>
+//               <h3>
+//                 Giới tính: <span>{userProfile.gender}</span>
+//               </h3>
+//               <h3>
+//                 Email: <span>{userProfile.email}</span>
+//               </h3>
+//               <h3>
+//                 Số điện thoại: <span>{userProfile.phoneNumber}</span>
+//               </h3>
+//               <h3>
+//                 Mệnh: <span>{userProfile.fengShuiName}</span>
+//               </h3>
+//             </>
+            <Button onClick={handleEditClick} type="default">
+              Edit Profile
+            </Button>
+          )}
+
         </div>
         <div className="user-profile-bio">
-          {isEditing ? (
-            <>
-              <h3>
-                Full Name:{" "}
-                <Input
-                  name="fullName"
-                  value={formData.fullName}
-                  onChange={handleInputChange}
-                />
-              </h3>
-              <h3>
-                Email:{" "}
-                <Input
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                />
-              </h3>
+          <h1>User Profile</h1>
+          <table className="user-table-form">
+            <thead>
+              <tr className="action-bar">
+                <td className="action"></td>
+                <td className="action"></td>
+                <td className="action"></td>
+              </tr>
+            </thead>
+            {isEditing ? (
+              <>
+                <h3>
+                  Full Name:{" "}<br />
+                  <Input
+                    className="input-edit"
+                    name="fullName"
+                    value={formData.fullName}
+                    onChange={handleInputChange}
+                  />
+                </h3>
+                <h3>
+                  Email:{" "} <br />
+                  <Input
+                    className="input-edit"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                  />
+                </h3>
 
-              <h3>
-                Gender:{" "}
-                <Radio.Group
-                  name="gender"
-                  onChange={handleGenderChange}
-                  value={formData.gender}
-                >
-                  <Radio value="Male">Male</Radio>
-                  <Radio value="Female">Female</Radio>
-                  <Radio value="Other">Other</Radio>
-                </Radio.Group>
-              </h3>
-              <h3>
-                Birthdate:{" "}
-                <Input
-                  type="date"
-                  name="birthdate"
-                  value={formData.birthdate}
-                  onChange={handleInputChange}
-                />
-              </h3>
-            </>
-          ) : (
-            <>
-              <h3>
-                Ngày sinh: <span>{userProfile.birthdate}</span>
-              </h3>
-              <h3>
-                Giới tính: <span>{userProfile.gender}</span>
-              </h3>
-              <h3>
-                Email: <span>{userProfile.email}</span>
-              </h3>
-              <h3>
-                Số điện thoại: <span>{userProfile.phoneNumber}</span>
-              </h3>
-              <h3>
-                Mệnh: <span>{userProfile.fengShuiName}</span>
-              </h3>
-            </>
-          )}
+                <h3>
+                  Gender:{" "} <br />
+                  <Radio.Group
+                    className='radio-gender'
+                    name="gender"
+                    onChange={handleGenderChange}
+                    value={formData.gender}
+                  >
+                    <Radio value="Male">Male</Radio>
+                    <Radio value="Female">Female</Radio>
+                    <Radio value="Other">Other</Radio>
+                  </Radio.Group>
+                </h3>
+                <h3>
+                  Birthdate:{" "} <br />
+                  <Input
+                    className="input-edit"
+                    type="date"
+                    name="birthdate"
+                    value={formData.birthdate}
+                    onChange={handleInputChange}
+                  />
+                </h3>
+              </>
+            ) : (
+              <tbody>
+                <tr className="cart-content">
+                  <td className='cart-item'>Họ và Tên: </td>
+                  <td className='cart-item'><span>{userProfile.fullName}</span></td>
+                  <td className='cart-item'>Chỉnh sửa</td>
+                </tr>
+
+                <tr className="cart-content">
+                  <td className='cart-item'>Email: </td>
+                  <td className='cart-item'><span>{userProfile.email}</span></td>
+                  <td className='cart-item'>🔒</td>
+                </tr>
+
+                <tr className="cart-content">
+                  <td className='cart-item'>Password: </td>
+                  <td className='cart-item'><span>{userProfile.email}</span></td>
+                  <td className='cart-item'>🔒</td>
+                </tr>
+
+                <tr className="cart-content">
+                  <td className='cart-item'>Ngày sinh: </td>
+                  <td className='cart-item'><span>{userProfile.birthdate}</span></td>
+                  <td className='cart-item'>Chỉnh sửa</td>
+                </tr>
+
+                <tr className="cart-content">
+                  <td className='cart-item'>Số điện thoại: </td>
+                  <td className='cart-item'><span>{userProfile.phoneNumber}</span></td>
+                  <td className='cart-item'>Chỉnh sửa</td>
+                </tr>
+
+                <tr className="cart-content">
+                  <td className='cart-item'>Giới tính: </td>
+                  <td className='cart-item'><span>{userProfile.gender}</span></td>
+                  <td className='cart-item'>Chỉnh sửa</td>
+                </tr>
+
+                <tr className="cart-content">
+                  <td className='cart-item'>Mệnh: </td>
+                  <td className='cart-item'><span>{userProfile.fengShui}</span></td>
+                  <td className='cart-item'>Chỉnh sửa</td>
+                </tr>
+
+              </tbody>
+            )}
+          </table>
         </div>
 
-        {isEditing ? (
-          <Button onClick={handleSaveClick} type="primary">
-            Save
-          </Button>
-        ) : (
-          <Button onClick={handleEditClick} type="default">
-            Edit Profile
-          </Button>
-        )}
+
       </div>
-    </div>
+    </>
   );
 }

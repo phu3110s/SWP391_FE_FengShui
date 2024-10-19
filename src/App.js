@@ -32,6 +32,10 @@ import DashboardChart from "./AdminFunction/DashboardChart/DashboardChart";
 import HarmonyAdding from "./AdminFunction/Harmony/HarmonyInput/HarmonyAdding";
 import HarmonyRating from "./Harmony/HarmonyRating";
 import HarmonyViewing from "./AdminFunction/Harmony/HarmonyView/HarmonyViewing";
+import PostingApprove from "./AdminFunction/BlogManagement/PostingApprove/PostingApprove";
+import MyAdvertising from "./advertising/MyAdvertising/MyAdvertising";
+import AdvertisingList from "./advertising/AdvertisingList/AdvertisingList";
+import AdvertisingDetail from "./advertising/AdvertisingDetail/AdvertisingDetail";
 
 function App() {
   // const [user, setUser] = useState(null);
@@ -101,6 +105,10 @@ function App() {
         <Route path="/News" element={<News />} />
         <Route path="/AdvertisingPosting" element={<AdvertisingPosting />} />
         <Route path="/Harmony-Rating" element={<HarmonyRating/>}/>
+        <Route path="/MyAdvertising" element={<MyAdvertising />} />
+        <Route path="/AdvertisingList" element={<AdvertisingList />} />
+        <Route path="/AdvertisingDetail/:id" element={<AdvertisingDetail />} />
+
         <Route
           path="/AdminDashboard"
           element={
@@ -110,6 +118,7 @@ function App() {
           }
         >
           <Route path="ApprovePost" element={<BlogApprove />} />
+          <Route path="PostingApprove" element={<PostingApprove />} />
           <Route path="UserManagement" element={<UserManagement />} />
           <Route path="ApproveSell" element={<SellingBlogManagement />} />
           <Route path="PondGenerating" element={<PondAdding />} />

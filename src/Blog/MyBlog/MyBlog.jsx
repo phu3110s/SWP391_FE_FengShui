@@ -7,7 +7,6 @@ import Navigation from "../../components/navbar/Navigation";
 import Footer from "../../components/footer/Footer";
 import { Pagination } from "antd";
 
-
 export default function MyBlog() {
   const userId = localStorage.getItem("userId");
 
@@ -83,8 +82,8 @@ export default function MyBlog() {
               approveBlogs.map((blog) => (
                 <div className="blog-information" key={blog.id}>
                   <Link to={`/blogs/${blog.id}`}>
-                    <h2>{blog.title}</h2>
-                    <img src={blog.urlImg} width="500px" alt={blog.title} />
+                    <h3>{blog.title}</h3>
+                    <img src={blog.urlImg} alt={blog.title} style={{ width: 400, height: 400, margin: 10 }} />
                   </Link>
                 </div>
               ))

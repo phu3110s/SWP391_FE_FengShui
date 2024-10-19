@@ -3,10 +3,13 @@ import './AdvertisingPosting.css'
 import Header from '../../components/header/Header'
 import Navigation from '../../components/navbar/Navigation'
 import { Button, Input, message, Radio } from 'antd'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import postingApi from '../../apis/postingApi'
 import postPayment from '../../apis/payosApi'
 import paymentPlan from '../../apis/paymentApi'
+import createPaymentLink from '../../apis/payosApi'
+import Footer from "../../components/footer/Footer";
+
 
 export default function AdvertisingPosting() {
 
@@ -62,9 +65,9 @@ export default function AdvertisingPosting() {
         formData.append("PaymentPlanId", planID);
         formData.append("ItemTypeName", title);
 
-        for (let pair of formData.entries()) {
-            console.log(pair[0] + ': ' + pair[1]);
-        }
+        // for (let pair of formData.entries()) {
+        //     console.log(pair[0] + ': ' + pair[1]);
+        // }
         try {
             const response = await postingApi.uploadAdvertisings(formData, {
                 headers: {
@@ -72,25 +75,24 @@ export default function AdvertisingPosting() {
                 },
             });
             if (response.status === 201) {
+                // console.log(response.data);
+
                 message.success("Đăng blog thành công. Chờ duyệt");
-                // const data = new FormData();
-                // data.append("advertisingId", advertisingId);
-                // data.append("description", description);
-                // data.append("returnUrl", 'http://localhost:3000');
-                // data.append("canceUrl", 'http://localhost:3000');
                 const paymentData = {
                     advertisingId: response.data.id,
-                    description: description,
-                    returnUrl: 'http://localhost:3000',
-                    // canceUrl: 'http://localhost:3000'
+                    description: response.data.description,
+                    returnUrl: 'http://localhost:3000/MyAdvertising',
+                    canceUrl: 'http://localhost:3000/MyAdvertising'
                 };
 
-                const paymentResponse = await postPayment(paymentData);
-
-                if (paymentResponse.status === 200 && paymentResponse.data.paymentUrl) {
-                    window.location.href = paymentResponse.data.paymentUrl;
-                } else {
-                    message.error("Không thể tạo link thanh toán");
+                const responsePayment = await createPaymentLink.postPayment(paymentData, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                    },
+                });
+                // console.log(responsePayment);
+                if (responsePayment.status == 200) {
+                    window.location.href = responsePayment.data
                 }
 
                 setTitle("");
@@ -123,7 +125,7 @@ export default function AdvertisingPosting() {
                 <h3>Creating a Advertising</h3>
                 <form onSubmit={handleSubmitPost}>
                     <div className="posting-blog-title">
-                        <label>Title</label>
+                        <label style={{ fontSize: 20, color: 'green' }}>Title</label>
                         <Input
                             type="text"
                             value={title}
@@ -133,7 +135,7 @@ export default function AdvertisingPosting() {
                         />
                     </div>
                     <div className="posting-blog-description">
-                        <label>Description</label>
+                        <label style={{ fontSize: 20, color: 'green' }}>Description</label>
                         <Input.TextArea
                             type="text"
                             value={description}
@@ -143,7 +145,7 @@ export default function AdvertisingPosting() {
                         />
                     </div>
                     <div className="posting-blog-inputImage">
-                        <label>Upload Image</label><br />
+                        <label style={{ fontSize: 20, color: 'green' }}>Upload Image</label><br />
                         Share photos or a video<br />
                         <input type="file" onChange={handleImageInput} accept="image/*" />
                         {image && (
@@ -153,17 +155,19 @@ export default function AdvertisingPosting() {
                         )}
                     </div>
                     <div className="posting-blog-description">
-                        <label>Payment Plan</label><br />
+                        <label style={{ fontSize: 20, color: 'green' }}>Payment Plan</label><br />
                         <Radio.Group onChange={(e) => setPlanID(e.target.value)} value={planID}>
                             {listPlan.map(plan => (
-                                <Radio key={plan.id} value={plan.id}>
-                                    {plan.name || 'Gói đăng ký '}
+                                <Radio key={plan.id} value={plan.id} style={{ margin: 15 }}>
+                                    _ {plan.name}<br />
+                                    _ {plan.description}<br />
+                                    _ {plan.amount}
                                 </Radio>
                             ))}
                         </Radio.Group>
                     </div>
+                    Hãy xem thêm <Link to='/policy'>Quy định đăng tin</Link> để đăng bài một cách tốt nhất.
                     <div>
-
                         <button className="subm-pt-button" type="submit" disabled={loading}>
                             {loading ? "Posting..." : "Post Blog"}
                         </button>
@@ -171,6 +175,7 @@ export default function AdvertisingPosting() {
                     </div>
                 </form>
             </div>
+            <Footer />
         </div>
     )
 }

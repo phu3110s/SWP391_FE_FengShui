@@ -2,7 +2,7 @@ import axiosClient from "./axiosClient";
 
 const createPaymentLink = {
     postPayment: (data) => {
-        const url = `/payment`;
+        const url = '/payment';
         return axiosClient.post(url, data)
     }
 }

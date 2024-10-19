@@ -7,8 +7,8 @@
     width: 50%;
     height: 100vh;
     /* background-color: #353945; */
-    /* background-image: url('https://i.pinimg.com/564x/9a/69/1e/9a691ef8ca30394b4e5522e2ffb7e736.jpg'); */
-    background-image: url("https://pa1.aminoapps.com/6540/d3c851965e21ad36562f5272cdbf01c95a20b9c3_hq.gif   ");
+    background-image: url('https://i.pinimg.com/originals/38/4c/2e/384c2eb692bec79f2273796828c4f768.gif');
+    /* background-image: url("https://pa1.aminoapps.com/6540/d3c851965e21ad36562f5272cdbf01c95a20b9c3_hq.gif   "); */
     background-size: cover;
     background-position: center;
 
@@ -35,7 +35,7 @@
 }
 
 .login-title{
-    color: #071C5F;
+    color: #508D4E;
     margin-top: 100px;
     text-align: center;
     font-size: 35px; 
@@ -71,7 +71,8 @@
     text-align: left;
     padding-left: 160px;
     margin: 0;
-    color: #071C5F;
+    opacity: 0.6;
+    color: #1A5319;
 }
 
 .name-field{
@@ -80,7 +81,7 @@
     margin: 0;
     margin-top: 30px;
     margin-bottom: 7px;
-    color: #071C5F;
+    color: black;
 }
 
 .input-field{
@@ -100,25 +101,25 @@
 
 .signin-button{
     display: inline-block;
-    border: 1px solid #1d45cb;
+    border: 1px solid #508D4E;
     width: 60%;
     height: 40px;
     justify-content: space-between;
     border-radius: 20px;
-    background-color: #071C5F;
+    background-color: #508D4E;
     margin-top: 50px;
     margin-bottom: 50px;
     color: white;
 }
 
 .signin-button:hover{
-    background-color: #DAD2CF;
+    background-color: #8cba8d;
     color: black;
 }
 
 .link-to-signup{
     text-decoration: none;
-    color: #071C5F;
+    color: black;
     font-weight: bold;
 }
 

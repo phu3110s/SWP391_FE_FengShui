@@ -1,16 +1,20 @@
 .posting-blog{
     width: 100%;
-    height: 160vh;
+    height: auto;
     display: flex;
     align-items: center;
     flex-direction: column;
-    background-color: #FFFFFF;
+    background-color: #F4F4F4;
 }
 .bl-pt-form{
+    margin-top: 30px;
     width: 60%;
+    margin-bottom: 50px;
+    background-color: #FFF;
+    padding: 16px;
 }
 .bl-pt-form h1{
-    color: #a6b9ec;
+    color: #D6EFD8;
     text-shadow: 
     -1px 0 black, 
     0 1px black,      
@@ -19,7 +23,7 @@
 }
 .bl-pt-form h3{
     font-family: inherit;
-    color: #a6b9ec;
+    color: #D6EFD8;
     text-shadow: 
     -1px 0 black, 
     0 1px black,      
@@ -28,10 +32,11 @@
 }
 .posting-blog-title{
     text-align: left;
-    background-color: #a6b9ec;
+    background-color: #F2F9F8;
     padding: 20px;
     border-radius: 10px;
-    margin: 15px 10px 15px 10px;
+    margin: 20px 10px 20px 10px;
+    border: 1px solid #8eb98e;
 }
 .posting-blog-title label{
     font-weight: bolder;
@@ -39,20 +44,22 @@
 
 .posting-blog-description{
     text-align: left;
-    background-color: #a6b9ec;
+    background-color: #F2F9F8;
     padding: 20px;
     border-radius: 10px;
-    margin: 15px 10px 15px 10px;
+    margin: 20px 10px 20px 10px;
+    border: 1px solid #8eb98e;
 }
 .posting-blog-description label{
     font-weight: bolder;
 }
 
 .posting-blog-inputImage{
-    background-color: #a6b9ec;
+    background-color: #F2F9F8;
     padding: 20px;
     border-radius: 10px;
-    margin: 15px 10px 15px 10px;
+    margin: 20px 10px 20px 10px;
+    border: 1px solid #8eb98e;
     
 }
 
@@ -71,6 +78,15 @@
     height: 40px;
     border: 1px solid black;
     border-radius: 10px;
-    background-color: #071C5F;
+    background-color: #80AF81;
     color: white;
+    margin-top: 16px;
+}
+.subm-pt-button:hover{
+    background-color: #c8e6cb;
+    color: black;
+}
+.option-payment{
+    border: 1px solid black;
+    margin: 20px;
 }
