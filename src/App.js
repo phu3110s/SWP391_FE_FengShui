@@ -29,6 +29,10 @@ import PondViewing from "./AdminFunction/PondManagement/PondViewing/PondViewing"
 import OtherUserProfile from "./User/OtherUser/OtherUserProfile";
 import AdvertisingPosting from "./advertising/AdvertisingPosting/AdvertisingPosting";
 import DashboardChart from "./AdminFunction/DashboardChart/DashboardChart";
+import PostingApprove from "./AdminFunction/BlogManagement/PostingApprove/PostingApprove";
+import MyAdvertising from "./advertising/MyAdvertising/MyAdvertising";
+import AdvertisingList from "./advertising/AdvertisingList/AdvertisingList";
+import AdvertisingDetail from "./advertising/AdvertisingDetail/AdvertisingDetail";
 
 function App() {
   // const [user, setUser] = useState(null);
@@ -97,6 +101,10 @@ function App() {
         <Route path="/MyBlog" element={<MyBlog />} />
         <Route path="/News" element={<News />} />
         <Route path="/AdvertisingPosting" element={<AdvertisingPosting />} />
+        <Route path="/MyAdvertising" element={<MyAdvertising />} />
+        <Route path="/AdvertisingList" element={<AdvertisingList />} />
+        <Route path="/AdvertisingDetail/:id" element={<AdvertisingDetail />} />
+
         <Route
           path="/AdminDashboard"
           element={
@@ -106,13 +114,14 @@ function App() {
           }
         >
           <Route path="ApprovePost" element={<BlogApprove />} />
+          <Route path="PostingApprove" element={<PostingApprove />} />
           <Route path="UserManagement" element={<UserManagement />} />
           <Route path="ApproveSell" element={<SellingBlogManagement />} />
           <Route path="PondGenerating" element={<PondAdding />} />
           <Route path="FishGenerating" element={<FishAdding />} />
           <Route path="FishManagement" element={<FishViewing />} />
           <Route path="PondManagement" element={<PondViewing />} />
-          <Route path="AdminChart" element={<DashboardChart/>}/>
+          <Route path="AdminChart" element={<DashboardChart />} />
         </Route>
       </Routes>
     </div>

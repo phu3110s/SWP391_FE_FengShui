@@ -5,6 +5,7 @@ import Header from "../../components/header/Header";
 import "../BlogList/style.css";
 import { Pagination, Spin } from "antd";
 import Navigation from "../../components/navbar/Navigation";
+import Footer from "../../components/footer/Footer";
 
 const BlogList = () => {
   const [blogs, setBlogs] = useState([]);
@@ -53,18 +54,16 @@ const BlogList = () => {
   return (
     <div>
       <Header />
-      <Navigation/>
-      <h1>Blogs</h1>
-
+      <Navigation />
       {/* Blog List */}
-      <div className="blog-container" style={{ backgroundColor: '#071C5F' }}>
+      <div className="blog-container" style={{ backgroundColor: '#FFFFFF', width: '80%', marginLeft: 150 }}>
         {blogs.map((blog) => (
           <div className="blog-info" key={blog.id}>
-            <h2>{blog.title}</h2>
-            <img src={blog.urlImg} width="500px" alt={blog.title} />
-            <Link to={`/blogs/${blog.id}`}>Detail</Link>
-            <Link to={`/user-profile/${blog.userInfo.id}`}><p>Author: {blog.userInfo.fullName}</p></Link>
-            
+            <Link className="link-to-detail" to={`/blogs/${blog.id}`}>
+              <img src={blog.urlImg} alt={blog.title} style={{ width: "220px", height: '220px' }} />
+              <h4>{blog.title}</h4>
+              <p>Author: {blog.userInfo.fullName}</p>
+            </Link>
           </div>
         ))}
       </div>
@@ -76,6 +75,7 @@ const BlogList = () => {
           onChange={handlePageChange}
         />
       </div>
+      <Footer />
     </div>
   );
 };

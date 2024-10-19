@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom"; // Để lấy id từ URL
+import { Link, useParams } from "react-router-dom"; // Để lấy id từ URL
 import blogApi from "../../apis/blogApi";
 import Header from "../../components/header/Header";
 import "./BlogDetail.css";
+import Footer from "../../components/footer/Footer";
+import Navigation from "../../components/navbar/Navigation";
 const BlogDetail = () => {
   const { id } = useParams();
   const [blog, setBlog] = useState(null);
@@ -33,18 +35,28 @@ const BlogDetail = () => {
   if (!blog) return <p>No blog found</p>;
 
   return (
-    <div>
+    <div className="detail-container">
       <Header />
-      <h1>{blog.title}</h1>
-      <img src={blog.urlImg} alt={blog.title} width="400" />
-      <p>{blog.description}</p>
-      <p>Author: {blog.userInfo.fullName}</p>
-      <img
-        src={blog.userInfo.profileImageUrl}
-        alt={blog.userInfo.fullName}
-        width="50"
-      />
-      <p>Created at: {blog.createAt}</p>
+      <Navigation />
+      <div className="short-detail-in4">
+        <div className='detail-img'>
+          <img src={blog.urlImg} alt={blog.title} />
+        </div>
+        <div className="product-detail-in4">
+          <h2>{blog.title}</h2> <br />
+          <p>Created at: {blog.createAt}</p> <br />
+          <Link to='/user-profile' className="customer-in4">
+            <img
+              src={blog.userInfo.profileImageUrl}
+              alt={blog.userInfo.fullName}
+            />
+            <p>Author: {blog.userInfo.fullName}</p>
+          </Link> <br />
+          <h4>Mô tả chi tiết</h4> <br />
+          <p>{blog.description}</p>
+        </div>
+      </div>
+      <Footer />
     </div>
   );
 };

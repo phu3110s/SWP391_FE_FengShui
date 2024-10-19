@@ -20,10 +20,12 @@ const AdminDashboard = () => {
     navigate
   );
   const handleLogout = () => {
-    if(window.confirm('Bạn chắc chắn muốn đăng xuất?')){localStorage.removeItem("token");
+    if (window.confirm('Bạn chắc chắn muốn đăng xuất?')) {
+      localStorage.removeItem("token");
       localStorage.removeItem("userRole")
-      navigate("/");}
-    
+      navigate("/");
+    }
+
   };
 
   const userMenu = (
@@ -35,11 +37,11 @@ const AdminDashboard = () => {
   );
   return (
     <div className="admin-dashboard">
-      <Sidebar /> 
+      <Sidebar />
       <div className="dashboard-content">
         <Header avatarUrl={avatarUrl} userMenu={userMenu} />
         <div className="dashboard-main-content">
-          <Outlet />  
+          <Outlet />
         </div>
       </div>
     </div>
@@ -79,28 +81,34 @@ const Sidebar = () => {
           >
             Blog Approve
           </Menu.Item>
+          <Menu.Item
+            key="5"
+            onClick={() => navigate("/AdminDashboard/PostingApprove")}
+          >
+            Advertising Approve
+          </Menu.Item>
         </Menu.SubMenu>
         <Menu.Item
-          key="5"
+          key="6"
           onClick={() => navigate("/AdminDashboard/UserManagement")}
         >
           Quản lý người dùng
         </Menu.Item>
         <Menu.Item
-          key="6"
+          key="7"
           onClick={() => navigate("/AdminDashboard/ApproveSell")}
         >
           Quản lý blog mua bán
         </Menu.Item>
         <Menu.SubMenu key="sub3" title="Quản lí cá">
           <Menu.Item
-            key="7"
+            key="8"
             onClick={() => navigate("/AdminDashboard/FishManagement")}
           >
             Quản lí cá
           </Menu.Item>
           <Menu.Item
-            key="8"
+            key="9"
             onClick={() => navigate("/AdminDashboard/FishGenerating")}
           >
             Thêm giống cá mới
@@ -111,16 +119,16 @@ const Sidebar = () => {
             Quản lí hồ
           </Menu.Item>
           <Menu.Item
-            key="10"
+            key="11"
             onClick={() => navigate("/AdminDashboard/PondGenerating")}
           >
             Thêm kiểu hồ
           </Menu.Item>
         </Menu.SubMenu>
-        <Menu.Item key="11" onClick={() => navigate("/AdminDashboard/AdminChart")}>
-          Admin Dashboard 
+        <Menu.Item key="12" onClick={() => navigate("/AdminDashboard/AdminChart")}>
+          Admin Dashboard
         </Menu.Item>
-        <Menu.Item key="12" onClick={() => navigate("/AdminDashboard/")}>
+        <Menu.Item key="13" onClick={() => navigate("/AdminDashboard/")}>
           Cài đặt
         </Menu.Item>
       </Menu>

@@ -6,7 +6,7 @@ import "./NewBlog.css";
 
 const NewBlog = () => {
   const [blogs, setBlogs] = useState([]);
-  const [loading, setLoading] = useState(false); 
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [page] = useState(1); // page cố định
   const [size] = useState(12); // size cố định
@@ -16,7 +16,7 @@ const NewBlog = () => {
     setLoading(true);
     try {
       const response = await blogApi.getBlogs(page, size, "Approved");
-      setBlogs(response.data.items); 
+      setBlogs(response.data.items);
       // console.log(response.data.items)
     } catch (err) {
       if (err.response) {
@@ -34,25 +34,22 @@ const NewBlog = () => {
     }
   };
 
-  
+
   useEffect(() => {
-    fetchBlogs(); 
+    fetchBlogs();
   }, []);
   if (loading) return <Spin size="large" style={{ margin: "0 auto", display: "block" }} />;
 
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div className="new-blog" style={{ height: '270vh' }}>
-
-      <h1 style={{ backgroundColor: '#FFFFFF', margin: '0', padding: '30px' }}>Blogs</h1>
-
-      <div className="blog-container" style={{ backgroundColor: '#fa91a6' }}>
+    <div className="new-blog" style={{ width: '100%', backgroundColor: '#F4F4F4' }}>
+      <div className="blog-container" style={{ backgroundColor: '#FFFFFF', width: '80%', marginLeft: 150 }}>
         {blogs.map((blog) => (
-          <div className="blog-info" key={blog.id}>
+          <div className="blog-info" key={blog.id} style={{ alignItems: 'center' }}>
             <Link className="link-to-detail" to={`/blogs/${blog.id}`}>
-              <h2>{blog.title}</h2>
-              <img src={blog.urlImg} width="500px" alt={blog.title} />
+              <img src={blog.urlImg} alt={blog.title} style={{ width: "220px", height: '220px' }} />
+              <h4>{blog.title}</h4>
               <p>Author: {blog.userInfo.fullName}</p>
             </Link>
           </div>
