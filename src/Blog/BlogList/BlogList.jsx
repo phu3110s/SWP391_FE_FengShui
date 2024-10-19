@@ -5,6 +5,7 @@ import Header from "../../components/header/Header";
 import "../BlogList/style.css";
 import { Pagination, Spin } from "antd";
 import Navigation from "../../components/navbar/Navigation";
+import Footer from "../../components/footer/Footer";
 
 const BlogList = () => {
   const [blogs, setBlogs] = useState([]);
@@ -24,7 +25,8 @@ const BlogList = () => {
       const response = await blogApi.getBlogs(page, size, "Approved");
 
       setBlogs(response.data.items);
-      setTotalPage(response.data.totalPages);
+      setTotalPage(response.data.totalPages
+      );
       setLoading(false);
     } catch (err) {
       if (err.response) {
@@ -46,7 +48,7 @@ const BlogList = () => {
   };
   useEffect(() => {
     fetchBlogs();
-  }, [page, size]);
+  }, [page]);
   if (loading) return <Spin size="Big" style={{ margin: 8 }} />;
   if (error) return <p>Lỗi: {error}</p>;
 
@@ -76,6 +78,7 @@ const BlogList = () => {
           onChange={handlePageChange}
         />
       </div>
+      <Footer/>
     </div>
   );
 };

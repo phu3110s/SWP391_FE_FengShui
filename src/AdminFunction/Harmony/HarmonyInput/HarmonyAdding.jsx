@@ -11,7 +11,7 @@ export default function HarmonyAdding() {
   const [selectedPond, setSelectedPond] = useState(null);
   const [selectedFish, setSelectedFish] = useState(null);
   const [selectedPondDetails,setSelectedPondDetails] = useState(null);
-  const [selectedFishDetails,setSelectedFishDetails] = useState(null)
+  const [selectedFishDetails,setSelectedFishDetails] = useState(null);
   const [rating, setRating] = useState("");
   const [description, setDescription] = useState("");
   const [loading,setLoading] = useState(false)
@@ -66,7 +66,7 @@ export default function HarmonyAdding() {
     const harmonyData = {
       pondId: selectedPond,
       fishId: selectedFish,
-      rating: rating,
+      point: Number(rating),
       description: description,
     };
     setLoading(true);
@@ -79,6 +79,7 @@ export default function HarmonyAdding() {
         if(response && response.data){
             message.success(`Độ hòa hợp giữa cặp cá ${selectedFishDetails.name} và hồ ${selectedPondDetails.material} được lưu thành công`)
         }
+        console.log(harmonyData)
         setSelectedPond(null);
     setSelectedFish(null);
     setRating("");
@@ -171,7 +172,7 @@ export default function HarmonyAdding() {
             type="number"
             placeholder="Nhập điểm đánh giá"
             value={rating}
-            onChange={(e) => setRating(e.target.value)}
+            onChange={(e) =>(setRating(Number(e.target.value))) }
           />
         </Form.Item>
 

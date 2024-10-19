@@ -1,0 +1,46 @@
+.container {
+  display: flex; /* Sử dụng Flexbox cho toàn bộ container */
+  flex-direction: column; /* Căn chỉnh theo cột */
+  align-items: center; /* Căn giữa theo chiều ngang */
+  width: 100%; /* Chiếm toàn bộ chiều rộng */
+}
+
+.select-info-container {
+  display: flex; /* Sử dụng Flexbox để căn chỉnh các phần tử select và info */
+  justify-content: space-between; /* Căn đều các phần tử */
+  width: 100%; /* Chiếm toàn bộ chiều rộng */
+  margin-bottom: 20px; /* Khoảng cách giữa phần chọn và thông tin */
+  padding: 0 20px; /* Đệm cho các phần tử */
+  box-sizing: border-box; /* Bao gồm padding trong chiều rộng tổng thể */
+}
+
+.select-item {
+  flex: 1; /* Mỗi select chiếm không gian bằng nhau */
+  margin: 0 10px; /* Khoảng cách giữa các select */
+}
+
+.selected-info {
+  flex: 1; /* Chiếm không gian bằng nhau */
+  margin: 0 10px; /* Khoảng cách giữa các thông tin */
+}
+
+.button-container {
+  display: flex; /* Sử dụng Flexbox cho nút */
+  justify-content: center; /* Căn giữa */
+  margin-bottom: 20px; /* Khoảng cách dưới cùng */
+}
+
+.harmony-table {
+  border-collapse: collapse; /* Gộp các viền */
+  width: 100%; /* Chiều rộng bảng */
+}
+
+.harmony-table th,
+.harmony-table td {
+  border: 2px solid #000; /* Viền đậm cho các ô */
+  padding: 10px; /* Khoảng cách bên trong ô */
+  text-align: left; /* Căn trái cho văn bản */
+}
+.table-wrap{
+  width: 100%;
+}

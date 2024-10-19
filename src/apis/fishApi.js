@@ -9,5 +9,9 @@ const fishApi = {
     const url = `/fishes?page=${page}&size=${size}`;
     return axiosClient.get(url, page, size);
   },
+  getFishById: (id) =>{
+    const url =`/fishes/${id}`
+    return axiosClient.get(url)
+  }
 };
 export default fishApi;
