@@ -32,7 +32,6 @@ export default function Login() {
       localStorage.setItem("token", response.data.accessToken);
       localStorage.setItem("username", response.data.fullName);
       localStorage.setItem("userId", response.data.id);
-      localStorage.setItem("userImg", response.data.urlImg);
       
       localStorage.setItem("userRole", response.data.role);
       message.success("login thành công")

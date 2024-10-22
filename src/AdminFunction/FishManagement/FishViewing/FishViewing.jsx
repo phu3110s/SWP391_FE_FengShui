@@ -1,34 +1,77 @@
-import { Button, Modal, Popconfirm, Table, message } from "antd";
+import {
+  Button,
+  Modal,
+  Popconfirm,
+  Table,
+  message,
+  Input,
+  Form,
+  Spin,
+} from "antd";
 import React, { useEffect, useState } from "react";
 import fishApi from "../../../apis/fishApi";
 import "./FishViewing.css";
+import { red } from "@mui/material/colors";
+
 const FishViewing = () => {
   const token = localStorage.getItem("token");
   const [page, setPage] = useState(1);
-  const [size, setSize] = useState(10); // Số lượng item trên mỗi trang
-  const [total, setTotal] = useState(0); // Tổng số item
+  const [size, setSize] = useState(10);
+  const [total, setTotal] = useState(0);
   const [fishList, setFishList] = useState([]);
-  const [loading, setLoading] = useState(false)
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true)
-      try {
-        const response = await fishApi.getFish(page, size, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setFishList(response.data.items);
-        setTotal(response.data.total);
-      } catch (error) {
-        message.error("Lỗi khi tải dữ liệu.");
-      }
-    };
-
-    fetchData();
-  }, [page, size]);
-
+  const [loading, setLoading] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
   const [selectedFish, setSelectedFish] = useState(null);
+  const [updateData, setUpdateData] = useState({
+    name: "",
+    color: "",
+    size: "",
+    description: "",
+  });
+  const [image, setImage] = useState(null);
+  const [previewImage, setPreviewImage] = useState(null);
+
+  const handleImageInput = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setImage(file);
+    }
+    setPreviewImage(URL.createObjectURL(file));
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setUpdateData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+const fetchData = async () => {
+        setLoading(true);
+        try {
+          const response = await fishApi.getFish(page, size, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          setFishList(response.data.items);
+          setTotal(response.data.total);
+        } catch (error) {
+          message.error("Lỗi khi tải dữ liệu.");
+        } finally {
+          setLoading(false);
+        }
+      };
+
+  useEffect(
+    () => {
+      
+      fetchData();
+    },
+    [page, size],
+    [isEditing]
+  );
+
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const showFishDetails = (fish) => {
@@ -38,19 +81,78 @@ const FishViewing = () => {
 
   const handleCancel = () => {
     setIsModalVisible(false);
+    setIsEditing(false);
   };
 
-  const handleDeleteFish = (key) => {
-    message.success("Xóa thành công!");
-
+  const handleDeleteFish = async (fishId) => {
+    try {
+      await fishApi.deleteFish(fishId, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      message.success("Xóa thành công!");
+    } catch (error) {
+      if (error.response) {
+        const { status } = error.response;
+        if (status === 400) {
+          message.error("Cá đã được liên hợp với hồ, Không thể xóa", 2);
+        } else if (status === 401) {
+          message.error("Phiên đăng nhập hết hạn");
+        } else if (status === 403) {
+          message.warning("Bạn không có quyền thực hiện hành động này", 5);
+        } else {
+          message.error("Lỗi kết nối. Vui lòng thử lại sau", 5);
+        }
+      }
+    }
+    fetchData();
   };
 
-  const handleUpdateFish = (key)=>{
-        message.success("Update ")
-  }
+  const handleUpdateFish = (fish) => {
+    setIsEditing(true);
+    console.log(selectedFish)
+    setSelectedFish(fish);
+    setPreviewImage(selectedFish.urlImg);
+    setUpdateData({
+      name: fish.name,
+      color: fish.color,
+      size: fish.size,
+      description: fish.description,
+    });
+    setIsModalVisible(true);
+  };
 
+  const handleSaveUpdate = async () => {
+    setLoading(true);
+    try {
+      const response = await fishApi.updateFish(selectedFish.id, updateData, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (image) {
+        const formDataToUpdateImage = new FormData();
+        formDataToUpdateImage.append("imgFile", image);
+        const response2 = await fishApi.updateFishImage(
+          selectedFish.id,
+          formDataToUpdateImage,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+      }
+      message.success("Cập nhật thành công!", 5);
+      setIsModalVisible(false);
+      setIsEditing(false);
+    } catch (error) {
+      message.error("Cập nhật thất bại.");
+    } finally {
+      setLoading(false);
+      fetchData();
+    }
+  };
 
-  
   const columns = [
     {
       title: "Name",
@@ -70,10 +172,9 @@ const FishViewing = () => {
     {
       title: "Description",
       dataIndex: "description",
-      key: "description",
       render: (_, fish) => (
         <Button type="link" onClick={() => showFishDetails(fish)}>
-          Bấm vào đây để xem chi tiết
+          Xem chi tiết
         </Button>
       ),
     },
@@ -82,15 +183,12 @@ const FishViewing = () => {
       key: "action",
       render: (_, fish) => (
         <>
-          <Button
-            type="primary"
-            style={{ marginRight: 8 }}
-          >
+          <Button type="primary" onClick={() => handleUpdateFish(fish)}>
             Update
           </Button>
           <Popconfirm
             title="Bạn có chắc chắn muốn xóa?"
-            onConfirm={() => handleDeleteFish(fish.key)}
+            onConfirm={() => handleDeleteFish(fish.id)}
             okText="Yes"
             cancelText="No"
           >
@@ -108,7 +206,8 @@ const FishViewing = () => {
   return (
     <div>
       <h1>Admin - Danh Sách Cá</h1>
-      <Table className="table"
+      <Table
+        className="table"
         columns={columns}
         dataSource={fishList}
         pagination={{
@@ -118,40 +217,93 @@ const FishViewing = () => {
           showSizeChanger: false,
         }}
         onChange={handlePageChange}
+        loading={loading}
       />
       <Modal
-        title="Thông tin chi tiết"
+        title={isEditing ? "Cập nhật thông tin cá" : "Thông tin chi tiết"}
         visible={isModalVisible}
         onCancel={handleCancel}
         footer={[
-          <Button key="ok" type="primary" onClick={handleCancel}>
-            OK
-          </Button>,
+          isEditing ? (
+            <Button key="save" type="primary" onClick={handleSaveUpdate}>
+              {!loading ? (
+                "Save"
+              ) : (
+                <Spin size="medium" style={{ color: red }} />
+              )}
+            </Button>
+          ) : (
+            <Button key="ok" type="primary" onClick={handleCancel}>
+              OK
+            </Button>
+          ),
         ]}
       >
         {selectedFish && (
           <div>
-            <p>
-              <strong>Name:</strong> {selectedFish.name}
-            </p>
-            <p>
-              <strong>Size:</strong> {selectedFish.size}
-            </p>
-            <p>
-              <strong>Color:</strong> {selectedFish.color}
-            </p>
-            <p>
-              <strong>Description:</strong> {selectedFish.description}
-            </p>
-            <p>
-              <strong>Image:</strong><br></br>
-              <img className="popup-image" src={selectedFish.urlImg} title="Ảnh thoi có gì đâu mà bấm vô" />
-            </p>
+            {isEditing ? (
+              <Form layout="vertical">
+                <Form.Item label="Name">
+                  <Input
+                    name="name"
+                    value={updateData.name}
+                    onChange={handleInputChange}
+                  />
+                </Form.Item>
+                <Form.Item label="Size">
+                  <Input
+                    name="size"
+                    value={updateData.size}
+                    onChange={handleInputChange}
+                  />
+                </Form.Item>
+                <Form.Item label="Color">
+                  <Input
+                    name="color"
+                    value={updateData.color}
+                    onChange={handleInputChange}
+                  />
+                </Form.Item>
+                <Form.Item label="Description">
+                  <Input
+                    name="description"
+                    value={updateData.description}
+                    onChange={handleInputChange}
+                  />
+                </Form.Item>
+                <Form.Item label="Image">
+                  <input type="file" onChange={handleImageInput} />
+                  {previewImage && (
+                    <div className="update-image">
+                      <img src={previewImage} alt="Preview" />
+                    </div>
+                  )}
+                </Form.Item>
+              </Form>
+            ) : (
+              <div>
+                <p>
+                  <strong>Name:</strong> {selectedFish.name}
+                </p>
+                <p>
+                  <strong>Size:</strong> {selectedFish.size}
+                </p>
+                <p>
+                  <strong>Color:</strong> {selectedFish.color}
+                </p>
+                <p>
+                  <strong>Description:</strong> {selectedFish.description}
+                </p>
+                <div className="popup-image">
+                  <img src={selectedFish.urlImg} alt="Fish" />
+                </div>
+              </div>
+            )}
           </div>
         )}
       </Modal>
     </div>
   );
-}
+};
 
 export default FishViewing;

@@ -6,6 +6,11 @@
   height: 40vmin;
   pointer-events: none;
 }
+body{
+  font-family: "Sawarabi Mincho", serif;
+  font-weight: 400;
+  font-style: normal;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

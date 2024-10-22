@@ -101,7 +101,7 @@ export default function BlogPosting() {
           <div className="posting-blog-inputImage">
             <label>Upload Image</label>
             <br />
-            Share photos or a video
+            Upload An Image Here
             <br />
             <input type="file" onChange={handleImageInput} accept="image/*" />
           </div>

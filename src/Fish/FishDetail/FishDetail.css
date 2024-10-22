@@ -1,8 +1,45 @@
+.fish-detail {
+  border: 1px solid #e0e0e0; 
+  border-radius: 12px; 
+  padding: 20px; 
+  background-color: #ffffff; 
+  margin: 20px 0; 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.fish-detail:hover {
+  transform: translateY(-5px); 
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.fish-info {
+  margin-bottom: 16px; 
+}
+
+.fish-name {
+  font-weight: bold; 
+  font-size: 1.5em; 
+  color: #333; 
+  margin-bottom: 8px;
+}
+
+.fish-color,
+.fish-size,
+.fish-description {
+  margin: 4px 0; 
+  color: #555; 
+  font-size: 1.1em;
+}
+
 .fish-detail img {
-    width: 100%;
-    height: auto;
-    max-width: 400px; 
-    max-height: 300px; 
-    object-fit: cover; 
-  }
-  
+  max-width: 300px; 
+  height: auto; 
+  border-radius: 8px;
+  border: 2px solid #f0f0f0; 
+  transition: transform 0.3s; 
+}
+
+.fish-image:hover {
+  transform: scale(1.05);
+}

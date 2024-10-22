@@ -24,13 +24,13 @@ export default function Navigation() {
 
                 <div className='frame-link'>
                     <li className='active-navbar'>
-                        <Link className='link-advise' to={'/'}>Thiết kế hồ</Link>
+                        <Link className='link-advise' to={'/'}>Chọn hồ theo ngũ hành</Link>
                     </li>
                 </div>
 
                 <div className='frame-link'>
                     <li className='active-navbar'>
-                        <Link className='link-advise' to={'/'}>Chọn cá theo ngũ hành</Link>
+                        <Link className='link-advise' to={'/Fish-Consulting'}>Tư vấn theo ngũ hành</Link>
                     </li>
                 </div>
 

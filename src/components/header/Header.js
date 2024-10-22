@@ -45,6 +45,7 @@ export default function Header() {
     localStorage.removeItem("token");
     localStorage.removeItem("userId");
     localStorage.removeItem("username");
+    message.success("Đăng xuất thành công",5)
     navigate("/");
   };
 
@@ -89,14 +90,14 @@ export default function Header() {
           </li>
         ) : null}
 
-        {token ? (
+        {/* {token ? (
           <li className="active">
             <Link className="link" to={"/MyBlog"}>
               My Blog
             </Link>
           </li>
           
-        ) : null}
+        ) : null} */}
         {token &&  
         <li className="active">
           <Link className="link" to={"/AdvertisingPosting"}>

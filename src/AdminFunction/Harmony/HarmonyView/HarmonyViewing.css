@@ -23,24 +23,43 @@
   flex: 1; /* Chiếm không gian bằng nhau */
   margin: 0 10px; /* Khoảng cách giữa các thông tin */
 }
+.card-container {
+  display: flex;
+  flex-wrap: wrap; /* Cho phép các card tự xuống dòng khi hết không gian */
+  justify-content: space-around; /* Căn giữa các card */
+  margin-top: 20px;
+}
+
+.custom-card {
+  border: 1px solid #ccc; /* Đường viền của card */
+  border-radius: 10px; /* Bo góc */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Đổ bóng cho card */
+  margin-bottom: 20px; /* Khoảng cách giữa các card */
+  padding: 15px;
+}
+
+.custom-card p {
+  margin: 0;
+  padding: 5px 0;
+}
+
 
 .button-container {
-  display: flex; /* Sử dụng Flexbox cho nút */
-  justify-content: center; /* Căn giữa */
-  margin-bottom: 20px; /* Khoảng cách dưới cùng */
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
 }
 
-.harmony-table {
-  border-collapse: collapse; /* Gộp các viền */
-  width: 100%; /* Chiều rộng bảng */
+.custom-button {
+  background-color: #4CAF50; /* Màu nền xanh */
+  color: white; /* Màu chữ trắng */
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.harmony-table th,
-.harmony-table td {
-  border: 2px solid #000; /* Viền đậm cho các ô */
-  padding: 10px; /* Khoảng cách bên trong ô */
-  text-align: left; /* Căn trái cho văn bản */
-}
-.table-wrap{
-  width: 100%;
+.custom-button:hover {
+  background-color: #45a049; /* Màu nền tối hơn khi hover */
 }

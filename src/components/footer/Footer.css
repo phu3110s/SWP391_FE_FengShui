@@ -1,11 +1,14 @@
 .footer{
     bottom: 0;
+    left: 0; 
+    right: 0; 
     width: 100%;
     background-image: url('https://i.pinimg.com/564x/a9/32/70/a93270bd7a00346bfe45cf8fa451d054.jpg');
     background-size: cover;
     background-position: center;
     padding: 10px 0;
     height: auto;
+    margin-top: auto;
 }
 .footer-infor{
     text-align: center;

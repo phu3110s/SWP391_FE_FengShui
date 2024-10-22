@@ -82,6 +82,7 @@ export default function HarmonyRating() {
       const response = await harmonyApi.getHarmonyRating(
         selectedFish,
         selectedPond,
+        1,10,
         {
           headers: {
             Authorization: `Bearer ${token}`,

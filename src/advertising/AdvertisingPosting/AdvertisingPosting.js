@@ -91,8 +91,9 @@ export default function AdvertisingPosting() {
                     },
                 });
                 // console.log(responsePayment);
-                if (responsePayment.status == 200) {
+                if (responsePayment.status === 200) {
                     window.location.href = responsePayment.data
+                    message.success("Đăng bài thành công. Đang chuyển hướng đến trang thanh toán")
                 }
 
                 setTitle("");
@@ -106,11 +107,16 @@ export default function AdvertisingPosting() {
                 alert("Lỗi gì bất định");
             }
         } catch (error) {
-            console.error("Error response:", error.response);
-            if (error.response && error.response.data && error.response.data.errors) {
-                console.error("Validation errors:", error.response.data.errors);
+            if(error.response){
+                const {status} = error.response;
+                if(status === 400){
+                    message.error("Thông tin nhập vào không đúng yêu cầu")
+                }if(status === 401){
+                    message.error("Phiên đăng nhập hết hạn")
+                }else{
+                    message.error("Lỗi kết nối")
+                }
             }
-            message.error(error.message || "Có lỗi xảy ra khi đăng blog");
         } finally {
             setLoading(false);
         }

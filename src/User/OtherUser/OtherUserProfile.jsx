@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import userApi from "../../apis/userApi";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { message, Spin } from "antd";
 import Header from "../../components/header/Header";
 import "./OtherUserProfile.css"
@@ -9,8 +9,10 @@ export default function OtherUserProfile() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const token = localStorage.getItem("token");
+    const currentUserId= localStorage.getItem("userId")
     const { userId } = useParams();
-
+    const navigate = useNavigate()
+    
     const fetchUserProfile = async () => {
         setLoading(true);
         setError(null);
@@ -39,7 +41,13 @@ export default function OtherUserProfile() {
     };
 
     useEffect(() => {
-        fetchUserProfile();
+        if(currentUserId === userId){
+            navigate("/user-profile", { replace: true });
+
+        }else{
+            fetchUserProfile();
+        }
+        
     }, [userId]);
     if (loading) return <Spin size="large" style={{ marginRight: 8, marginTop: 100 }} />;
     if (error) return <div>{error}</div>;
@@ -48,9 +56,10 @@ export default function OtherUserProfile() {
         <div>
             <Header />
             <h1>User profile</h1>
-            <div className="user-profile-container">
+            {userProfile && (
+                <div className="user-profile-container">
                 <div className="user-profile-header">
-                    <img className="user-avatar" src={userProfile.profileImageUrl} alt="...." />
+                    <img className="user-avatar" src={userProfile.urlImg} alt="...." />
                     <h2 className="user-fullName">{userProfile.fullName}</h2>
                 </div>
                 <div className="user-profile-bio">
@@ -67,10 +76,11 @@ export default function OtherUserProfile() {
                         Số điện thoại: <span>{userProfile.phoneNumber}</span>
                     </h3>
                     <h3>
-                        Mệnh: <span>{userProfile.fengShui}</span>
+                        Mệnh: <span>{userProfile.fengShuiName}</span>
                     </h3>
                 </div>
             </div>
+            )}
         </div>
     );
 }

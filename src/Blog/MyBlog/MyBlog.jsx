@@ -13,8 +13,8 @@ export default function MyBlog() {
   const [approveBlogs, setApproveBlogs] = useState([]);
   const [pendingBlogs, setPendingBlogs] = useState([]);
   const [page, setPage] = useState(1);
-  const [size, setSize] = useState(2);
-  const [totalPage, setTotalPage] = useState(0);
+  const [size, setSize] = useState(10);
+  const [totalPage, setTotalPage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [viewType, setViewType] = useState("Approved");
   const handlePageChange = (page, pageSize) => {
@@ -32,7 +32,7 @@ export default function MyBlog() {
           "Approved"
         );
         setApproveBlogs(responseApproveBlogs.data.items);
-        setTotalPage(responseApproveBlogs.data.totalPages);
+        setTotalPage(responseApproveBlogs.data.total);
       } else {
         const responsePendingBlogs = await blogApi.getUserBlog(
           userId,

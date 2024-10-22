@@ -1,4 +1,4 @@
-import { Button, Form, Input, Select, Spin } from "antd";
+import { Button, Form, Input, message, Select, Spin } from "antd";
 import React, { useEffect, useState } from "react";
 import userApi from "../../../../apis/userApi";
 import Header from "../../../../components/header/Header";
@@ -107,7 +107,7 @@ export default function UserProfile() {
       localStorage.setItem("urlImg", response.data.urlImg);
       setIsEditing(false);
       setUserProfile(formData);
-      alert("Update thông tin người dùng thành công!");
+      message.success("Update thông tin người dùng thành công")
       fetchUserProfile();
     } catch (error) {
       if (error.response) {
@@ -288,7 +288,7 @@ export default function UserProfile() {
 
                 <tr className="cart-content">
                   <td className='cart-item'>Mệnh: </td>
-                  <td className='cart-item'><span>{userProfile.fengShui}</span></td>
+                  <td className='cart-item'><span>{userProfile.fengShuiName}</span></td>
                   <td className='cart-item'>Chỉnh sửa</td>
                 </tr>
 
