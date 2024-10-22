@@ -36,6 +36,8 @@ import PostingApprove from "./AdminFunction/BlogManagement/PostingApprove/Postin
 import MyAdvertising from "./advertising/MyAdvertising/MyAdvertising";
 import AdvertisingList from "./advertising/AdvertisingList/AdvertisingList";
 import AdvertisingDetail from "./advertising/AdvertisingDetail/AdvertisingDetail";
+import ConsultingAdding from "./AdminFunction/Consulting/ConsultingAdding/ConsultingAdding";
+import GetConsulting from "./Consulting/GetFishConsulting/GetConsulting";
 
 function App() {
   // const [user, setUser] = useState(null);
@@ -108,7 +110,7 @@ function App() {
         <Route path="/MyAdvertising" element={<MyAdvertising />} />
         <Route path="/AdvertisingList" element={<AdvertisingList />} />
         <Route path="/AdvertisingDetail/:id" element={<AdvertisingDetail />} />
-
+        <Route path="/Fish-Consulting" element={<GetConsulting/>}/>
         <Route
           path="/AdminDashboard"
           element={
@@ -128,6 +130,7 @@ function App() {
           <Route path="AdminChart" element={<DashboardChart/>}/>
           <Route path="Harmony-Adding" element={<HarmonyAdding/>}/>
           <Route path="Harmony-Viewing" element={<HarmonyViewing/>}/>
+          <Route path="Consulting-Adding" element={<ConsultingAdding/>}/>
         </Route>
       </Routes>
     </div>

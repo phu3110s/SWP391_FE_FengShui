@@ -119,7 +119,7 @@ export default function DashboardChart() {
           },
         ],
       };
-
+      
       setPieDataRange(newRangePieData);
     } catch (error) {
       if (error.response) {
@@ -139,7 +139,7 @@ export default function DashboardChart() {
 
   useEffect(() => {
     fetchPieDataToday();
-    fetchPieRangeData(today, today);
+    fetchPieRangeData(moment(startDate).format("YYYY-MM-DD"), moment(endDate).format("YYYY-MM-DD"));
   }, []);
 
   const lineData = {

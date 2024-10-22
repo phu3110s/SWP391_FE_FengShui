@@ -25,8 +25,8 @@ const BlogList = () => {
       const response = await blogApi.getBlogs(page, size, "Approved");
 
       setBlogs(response.data.items);
-      setTotalPage(response.data.totalPages
-      );
+      setTotalPage(response.data.total);
+      console.log(totalPage)
       setLoading(false);
     } catch (err) {
       if (err.response) {

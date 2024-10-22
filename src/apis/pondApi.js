@@ -1,3 +1,4 @@
+import axios from "axios";
 import axiosClient from "./axiosClient";
 const pondApi = {
   createPond: (data) => {
@@ -11,6 +12,18 @@ const pondApi = {
   getPondById:(id) =>{
     const url = `/ponds/${id}`;
     return axiosClient.get(url)
+  },
+  deletePond: (id) =>{
+    const url = `/ponds/${id}`;
+    return axiosClient.delete(url)
+  },
+  updatePond:(id,pondInfo) =>{
+    const url = `ponds/${id}/info`;
+    return axiosClient.put(url,pondInfo)
+  },
+  updatePondImage: (id,pondImage) =>{
+    const url = `ponds/${id}/image`;
+    return axiosClient.put(url,pondImage)
   }
 };
 

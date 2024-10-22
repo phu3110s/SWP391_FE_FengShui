@@ -84,7 +84,7 @@ export default function PostingApprove() {
 
     return (
         <div style={{ width: '100%' }}>
-            <h1 style={{ backgroundColor: '#FFFFF' }}>Những bài blog đang chờ duyệt</h1>
+            <h1 style={{ backgroundColor: '#FFFFF' }}>Những bài đăng bán đang chờ duyệt</h1>
             <div className="blog-container" style={{ backgroundColor: '#FFFFF' }}>
                 {posting.map((post) => (
                     <div className="blog-info" key={post.id}>

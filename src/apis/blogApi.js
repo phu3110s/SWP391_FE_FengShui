@@ -18,7 +18,7 @@ const blogApi = {
     return axiosClient.post(url, FormData);
   },
   getUserBlog: (id, page, size, status) => {
-    const url = `users/${id}/blogs?status=${status}&page=${page}&size=${size}`;
+    const url = `/users/${id}/blogs?status=${status}&page=${page}&size=${size}`;
     return axiosClient.get(url);
   },
   approveBlog: (id, status) => {

@@ -1,3 +1,4 @@
+import axios from "axios";
 import axiosClient from "./axiosClient";
 const fengshuiApi = {
     getFengShuiElementByDate : (data) => {
@@ -6,6 +7,10 @@ const fengshuiApi = {
     },
     getFengShuiById : (id) =>{
         const url =`/feng-shui/${id}`;
+        return axiosClient.get(url)
+    },
+    getAllFengShui : (page,size)=>{
+        const url = `/feng-shui?page=${page}&size=${size}`
         return axiosClient.get(url)
     }
 }
