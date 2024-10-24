@@ -48,7 +48,7 @@ const BlogList = () => {
   };
   useEffect(() => {
     fetchBlogs();
-  }, [page]);
+  }, []);
   if (loading) return <Spin size="Big" style={{ margin: 8 }} />;
   if (error) return <p>Lỗi: {error}</p>;
 

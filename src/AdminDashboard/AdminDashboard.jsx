@@ -1,8 +1,12 @@
+import { DashboardFilled, LogoutOutlined } from "@ant-design/icons";
 import { Avatar, Dropdown, Menu } from "antd";
 import React, { useEffect, useState } from "react";
+import { GiWaterSplash } from "react-icons/gi";
+import { LiaFishSolid } from "react-icons/lia";
 import { Link, Outlet, useNavigate } from "react-router-dom";
+import { CiSettings } from "react-icons/ci";
 import "./styles.css";
-
+import { AiOutlineHarmonyOS } from "react-icons/ai";
 const AdminDashboard = () => {
   const [username, setUsername] = useState();
   const token = localStorage.getItem("token");
@@ -49,6 +53,15 @@ const AdminDashboard = () => {
 };
 
 const Sidebar = () => {
+  const handleLogout = () => {
+    if (window.confirm('Bạn chắc chắn muốn đăng xuất?')) {
+      localStorage.removeItem("token");
+      localStorage.removeItem("userRole")
+      navigate("/");
+    }
+
+  };
+
   const navigate = useNavigate();
   return (
     <div className="sidebar">
@@ -58,7 +71,7 @@ const Sidebar = () => {
         </Link>
       </div>
       <Menu mode="inline" theme="dark">
-        <Menu.SubMenu key="sub1" title="Blog Management">
+        <Menu.SubMenu key="sub1" title="Quản lí blog">
           <Menu.SubMenu key="sub2" title="All Blog">
             <Menu.Item
               key="1"
@@ -100,10 +113,11 @@ const Sidebar = () => {
         >
           Quản lý blog mua bán
         </Menu.Item>
-        <Menu.SubMenu key="sub3" title="Quản lí cá">
+        <Menu.SubMenu key="sub3" title="Quản lí cá" icon={<LiaFishSolid/>}>
           <Menu.Item
             key="8"
-            onClick={() => navigate("/AdminDashboard/FishManagement")}
+            onClick={() => navigate("/AdminDashboard/FishManagement") } 
+            
           >
             Quản lí cá
           </Menu.Item>
@@ -114,7 +128,7 @@ const Sidebar = () => {
             Thêm giống cá mới
           </Menu.Item>
         </Menu.SubMenu>
-        <Menu.SubMenu key="sub4" title="Quản lí hồ">
+        <Menu.SubMenu key="sub4" title="Quản lí hồ" icon={<GiWaterSplash />}>
           <Menu.Item key="10" onClick={() => navigate("/AdminDashboard/PondManagement")}>
             Quản lí hồ
           </Menu.Item>
@@ -125,13 +139,13 @@ const Sidebar = () => {
             Thêm kiểu hồ
           </Menu.Item>
         </Menu.SubMenu>
-        <Menu.Item key="12" onClick={() => navigate("/AdminDashboard/AdminChart")}>
+        <Menu.Item key="12" onClick={() => navigate("/AdminDashboard/AdminChart")} icon={<DashboardFilled />}>
           Admin Dashboard
         </Menu.Item>
-        <Menu.Item key="13" onClick={() => navigate("/AdminDashboard/")}>
+        <Menu.Item key="13" icon={<CiSettings />}onClick={() => navigate("/AdminDashboard/")}>
           Cài đặt
         </Menu.Item>
-        <Menu.SubMenu key="sub5" title="Quản lí độ hòa hợp">
+        <Menu.SubMenu key="sub5" title="Quản lí độ hòa hợp" icon={<AiOutlineHarmonyOS />}>
           <Menu.Item key="14" onClick={() => navigate("/AdminDashboard/Harmony-Adding")}>
             Nhập vào đồ hòa hợp
           </Menu.Item>
@@ -140,9 +154,13 @@ const Sidebar = () => {
           </Menu.Item>
         </Menu.SubMenu>
         <Menu.Item key="16" onClick={() => navigate("/AdminDashboard/Consulting-Adding")}>
-          Thêm vào tư vấn cho mệnh
+          Quản lí tư vấn cho ngũ hành
+        </Menu.Item>
+        <Menu.Item key="17" onClick={handleLogout} icon={<LogoutOutlined />}>
+          Đăng xuất
         </Menu.Item>
       </Menu>
+      
     </div>
   );
 };

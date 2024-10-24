@@ -63,9 +63,9 @@
   background-color: #FFFF;
   padding: 16px;
 } */
-
-
-
+.product-detail-in4 user-block :hover{
+  cursor: pointer;
+}
 /* BlogDetail.css */
 .blog-container {
     display: flex;
