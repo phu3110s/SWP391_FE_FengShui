@@ -28,11 +28,16 @@ const GetConsulting = () => {
   const fetchFishPond = async () => {
     setLoading(true);
     try {
-      const response = await consultingApi.getConsulting(page, size, selectedFengShuiId, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await consultingApi.getConsulting(
+        page,
+        size,
+        selectedFengShuiId,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       const { items, total } = response.data;
       setFishPond(items[0]);
     } catch (error) {
@@ -62,7 +67,7 @@ const GetConsulting = () => {
       setLoading(true);
       try {
         const response = await fengshuiApi.getAllFengShui(1, 5, {
-          headers: token ? { Authorization: `Bearer ${token}` } : {},
+          headers:  { Authorization: `Bearer ${token}` },
         });
         setFengShuis(response.data.items);
       } catch (error) {
@@ -84,21 +89,26 @@ const GetConsulting = () => {
   }, [token]);
 
   const handleSubmit = () => {
-    setTotal(0)
-    setPage(1)
+    setTotal(0);
+    setPage(1);
     if (selectedFengShuiId) {
       const fetchFishPondtoGetTotal = async () => {
         setLoading(true);
         try {
-          const response = await consultingApi.getConsulting(1, 10, selectedFengShuiId, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
+          const response = await consultingApi.getConsulting(
+            1,
+            10,
+            selectedFengShuiId,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
           const { items, total } = response.data;
           setFishPond(items[0]);
           setTotal(total);
-          console.log(total)
+          console.log(total);
         } catch (error) {
           message.error("Lỗi khi tải dữ liệu.");
         } finally {
@@ -114,18 +124,17 @@ const GetConsulting = () => {
   const handlePreviousPage = () => {
     if (page > 1) {
       setPage(page - 1);
-      }
-      fetchFishPond(page)
+    }
+    fetchFishPond(page);
   };
 
-  
   const handleNextPage = () => {
     if (page < total) {
       setPage(page + 1);
     }
-    fetchFishPond(page)
+    fetchFishPond(page);
   };
-  
+
   return (
     <div>
       <Header />
@@ -150,30 +159,55 @@ const GetConsulting = () => {
           ))}
         </Select>
       </div>
-      <Button type="primary" onClick={handleSubmit} style={{ marginTop: 20 }} disabled={loading}>
+      <Button
+        type="primary"
+        onClick={handleSubmit}
+        style={{ marginTop: 20 }}
+        disabled={loading}
+      >
         {loading ? <Spin size="big" /> : "Xin tư vấn"}
       </Button>
       {loading ? (
-       <></>
+        <></>
       ) : (
         <div className="fish-pond-container">
           {fishPond ? (
             <div>
               <h2>Thông tin Cá</h2>
-              {fishPond.fishes.map((fish) => (
-                <div key={fish.id}>
-                  <p>
-                    <strong>Tên Cá:</strong> {fish.name}
-                  </p>
-                  <p>
-                    <strong>Kích thước Cá:</strong> {fish.size}
-                  </p>
-                  <p>
-                    <strong>Màu Cá:</strong> {fish.color}
-                  </p>
-                  <img src={fish.urlImg} alt={fish.name} style={{ width: "200px", height: "auto" }} />
-                </div>
-              ))}
+              {fishPond ? (
+                fishPond.fishes.map((fish) => (
+                  <div
+                    key={fish.id}
+                    style={{
+                      border: "1px solid #ccc",
+                      borderRadius: "5px",
+                      padding: "10px",
+                      margin: "10px 0",
+                    }}
+                  >
+                    <p>
+                      <strong>Tên Cá:</strong>{" "}
+                      {fish.name || "Không có thông tin"}
+                    </p>
+                    <p>
+                      <strong>Kích thước Cá:</strong>{" "}
+                      {fish.size || "Không có thông tin"}
+                    </p>
+                    <p>
+                      <strong>Màu Cá:</strong>{" "}
+                      {fish.color || "Không có thông tin"}
+                    </p>
+                    <img
+                      src={fish.urlImg}
+                      alt={fish.name}
+                      style={{ width: "200px", height: "auto" }}
+                    />
+                  </div>
+                ))
+              ) : (
+                <p>Không có thông tin cá</p>
+              )}
+
               <h2>Thông tin Hồ</h2>
               {fishPond.ponds.map((pond) => (
                 <div key={pond.id}>
@@ -189,7 +223,11 @@ const GetConsulting = () => {
                   <p>
                     <strong>Mô tả Hồ:</strong> {pond.description}
                   </p>
-                  <img src={pond.urlImg} alt={pond.shape} style={{ width: "200px", height: "auto" }} />
+                  <img
+                    src={pond.urlImg}
+                    alt={pond.shape}
+                    style={{ width: "200px", height: "auto" }}
+                  />
                 </div>
               ))}
             </div>

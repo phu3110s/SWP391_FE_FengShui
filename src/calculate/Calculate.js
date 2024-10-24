@@ -10,7 +10,7 @@ import userApi from '../apis/userApi'
 import { ConsoleSqlOutlined } from '@ant-design/icons'
 
 export default function Calculate() {
-    const [yearOfBirth, setYearOfBirth] = useState('');
+    const [yearOfBirth, setYearOfBirth] = useState(null)
     const token = localStorage.getItem("token");
     const userId = localStorage.getItem("userId");
     const [gender, setGender] = useState(null);

@@ -50,7 +50,7 @@ const BlogDetail = () => {
               src={blog.userInfo.profileImageUrl}
               alt={blog.userInfo.fullName }
             />
-            <p>Author: {blog.userInfo.fullName}</p>
+            <p className="user-block">Author: {blog.userInfo.fullName}</p>
           </Link> <br />
           <h4>Mô tả chi tiết</h4> <br />
           <p>{blog.description}</p>

@@ -8,7 +8,36 @@
     max-width: 100%;
     max-height: 100%;
 }
-.table {
-    padding-left: 150px;
+.table{
+    padding-left: 150px;;
 }
-
+.popup-image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 3 2;
+    margin-top: 20px;
+    align-items: center;
+}
+.popup-image img{
+    max-width: 470px;
+    max-height: 600px;
+}
+.update-image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 3 2;
+    margin-top: 20px;
+    align-items: center;
+}
+.update-image img{
+    max-width: 480px;
+    max-height: 600px;
+}
+.action-buttons {
+    display: flex;
+    justify-content: flex-start; 
+  }
+  
+  

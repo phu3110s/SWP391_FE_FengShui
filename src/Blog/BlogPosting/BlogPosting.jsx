@@ -1,12 +1,12 @@
 import { Input, message } from "antd";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { RiImageAddLine } from "react-icons/ri"; // Import icon
 import blogApi from "../../apis/blogApi";
 import Header from "../../components/header/Header";
 import "./styles.css";
 import Navigation from "../../components/navbar/Navigation";
 import Footer from "../../components/footer/Footer";
-
 
 export default function BlogPosting() {
   const userId = localStorage.getItem("userId");
@@ -16,23 +16,27 @@ export default function BlogPosting() {
   const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  useEffect(
-    () => {
-      if (!token) {
-        alert(
-          "Bạn phải đăng nhập mới được đăng post. Chuyển hướng sang trang login"
-        );
-        navigate("/Login");
-      }
-    },
-    [token],
-    navigate
-  );
+
+  useEffect(() => {
+    if (!token) {
+      alert(
+        "Bạn phải đăng nhập mới được đăng post. Chuyển hướng sang trang login"
+      );
+      navigate("/Login");
+    }
+  }, [token, navigate]);
 
   const handleImageInput = (e) => {
     const file = e.target.files[0];
     if (file) {
       setImage(file);
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        const imgElement = document.getElementById("preview-image");
+        imgElement.src = reader.result;
+      };
+      reader.readAsDataURL(file);
     }
   };
 
@@ -55,7 +59,7 @@ export default function BlogPosting() {
         navigate("/MyBlog");
         setTitle("");
         setDesription("");
-        setImage("");
+        setImage(null);
       } else if (response.status === 401) {
         alert(
           "Lỗi. Không thể đăng bài. Hết phiên đăng nhập vui lòng đăng nhập lại"
@@ -71,7 +75,7 @@ export default function BlogPosting() {
   };
 
   return (
-    <div className="posting-blog" >
+    <div className="posting-blog">
       <Header />
       <div className="bl-pt-form">
         <h3>Tiêu đề đăng tin và mô tả chi tiết</h3>
@@ -112,6 +116,31 @@ export default function BlogPosting() {
                   required
                 />
               </div>
+            </div>
+          </div>
+          <div className="posting-blog-inputImage">
+            <label>Upload Image</label>
+            <br />
+            <div className="image-upload">
+              <input
+                type="file"
+                onChange={handleImageInput}
+                accept="image/*"
+                id="file-input"
+              />
+              <label htmlFor="file-input" className="image-upload-label">
+                <RiImageAddLine className="upload-icon" />
+                Chọn 1 ảnh
+              </label>
+              {image && (
+                <div className="image-preview">
+                  <img
+                    id="preview-image"
+                    alt="Preview"
+                    style={{ maxWidth: "100%", marginTop: "10px" }}
+                  />
+                </div>
+              )}
             </div>
           </div>
           <p className="see-more-text"> See more <Link to='/policy'>Blog posting rules</Link> to post in the best way.</p>
