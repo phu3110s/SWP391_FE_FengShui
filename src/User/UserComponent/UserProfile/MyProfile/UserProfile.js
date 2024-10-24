@@ -1,4 +1,4 @@
-import { Button, Form, Input, Modal, Select, Spin } from "antd";
+import { Button, Form, Input, Modal, Select, Spin, message } from "antd";
 import React, { useEffect, useState } from "react";
 import Header from "../../../../components/header/Header";
 import "./UserProfile.css";
@@ -141,7 +141,7 @@ export default function UserProfile() {
       localStorage.setItem("urlImg", response.data.urlImg);
       setIsEditing(false);
       setUserProfile(formData);
-      alert("Update thông tin người dùng thành công!");
+      message.success("Update thông tin người dùng thành công")
       fetchUserProfile();
     } catch (error) {
       if (error.response) {
@@ -203,6 +203,24 @@ export default function UserProfile() {
               Save
             </Button>
           ) : (
+            // <<<<<<< phu-harmony
+            //             <>
+            //               <h3>
+            //                 Ngày sinh: <span>{userProfile.birthdate}</span>
+            //               </h3>
+            //               <h3>
+            //                 Giới tính: <span>{userProfile.gender}</span>
+            //               </h3>
+            //               <h3>
+            //                 Email: <span>{userProfile.email}</span>
+            //               </h3>
+            //               <h3>
+            //                 Số điện thoại: <span>{userProfile.phoneNumber}</span>
+            //               </h3>
+            //               <h3>
+            //                 Mệnh: <span>{userProfile.fengShuiName}</span>
+            //               </h3>
+            //             </>
             <Button onClick={handleEditClick} type="default">
               Edit Profile
             </Button>
@@ -307,7 +325,7 @@ export default function UserProfile() {
 
                 <tr className="cart-content">
                   <td className='cart-item'>Mệnh: </td>
-                  <td className='cart-item'><span>{userProfile.fengShui}</span></td>
+                  <td className='cart-item'><span>{userProfile.fengShuiName}</span></td>
                   <td className='cart-item'>Chỉnh sửa</td>
                 </tr>
 

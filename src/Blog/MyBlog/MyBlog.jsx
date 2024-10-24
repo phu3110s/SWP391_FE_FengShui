@@ -15,8 +15,8 @@ export default function MyBlog() {
   const [approveBlogs, setApproveBlogs] = useState([]);
   const [pendingBlogs, setPendingBlogs] = useState([]);
   const [page, setPage] = useState(1);
-  const [size, setSize] = useState(1);
-  const [totalPage, setTotalPage] = useState(0);
+  const [size, setSize] = useState(10);
+  const [totalPage, setTotalPage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [viewType, setViewType] = useState('Approved');
 
@@ -28,13 +28,19 @@ export default function MyBlog() {
   const fetchBlogs = async () => {
     setLoading(true);
     try {
-      const response = await blogApi.getUserBlog(userId, page, size, viewType);
-      if (viewType === 'Approved') {
-        setApproveBlogs(response.data.items);
+      const responseApproveBlogs = await blogApi.getUserBlog(
+        userId,
+        page,
+        size,
+        "Approved"
+      );
+      if (viewType === "Approved") {
+        setApproveBlogs(responseApproveBlogs.data.items);
+        setTotalPage(responseApproveBlogs.data.total);
       } else {
-        setPendingBlogs(response.data.items);
+        setPendingBlogs(responseApproveBlogs.data.items);
       }
-      setTotalPage(response.data.totalPages);
+      setTotalPage(responseApproveBlogs.data.totalPages);
       setLoading(false);
     } catch (err) {
       alert('Error fetching data');

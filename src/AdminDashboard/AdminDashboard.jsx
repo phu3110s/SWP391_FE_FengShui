@@ -115,7 +115,7 @@ const Sidebar = () => {
           </Menu.Item>
         </Menu.SubMenu>
         <Menu.SubMenu key="sub4" title="Quản lí hồ">
-          <Menu.Item key="9" onClick={() => navigate("/AdminDashboard/PondManagement")}>
+          <Menu.Item key="10" onClick={() => navigate("/AdminDashboard/PondManagement")}>
             Quản lí hồ
           </Menu.Item>
           <Menu.Item
@@ -131,10 +131,22 @@ const Sidebar = () => {
         <Menu.Item key="13" onClick={() => navigate("/AdminDashboard/")}>
           Cài đặt
         </Menu.Item>
+        <Menu.SubMenu key="sub5" title="Quản lí độ hòa hợp">
+          <Menu.Item key="14" onClick={() => navigate("/AdminDashboard/Harmony-Adding")}>
+            Nhập vào đồ hòa hợp
+          </Menu.Item>
+          <Menu.Item key="15" onClick={() => navigate("/AdminDashboard/Harmony-Viewing")}>
+            List hòa hợp
+          </Menu.Item>
+        </Menu.SubMenu>
+        <Menu.Item key="16" onClick={() => navigate("/AdminDashboard/Consulting-Adding")}>
+          Thêm vào tư vấn cho mệnh
+        </Menu.Item>
       </Menu>
     </div>
   );
 };
+
 const Header = ({ avatarUrl, userMenu }) => {
   const navigate = useNavigate();
   return (

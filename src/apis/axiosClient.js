@@ -38,8 +38,11 @@ axiosClient.interceptors.response.use(
   function (error) {
     if (error.response && error.response.status === 401) {
       localStorage.removeItem("token");
-      message.error("Tính năng này yêu cầu đăng nhập/ Phiên đăng nhập hết hạn")
-      window.location.href = "/login";
+      localStorage.removeItem("userRole");
+      message.error("Tính năng này yêu cầu đăng nhập/ Phiên đăng nhập hết hạn", 5);
+      setTimeout(() => {
+        window.location.href = "/login";
+      }, 500); 
     }
     return Promise.reject(error);
   }

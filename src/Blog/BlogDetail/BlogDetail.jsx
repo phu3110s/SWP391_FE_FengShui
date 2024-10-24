@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom"; // Để lấy id từ URL
+import { Link, useParams } from "react-router-dom";
 import blogApi from "../../apis/blogApi";
 import Header from "../../components/header/Header";
 import "./BlogDetail.css";
@@ -45,10 +45,10 @@ const BlogDetail = () => {
         <div className="product-detail-in4">
           <h2>{blog.title}</h2> <br />
           <p>Created at: {blog.createAt}</p> <br />
-          <Link to='/user-profile' className="customer-in4">
-            <img
+          <Link to={`/user-profile/${blog.userInfo.id}`} className="customer-in4">
+            <img  
               src={blog.userInfo.profileImageUrl}
-              alt={blog.userInfo.fullName}
+              alt={blog.userInfo.fullName }
             />
             <p>Author: {blog.userInfo.fullName}</p>
           </Link> <br />

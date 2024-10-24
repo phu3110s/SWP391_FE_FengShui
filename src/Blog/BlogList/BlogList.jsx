@@ -25,7 +25,8 @@ const BlogList = () => {
       const response = await blogApi.getBlogs(page, size, "Approved");
 
       setBlogs(response.data.items);
-      setTotalPage(response.data.totalPages);
+      setTotalPage(response.data.total);
+      console.log(totalPage)
       setLoading(false);
     } catch (err) {
       if (err.response) {
@@ -47,7 +48,7 @@ const BlogList = () => {
   };
   useEffect(() => {
     fetchBlogs();
-  }, [page, size]);
+  }, [page]);
   if (loading) return <Spin size="Big" style={{ margin: 8 }} />;
   if (error) return <p>Lỗi: {error}</p>;
 
@@ -75,7 +76,8 @@ const BlogList = () => {
           onChange={handlePageChange}
         />
       </div>
-      <Footer />
+      <Footer/>
+
     </div>
   );
 };

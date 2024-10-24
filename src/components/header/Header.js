@@ -21,6 +21,7 @@ export default function Header() {
       });
       if (response && response.data) {
         setAvatar(response.data.urlImg);
+        localStorage.setItem("fengShuiID",response.data.fengShuiId);
       }
     } catch (error) {
       if (error.response) {
@@ -44,6 +45,7 @@ export default function Header() {
     localStorage.removeItem("token");
     localStorage.removeItem("userId");
     localStorage.removeItem("username");
+    message.success("Đăng xuất thành công",5)
     navigate("/");
   };
 
@@ -88,18 +90,27 @@ export default function Header() {
           </li>
         ) : null}
 
-        {token ? (
+        {/* {token ? (
           <li className="active">
             <Link className="link" to={"/MyBlog"}>
               Blog Của tôi
             </Link>
           </li>
-        ) : null}
+          
+        ) : null} */}
+        {token &&  
         <li className="active">
           <Link className="link" to={"/MyAdvertising"}>
             Đăng quảng cáo
           </Link>
+        </li>}
+          {token && 
+            <li className="active">
+          <Link className="link" to={"/Harmony-Rating"}>
+            Harmony Rating
+          </Link>
         </li>
+        }
         <li className="active">
           <Link className="link" to={"/News"}>
             Tin tức

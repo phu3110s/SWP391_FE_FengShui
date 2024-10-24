@@ -1,0 +1,16 @@
+.harmony-rating-form {
+    max-width: 600px;
+    margin: 0 auto; 
+  }
+  
+  .select-row {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .select-row .ant-select {
+    width: 48%;  
+  }
+  .select-fengShui-container{
+    margin-bottom: 50px;
+  }

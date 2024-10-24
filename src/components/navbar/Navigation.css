@@ -51,6 +51,7 @@ li.active-navbar {
     border: 1px solid black;
     margin: 0 7px 0 7px;
     white-space: nowrap;
+    font-size: 18px;
 }
 
 a.link-advise:hover {
