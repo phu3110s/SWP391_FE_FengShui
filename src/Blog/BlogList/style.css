@@ -1,7 +1,7 @@
 .new-blog {
   width: 100%;
   height: auto;
-  background-color: #FFFFFF;
+  background-color: #F4F4F4;
 
 }
 
@@ -16,7 +16,7 @@
 
 .blog-info a {
   width: 300px;
-  height: 300px;
+  height: 320px;
   text-decoration: none;
   color: #fa91a6;
 }
@@ -89,10 +89,10 @@
   border: 1px solid white;
 }
 
-.blog-info a:hover {
+/* .blog-info a:hover {
   background-color: #fdfdfd;
   color: white;
-}
+} */
 
 body {
   background-color: #f9f9f9;
@@ -103,7 +103,6 @@ h1 {
   text-align: center;
   font-size: 2rem;
   color: #333;
-  margin-bottom: 20px;
 }
 
 .show-blog-link {

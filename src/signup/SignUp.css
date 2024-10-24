@@ -1,41 +1,15 @@
 .signup-background{
+    width: 100%;
+    height: 130vh;
     display: flex;
     align-items: center;
-
-}
-
-.signup-ui{
-    width: 50%;
-    height: 100vh;
-    /* background-color: #353945; */
-    background-image: url('https://i.pinimg.com/originals/38/4c/2e/384c2eb692bec79f2273796828c4f768.gif');
-    /* background-image: url("https://pa1.aminoapps.com/6540/d3c851965e21ad36562f5272cdbf01c95a20b9c3_hq.gif   "); */
-    background-size: cover;
-    background-position: center;
-}
-
-.signup-logo{
-    width: 50px;
-    height: 50px;
-    display: flex;
     text-align: center;
-    align-items: center;
-    padding: 0;
-    margin-top: 50px;
-    margin-left: 50px;
-    border-radius: 50%;
-    background-color: white;
-    border: 1px solid white;
-    /* background-image: url(''); */
+    background-color: #F4F4F4;
+    
 }
 
-.logo{
-    width: 70%;
-    height: auto;
-}
-
-.signup-title{
-    color: #508D4E;
+.login-title{
+    color: black;
     margin-top: 100px;
     text-align: center;
     font-size: 35px; 
@@ -47,48 +21,50 @@
         -1.5px -1.5px 0 white;
 }
 .title{
-    display: flex;
-    text-align: center;
-    align-items: center;
+    
 }
-
-/* .signup-img{
-    width: 100%;
-}
-.Koi-imgsignup{
-    width: 97%;
-    height: auto;
-} */
 
 .signup-form{
     width: 50%;
+    align-items: center;
     text-align: center;
+    border: 1px solid rgb(186, 186, 186);
+    padding: 20px;
+    position: absolute;
+    margin-left: 26%;
+    background-color: #FFFF;
+    border-radius: 20px;
+    padding-bottom: 35px;
 }
 
 .signup-form-title{
     text-align: center;
-    margin-bottom: 30px;
 }
 
 .title-welcome{
-    text-align: left;
-    padding-left: 160px;
-    margin: 0;
-    padding-top: 0;
+    color: black;
+    text-align: center;
+    font-weight: bold;
+    /* text-shadow: 
+        1.5px 1.5px 0 black, 
+        -1.5px 1.5px 0 black, 
+        1.5px -1.5px 0 black, 
+        -1.5px -1.5px 0 black; */
 }
 
 .name-field{
     text-align: left;
-    padding-left: 160px;
     margin: 0;
-    margin-top: 20px;
+    margin-left: 10%;
+    margin-top: 30px;
     margin-bottom: 7px;
+    color: black;
 }
 
 .input-field{
     display: inline-block;
     border: 1px solid #cbddf0;
-    width: 60%;
+    width: 80%;
     height: 40px;
     justify-content: space-between;
     border-radius: 10px;
@@ -102,35 +78,31 @@
 
 .gender-field{
     margin-top: 20px;
-    /* text-align: left;
-    margin-left: 160px; */
-    margin-bottom: 7px;
 }
 
 .gender-radio{
-    /* text-align: left;
-    margin-left: 160px; */
+    margin: 10px;
 }
 
 .check-policy{
-    margin-top: 40px;
+    margin-top: 15px;
 }
 
 .signup-button{
     display: inline-block;
-    border: 1px solid #508D4E;
+    border: 2px solid grey;
     width: 60%;
     height: 40px;
     justify-content: space-between;
     border-radius: 20px;
-    background-color: #508D4E;
+    background-color: black;
     margin-top: 35px;
     margin-bottom: 35px;
     color: white;
 }
 
 .signup-button:hover{
-    background-color: #8cba8d;
+    background-color: gray;
     color: black;
 }
 
@@ -142,4 +114,7 @@
 
 .link-to-signin:hover{
     color: blue;
+}
+.custom-spin{
+    color:red;
 }

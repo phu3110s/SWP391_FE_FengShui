@@ -1,9 +1,10 @@
-import { Button, Form, Input, Select, Spin } from "antd";
+import { Button, Form, Input, Modal, Select, Spin } from "antd";
 import React, { useEffect, useState } from "react";
-import userApi from "../../../../apis/userApi";
 import Header from "../../../../components/header/Header";
 import "./UserProfile.css";
 import Radio from "antd/es/radio/radio";
+import passwordApi from "../../../../apis/changePassword";
+import userApi from "../../../../apis/userApi";
 
 export default function UserProfile() {
   const loggedInUserId = localStorage.getItem("userId");
@@ -17,6 +18,39 @@ export default function UserProfile() {
     gender: "",
     birthdate: "",
   });
+  const [isPasswordModalVisible, setIsPasswordModalVisible] = useState(false);
+  const [passwordForm, setPasswordForm] = useState({
+    oldPassword: "",
+    newPassword: "",
+    confirmPassword: "",
+  });
+  const handlePasswordInputChange = (e) => {
+    const { name, value } = e.target;
+    setPasswordForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+  const handlePasswordChange = async () => {
+    const { oldPassword, newPassword, confirmPassword } = passwordForm;
+
+    if (newPassword !== confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
+
+    try {
+      await passwordApi.changePassword(loggedInUserId, {
+        oldPassword,
+        newPassword,
+        confirmPassword
+      });
+      alert("Password changed successfully!");
+      setIsPasswordModalVisible(false);
+    } catch (error) {
+      alert("Failed to change password: " + error.message);
+    }
+  };
 
   const [image, setImage] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
@@ -246,8 +280,11 @@ export default function UserProfile() {
 
                 <tr className="cart-content">
                   <td className='cart-item'>Password: </td>
-                  <td className='cart-item'><span>{userProfile.email}</span></td>
-                  <td className='cart-item'>🔒</td>
+                  <td className='cart-item'>********</td>
+                  <td className='cart-item'>
+                    <Button style={{ backgroundColor: 'white', color: 'black' }}
+                      type="primary" onClick={() => setIsPasswordModalVisible(true)}>Chỉnh sửa</Button>
+                  </td>
                 </tr>
 
                 <tr className="cart-content">
@@ -279,6 +316,37 @@ export default function UserProfile() {
           </table>
         </div>
 
+        <Modal
+          title="Change Password"
+          open={isPasswordModalVisible}
+          onOk={handlePasswordChange}
+          onCancel={() => setIsPasswordModalVisible(false)}
+          okButtonProps={{ disabled: !passwordForm.oldPassword || !passwordForm.newPassword || !passwordForm.confirmPassword }}
+        >
+          <Form>
+            <Form.Item label="Old Password">
+              <Input.Password
+                name="oldPassword"
+                value={passwordForm.oldPassword}
+                onChange={handlePasswordInputChange}
+              />
+            </Form.Item>
+            <Form.Item label="New Password">
+              <Input.Password
+                name="newPassword"
+                value={passwordForm.newPassword}
+                onChange={handlePasswordInputChange}
+              />
+            </Form.Item>
+            <Form.Item label="Confirm Password">
+              <Input.Password
+                name="confirmPassword"
+                value={passwordForm.confirmPassword}
+                onChange={handlePasswordInputChange}
+              />
+            </Form.Item>
+          </Form>
+        </Modal>
 
       </div>
     </>

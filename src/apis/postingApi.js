@@ -26,6 +26,22 @@ const postingApi = {
         const url = `advertisings/${id}/status`;
         return axiosClient.put(url, status);
     },
+    updateAdvertisingStatus: (id, data) => {
+        const url = `/advertisings/${id}/status`;
+        return axiosClient.put(url, data);
+    },
+    getDailyReport: () => {
+        const url = '/advertisings/daily-report';
+        return axiosClient.get(url);
+    },
+    getRangeReport: (params) => {
+        const url = '/advertisings/range-report';
+        return axiosClient.get(url, { params });
+    },
+    createPost: (data) => {
+        return axiosClient.post('/advertisings', data);
+    },
+
 };
 
 export default postingApi;

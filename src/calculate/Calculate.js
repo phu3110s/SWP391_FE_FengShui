@@ -103,18 +103,15 @@ export default function Calculate() {
     return (
         <>
             <Header />
-            <Navigation />
             <div className='calculate'>
-                <img className='cal-background' src='./img/koi-background.jpg' alt=''></img>
+                {/* <img className='cal-background' src='./img/koi-background.jpg' alt=''></img> */}
                 <h2 className='calculate-title'>Calculation System</h2>
                 <div className='calculate-board'>
                     {fengShui ? (
-                        // Nếu người dùng đã đăng nhập, hiển thị phong thủy từ server
                         <div className='fengshui-result'>
                             <h4>Your Feng Shui Element: {fengShui}</h4>
                         </div>
                     ) : (
-                        // Nếu người dùng chưa đăng nhập hoặc muốn tính phong thủy theo ngày sinh và giới tính nhập vào
                         <>
                             <h4 className='form-title'>Enter year of birth and select gender</h4>
                             <div className='form-input'>
@@ -142,7 +139,7 @@ export default function Calculate() {
                                         checked={gender === 'male'}
                                         onChange={() => setGender('male')}
                                     />
-                                    Male
+                                    &ensp; Male
                                 </label>
                                 <label className='label'>
                                     <input
@@ -152,7 +149,7 @@ export default function Calculate() {
                                         checked={gender === 'female'}
                                         onChange={() => setGender('female')}
                                     />
-                                    Female
+                                    &ensp; Female
                                 </label>
                             </div>
 

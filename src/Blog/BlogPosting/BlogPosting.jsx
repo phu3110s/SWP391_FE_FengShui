@@ -73,39 +73,48 @@ export default function BlogPosting() {
   return (
     <div className="posting-blog" >
       <Header />
-      <Navigation />
       <div className="bl-pt-form">
-        <h1>Blog Posting Page</h1>
-        <h3>Creating new blog</h3>
+        <h3>Tiêu đề đăng tin và mô tả chi tiết</h3>
         <form onSubmit={handleSubmitPost}>
-          <div className="posting-blog-title">
-            <label>Title</label>
-            <Input
-              type="text"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              placeholder="Enter blog title"
-              required
-            />
+          <div className="edit-form">
+            <div className="form-left">
+              <div className="posting-blog-inputImage">
+                <label>Upload Image</label>
+                <br /> <br />
+                <p>Share photos or a video</p>
+                <br />
+                <input type="file" onChange={handleImageInput} accept="image/*" />
+                {image && (
+                  <div style={{ marginTop: '10px' }}>
+                    <img id="image-preview" alt="Preview" style={{ maxWidth: '200px', maxHeight: '200px' }} />
+                  </div>
+                )}
+              </div>
+            </div>
+            <div className="form-right">
+              <div className="posting-blog-title">
+                <label>Title</label>
+                <Input
+                  type="text"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  placeholder="Enter blog title"
+                  required
+                />
+              </div>
+              <div className="posting-blog-description">
+                <label>Description</label>
+                <Input.TextArea
+                  type="text"
+                  value={description}
+                  onChange={(e) => setDesription(e.target.value)}
+                  placeholder="Enter your blog description"
+                  required
+                />
+              </div>
+            </div>
           </div>
-          <div className="posting-blog-description">
-            <label>Description</label>
-            <Input.TextArea
-              type="text"
-              value={description}
-              onChange={(e) => setDesription(e.target.value)}
-              placeholder="Enter your blog description"
-              required
-            />
-          </div>
-          <div className="posting-blog-inputImage">
-            <label>Upload Image</label>
-            <br />
-            Share photos or a video
-            <br />
-            <input type="file" onChange={handleImageInput} accept="image/*" />
-          </div>
-          Hãy xem thêm <Link to='/policy'>Quy định đăng tin</Link> để đăng bài một cách tốt nhất.
+          <p className="see-more-text"> See more <Link to='/policy'>Blog posting rules</Link> to post in the best way.</p>
           <div>
             <button className="subm-pt-button" type="submit" disabled={loading}>
               {loading ? "Posting..." : "Post Blog"}

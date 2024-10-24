@@ -24,7 +24,7 @@ export default function AdvertisingList() {
         setLoading(true);
         try {
             const response = await postingApi.getAdvertisings(page, size, "Approved");
-
+            console.log(response);
             setBlogs(response.data.items);
             setTotalPage(response.data.totalPages);
             setLoading(false);
@@ -63,7 +63,7 @@ export default function AdvertisingList() {
                         <Link className="link-to-detail" to={`/blogs/${blog.id}`}>
                             <img src={blog.urlImg} alt={blog.itemTypeName} style={{ width: "220px", height: '220px' }} />
                             <h4>{blog.itemTypeName}</h4>
-                            {/* <p>Author: {blog.userInfo.fullName}</p> */}
+
                         </Link>
                     </div>
                 ))}

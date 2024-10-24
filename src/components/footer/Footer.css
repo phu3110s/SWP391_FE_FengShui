@@ -1,19 +1,22 @@
 .footer{
-    bottom: 0;
+    /* position: absolute;
+    bottom: 0; */
     width: 100%;
-    background-image: url('https://i.pinimg.com/564x/a9/32/70/a93270bd7a00346bfe45cf8fa451d054.jpg');
+    background-color: #FCFDF4;
     background-size: cover;
     background-position: center;
     padding: 10px 0;
     height: auto;
+    font-size: 15px;
 }
 .footer-infor{
-    text-align: center;
-    color: #1A5319
-    /* margin: 0 0 0 70px; */
+    text-align: left;
+    color: black;
+    margin-left: 45%;
 }
 
 .copyright{
-    text-align: center;
-    color: #1A5319;
+    text-align: left;
+    color: black;
+    margin-left: 45%;
 }

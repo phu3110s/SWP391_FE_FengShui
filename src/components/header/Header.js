@@ -65,14 +65,14 @@ export default function Header() {
     <div className="header-form">
       <div className="home-logo">
         <Link to={"/"}>
-          <img className="logo-home" src="./img/Koi-logo.png" alt=""></img>
+          <img className="logo" src="/img/img-logo.jpg" alt=""></img>
         </Link>
       </div>
 
       <ul className="list-active">
         <li className="active">
           <Link className="link" to={"/Calculate"}>
-            Feng Shui Calculating
+            Feng Shui
           </Link>
         </li>
         <li className="active">
@@ -83,7 +83,7 @@ export default function Header() {
         {token ? (
           <li className="active">
             <Link className="link" to={"/blog-posting"}>
-              Blog Posting
+              Đăng Blog
             </Link>
           </li>
         ) : null}
@@ -91,18 +91,18 @@ export default function Header() {
         {token ? (
           <li className="active">
             <Link className="link" to={"/MyBlog"}>
-              My Blog
+              Blog Của tôi
             </Link>
           </li>
         ) : null}
         <li className="active">
-          <Link className="link" to={"/AdvertisingPosting"}>
-            Product Posting
+          <Link className="link" to={"/MyAdvertising"}>
+            Đăng quảng cáo
           </Link>
         </li>
         <li className="active">
           <Link className="link" to={"/News"}>
-            News
+            Tin tức
           </Link>
         </li>
       </ul>
