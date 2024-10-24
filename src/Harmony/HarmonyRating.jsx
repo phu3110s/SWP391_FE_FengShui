@@ -21,7 +21,7 @@ export default function HarmonyRating() {
   const [rating, setRating] = useState("");
   const [description, setDescription] = useState("");
   const [loading, setLoading] = useState(false);
-  const [harmonyInfo,setHarmonyInfo] = useState(false)
+  const [harmonyInfo, setHarmonyInfo] = useState(false)
   const token = localStorage.getItem("token");
   const page = 1,
     size = 100;
@@ -82,25 +82,25 @@ export default function HarmonyRating() {
       const response = await harmonyApi.getHarmonyRating(
         selectedFish,
         selectedPond,
-        1,10,
+        1, 10,
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         }
       );
-      
+
       if (response.data.total === 0) {
         message.info("Chúng tôi chưa có dữ liệu về độ hòa hợp của cá và hồ này");
-        setHarmonyInfo(false); 
+        setHarmonyInfo(false);
         return;
       }
-      
+
       if (response.data.items.length > 0) {
         const { point, description } = response.data.items[0];
         setRating(point);
         setDescription(description);
-        setHarmonyInfo(true); 
+        setHarmonyInfo(true);
       }
     } catch (error) {
       if (error.response) {
@@ -117,17 +117,16 @@ export default function HarmonyRating() {
       setLoading(false);
     }
   };
-  
+
   return (
     <>
       <Header />
-      <Navigation />
       <div className="harmony-rating">
-        <img
+        {/* <img
           className="rating-background"
           src="./img/koi-background.jpg"
           alt=""
-        ></img>
+        ></img> */}
         <h2 className="rating-title">Harmony Rating System</h2>
         <div className="picking-box">
           <Form layout="vertical" onFinish={handlePressButton}>

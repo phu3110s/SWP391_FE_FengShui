@@ -18,8 +18,8 @@ export default function Calculate() {
     const [loading, setLoading] = useState(false);
     const [guestElementInfo, setGuestElementInfo] = useState("");
     const [isVisible, setIsVisible] = useState(false);
-    const [userFengShuiInfo,setUserFengShuiInfo] = useState(null)
-    const [userFengShuiId,setUserFengShuiId] = useState(null)
+    const [userFengShuiInfo, setUserFengShuiInfo] = useState(null)
+    const [userFengShuiId, setUserFengShuiId] = useState(null)
     const fetchUserProfile = async () => {
         try {
             const response = await userApi.getUserProfile(userId, {
@@ -43,28 +43,28 @@ export default function Calculate() {
             }
         }
     };
-    const getUserFengShuiInfo = async(e) =>{
+    const getUserFengShuiInfo = async (e) => {
         setLoading(true);
-        try{
-            const response = await fengshuiApi.getFengShuiById(userFengShuiId,{
-                headers:{
-                    Authorization:`Bearer ${token}`,
+        try {
+            const response = await fengshuiApi.getFengShuiById(userFengShuiId, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
                 }
             });
             setUserFengShuiInfo(response.data)
-            
-        }catch(error){
-            if(error.response){
-                const {status} = error.response;
-                if(status === 400){
+
+        } catch (error) {
+            if (error.response) {
+                const { status } = error.response;
+                if (status === 400) {
                     message.error("Mệnh của bạn không có trong hệ thống");
-                }else if(status === 401){
+                } else if (status === 401) {
                     message.error("Phiên đăng nhập hết hạn")
-                }else {
+                } else {
                     alert("Lỗi kết nối vui lòng thử lại sau")
                 }
             }
-        }finally{
+        } finally {
             setLoading(false)
         }
     }
@@ -73,13 +73,13 @@ export default function Calculate() {
             fetchUserProfile();
         }
     }, [token]);
-    
+
     useEffect(() => {
         if (userFengShuiId) {
             getUserFengShuiInfo();
         }
     }, [userFengShuiId]);
-    
+
 
     const handlePressButtonCalFengShui = (birthDate) => {
         if (birthDate && gender) {
@@ -93,8 +93,8 @@ export default function Calculate() {
         setLoading(true);
         try {
             const response = await fengshuiApi.getFengShuiElementByDate(birthDate);
-                setGuestElementInfo(response.data)
-                setIsVisible(true);
+            setGuestElementInfo(response.data)
+            setIsVisible(true);
 
         } catch (error) {
             if (error.response) {
@@ -131,13 +131,12 @@ export default function Calculate() {
             alert('Please enter year of birth and select gender.');
         }
     };
-    if(loading) return <Spin size='large' style={{marginTop:12}}/>
+    if (loading) return <Spin size='large' style={{ marginTop: 12 }} />
     return (
         <>
             <Header />
-            <Navigation />
             <div className='calculate'>
-                <img className='cal-background' src='./img/koi-background.jpg' alt=''></img>
+                {/* <img className='cal-background' src='./img/koi-background.jpg' alt=''></img> */}
                 <h2 className='calculate-title'>Calculation System</h2>
                 <div className='calculate-board'>
                     {userFengShuiInfo ? (
@@ -177,7 +176,7 @@ export default function Calculate() {
                                         checked={gender === 'male'}
                                         onChange={() => setGender('male')}
                                     />
-                                    Male
+                                    &ensp; Male
                                 </label>
                                 <label className='label'>
                                     <input
@@ -187,7 +186,7 @@ export default function Calculate() {
                                         checked={gender === 'female'}
                                         onChange={() => setGender('female')}
                                     />
-                                    Female
+                                    &ensp; Female
                                 </label>
                             </div>
 
@@ -210,11 +209,11 @@ export default function Calculate() {
                     )}
 
                     <Modal title="Your Feng Shui Info" visible={isVisible} onOk={handleOK} onCancel={handleOK}>
-                    <h4>Your Feng Shui Element: {guestElementInfo.element}</h4>
-                            <h4>Suitable color: {guestElementInfo.color}</h4>
-                            <h4>Suitable Direction:{guestElementInfo.direction}</h4>
-                            <h4>Lucky Number: {guestElementInfo.luckyNumber}</h4>
-                            <h4>Description: {guestElementInfo.description}</h4>
+                        <h4>Your Feng Shui Element: {guestElementInfo.element}</h4>
+                        <h4>Suitable color: {guestElementInfo.color}</h4>
+                        <h4>Suitable Direction:{guestElementInfo.direction}</h4>
+                        <h4>Lucky Number: {guestElementInfo.luckyNumber}</h4>
+                        <h4>Description: {guestElementInfo.description}</h4>
                     </Modal>
                 </div>
             </div>

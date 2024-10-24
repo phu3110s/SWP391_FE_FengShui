@@ -1,15 +1,32 @@
 .my-blog{
     width: 100%;
-    height: auto;
     align-items: center;
-    background-color: #FFFFFF;
+    position: relative;
+    height: fit-content;
+    background-color: #F4F7FE !important;
 }
+.myBlog-container{
+    background-color: #FFF;
+    height: auto;
+    width: 70%;
+    padding: 20px;
+    border: 1px solid rgb(189, 189, 189);
+    margin: 20px 15%;
+}
+.profile-section{
+    width: 30%;
+    text-align: left;
+    display: flex;
+}
+.profile-section a{}
+
+
 .blog-btn{
     margin-left: 5opx;
 }
 .blog-title{
     margin-top: 40px;
-    color: #D6EFD8;
+    color: black;
     text-align: center;
     margin-left: 50px;
 }
@@ -28,29 +45,24 @@
     width: 100%;
 }
 .blogs h2{
-    color: #D6EFD8;
-    text-shadow: 
-    -1px 0 black, 
-    0 1px black,      
-    1px 0 black, 
-    0 -1px black;
+    color: black;
 }
 .approve-blog-container{
-    width: 80%;
-    margin-top: 30px;
+    width: 100%;
+    margin: 30px;
     align-items: center;
-    margin-left: 20%;
+    display: flex;
+    justify-content: center;
     
 }
-.blog-information{
-    width: 600px;
-    height: 500px;
-    background-color: #F2F9F8;
-    border: 2px solid #D6EFD8;
+.post-information{
+    width: 470px;
+    height: 470px;
+    background-color: #FFF;
+    border: 2px solid rgb(190, 190, 190);
     border-radius: 10px;
     margin: 20px;
     padding: 20px;
-    margin-left: 150px;
 }
 .blog-information a{
     text-decoration: none;

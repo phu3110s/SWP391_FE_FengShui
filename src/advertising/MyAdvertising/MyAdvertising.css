@@ -1,0 +1,51 @@
+.my-advertising-page{
+    width: 100%;
+    
+}
+.Myadvertising-container{
+    background-color: #FFF;
+    min-height: 80vh;
+    width: 70%;
+    padding: 20px 2%;
+    border: 1px solid rgb(189, 189, 189);
+    margin: 20px 15%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.profile-section{
+    width: 100%;
+}
+.profile-section h3{
+    font-family: var(--font-playwrite);
+}
+.profile-section a{
+    font-family: var(--font-arima);
+}
+
+
+
+.expired-blog-container{
+    grid-template-columns: repeat(2, 1fr);
+    /* margin-left: 5%; */
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: center; */
+
+}
+.blog-information{
+    width: 29%;
+    padding: 2%;
+    margin: 0 2%;
+    height: fit-content;
+    margin-bottom: 30px;
+    border: 1px solid rgb(148, 148, 148);
+    border-radius: 10px;
+}
+.blog-information p {
+    margin: 10px 
+}

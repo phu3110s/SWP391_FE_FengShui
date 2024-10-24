@@ -1,58 +1,49 @@
-import React, { useEffect, useState } from "react";
-import Header from "../../components/header/Header";
-import blogApi from "../../apis/blogApi";
-import { Link } from "react-router-dom";
-import './MyBlog.css'
-import Navigation from "../../components/navbar/Navigation";
-import Footer from "../../components/footer/Footer";
-import { Pagination } from "antd";
+import React, { useEffect, useState } from 'react';
+import Header from '../../components/header/Header';
+import blogApi from '../../apis/blogApi';
+import { Link } from 'react-router-dom';
+import Footer from '../../components/footer/Footer';
+import { Pagination, Tabs, Avatar, Button } from 'antd';
+import './MyBlog.css';
+
+const { TabPane } = Tabs;
 
 export default function MyBlog() {
-  const userId = localStorage.getItem("userId");
-
+  const userId = localStorage.getItem('userId');
+  const username = localStorage.getItem("username");
+  const urlImg = localStorage.getItem("userImg");
   const [approveBlogs, setApproveBlogs] = useState([]);
   const [pendingBlogs, setPendingBlogs] = useState([]);
   const [page, setPage] = useState(1);
   const [size, setSize] = useState(10);
   const [totalPage, setTotalPage] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [viewType, setViewType] = useState("Approved");
+  const [viewType, setViewType] = useState('Approved');
+
   const handlePageChange = (page, pageSize) => {
     setPage(page);
     setSize(pageSize);
   };
+
   const fetchBlogs = async () => {
     setLoading(true);
     try {
+      const responseApproveBlogs = await blogApi.getUserBlog(
+        userId,
+        page,
+        size,
+        "Approved"
+      );
       if (viewType === "Approved") {
-        const responseApproveBlogs = await blogApi.getUserBlog(
-          userId,
-          page,
-          size,
-          "Approved"
-        );
         setApproveBlogs(responseApproveBlogs.data.items);
         setTotalPage(responseApproveBlogs.data.total);
       } else {
-        const responsePendingBlogs = await blogApi.getUserBlog(
-          userId,
-          page,
-          size,
-          "Pending"
-        );
-        setPendingBlogs(responsePendingBlogs.data.items);
-        setTotalPage(responsePendingBlogs.data.totalPages);
+        setPendingBlogs(responseApproveBlogs.data.items);
       }
+      setTotalPage(responseApproveBlogs.data.totalPages);
       setLoading(false);
     } catch (err) {
-      if (err.response) {
-        const { data, status } = err.response;
-        if (status === 400) {
-          alert(data.Error);
-        } else {
-          alert("Lỗi kết nối");
-        }
-      }
+      alert('Error fetching data');
       setLoading(false);
     }
   };
@@ -64,66 +55,83 @@ export default function MyBlog() {
   return (
     <div className="my-blog">
       <Header />
-      <Navigation />
-      <h1 className="blog-title">My Blogs</h1>
+      <div className="myBlog-container">
 
-      <div className="blog-btn">
-        <button className="button-blogs" onClick={() => setViewType("Approved")}>Approved Blogs</button>
-        <button className="button-blogs" onClick={() => setViewType("Pending")}>Pending Blogs</button>
-
-      </div>
-
-      {loading && <p>Loading...</p>}
-      {viewType === "Approved" ? (
-        <div className="blogs">
-          <h2 className="blog-title">Các bài post đã được duyệt của bạn</h2>
-          <div className="approve-blog-container">
-            {approveBlogs.length > 0 ? (
-              approveBlogs.map((blog) => (
-                <div className="blog-information" key={blog.id}>
-                  <Link to={`/blogs/${blog.id}`}>
-                    <h3>{blog.title}</h3>
-                    <img src={blog.urlImg} alt={blog.title} style={{ width: 400, height: 400, margin: 10 }} />
-                  </Link>
-                </div>
-              ))
-            ) : (
-              <p className="blog-title">Bạn chưa có bài post nào được duyệt.</p>
-            )}
+        <div className='profile-section'>
+          <Avatar src={urlImg} size={64} /><br />
+          <div style={{ padding: 10 }}>
+            <h3>
+              {username}
+            </h3>
+            <Link to='/blog-posting' style={{ textDecoration: 'none', color: 'black', margin: '10px 0', fontSize: '16px' }}>Tạo blog</Link>
           </div>
         </div>
-      ) : (
-        <div>
-          <h2 className="blog-title">
-            Các bài post đang chờ được duyệt của bạn
-          </h2>
-          <div className="pending-blog-container">
-            {pendingBlogs.length > 0 ? (
-              pendingBlogs.map((blog) => (
-                <div className="blog-information" key={blog.id}>
-                  <Link to={`/blogs/${blog.id}`}>
-                    <h2>{blog.title}</h2>
-                    <img src={blog.urlImg} width="500px" alt={blog.title} />
-                  </Link>
-                </div>
-              ))
-            ) : (
-              <p className="blog-title">Bạn chưa có bài post nào đang chờ duyệt.</p>
-            )}
-          </div>
-        </div>
-      )}
 
-      <div className="pagination">
-        <Pagination
-          current={page}
-          pageSize={size}
-          total={totalPage}
-          onChange={handlePageChange}
-        />
+        <Tabs
+          defaultActiveKey="Approved" onChange={setViewType}>
+          <TabPane tab="Bài đã duyệt" key="Approved">
+            {loading ? (
+              <p>Loading...</p>
+            ) : approveBlogs.length > 0 ? (
+              <div className="approve-blog-container">
+                {approveBlogs.map((blog) => (
+                  <div className="post-information" key={blog.id}>
+                    <Link to={`/blogs/${blog.id}`}>
+                      <h3>{blog.title}</h3>
+                      <img
+                        src={blog.urlImg}
+                        alt={blog.title}
+                        style={{ width: 400, height: 400, margin: 10 }}
+                      />
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="empty-state">
+                <img src="/path-to-empty-state-img.png" alt="No posts" />
+                <p>Không tìm thấy bài viết</p>
+                <Button type="primary">Tạo bài viết</Button>
+              </div>
+            )}
+          </TabPane>
+
+          <TabPane tab="Bài đang chờ duyệt" key="Pending">
+            {loading ? (
+              <p>Loading...</p>
+            ) : pendingBlogs.length > 0 ? (
+              <div className="pending-blog-container">
+                {pendingBlogs.map((blog) => (
+                  <div className="post-information" key={blog.id}>
+                    <Link to={`/blogs/${blog.id}`}>
+                      <h3>{blog.title}</h3>
+                      <img
+                        src={blog.urlImg}
+                        alt={blog.title}
+                        style={{ width: 400, height: 400, margin: 10 }}
+                      />
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="empty-state">
+                <p>Hiện không có bài viết đang chờ duyệt</p>
+              </div>
+            )}
+          </TabPane>
+        </Tabs>
+
+        <div className="pagination">
+          <Pagination
+            current={page}
+            pageSize={size}
+            total={totalPage}
+            onChange={handlePageChange}
+          />
+        </div>
       </div>
       <Footer />
     </div>
-
   );
 }

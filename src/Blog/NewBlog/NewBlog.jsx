@@ -49,8 +49,8 @@ const NewBlog = () => {
           <div className="blog-info" key={blog.id} style={{ alignItems: 'center' }}>
             <Link className="link-to-detail" to={`/blogs/${blog.id}`}>
               <img src={blog.urlImg} alt={blog.title} style={{ width: "220px", height: '220px' }} />
-              <h4>{blog.title}</h4>
-              <p>Author: {blog.userInfo.fullName}</p>
+              <h4 style={{ fontWeight: 'normal', fontSize: 16, padding: '4px 20px 10px', textAlign: 'left' }}>{blog.title}</h4>
+              <p style={{ padding: ' 5px 20px' }}>Author: {blog.userInfo.fullName}</p>
             </Link>
           </div>
         ))}

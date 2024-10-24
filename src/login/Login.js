@@ -57,11 +57,10 @@ export default function Login() {
   };
   return (
     <div className="login-background">
-      <div className="login-ui">
-        {/* <img className="login-ui" alt="" src="https://pa1.aminoapps.com/6547/269f5957ecaa4dc4dd61f50eeba94721a9a79c2e_00.gif"></img> */}
+      {/* <div className="login-ui">
         <div className="login-logo">
           <Link to={"/"}>
-            <img className="logo" src="./img/Koi-logo.png" alt=""></img>
+            <img className="logo" src="https://i.pinimg.com/564x/ae/3d/ca/ae3dcafe057197d6047d6b8afa453174.jpg" alt=""></img>
           </Link>
         </div>
 
@@ -70,19 +69,21 @@ export default function Login() {
           FengShui Koi Consulting
         </div>
 
-        <div className="login-img">
-          {/* <img className="Koi-imglogin" src="./img/koi-gif.gif" alt=""></img> */}
-        </div>
-      </div>
+      </div> */}
 
       <div className="login-form">
+        <div className="login-logo">
+          <Link to={"/"}>
+            <img className="logo" src="/img/img-logo.jpg" alt=""></img>
+          </Link>
+        </div>
         <div className="login-form-title">
           <h1 className="title-welcome">Welcome back!</h1>
           <p className="title-welcome">Have a good day!!!</p>
         </div>
 
         <div className="login-email">
-          <p className="name-field">E-mail or Phone Number</p>
+          <p className="name-field">Phone Number</p>
           <input
             type="email"
             onChange={(e) => setUsername(e.target.value)}

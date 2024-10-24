@@ -4,8 +4,10 @@ import Navigation from '../../components/navbar/Navigation'
 import { Link, useParams } from 'react-router-dom';
 import postingApi from '../../apis/postingApi';
 import Footer from '../../components/footer/Footer';
+import { Avatar } from 'antd';
 
 export default function AdvertisingDetail() {
+
 
     const { id } = useParams();
     const [advertisings, setAdvertisings] = useState(null);
@@ -30,6 +32,7 @@ export default function AdvertisingDetail() {
 
         fetchBlogDetail();
     }, [id]);
+    console.log(advertisings)
 
     if (loading) return <p>Loading...</p>;
     if (error) {
@@ -52,17 +55,7 @@ export default function AdvertisingDetail() {
                 <div className="product-detail-in4">
                     <h2>{advertisings.itemTypeName}</h2> <br />
                     <p>Created at: {advertisings.createAt}</p> <br />
-                    <Link to='/user-profile' className="customer-in4">
-                        {advertisings.userInfo && (
-                            <>
-                                <img
-                                    src={advertisings.userInfo.profileImageUrl || "default-avatar.png"}
-                                    alt={advertisings.userInfo.fullName || "Unknown Author"}
-                                />
-                                <p>Author: {advertisings.userInfo.fullName}</p>
-                            </>
-                        )}
-                    </Link> <br />
+
                     <h4>Mô tả chi tiết</h4> <br />
                     <p>{advertisings.description}</p>
                 </div>
