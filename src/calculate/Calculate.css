@@ -1,50 +1,50 @@
 .calculate{
     width: 100%;
-    height: auto;
-    display: flex;
-    justify-content: center;
-    margin-top: 50px;
+    height: 100vh;
+    /* justify-content: center; */
+    /* background-image: url('https://i.pinimg.com/564x/33/83/19/338319c05df5e1e62e7619058489889a.jpg'); */
+    background-size: cover;
+    background-position: center;
+    background-color: #F4F4F4;
+    
 }
 
 .cal-background{
     width: 100%;
     height: auto;
     opacity:0.3;
+
 }
 
 .calculate-title{
-    color: #FF9B9B;
-    position: absolute;
-    top: 20%; 
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 70px;
+    padding: 40px 0;
+    color: black;
+    font-size: 50px;
     font-family: Arial, sans-serif;
+    /* text-shadow: 
+        1.5px 1.5px 0 black, 
+        -1.5px 1.5px 0 black, 
+        1.5px -1.5px 0 black, 
+        -1.5px -1.5px 0 black; */
+}
+
+.calculate-board{
+    background-color: white;
+    padding: 30px 40px;
+    margin: 0 410px 0 410px;
+    border-radius: 10px;
+    border: 1px solid black;
+
+}
+
+.form-title{
+    color: rgb(188, 187, 187);
     text-shadow: 
         1.5px 1.5px 0 black, 
         -1.5px 1.5px 0 black, 
         1.5px -1.5px 0 black, 
         -1.5px -1.5px 0 black;
-    margin-top: 450px;
-}
-
-.calculate-board{
-    background-color: white;
-    padding: 40px;
-    margin: 0 410px 0 410px;
-    border-radius: 10%;
-    border: 1px solid #FF9B9B;
-    position: absolute;
-    top: 100%;
-}
-
-.form-title{
-    color: white;
-    text-shadow: 
-        1.5px 1.5px 0 #D91656, 
-        -1.5px 1.5px 0 #D91656, 
-        1.5px -1.5px 0 #D91656, 
-        -1.5px -1.5px 0 #D91656;
+        padding: 10px 0;
 }
 
 .label{
@@ -53,20 +53,18 @@
 .form-radio{
     margin-bottom: 30px;
 }
+.form-radio input{
+    padding-left: 5px;
+}
 .choose-button{
-    margin: 15px;
+    width: 20%;
     margin: 0 20px 0 20px;
     background-color: white;
-    width: 110px;
-    height: 40px;
     border-radius: 5px;
+    padding: 5px 10px;
 }
 
 .choose-button:hover{
-    background-color: #FF9B9B;
-}
-.fengshui-result h4{
-    margin-top: 12px;
-    font-style: italic;
-    color: #cc8787;
+    background-color: black;
+    color: aliceblue;
 }

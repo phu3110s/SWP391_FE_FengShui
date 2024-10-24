@@ -3,7 +3,7 @@ import './AdvertisingPosting.css'
 import Header from '../../components/header/Header'
 import Navigation from '../../components/navbar/Navigation'
 import { Button, Input, message, Radio } from 'antd'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import postingApi from '../../apis/postingApi'
 import postPayment from '../../apis/payosApi'
 import paymentPlan from '../../apis/paymentApi'
@@ -23,6 +23,8 @@ export default function AdvertisingPosting() {
     const [advertisingId, setadvertisingId] = useState(null);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+    const location = useLocation();
+    const adData = location.state || {};
 
     useEffect(
         () => {
@@ -75,7 +77,6 @@ export default function AdvertisingPosting() {
                 },
             });
             if (response.status === 201) {
-                // console.log(response.data);
 
                 message.success("Đăng blog thành công. Chờ duyệt");
                 const paymentData = {
@@ -90,7 +91,6 @@ export default function AdvertisingPosting() {
                         'Authorization': `Bearer ${token}`,
                     },
                 });
-                // console.log(responsePayment);
                 if (responsePayment.status === 200) {
                     window.location.href = responsePayment.data
                     message.success("Đăng bài thành công. Đang chuyển hướng đến trang thanh toán")
@@ -107,13 +107,13 @@ export default function AdvertisingPosting() {
                 alert("Lỗi gì bất định");
             }
         } catch (error) {
-            if(error.response){
-                const {status} = error.response;
-                if(status === 400){
+            if (error.response) {
+                const { status } = error.response;
+                if (status === 400) {
                     message.error("Thông tin nhập vào không đúng yêu cầu")
-                }if(status === 401){
+                } if (status === 401) {
                     message.error("Phiên đăng nhập hết hạn")
-                }else{
+                } else {
                     message.error("Lỗi kết nối")
                 }
             }
@@ -125,46 +125,51 @@ export default function AdvertisingPosting() {
     return (
         <div className="posting-blog">
             <Header />
-            <Navigation />
             <div className="bl-pt-form">
-                <h1>Product Posting Page</h1>
-                <h3>Creating a Advertising</h3>
+                <h3>Tiêu đề đăng tin và Mô tả chi tiết </h3>
                 <form onSubmit={handleSubmitPost}>
-                    <div className="posting-blog-title">
-                        <label style={{ fontSize: 20, color: 'green' }}>Title</label>
-                        <Input
-                            type="text"
-                            value={title}
-                            onChange={(e) => setTitle(e.target.value)}
-                            placeholder="Enter blog title"
-                            required
-                        />
-                    </div>
-                    <div className="posting-blog-description">
-                        <label style={{ fontSize: 20, color: 'green' }}>Description</label>
-                        <Input.TextArea
-                            type="text"
-                            value={description}
-                            onChange={(e) => setDesription(e.target.value)}
-                            placeholder="Enter your blog description"
-                            required
-                        />
-                    </div>
-                    <div className="posting-blog-inputImage">
-                        <label style={{ fontSize: 20, color: 'green' }}>Upload Image</label><br />
-                        Share photos or a video<br />
-                        <input type="file" onChange={handleImageInput} accept="image/*" />
-                        {image && (
-                            <div style={{ marginTop: '10px' }}>
-                                <img id="image-preview" alt="Preview" style={{ maxWidth: '200px', maxHeight: '200px' }} />
+                    <div className="edit-form">
+                        <div className="form-left">
+                            <div className="posting-blog-inputImage">
+                                <label style={{ fontSize: 20 }}>Tải hình ảnh lên</label><br /><br />
+                                <p>Share photos or a video</p><br />
+                                <input type="file" onChange={handleImageInput} accept="image/*" />
+                                {image && (
+                                    <div style={{ marginTop: '10px' }}>
+                                        <img id="image-preview" alt="Preview" style={{ maxWidth: '200px', maxHeight: '200px' }} />
+                                    </div>
+                                )}
                             </div>
-                        )}
+                        </div>
+                        <div className="form-right">
+                            <div className="posting-blog-title">
+                                <label style={{ fontSize: 20, }}>Tiêu đề</label>
+                                <Input
+                                    type="text"
+                                    value={title}
+                                    onChange={(e) => setTitle(e.target.value)}
+                                    placeholder="Enter blog title"
+                                    required
+                                />
+                            </div>
+                            <div className="posting-blog-description">
+                                <label style={{ fontSize: 20, }}>Mô tả</label>
+                                <Input.TextArea
+                                    type="text"
+                                    value={description}
+                                    onChange={(e) => setDesription(e.target.value)}
+                                    placeholder="Enter your blog description"
+                                    required
+                                />
+                            </div>
+                        </div>
                     </div>
-                    <div className="posting-blog-description">
-                        <label style={{ fontSize: 20, color: 'green' }}>Payment Plan</label><br />
+
+                    <div className="form-payment-plan">
+                        <label className='title-plan'>Gói đăng bài</label><br />
                         <Radio.Group onChange={(e) => setPlanID(e.target.value)} value={planID}>
                             {listPlan.map(plan => (
-                                <Radio key={plan.id} value={plan.id} style={{ margin: 15 }}>
+                                <Radio key={plan.id} value={plan.id} className='radio-plan'>
                                     _ {plan.name}<br />
                                     _ {plan.description}<br />
                                     _ {plan.amount}
@@ -172,14 +177,16 @@ export default function AdvertisingPosting() {
                             ))}
                         </Radio.Group>
                     </div>
-                    Hãy xem thêm <Link to='/policy'>Quy định đăng tin</Link> để đăng bài một cách tốt nhất.
+                    <p className='see-more-text'> Xem thêm <Link to='/policy'>Quy định đăng tin</Link> để đăng bài một cách tốt nhất.</p>
+
                     <div>
                         <button className="subm-pt-button" type="submit" disabled={loading}>
-                            {loading ? "Posting..." : "Post Blog"}
+                            {loading ? "Posting..." : "Đăng bài"}
                         </button>
 
                     </div>
                 </form>
+                <Link to={'/MyAdvertising'}>MyAdvertising</Link>
             </div>
             <Footer />
         </div>

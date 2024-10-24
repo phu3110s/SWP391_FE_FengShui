@@ -54,7 +54,7 @@ export default function SignUp() {
 
   return (
     <div className="signup-background">
-      <div className="signup-ui">
+      {/* <div className="signup-ui">
         <div className="signup-logo">
           <Link to="/">
             <img className="logo" src="./img/Koi-logo.png" alt="Logo" />
@@ -66,12 +66,19 @@ export default function SignUp() {
           FengShui Koi Consulting
         </div>
 
-        {/* <div className="signup-img">
+        <div className="signup-img">
           <img className="Koi-imgsignup" src="./img/Koi-login.jpg" alt="Koi" />
-        </div> */}
-      </div>
+        </div>
+      </div> */}
 
       <div className="signup-form">
+
+        <div className="login-logo">
+          <Link to={"/"}>
+            <img className="logo" src="/img/img-logo.jpg" alt=""></img>
+          </Link>
+        </div>
+
         <div className="signup-form-title">
           <h1 className="title-welcome">Welcome!</h1>
           <p className="title-welcome">Have a nice day!!!</p>

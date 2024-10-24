@@ -5,8 +5,7 @@ import { Link } from 'react-router-dom'
 export default function Navigation() {
     return (
         <div className='navabar'>
-            <img className='img-background' src='https://i.pinimg.com/originals/c9/bb/4c/c9bb4cf31417f2a8d59c5931d34ca67f.gif' alt=''></img>
-            {/* <img alt='' className='img-background' src="https://pa1.aminoapps.com/6540/d3c851965e21ad36562f5272cdbf01c95a20b9c3_hq.gif"></img> */}
+            <img className='img-background' src='/img/background-navbar.jpg' alt=''></img>
 
             <ul className='list-active-navbar'>
 
@@ -46,11 +45,6 @@ export default function Navigation() {
                     </li>
                 </div>
 
-                <div className='frame-link'>
-                    <li className='active-navbar'>
-                        <Link className='link-advise' to={'/'}>Tâm linh & cá Koi</Link>
-                    </li>
-                </div>
 
             </ul>
 
