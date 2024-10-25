@@ -53,7 +53,7 @@
 }
 .posting-blog-title label{
     margin-right: 10px;
-    font-family: var(--font-playwrite);
+    font-family: var(--font-arima);
     font-size: 17px;
 }
 .posting-blog-title{
@@ -72,7 +72,7 @@
 }
 .posting-blog-description label{
     width: 30%;
-    font-family: var(--font-playwrite);
+    font-family: var(--font-arima);
     font-size: 17px;
 }
 .posting-blog-description textarea{
@@ -100,7 +100,7 @@
     margin-top: 16px;
     border: none;
     transition: 0.3s ease;
-    font-family: var(--font-playwrite);
+    font-family: var(--font-arima);
 }
 .subm-pt-button:hover{
     background-color: rgb(190, 190, 190);

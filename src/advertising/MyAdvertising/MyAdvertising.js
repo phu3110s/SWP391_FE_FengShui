@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../../components/header/Header';
 import postingApi from '../../apis/postingApi';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { Button, message, Pagination, Tabs, Avatar } from 'antd';
 import Footer from '../../components/footer/Footer';
 import createPaymentLink from '../../apis/payosApi';
@@ -11,13 +11,16 @@ const { TabPane } = Tabs;
 
 export default function MyAdvertising() {
     const [approveAdvertisings, setApproveAdvertisings] = useState([]);
-    const [pendingPost, setPendingPost] = useState([]);
+    const [Draft, setDraft] = useState([]);
     const [expiredPosts, setExpiredPosts] = useState([]);
+    const [post, setPost] = useState([]);
     const [page, setPage] = useState(1);
     const [size, setSize] = useState(10);
     const [totalPage, setTotalPage] = useState(0);
     const [loading, setLoading] = useState(false);
+    const [postStatus, setPostStatus] = useState(false);
     const [viewType, setViewType] = useState('Approved');
+    const [error, setError] = useState(null);
 
     const username = localStorage.getItem("username");
     const token = localStorage.getItem('token');
@@ -27,15 +30,15 @@ export default function MyAdvertising() {
         setPage(page);
         setSize(pageSize);
     };
-
     const fetchPost = async () => {
         setLoading(true);
         try {
             const response = await postingApi.getUserAdvertisings(page, size, viewType);
+
             if (viewType === 'Approved') {
                 setApproveAdvertisings(response.data.items);
-            } else if (viewType === 'Pending') {
-                setPendingPost(response.data.items);
+            } else if (viewType === 'Draft') {
+                setDraft(response.data.items);
             } else if (viewType === 'Expired') {
                 setExpiredPosts(response.data.items);
             }
@@ -46,6 +49,11 @@ export default function MyAdvertising() {
             setLoading(false);
         }
     };
+    // console.log(viewType);
+
+    useEffect(() => {
+        fetchPost();
+    }, [viewType, page]);
 
     const handlePayment = async (advertisingId, description) => {
         const paymentData = {
@@ -66,20 +74,45 @@ export default function MyAdvertising() {
             message.error('Payment error.');
         }
     };
-    // const handleRenew = (ad) => {
-    //     Navigate('/AdvertisingPosting', {
-    //         state: {
-    //             advertisingId: ad.id,
-    //             title: ad.title,
-    //             description: ad.description,
-    //             image: ad.imageUrl,
-    //             planID: ad.planID,
-    //         },
-    //     });
-    // };
+
+    const fetchBlogs = async () => {
+        setLoading(true);
+        try {
+            const response = await postingApi.getAdvertisings(page, size, "");
+            console.log(response);
+            setPost(response.data.items);
+            setTotalPage(response.data.totalPages);
+            setLoading(false);
+        } catch (err) {
+            if (err.response) {
+                const { status } = err.response;
+                if (status === 401) {
+                    setError(
+                        "Người dùng chưa xác thực/Phiên đăng nhập hết hạn. Vui lòng đăng nhập lại."
+                    );
+                } else if (status === 500) {
+                    setError("Lỗi kết nối!!! Vui lòng thử lại sau.");
+                } else {
+                    setError("Lỗi không xác định.");
+                }
+            } else {
+                setError(err.message);
+            }
+            setLoading(false);
+        }
+    };
+    // console.log(post)
     useEffect(() => {
-        fetchPost();
-    }, [viewType, page]);
+        fetchBlogs();
+    }, [page, size]);
+
+
+    const navigate = useNavigate();
+
+    const handleRenew = (post) => {
+        navigate('/AdvertisingPayment', { state: { post: post } });
+    };
+
 
     return (
         <div className='my-advertising-page'>
@@ -91,21 +124,21 @@ export default function MyAdvertising() {
                         <h3>
                             {username}
                         </h3>
-                        <Link to='/blog-posting' style={{ textDecoration: 'none', color: 'black', margin: '10px 0', fontSize: '16px' }}>Tạo blog</Link>
+                        <Link to='/AdvertisingPosting' style={{ textDecoration: 'none', color: 'black', margin: '10px 0', fontSize: '16px' }}>Tạo bài quảng cáo</Link>
                     </div>
                 </div>
 
                 <Tabs defaultActiveKey='Approved' onChange={setViewType} style={{ width: '98%', marginLeft: '2%' }}>
-                    <TabPane tab='Đang hiển thị' key='Approved'>
+                    <TabPane tab='Đã được duyệt' key='Approved'>
                         {loading ? (
                             <p>Loading...</p>
                         ) : approveAdvertisings.length > 0 ? (
-                            <div className='approve-blog-container'>
+                            <div className='expired-blog-container'>
                                 {approveAdvertisings.map((post) => (
                                     <div className='blog-information' key={post.id}>
                                         <Link to={`/AdvertisingList/${post.id}`}>
                                             <h2>{post.title}</h2>
-                                            <img src={post.urlImg} style={{ width: '350px', height: '350px' }} alt={post.title} />
+                                            <img src={post.urlImg} style={{ width: '200px', height: '200px' }} alt={post.title} />
                                         </Link>
                                     </div>
                                 ))}
@@ -117,17 +150,21 @@ export default function MyAdvertising() {
                         )}
                     </TabPane>
 
-                    <TabPane tab='Chờ duyệt' key='Pending'>
+                    <TabPane tab='Chờ duyệt' key='Draft'>
                         {loading ? (
                             <p>Loading...</p>
-                        ) : pendingPost.length > 0 ? (
-                            <div className='pending-blog-container'>
-                                {pendingPost.map((post) => (
+                        ) : Draft.length > 0 ? (
+                            <div className='expired-blog-container'>
+                                {Draft.map((post) => (
                                     <div className='blog-information' key={post.id}>
                                         <Link to={`/AdvertisingList/${post.id}`}>
-                                            <h2>{post.title}</h2>
-                                            <img src={post.urlImg} style={{ width: '350px', height: '350px' }} alt={post.title} />
+                                            <img src={post.urlImg} style={{ width: '200px', height: '200px' }} alt={post.itemTypeName} />
+                                            <h4>{post.itemTypeName}</h4>
                                         </Link>
+                                        <p>Trạng thái: {post.status}</p>
+                                        <Button onClick={() => handleRenew(post)}>
+                                            Thanh toán
+                                        </Button>
                                     </div>
                                 ))}
                             </div>
@@ -146,21 +183,18 @@ export default function MyAdvertising() {
                                 {expiredPosts.map((post) => (
                                     <div className='blog-information' key={post.id}>
                                         <Link to={`/AdvertisingDetail/${post.id}`}>
-                                            <h2>{post.title}</h2>
-                                            <img src={post.urlImg} style={{ width: '200px', height: '200px' }} alt={post.title} />
+                                            <img src={post.urlImg} style={{ width: '200px', height: '200px' }} alt={post.itemTypeName} />
+                                            <h4>{post.itemTypeName}</h4>
                                         </Link>
-                                        <p>Trạng thái: Hết hạn</p>
-                                        <Button>
+                                        <p>Trạng thái: {post.status}</p>
+                                        {/* <Button>
                                             <Link to={'/AdvertisingPosting'}>
                                                 Gia hạn
                                             </Link>
-                                        </Button>
-                                        {/* <Button
-                                            type='primary'
-                                            onClick={() => handleRenew(post)} 
-                                        >
-                                            Gia hạn
                                         </Button> */}
+                                        <Button onClick={() => handleRenew(post)}>
+                                            Gia hạn
+                                        </Button>
                                     </div>
                                 ))}
                             </div>
@@ -169,6 +203,31 @@ export default function MyAdvertising() {
                                 <p>Hiện chưa có bài nào hết hạn</p>
                             </div>
                         )}
+                    </TabPane>
+
+                    <TabPane tab='Tất cả các bài đăng' key=''>
+                        <div className="expired-blog-container">
+                            {post.map((post) => (
+                                <div className="blog-information" key={post.id}>
+                                    <Link className="link-to-detail" to={`/AdvertisingDetail/${post.id}`}>
+                                        <img src={post.urlImg} alt={post.itemTypeName} style={{ width: "220px", height: '220px' }} />
+                                        <h4>{post.itemTypeName}</h4>
+                                    </Link>
+                                    <p>Trạng thái: {post.status}</p>
+
+                                    {post.status === 'Expired' ? (
+                                        <Button onClick={() => handleRenew(post)}>
+                                            Gia hạn
+                                        </Button>
+                                    ) : post.status === 'Draft' ? (
+                                        <Button onClick={() => handleRenew(post)}>
+                                            Thanh toán
+                                        </Button>
+                                    ) : null}
+
+                                </div>
+                            ))}
+                        </div>
                     </TabPane>
 
                 </Tabs>

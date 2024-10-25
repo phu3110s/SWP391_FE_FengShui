@@ -43,12 +43,12 @@ const BlogDetail = () => {
           <img src={blog.urlImg} alt={blog.title} />
         </div>
         <div className="product-detail-in4">
-          <h2>{blog.title}</h2> <br />
+          <h4>{blog.title}</h4> <br />
           <p>Created at: {blog.createAt}</p> <br />
           <Link to={`/user-profile/${blog.userInfo.id}`} className="customer-in4">
-            <img  
+            <img
               src={blog.userInfo.profileImageUrl}
-              alt={blog.userInfo.fullName }
+              alt={blog.userInfo.fullName}
             />
             <p>Author: {blog.userInfo.fullName}</p>
           </Link> <br />

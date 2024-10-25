@@ -38,6 +38,7 @@ import AdvertisingList from "./advertising/AdvertisingList/AdvertisingList";
 import AdvertisingDetail from "./advertising/AdvertisingDetail/AdvertisingDetail";
 import ConsultingAdding from "./AdminFunction/Consulting/ConsultingAdding/ConsultingAdding";
 import GetConsulting from "./Consulting/GetFishConsulting/GetConsulting";
+import AdvertisingPayment from "./advertising/AdvertisingPayment/AdvertisingPayment";
 
 function App() {
   // const [user, setUser] = useState(null);
@@ -106,11 +107,13 @@ function App() {
         <Route path="/MyBlog" element={<MyBlog />} />
         <Route path="/News" element={<News />} />
         <Route path="/AdvertisingPosting" element={<AdvertisingPosting />} />
-        <Route path="/Harmony-Rating" element={<HarmonyRating/>}/>
+        <Route path="/Harmony-Rating" element={<HarmonyRating />} />
         <Route path="/MyAdvertising" element={<MyAdvertising />} />
         <Route path="/AdvertisingList" element={<AdvertisingList />} />
+        <Route path="/AdvertisingPayment" element={<AdvertisingPayment />} />
         <Route path="/AdvertisingDetail/:id" element={<AdvertisingDetail />} />
-        <Route path="/Fish-Consulting" element={<GetConsulting/>}/>
+        <Route path="/Fish-Consulting" element={<GetConsulting />} />
+
         <Route
           path="/AdminDashboard"
           element={
@@ -127,10 +130,10 @@ function App() {
           <Route path="FishGenerating" element={<FishAdding />} />
           <Route path="FishManagement" element={<FishViewing />} />
           <Route path="PondManagement" element={<PondViewing />} />
-          <Route path="AdminChart" element={<DashboardChart/>}/>
-          <Route path="Harmony-Adding" element={<HarmonyAdding/>}/>
-          <Route path="Harmony-Viewing" element={<HarmonyViewing/>}/>
-          <Route path="Consulting-Adding" element={<ConsultingAdding/>}/>
+          <Route path="AdminChart" element={<DashboardChart />} />
+          <Route path="Harmony-Adding" element={<HarmonyAdding />} />
+          <Route path="Harmony-Viewing" element={<HarmonyViewing />} />
+          <Route path="Consulting-Adding" element={<ConsultingAdding />} />
         </Route>
       </Routes>
     </div>

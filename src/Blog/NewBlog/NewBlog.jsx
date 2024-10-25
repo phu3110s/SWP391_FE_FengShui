@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import blogApi from "../../apis/blogApi";
 import { Spin } from "antd";
 import "./NewBlog.css";
+import AdvertisingList from "../../advertising/AdvertisingList/AdvertisingList";
 
 const NewBlog = () => {
   const [blogs, setBlogs] = useState([]);
@@ -43,21 +44,27 @@ const NewBlog = () => {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div className="new-blog" style={{ width: '100%', backgroundColor: '#F4F4F4' }}>
+    <div className="new-blog" style={{ width: '100%', backgroundColor: '#F4F7FE' }}>
+      <h4>Các Blogs chia sẻ thông tin cá Koi</h4>
       <div className="blog-container" style={{ backgroundColor: '#FFFFFF', width: '80%', marginLeft: 150 }}>
         {blogs.map((blog) => (
           <div className="blog-info" key={blog.id} style={{ alignItems: 'center' }}>
             <Link className="link-to-detail" to={`/blogs/${blog.id}`}>
               <img src={blog.urlImg} alt={blog.title} style={{ width: "220px", height: '220px' }} />
-              <h4 style={{ fontWeight: 'normal', fontSize: 16, padding: '4px 20px 10px', textAlign: 'left' }}>{blog.title}</h4>
+              <h3 style={{ fontWeight: 'normal', fontSize: 16, padding: '4px 20px 10px', textAlign: 'left' }}>{blog.title}</h3>
               <p style={{ padding: ' 5px 20px' }}>Author: {blog.userInfo.fullName}</p>
             </Link>
           </div>
         ))}
+        <div className="show-blog-link">
+          <Link to="/blogs">Xem thêm blog</Link>
+        </div>
       </div>
-      <div className="show-blog-link">
-        <Link to="/blogs">Show more blogs...</Link>
+      <div className="advertising-posting-home">
+        <h4>Bài quảng cáo</h4>
+        <AdvertisingList />
       </div>
+
     </div>
   );
 };

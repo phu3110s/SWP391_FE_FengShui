@@ -47,12 +47,12 @@
     
 }
 .active a{
-    color: whitesmoke;
-    text-shadow: 
+    color: black;
+    /* text-shadow: 
         1.5px 1.5px 0 black, 
         -1.5px 1.5px 0 black, 
         1.5px -1.5px 0 black, 
-        -1.5px -1.5px 0 black;
+        -1.5px -1.5px 0 black; */
 }
 .active menu{
     background-color: pink;
