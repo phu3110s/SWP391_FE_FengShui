@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import postingApi from '../../apis/postingApi';
 import { Spin } from 'antd';
-import Header from '../../components/header/Header';
-import Navigation from '../../components/navbar/Navigation';
 import { Link } from 'react-router-dom';
 import Pagination from '../../components/pagination/pagination';
-import Footer from '../../components/footer/Footer';
 
 export default function AdvertisingList() {
 
@@ -13,7 +10,7 @@ export default function AdvertisingList() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [page, setPage] = useState(1);
-    const [size, setSize] = useState(11);
+    const [size, setSize] = useState(10);
     const [totalPage, setTotalPage] = useState(0);
     const handlePageChange = (page, pageSize) => {
         setPage(page);
@@ -46,6 +43,7 @@ export default function AdvertisingList() {
             setLoading(false);
         }
     };
+    // console.log(blogs)
     useEffect(() => {
         fetchBlogs();
     }, [page, size]);
@@ -54,9 +52,6 @@ export default function AdvertisingList() {
 
     return (
         <div>
-            <Header />
-            <Navigation />
-
             <div className="blog-container" style={{ backgroundColor: '#FFFFFF', width: '80%', marginLeft: 150 }}>
                 {blogs.map((blog) => (
                     <div className="blog-info" key={blog.id}>
@@ -76,7 +71,6 @@ export default function AdvertisingList() {
                     onChange={handlePageChange}
                 />
             </div>
-            <Footer />
         </div>
     )
 }

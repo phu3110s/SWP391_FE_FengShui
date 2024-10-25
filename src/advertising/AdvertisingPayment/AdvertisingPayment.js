@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react'
-import './AdvertisingPosting.css'
 import Header from '../../components/header/Header'
 import Navigation from '../../components/navbar/Navigation'
 import { Button, Input, message, Radio } from 'antd'
@@ -11,20 +10,36 @@ import createPaymentLink from '../../apis/payosApi'
 import Footer from "../../components/footer/Footer";
 
 
-export default function AdvertisingPosting() {
+export default function AdvertisingPayment() {
+
+    const location = useLocation();
+    const adData = location.state?.post || {};
 
     const userId = localStorage.getItem("userId");
     const token = localStorage.getItem("token");
     const [listPlan, setListPlan] = useState([])
-    const [title, setTitle] = useState("");
-    const [description, setDesription] = useState("");
-    const [image, setImage] = useState(null);
-    const [planID, setPlanID] = useState(null);
-    const [advertisingId, setadvertisingId] = useState(null);
+    const [title, setTitle] = useState(adData.itemTypeName || '');
+    const [description, setDescription] = useState(adData.description || '');
+    const [image, setImage] = useState(adData.urlImg || null);
+    const [planID, setPlanID] = useState(adData.planID || null);
+    const [itemTypeName, setitemTypeName] = useState(adData.itemTypeName || '');
+    const [urlImg, seturlImg] = useState(adData.urlImg || '');
+    // const [advertisingId, setAdvertisingId] = useState(adData.advertisingId || null);
+    const [id, setid] = useState(adData.id || '');
+    // const [updateAt, setupdateAt] = useState(adData.updateAt || '');
+    // const [createAt, setcreateAt] = useState(adData.createAt || '');
+    // const [expiredAt, setexpiredAt] = useState(adData.expiredAt || '');
+    // const [status, setstatus] = useState(adData.status || '');
+    const [paymentPlanId, setPaymentPlanId] = useState(adData.paymentPlanName || '');
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
-    const location = useLocation();
-    const adData = location.state || {};
+
+    useEffect(() => {
+        if (adData && adData.urlImg) {
+            document.getElementById("image-preview").src = adData.urlImg;
+        }
+    }, [adData]);
+
 
     useEffect(
         () => {
@@ -35,9 +50,17 @@ export default function AdvertisingPosting() {
                 );
                 navigate("/Login");
             }
+
+            if (adData && adData.post) {
+                setTitle(adData.post.itemTypeName);
+                setDescription(adData.post.description);
+                setImage(adData.post.urlImg);
+            }
+
         },
-        [token]
+        [token, adData]
     );
+
 
     const getPlanList = async () => {
         const response = await paymentPlan.getPaymentPlan(1, 10)
@@ -45,7 +68,7 @@ export default function AdvertisingPosting() {
     }
 
     const handleImageInput = (e) => {
-        const file = e.target.files[0]; 
+        const file = e.target.files[0];
         if (file) {
             setImage(file);
             const reader = new FileReader();
@@ -58,25 +81,42 @@ export default function AdvertisingPosting() {
 
     const handleSubmitPost = async (e) => {
         e.preventDefault();
-
         setLoading(true);
-        const formData = new FormData();
-        formData.append("Description", description);
-        formData.append("Image", image);
-        formData.append("UserId", userId);
-        formData.append("PaymentPlanId", planID);
-        formData.append("ItemTypeName", title);
 
-        // for (let pair of formData.entries()) {
-        //     console.log(pair[0] + ': ' + pair[1]);
+        // if (adData && adData.post) {
+        //     const isExpiredPost = adData.post.status === 'Expired';
+
+        //     if (isExpiredPost) {
+        //         setPlanID(null);
+        //     }
         // }
+
+        const formData = new FormData();
+        formData.append("Description ", description);
+        formData.append("Image ", urlImg);
+        formData.append("UserId ", userId);
+        formData.append("ItemTypeName ", itemTypeName);
+        formData.append("PaymentPlanId ", paymentPlanId);
+        // formData.append("id", id);
+        // formData.append("createAt", createAt);
+        // formData.append("updateAt", updateAt);
+        // formData.append("expiredAt", expiredAt);
+        // formData.append("status", status);
+
+        if (planID) formData.append("paymentPlanId", planID);
+
+
+        for (let pair of formData.entries()) {
+            console.log(pair[0] + ': ' + pair[1]);
+        }
         try {
-            const response = await postingApi.uploadAdvertisings(formData, {
+            const response = await postingApi.postAdvertisings(formData, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },
             });
             if (response.status === 201) {
+
                 message.success("Đăng blog thành công. Chờ duyệt");
                 const paymentData = {
                     advertisingId: response.data.id,
@@ -96,7 +136,7 @@ export default function AdvertisingPosting() {
                 }
 
                 setTitle("");
-                setDesription("");
+                setDescription("");
                 setImage(null);
             } else if (response.status === 401) {
                 alert(
@@ -109,7 +149,7 @@ export default function AdvertisingPosting() {
             if (error.response) {
                 const { status } = error.response;
                 if (status === 400) {
-                    message.error("Thông tin nhập vào không đúng yêu cầu")
+                    message.error("Thông tin nhập vào không đúng yêu cầu" + " " + error.response.data.message);
                 } if (status === 401) {
                     message.error("Phiên đăng nhập hết hạn")
                 } else {
@@ -145,8 +185,8 @@ export default function AdvertisingPosting() {
                                 <label style={{ fontSize: 20, }}>Tiêu đề</label>
                                 <Input
                                     type="text"
-                                    value={title}
-                                    onChange={(e) => setTitle(e.target.value)}
+                                    value={itemTypeName}
+                                    onChange={(e) => setitemTypeName(e.target.value)}
                                     placeholder="Enter blog title"
                                     required
                                 />
@@ -156,7 +196,7 @@ export default function AdvertisingPosting() {
                                 <Input.TextArea
                                     type="text"
                                     value={description}
-                                    onChange={(e) => setDesription(e.target.value)}
+                                    onChange={(e) => setDescription(e.target.value)}
                                     placeholder="Enter your blog description"
                                     required
                                 />

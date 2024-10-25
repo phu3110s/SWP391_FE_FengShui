@@ -49,3 +49,26 @@
 .blog-information p {
     margin: 10px 
 }
+
+.advertisingPost-containe{
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+}
+.advertisingPost-info{
+    width: 29%;
+    padding: 2%;
+    margin: 0 2%;
+    height: fit-content;
+    margin-bottom: 30px;
+    border: 1px solid rgb(148, 148, 148);
+    border-radius: 10px;
+}
+.blog-information button{
+    background-color: #FFF;
+    border: 1px solid gray;
+    padding: 5px;
+    border-radius: 5px;
+}

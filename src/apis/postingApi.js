@@ -3,10 +3,16 @@ import axiosClient from "./axiosClient";
 const postingApi = {
     postAdvertisings: (data) => {
         const url = "/advertisings";
-        return axiosClient.post(url, data);
+        // return axiosClient.post(url, data);
+        return axiosClient.post(url, data, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        });
     },
     getAdvertisings: (page, size, status) => {
         const url = `/advertisings?status=${status}&page=${page}&size=${size}`;
+        // const url = `/advertisings?page=${page}&size=${size}`;
         return axiosClient.get(url);
     },
     getAdvertisingsById: (id) => {

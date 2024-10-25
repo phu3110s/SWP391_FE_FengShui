@@ -76,7 +76,7 @@ export default function MyBlog() {
             {loading ? (
               <p>Loading...</p>
             ) : approveBlogs.length > 0 ? (
-              <div className="approve-blog-container">
+              <div className="pending-blog-container">
                 {approveBlogs.map((blog) => (
                   <div className="post-information" key={blog.id}>
                     <Link to={`/blogs/${blog.id}`}>
@@ -84,7 +84,7 @@ export default function MyBlog() {
                       <img
                         src={blog.urlImg}
                         alt={blog.title}
-                        style={{ width: 400, height: 400, margin: 10 }}
+                        style={{ width: '200px', height: '200px' }}
                       />
                     </Link>
                   </div>
@@ -111,7 +111,7 @@ export default function MyBlog() {
                       <img
                         src={blog.urlImg}
                         alt={blog.title}
-                        style={{ width: 400, height: 400, margin: 10 }}
+                        style={{ width: '200px', height: '200px' }}
                       />
                     </Link>
                   </div>

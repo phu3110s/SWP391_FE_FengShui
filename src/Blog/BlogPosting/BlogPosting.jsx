@@ -106,11 +106,12 @@ export default function BlogPosting() {
                 </div>
               )}
             </div>
+
               </div>
             </div>
             <div className="form-right">
               <div className="posting-blog-title">
-                <label>Title</label>
+                <label>Tiêu đề</label>
                 <Input
                   type="text"
                   value={title}
@@ -120,7 +121,7 @@ export default function BlogPosting() {
                 />
               </div>
               <div className="posting-blog-description">
-                <label>Description</label>
+                <label>Mô tả</label>
                 <Input.TextArea
                   type="text"
                   value={description}
@@ -135,9 +136,10 @@ export default function BlogPosting() {
             
           </div>
           <p className="see-more-text"> See more <Link to='/policy'>Blog posting rules</Link> to post in the best way.</p>
+
           <div>
             <button className="subm-pt-button" type="submit" disabled={loading}>
-              {loading ? "Posting..." : "Post Blog"}
+              {loading ? "Posting..." : "Đăng Blog"}
             </button>
           </div>
         </form>

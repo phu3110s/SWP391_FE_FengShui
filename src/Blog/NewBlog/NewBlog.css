@@ -1,0 +1,17 @@
+.new-blog h4{
+    text-align: left;
+    margin-left: 10%;
+    font-family: var(--font-arima);
+    margin-top: 20px;
+}
+.advertising-posting-home{
+    width: 100%;
+    height: auto;
+    margin: 30px 0;
+}
+
+.advertising-posting-home h4{
+    text-align: left;
+    margin-left: 10%;
+    font-family: var(--font-arima);
+}
