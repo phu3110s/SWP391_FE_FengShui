@@ -39,6 +39,16 @@
   text-decoration: none;
   color: black;
 }
+.product-detail-in4 h4{
+  font-weight: normal;
+  font-size: 20px;
+  font-family: var(--font-arima);
+}
+.product-detail-in4 p{
+  font-weight: normal;
+  font-size: 16px;
+  font-family: var(--font-arima);
+}
 
 .customer-in4{
   width: 440.4px;

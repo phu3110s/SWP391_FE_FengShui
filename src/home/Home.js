@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 
 import Header from "../components/header/Header";
 import NewBlog from "../Blog/NewBlog/NewBlog";
+import AdvertisingList from "../advertising/AdvertisingList/AdvertisingList";
+
 
 export default function Home() {
   const [username, setUsername] = useState();

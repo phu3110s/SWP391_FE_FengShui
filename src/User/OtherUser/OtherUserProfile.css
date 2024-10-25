@@ -1,15 +1,18 @@
+.profile-title{
+  font-size: 18px;
+  font-family: var(--font-arima);
+  font-weight: bold;
+  text-align: left;
+  margin-top: 30px;
+  margin-left: 10%;
+
+}
+
 .user-profile-container {
   width: 80%;
   height: 91vh;
   display: flex;
-  /* background-color: #FDD1BE; */
-  /* color: #cee4d0;
-  text-shadow: 
-        0.5px 0.5px 0 #FF597B, 
-        -0.5px 0.5px 0 #FF597B, 
-        0.5px -0.5px 0 #FF597B, 
-        -0.5px -0.5px 0 #FF597B; */
-  /* background-image: url('https://i.pinimg.com/originals/a8/11/4c/a8114cabb5568e656f88d7bf671945e9.gif'); */
+
   background-position: center;
   background-size: cover;
   border-top: 2px solid #cee4d0;
@@ -32,6 +35,21 @@
   border: 2px solid #cee4d0;
   object-fit: cover;
   transition: border-color 0.3s;
+}
+
+.user-fullName{
+  font-weight: normal;
+  font-family: var(--font-playwrite);
+  font-size: 20px;
+  margin: 20px;
+}
+
+.user-form-information h3{
+  font-weight: normal;
+  font-size: 17px;
+  text-align: left;
+  margin-left: 5%;
+  font-family: var(--font-arima);
 }
 
 .user-profile-bio{

@@ -83,9 +83,9 @@ export default function BlogPosting() {
           <div className="edit-form">
             <div className="form-left">
               <div className="posting-blog-inputImage">
-                <label>Upload Image</label>
+                <label>Tải hình ảnh lên</label>
                 <br /> <br />
-                <p>Share photos or a video</p>
+                <p>Chia sẻ hình ảnh của bạn</p>
                 <br />
                 <input type="file" onChange={handleImageInput} accept="image/*" />
                 {image && (
@@ -97,7 +97,7 @@ export default function BlogPosting() {
             </div>
             <div className="form-right">
               <div className="posting-blog-title">
-                <label>Title</label>
+                <label>Tiêu đề</label>
                 <Input
                   type="text"
                   value={title}
@@ -107,7 +107,7 @@ export default function BlogPosting() {
                 />
               </div>
               <div className="posting-blog-description">
-                <label>Description</label>
+                <label>Mô tả</label>
                 <Input.TextArea
                   type="text"
                   value={description}
@@ -118,35 +118,10 @@ export default function BlogPosting() {
               </div>
             </div>
           </div>
-          <div className="posting-blog-inputImage">
-            <label>Upload Image</label>
-            <br />
-            <div className="image-upload">
-              <input
-                type="file"
-                onChange={handleImageInput}
-                accept="image/*"
-                id="file-input"
-              />
-              <label htmlFor="file-input" className="image-upload-label">
-                <RiImageAddLine className="upload-icon" />
-                Chọn 1 ảnh
-              </label>
-              {image && (
-                <div className="image-preview">
-                  <img
-                    id="preview-image"
-                    alt="Preview"
-                    style={{ maxWidth: "100%", marginTop: "10px" }}
-                  />
-                </div>
-              )}
-            </div>
-          </div>
-          <p className="see-more-text"> See more <Link to='/policy'>Blog posting rules</Link> to post in the best way.</p>
+          <p className='see-more-text'> Xem thêm <Link to='/policy'>Quy định đăng tin</Link> để đăng bài một cách tốt nhất.</p>
           <div>
             <button className="subm-pt-button" type="submit" disabled={loading}>
-              {loading ? "Posting..." : "Post Blog"}
+              {loading ? "Posting..." : "Đăng Blog"}
             </button>
           </div>
         </form>

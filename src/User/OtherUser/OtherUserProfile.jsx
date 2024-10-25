@@ -3,16 +3,17 @@ import userApi from "../../apis/userApi";
 import { useNavigate, useParams } from "react-router-dom";
 import { message, Spin } from "antd";
 import Header from "../../components/header/Header";
-import "./OtherUserProfile.css"
+import "./OtherUserProfile.css";
+
 export default function OtherUserProfile() {
     const [userProfile, setUserProfile] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const token = localStorage.getItem("token");
-    const currentUserId= localStorage.getItem("userId")
+    const currentUserId = localStorage.getItem("userId");
     const { userId } = useParams();
-    const navigate = useNavigate()
-    
+    const navigate = useNavigate();
+
     const fetchUserProfile = async () => {
         setLoading(true);
         setError(null);
@@ -24,7 +25,7 @@ export default function OtherUserProfile() {
             });
             if (response && response.data) {
                 setUserProfile(response.data);
-                console.log(response.data)
+                console.log(response.data);
             }
         } catch (error) {
             if (error.response) {
@@ -41,45 +42,51 @@ export default function OtherUserProfile() {
     };
 
     useEffect(() => {
-        if(currentUserId === userId){
+        if (currentUserId === userId) {
             navigate("/user-profile", { replace: true });
-
-        }else{
+        } else {
             fetchUserProfile();
         }
-        
-    }, [userId]);
+    }, [currentUserId, userId, navigate]);
+
     if (loading) return <Spin size="large" style={{ marginRight: 8, marginTop: 100 }} />;
     if (error) return <div>{error}</div>;
 
     return (
         <div>
             <Header />
-            <h1>User profile</h1>
-            {userProfile && (
-                <div className="user-profile-container">
-                <div className="user-profile-header">
-                    <img className="user-avatar" src={userProfile.urlImg} alt="...." />
-                    <h2 className="user-fullName">{userProfile.fullName}</h2>
-                </div>
-                <div className="user-profile-bio">
-                    <h3>
-                        Ngày sinh: <span>{userProfile.birthdate}</span>
-                    </h3>
-                    <h3>
-                        Giới tính: <span>{userProfile.gender}</span>
-                    </h3>
-                    <h3>
-                        Email: <span>{userProfile.email}</span>
-                    </h3>
-                    <h3>
-                        Số điện thoại: <span>{userProfile.phoneNumber}</span>
-                    </h3>
-                    <h3>
-                        Mệnh: <span>{userProfile.fengShuiName}</span>
-                    </h3>
-                </div>
-            </div>
+            {userProfile ? (
+                <>
+                    <p className="profile-title">Trang cá nhân của {userProfile.fullName}</p>
+                    <div className="user-profile-container">
+                        <div className="user-profile-header">
+                            <img className="user-avatar" src={userProfile.urlImg} alt="...." />
+                            <h2 className="user-fullName">{userProfile.fullName}</h2>
+                            <div className="user-form-information">
+                                <h3>
+                                    Ngày sinh: <span>{userProfile.birthdate}</span>
+                                </h3>
+                                <h3>
+                                    Giới tính: <span>{userProfile.gender}</span>
+                                </h3>
+                                <h3>
+                                    Email: <span>{userProfile.email}</span>
+                                </h3>
+                                <h3>
+                                    Số điện thoại: <span>{userProfile.phoneNumber}</span>
+                                </h3>
+                                <h3>
+                                    Mệnh: <span>{userProfile.fengShuiName}</span>
+                                </h3>
+                            </div>
+                        </div>
+                        <div className="user-profile-bio">
+
+                        </div>
+                    </div>
+                </>
+            ) : (
+                <div>No user profile found.</div>
             )}
         </div>
     );
