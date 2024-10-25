@@ -27,19 +27,26 @@ export default function Login() {
     };
     setLoading(true);
     try {
+      if(!username || !password) {
+        message.error("Vui lòng nhập đầy đủ thông tin")
+        return;
+      }
       const response = await userApi.login(data);
       const userRole = response.data.role;
       localStorage.setItem("token", response.data.accessToken);
       localStorage.setItem("username", response.data.fullName);
       localStorage.setItem("userId", response.data.id);
-      
+      localStorage.setItem("userImg",response.data.urlImg)
       localStorage.setItem("userRole", response.data.role);
+      setTimeout(()=>{
+        setLoading(true)
+        if (token && userRole === "Admin") {
+          navigate("/AdminDashboard");
+        } else {
+          navigate("/");
+        }
+      },700)
       message.success("login thành công")
-      if (token && userRole === "Admin") {
-        navigate("/AdminDashboard");
-      } else {
-        navigate("/");
-      }
     } catch (error) {
       if (error.response) {
         const { data, status } = error.response;

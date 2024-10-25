@@ -51,6 +51,7 @@ export default function DashboardChart() {
   const day = oneWeekAgo.getDate();
   const month = oneWeekAgo.getMonth() + 1;
   const year = oneWeekAgo.getFullYear();
+  const [allAdvertising,setAllAdveritings] = useState(null)
   const startDateforLine = `${year}/${month}/${day}`;
   const [startDateforPie, setstartDateforPie] = useState(
     moment().startOf("month")
@@ -64,6 +65,7 @@ export default function DashboardChart() {
           Authorization: `Bearer ${token}`,
         },
       });
+      setAllAdveritings(response.data.allPosts)
       const {
         draftPosts,
         expiredPosts,
@@ -354,7 +356,7 @@ export default function DashboardChart() {
                 <div className="pie-today-container">
                   <Pie data={pieDataToday} />
                   <strong className="chart-title">
-                    Tổng hợp số bài đăng bán hôm nay
+                    {allAdvertising === 0 ? " Chưa có dữ liệu về bài đăng bán trong ngày hôm nay" : "Tổng hợp số bài đăng bán hôm nay"  }
                   </strong>
                 </div>
               )
