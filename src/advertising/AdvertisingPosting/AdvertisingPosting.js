@@ -45,7 +45,7 @@ export default function AdvertisingPosting() {
     }
 
     const handleImageInput = (e) => {
-        const file = e.target.files[0];
+        const file = e.target.files[0]; 
         if (file) {
             setImage(file);
             const reader = new FileReader();
@@ -77,7 +77,6 @@ export default function AdvertisingPosting() {
                 },
             });
             if (response.status === 201) {
-
                 message.success("Đăng blog thành công. Chờ duyệt");
                 const paymentData = {
                     advertisingId: response.data.id,

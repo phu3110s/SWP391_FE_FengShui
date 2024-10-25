@@ -12,6 +12,8 @@ import React, { useEffect, useState } from "react";
 import fishApi from "../../../apis/fishApi";
 import "./FishViewing.css";
 import { red } from "@mui/material/colors";
+import { DeleteOutline } from "@mui/icons-material";
+import { EditOutlined } from "@ant-design/icons";
 
 const FishViewing = () => {
   const token = localStorage.getItem("token");
@@ -35,8 +37,8 @@ const FishViewing = () => {
     const file = e.target.files[0];
     if (file) {
       setImage(file);
+      setPreviewImage(URL.createObjectURL(file));
     }
-    setPreviewImage(URL.createObjectURL(file));
   };
 
   const handleInputChange = (e) => {
@@ -46,31 +48,27 @@ const FishViewing = () => {
       [name]: value,
     }));
   };
-const fetchData = async () => {
-        setLoading(true);
-        try {
-          const response = await fishApi.getFish(page, size, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-          setFishList(response.data.items);
-          setTotal(response.data.total);
-        } catch (error) {
-          message.error("Lỗi khi tải dữ liệu.");
-        } finally {
-          setLoading(false);
-        }
-      };
 
-  useEffect(
-    () => {
-      
-      fetchData();
-    },
-    [page, size],
-    [isEditing]
-  );
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      const response = await fishApi.getFish(page, size, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setFishList(response.data.items);
+      setTotal(response.data.total);
+    } catch (error) {
+      message.error("Lỗi khi tải dữ liệu.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [page, size]);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -92,11 +90,12 @@ const fetchData = async () => {
         },
       });
       message.success("Xóa thành công!");
+      fetchData(); // Refresh the data after deletion
     } catch (error) {
       if (error.response) {
         const { status } = error.response;
         if (status === 400) {
-          message.error("Cá đã được liên hợp với hồ, Không thể xóa", 2);
+          message.error("Cá đã được liên hợp với hồ, không thể xóa", 2);
         } else if (status === 401) {
           message.error("Phiên đăng nhập hết hạn");
         } else if (status === 403) {
@@ -106,14 +105,12 @@ const fetchData = async () => {
         }
       }
     }
-    fetchData();
   };
 
   const handleUpdateFish = (fish) => {
     setIsEditing(true);
-    console.log(selectedFish)
     setSelectedFish(fish);
-    setPreviewImage(selectedFish.urlImg);
+    setPreviewImage(fish.urlImg);
     setUpdateData({
       name: fish.name,
       color: fish.color,
@@ -126,30 +123,26 @@ const fetchData = async () => {
   const handleSaveUpdate = async () => {
     setLoading(true);
     try {
-      const response = await fishApi.updateFish(selectedFish.id, updateData, {
+      await fishApi.updateFish(selectedFish.id, updateData, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (image) {
         const formDataToUpdateImage = new FormData();
         formDataToUpdateImage.append("imgFile", image);
-        const response2 = await fishApi.updateFishImage(
-          selectedFish.id,
-          formDataToUpdateImage,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        await fishApi.updateFishImage(selectedFish.id, formDataToUpdateImage, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
       }
       message.success("Cập nhật thành công!", 5);
       setIsModalVisible(false);
       setIsEditing(false);
+      fetchData(); // Refresh the data after update
     } catch (error) {
       message.error("Cập nhật thất bại.");
     } finally {
       setLoading(false);
-      fetchData();
     }
   };
 
@@ -182,25 +175,33 @@ const fetchData = async () => {
       title: "Action",
       key: "action",
       render: (_, fish) => (
-        <>
-          <Button type="primary" onClick={() => handleUpdateFish(fish)}>
-            Update
+        <div className="action-buttons">
+          <Button
+            type="primary"
+            style={{ backgroundColor: '#1890ff', borderColor: '#1890ff', marginBottom:15 }}
+            onClick={() => handleUpdateFish(fish)}
+            icon={<EditOutlined />}
+
+          >
+            Chỉnh sửa
           </Button>
           <Popconfirm
             title="Bạn có chắc chắn muốn xóa?"
             onConfirm={() => handleDeleteFish(fish.id)}
-            okText="Yes"
-            cancelText="No"
+            okText="Có"
+            cancelText="Không"
           >
-            <Button type="danger">Delete</Button>
+            <Button danger icon={<DeleteOutline />}>
+              Xóa
+            </Button>
           </Popconfirm>
-        </>
+        </div>
       ),
     },
   ];
 
-  const handlePageChange = (e) => {
-    setPage(e.current);
+  const handlePageChange = (pagination) => {
+    setPage(pagination.current);
   };
 
   return (

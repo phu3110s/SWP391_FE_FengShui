@@ -11,6 +11,8 @@ import {
 import React, { useEffect, useState } from "react";
 import pondApi from "../../../apis/pondApi";
 import "./PondViewing.css";
+import { red } from "@mui/material/colors";
+import { DeleteOutline, DeleteOutlined, EditOutlined } from "@mui/icons-material";
 const PondViewing = () => {
   const token = localStorage.getItem("token");
   const [page, setPage] = useState(1);
@@ -140,24 +142,27 @@ const PondViewing = () => {
       title: "Action",
       key: "action",
       render: (_, pond) => (
-        <>
+        <div className="action-buttons">
           <Button
             type="primary"
-            style={{ marginRight: 8 }}
+            style={{ backgroundColor: '#1890ff', borderColor: '#1890ff', marginBottom:15 }}
             onClick={() => handleUpdatePond(pond)}
-          >
-            Update
-          </Button>
+            icon={<EditOutlined />}
 
+          >
+            Chỉnh sửa
+          </Button>
           <Popconfirm
             title="Bạn có chắc chắn muốn xóa?"
             onConfirm={() => handleDeletePond(pond.id)}
-            okText="Yes"
-            cancelText="No"
+            okText="Có"
+            cancelText="Không"
           >
-            <Button type="danger">Delete</Button>
+            <Button danger icon={<DeleteOutlined />}>
+              Xóa
+            </Button>
           </Popconfirm>
-        </>
+        </div>
       ),
     },
   ];
@@ -220,7 +225,7 @@ const PondViewing = () => {
               {!loading ? (
                 "Save"
               ) : (
-                <Spin size="small" style={{ color: "red" }}  />
+                <Spin size="medium" style={{ color: red }} />
               )}
             </Button>
           ) : (

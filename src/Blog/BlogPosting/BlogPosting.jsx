@@ -1,12 +1,12 @@
 import { Input, message } from "antd";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { RiImageAddLine } from "react-icons/ri"; // Import icon
 import blogApi from "../../apis/blogApi";
 import Header from "../../components/header/Header";
 import "./styles.css";
 import Navigation from "../../components/navbar/Navigation";
 import Footer from "../../components/footer/Footer";
-
 
 export default function BlogPosting() {
   const userId = localStorage.getItem("userId");
@@ -16,26 +16,25 @@ export default function BlogPosting() {
   const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  useEffect(
-    () => {
-      if (!token) {
-        alert(
-          "Bạn phải đăng nhập mới được đăng post. Chuyển hướng sang trang login"
-        );
-        navigate("/Login");
-      }
-    },
-    [token],
-    navigate
-  );
+
+  useEffect(() => {
+    if (!token) {
+      alert(
+        "Bạn phải đăng nhập mới được đăng post. Chuyển hướng sang trang login"
+      );
+      navigate("/Login");
+    }
+  }, [token, navigate]);
 
   const handleImageInput = (e) => {
     const file = e.target.files[0];
     if (file) {
       setImage(file);
+
       const reader = new FileReader();
       reader.onload = () => {
-        document.getElementById("image-preview").src = reader.result;
+        const imgElement = document.getElementById("preview-image");
+        imgElement.src = reader.result;
       };
       reader.readAsDataURL(file);
     }
@@ -60,7 +59,7 @@ export default function BlogPosting() {
         navigate("/MyBlog");
         setTitle("");
         setDesription("");
-        setImage("");
+        setImage(null);
       } else if (response.status === 401) {
         alert(
           "Lỗi. Không thể đăng bài. Hết phiên đăng nhập vui lòng đăng nhập lại"
@@ -76,7 +75,7 @@ export default function BlogPosting() {
   };
 
   return (
-    <div className="posting-blog" >
+    <div className="posting-blog">
       <Header />
       <div className="bl-pt-form">
         <h3>Tiêu đề đăng tin và mô tả chi tiết</h3>

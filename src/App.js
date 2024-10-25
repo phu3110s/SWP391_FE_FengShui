@@ -122,6 +122,7 @@ function App() {
             </AdminRoute>
           }
         >
+          <Route index element = {<DashboardChart/>} />
           <Route path="ApprovePost" element={<BlogApprove />} />
           <Route path="PostingApprove" element={<PostingApprove />} />
           <Route path="UserManagement" element={<UserManagement />} />

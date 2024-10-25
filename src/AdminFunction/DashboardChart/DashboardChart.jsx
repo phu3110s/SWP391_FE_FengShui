@@ -1,4 +1,4 @@
-import { message, Spin } from "antd";
+import { DatePicker, message, Spin } from "antd";
 import {
   ArcElement,
   BarElement,
@@ -11,12 +11,11 @@ import {
   Title,
   Tooltip,
 } from "chart.js";
+import moment from "moment/moment";
 import React, { useEffect, useState } from "react";
 import { Bar, Line, Pie } from "react-chartjs-2";
 import ChartData from "../../apis/ChartData";
-import { DatePicker } from "antd";
 import "./DashboardChart.css";
-import moment from "moment/moment";
 
 ChartJS.register(
   CategoryScale,
@@ -32,13 +31,31 @@ ChartJS.register(
 
 export default function DashboardChart() {
   const [loading, setLoading] = useState(false);
-  const [pieDataToday, setPieDataToday] = useState(null);
-  const [pieDataRange, setPieDataRange] = useState(null);
+  const [pieDataToday, setPieDataToday] = useState("");
+  const [pieDataRange, setPieDataRange] = useState("");
+  const [lineChartData, setLineChartData] = useState({
+    labels: [],
+    datasets: [
+      {
+        label: "Doanh thu 7 ngày gần nhất",
+        data: [],
+        borderColor: "rgba(75,192,192,1)",
+        backgroundColor: "rgba(75,192,192,0.2)",
+      },
+    ],
+  });
   const token = localStorage.getItem("token");
   const today = new Date().toISOString().split("T")[0];
-  const [startDate, setStartDate] = useState(moment().startOf("month"));
-  const [endDate, setEndDate] = useState(moment().endOf("day"));
-
+  const oneWeekAgo = new Date();
+  oneWeekAgo.setDate(oneWeekAgo.getDate() - 6);
+  const day = oneWeekAgo.getDate();
+  const month = oneWeekAgo.getMonth() + 1;
+  const year = oneWeekAgo.getFullYear();
+  const startDateforLine = `${year}/${month}/${day}`;
+  const [startDateforPie, setstartDateforPie] = useState(
+    moment().startOf("month")
+  );
+  const [endDateforPie, setendDateforPie] = useState(moment().endOf("day"));
   const fetchPieDataToday = async () => {
     setLoading(true);
     try {
@@ -47,23 +64,46 @@ export default function DashboardChart() {
           Authorization: `Bearer ${token}`,
         },
       });
-      const { approvedPosts, declinedPosts, pendingPosts } = response.data;
+      const {
+        draftPosts,
+        expiredPosts,
+        approvedPosts,
+        declinedPosts,
+        pendingPosts,
+      } = response.data;
       const newPieData = {
-        labels: ["Số bài đã xóa", "Số bài đã duyệt", "Số bài đang chờ duyệt"],
+        labels: [
+          "Số bài chưa thanh toán",
+          "Số bài đang chờ duyệt",
+          "Số bài đã từ chối",
+          "Số bài đã duyệt",
+          "Số bài hết hạn",
+        ],
         datasets: [
           {
             label: "Quản lí số lượng bài đăng trong hôm nay",
-            data: [declinedPosts, approvedPosts, pendingPosts],
+            data: [
+              draftPosts,
+              pendingPosts,
+              declinedPosts,
+              approvedPosts,
+              expiredPosts,
+            ],
             backgroundColor: [
-              "rgba(174, 198, 207, 0.8)",
-              "rgba(255, 182, 193, 0.8)",
-              "rgba(255, 223, 186, 0.8)",
+              "rgba(211, 211, 211, 1)", // xanh nhạt
+              "rgba(37, 137, 189, 1)", // xanh lam
+              "rgba(255, 219, 69, 1)", // vàng
+              " rgba(160, 212, 104, 1)", // xanh lá
+              "rgba(252, 110, 81, 1)", // đỏ
             ],
             borderColor: [
-              "rgba(105, 155, 205, 1)",
-              "rgba(255, 105, 135, 1)",
-              "rgba(255, 183, 88, 1)",
+              "rgba(211, 211, 211, 1)",
+              "rgba(37, 137, 189, 1)",
+              "rgba(160, 212, 104, 1)",
+              "rgba(255, 219, 69, 1)",
+              "rgba(252, 110, 81, 1)",
             ],
+
             borderWidth: 2,
           },
         ],
@@ -86,40 +126,62 @@ export default function DashboardChart() {
     }
   };
 
-  const fetchPieRangeData = async (startDate, endDate) => {
+  const fetchPieRangeData = async (startDateforPie, endDateforPie) => {
     setLoading(true);
     try {
       const response = await ChartData.getAdvertisingPieDataRange(
-        startDate,
-        endDate,
+        startDateforPie,
+        endDateforPie,
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         }
       );
-      const { approvedPosts, declinedPosts, pendingPosts } = response.data;
+      const {
+        draftPosts,
+        expiredPosts,
+        approvedPosts,
+        declinedPosts,
+        pendingPosts,
+      } = response.data;
       const newRangePieData = {
-        labels: ["Số bài đã xóa", "Số bài đã duyệt", "Số bài đang chờ duyệt"],
+        labels: [
+          "Số bài chưa thanh toán",
+          "Số bài đang chờ duyệt",
+          "Số bài đã từ chối",
+          "Số bài đã duyệt",
+          "Số bài hết hạn",
+        ],
         datasets: [
           {
-            label: `Quản lí số lượng bài đăng từ ngày ${startDate} đến ${endDate}`,
-            data: [declinedPosts, approvedPosts, pendingPosts],
+            label: `Số lượng bài đăng từ ${startDateforPie} đến ${endDateforPie}`,
+            data: [
+              draftPosts,
+              pendingPosts,
+              declinedPosts,
+              approvedPosts,
+              expiredPosts,
+            ],
             backgroundColor: [
-              "rgba(174, 198, 207, 0.8)",
-              "rgba(255, 182, 193, 0.8)",
-              "rgba(255, 223, 186, 0.8)",
+              "rgba(211, 211, 211, 1)", // xanh nhạt
+              "rgba(37, 137, 189, 1)", // xanh lam
+              "rgba(255, 219, 69, 1)", // vàng
+              " rgba(160, 212, 104, 1)", // xanh lá
+              "rgba(252, 110, 81, 1)", // đỏ
             ],
             borderColor: [
-              "rgba(105, 155, 205, 1)",
-              "rgba(255, 105, 135, 1)",
-              "rgba(255, 183, 88, 1)",
+              "rgba(211, 211, 211, 1)",
+              "rgba(37, 137, 189, 1)",
+              "rgba(160, 212, 104, 1)",
+              "rgba(255, 219, 69, 1)",
+              "rgba(252, 110, 81, 1)",
             ],
             borderWidth: 2,
           },
         ],
       };
-      
+
       setPieDataRange(newRangePieData);
     } catch (error) {
       if (error.response) {
@@ -136,10 +198,48 @@ export default function DashboardChart() {
       setLoading(false);
     }
   };
-
+  const fetchLineData = async () => {
+    setLoading(true);
+    try {
+      const response = await ChartData.getLineData(startDateforLine, today, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = response.data.dailyReports;
+      const labels = data.map((report) => {
+        const date = new Date(report.date);
+        return `${date.getDate()}/${date.getMonth() + 1}`;
+      });
+      const lineData = data.map((report) => report.totalAmount);
+      console.log(labels, lineData);
+      setLineChartData({
+        labels,
+        datasets: [
+          {
+            label: "Doanh thu 7 ngày gần nhất ",
+            data: lineData,
+            borderColor: "rgba(75,192,192,1)",
+            backgroundColor: "rgba(75,192,192,0.2)",
+          },
+        ],
+      });
+    } catch (error) {
+      if (error.response) {
+        const { status } = error.response;
+        if (status === 400) {
+          message.error("Không thể lấy dữ liệu cho doanh thu tuần này");
+        }
+      }
+    }
+  };
   useEffect(() => {
     fetchPieDataToday();
-    fetchPieRangeData(moment(startDate).format("YYYY-MM-DD"), moment(endDate).format("YYYY-MM-DD"));
+    fetchPieRangeData(
+      moment(startDateforPie).format("YYYY-MM-DD"),
+      moment(endDateforPie).format("YYYY-MM-DD")
+    );
+    fetchLineData();
   }, []);
 
   const lineData = {
@@ -210,30 +310,31 @@ export default function DashboardChart() {
     ],
   };
 
-  const handleStartDateChange = (date) => {
+  const handlestartDateforPieChange = (date) => {
     if (date === null) {
-      setStartDate(date);
+      setstartDateforPie(date);
     } else {
-      setStartDate(date);
+      setstartDateforPie(date);
     }
 
-    if (date && endDate) {
-      const formattedStartDate = moment(date).format("YYYY-MM-DD");
-      const formattedEndDate = moment(endDate).format("YYYY-MM-DD");
-      fetchPieRangeData(formattedStartDate, formattedEndDate);
+    if (date && endDateforPie) {
+      const formattedstartDateforPie = moment(date).format("YYYY-MM-DD");
+      const formattedendDateforPie = moment(endDateforPie).format("YYYY-MM-DD");
+      fetchPieRangeData(formattedstartDateforPie, formattedendDateforPie);
     }
   };
 
-  const handleEndDateChange = (date) => {
+  const handleendDateforPieChange = (date) => {
     if (date === null) {
-      setEndDate(null);
+      setendDateforPie(null);
     } else {
-      setEndDate(date);
+      setendDateforPie(date);
     }
-    if (startDate && date) {
-      const formattedStartDate = moment(startDate).format("YYYY-MM-DD");
-      const formattedEndDate = moment(date).format("YYYY-MM-DD");
-      fetchPieRangeData(formattedStartDate, formattedEndDate);
+    if (startDateforPie && date) {
+      const formattedstartDateforPie =
+        moment(startDateforPie).format("YYYY-MM-DD");
+      const formattedendDateforPie = moment(date).format("YYYY-MM-DD");
+      fetchPieRangeData(formattedstartDateforPie, formattedendDateforPie);
     }
   };
 
@@ -266,45 +367,43 @@ export default function DashboardChart() {
         </div>
 
         <div className="pie-chart chart-container">
-          <div className="pie-chart-range">
+          <div className="pie-chart-range" style={{ marginBottom: 10 }}>
             {pieDataRange ? (
-              startDate && endDate ? (
+              startDateforPie && endDateforPie ? (
                 pieDataRange.datasets[0].data.every((value) => value === 0) ? (
                   <p>
                     Không có dữ liệu bài đăng từ{" "}
-                    {startDate.format("YYYY-MM-DD")} đến{" "}
-                    {endDate.format("YYYY-MM-DD")}.
+                    {startDateforPie.format("YYYY-MM-DD")} đến{" "}
+                    {endDateforPie.format("YYYY-MM-DD")}.
                   </p>
                 ) : (
                   <div className="pie-range-container">
                     <Pie data={pieDataRange} />
                     <strong className="chart-title">
                       Tổng hợp số bài đăng bán từ ngày{" "}
-                      {startDate.format("YYYY-MM-DD")} đến{" "}
-                      {endDate.format("YYYY-MM-DD")}
+                      {startDateforPie.format("YYYY-MM-DD")} đến{" "}
+                      {endDateforPie.format("YYYY-MM-DD")}
                     </strong>
                   </div>
                 )
               ) : (
-                <p>Vui lòng chọn cả ngày bắt đầu và ngày kết thúc.</p> 
+                <p>Vui lòng chọn cả ngày bắt đầu và ngày kết thúc.</p>
               )
             ) : (
-              <p>
-                Đang tải dữ liệu... <Spin size="large" />
-              </p>
+              <p>Đang tải dữ liệu...</p>
             )}
           </div>
           {/* Cái chọn ngày linh tinh , đang không config được nên chưa sửa */}
           <div className="date-picker">
             <DatePicker
-              value={startDate}
-              onChange={handleStartDateChange}
+              value={startDateforPie}
+              onChange={handlestartDateforPieChange}
               format="YYYY-MM-DD"
               placeholder="Chọn ngày bắt đầu"
             />
             <DatePicker
-              value={endDate}
-              onChange={handleEndDateChange}
+              value={endDateforPie}
+              onChange={handleendDateforPieChange}
               format="YYYY-MM-DD"
               placeholder="Chọn ngày kết thúc"
             />
@@ -318,8 +417,11 @@ export default function DashboardChart() {
       </div>
 
       <div className="line-chart chart-container">
-        <Line data={lineData} />
-        <strong className="chart-title">Doanh thu hàng tuần</strong>
+        <div className="line-chart-block">
+          <Line data={lineChartData} />
+        </div>
+
+        <p className="chart-title">Doanh thu 7 ngày gần nhất</p>
       </div>
     </div>
   );
