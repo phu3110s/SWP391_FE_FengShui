@@ -10,7 +10,7 @@ const userApi = {
     return axiosClient.post(url, data);
   },
   getAll: (page, size) => {
-    const url = `/users?page=${page}&status=${size}`;
+    const url = `/users?page=${page}&size=${size}`;
     return axiosClient.get(url);
   },
   getUserProfile: (id) => {

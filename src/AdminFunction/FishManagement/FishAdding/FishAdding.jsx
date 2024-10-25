@@ -66,7 +66,7 @@ export default function FishAdding() {
               type="text"
               value={Name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="Enter Material"
+              placeholder="Nhập vào tên"
               required
             />
           </div>
@@ -76,7 +76,7 @@ export default function FishAdding() {
               type="text"
               value={Color}
               onChange={(e) => setColor(e.target.value)}
-              placeholder="Enter Shape"
+              placeholder="Nhập vào màu của cá"
               required
             />
           </div>
@@ -86,7 +86,7 @@ export default function FishAdding() {
               type="text"
               value={Size}
               onChange={(e) => setSize(e.target.value)}
-              placeholder="Enter Water Level"
+              placeholder="Nhập vào kích thước"
               required
             />
           </div>
@@ -96,7 +96,7 @@ export default function FishAdding() {
               type="text"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              placeholder="Enter your blog description"
+              placeholder="Nhập vào mô tả"
             />
           </div>
           <div className="gen-fish-img">
@@ -111,7 +111,7 @@ export default function FishAdding() {
           </div>
           <div>
             <button className="submit-button" type="submit" disabled={loading}>
-              {loading ? "Generating..." : "Generate Fish"}
+              {loading ? (<Spin size="small" />) : " Tạo cá"}
             </button>
           </div>
         </form>

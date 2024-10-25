@@ -3,7 +3,7 @@ import Header from '../../components/header/Header';
 import blogApi from '../../apis/blogApi';
 import { Link } from 'react-router-dom';
 import Footer from '../../components/footer/Footer';
-import { Pagination, Tabs, Avatar, Button } from 'antd';
+import { Pagination, Tabs, Avatar, Button, message } from 'antd';
 import './MyBlog.css';
 
 const { TabPane } = Tabs;
@@ -25,31 +25,34 @@ export default function MyBlog() {
     setSize(pageSize);
   };
 
-  const fetchBlogs = async () => {
+  const fetchMyBlogs = async () => {
     setLoading(true);
     try {
       const responseApproveBlogs = await blogApi.getUserBlog(
         userId,
         page,
         size,
-        "Approved"
+        viewType
       );
       if (viewType === "Approved") {
         setApproveBlogs(responseApproveBlogs.data.items);
         setTotalPage(responseApproveBlogs.data.total);
       } else {
         setPendingBlogs(responseApproveBlogs.data.items);
-      }
+    
       setTotalPage(responseApproveBlogs.data.totalPages);
       setLoading(false);
+      }
     } catch (err) {
-      alert('Error fetching data');
+      message.error("Lỗi kết nối")
+      
+    }finally{
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchBlogs();
+    fetchMyBlogs();
   }, [viewType, page]);
 
   return (

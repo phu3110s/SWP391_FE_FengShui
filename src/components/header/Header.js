@@ -45,6 +45,7 @@ export default function Header() {
     localStorage.removeItem("token");
     localStorage.removeItem("userId");
     localStorage.removeItem("username");
+    localStorage.removeItem("userImg")
     message.success("Đăng xuất thành công",5)
     navigate("/");
   };

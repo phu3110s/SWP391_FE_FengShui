@@ -7,6 +7,8 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 import { CiSettings } from "react-icons/ci";
 import "./styles.css";
 import { AiOutlineHarmonyOS } from "react-icons/ai";
+import { FaUserFriends } from "react-icons/fa";
+import { SiBlogger } from "react-icons/si";
 const AdminDashboard = () => {
   const [username, setUsername] = useState();
   const token = localStorage.getItem("token");
@@ -24,12 +26,12 @@ const AdminDashboard = () => {
     navigate
   );
   const handleLogout = () => {
-    if (window.confirm('Bạn chắc chắn muốn đăng xuất?')) {
+    if (window.confirm("Bạn chắc chắn muốn đăng xuất?")) {
       localStorage.removeItem("token");
-      localStorage.removeItem("userRole")
+      localStorage.removeItem("userRole");
+      localStorage.removeItem("userImg")
       navigate("/");
     }
-
   };
 
   const userMenu = (
@@ -54,12 +56,11 @@ const AdminDashboard = () => {
 
 const Sidebar = () => {
   const handleLogout = () => {
-    if (window.confirm('Bạn chắc chắn muốn đăng xuất?')) {
+    if (window.confirm("Bạn chắc chắn muốn đăng xuất?")) {
       localStorage.removeItem("token");
-      localStorage.removeItem("userRole")
+      localStorage.removeItem("userRole");
       navigate("/");
     }
-
   };
 
   const navigate = useNavigate();
@@ -71,53 +72,38 @@ const Sidebar = () => {
         </Link>
       </div>
       <Menu mode="inline" theme="dark">
-        <Menu.SubMenu key="sub1" title="Quản lí blog">
-          <Menu.SubMenu key="sub2" title="All Blog">
-            <Menu.Item
-              key="1"
-              className="Approved-Articles"
-              onClick={() => navigate("/AdminDashboard")}
-            >
-              Các bài viết đã được duyệt
-            </Menu.Item>
-            <Menu.Item key="2" onClick={() => navigate("/AdminDashboard")}>
-              Pending Blog
-            </Menu.Item>
-            <Menu.Item key="3" onClick={() => navigate("/AdminDashboard")}>
-              Rejected Blog
-            </Menu.Item>
-          </Menu.SubMenu>
-
+        <Menu.SubMenu key="sub1" title="Quản lí bài viết" icon={<SiBlogger />}>
           <Menu.Item
             key="4"
             onClick={() => navigate("/AdminDashboard/ApprovePost")}
           >
-            Blog Approve
+            Duyệt cái bài blog
           </Menu.Item>
           <Menu.Item
             key="5"
             onClick={() => navigate("/AdminDashboard/PostingApprove")}
           >
-            Advertising Approve
+            Duyệt các bài đăng bán
           </Menu.Item>
         </Menu.SubMenu>
         <Menu.Item
           key="6"
-          onClick={() => navigate("/AdminDashboard/UserManagement")}
+          icon={<FaUserFriends />}
+          onClick={() => navigate("/AdminDashboard/UserManagement")
+          }
         >
           Quản lý người dùng
         </Menu.Item>
-        <Menu.Item
+        {/* <Menu.Item
           key="7"
           onClick={() => navigate("/AdminDashboard/ApproveSell")}
         >
           Quản lý blog mua bán
-        </Menu.Item>
-        <Menu.SubMenu key="sub3" title="Quản lí cá" icon={<LiaFishSolid/>}>
+        </Menu.Item> */}
+        <Menu.SubMenu key="sub3" title="Quản lí cá" icon={<LiaFishSolid />}>
           <Menu.Item
             key="8"
-            onClick={() => navigate("/AdminDashboard/FishManagement") } 
-            
+            onClick={() => navigate("/AdminDashboard/FishManagement")}
           >
             Quản lí cá
           </Menu.Item>
@@ -129,7 +115,10 @@ const Sidebar = () => {
           </Menu.Item>
         </Menu.SubMenu>
         <Menu.SubMenu key="sub4" title="Quản lí hồ" icon={<GiWaterSplash />}>
-          <Menu.Item key="10" onClick={() => navigate("/AdminDashboard/PondManagement")}>
+          <Menu.Item
+            key="10"
+            onClick={() => navigate("/AdminDashboard/PondManagement")}
+          >
             Quản lí hồ
           </Menu.Item>
           <Menu.Item
@@ -139,28 +128,48 @@ const Sidebar = () => {
             Thêm kiểu hồ
           </Menu.Item>
         </Menu.SubMenu>
-        <Menu.Item key="12" onClick={() => navigate("/AdminDashboard/AdminChart")} icon={<DashboardFilled />}>
+        <Menu.Item
+          key="12"
+          onClick={() => navigate("/AdminDashboard/AdminChart")}
+          icon={<DashboardFilled />}
+        >
           Admin Dashboard
         </Menu.Item>
-        <Menu.Item key="13" icon={<CiSettings />}onClick={() => navigate("/AdminDashboard/")}>
+        <Menu.Item
+          key="13"
+          icon={<CiSettings />}
+          onClick={() => navigate("/AdminDashboard/")}
+        >
           Cài đặt
         </Menu.Item>
-        <Menu.SubMenu key="sub5" title="Quản lí độ hòa hợp" icon={<AiOutlineHarmonyOS />}>
-          <Menu.Item key="14" onClick={() => navigate("/AdminDashboard/Harmony-Adding")}>
+        <Menu.SubMenu
+          key="sub5"
+          title="Quản lí độ hòa hợp"
+          icon={<AiOutlineHarmonyOS />}
+        >
+          <Menu.Item
+            key="14"
+            onClick={() => navigate("/AdminDashboard/Harmony-Adding")}
+          >
             Nhập vào đồ hòa hợp
           </Menu.Item>
-          <Menu.Item key="15" onClick={() => navigate("/AdminDashboard/Harmony-Viewing")}>
+          <Menu.Item
+            key="15"
+            onClick={() => navigate("/AdminDashboard/Harmony-Viewing")}
+          >
             List hòa hợp
           </Menu.Item>
         </Menu.SubMenu>
-        <Menu.Item key="16" onClick={() => navigate("/AdminDashboard/Consulting-Adding")}>
+        <Menu.Item
+          key="16"
+          onClick={() => navigate("/AdminDashboard/Consulting-Adding")}
+        >
           Quản lí tư vấn cho ngũ hành
         </Menu.Item>
         <Menu.Item key="17" onClick={handleLogout} icon={<LogoutOutlined />}>
           Đăng xuất
         </Menu.Item>
       </Menu>
-      
     </div>
   );
 };

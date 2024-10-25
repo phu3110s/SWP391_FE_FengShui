@@ -83,16 +83,29 @@ export default function BlogPosting() {
           <div className="edit-form">
             <div className="form-left">
               <div className="posting-blog-inputImage">
-                <label>Upload Image</label>
-                <br /> <br />
-                <p>Share photos or a video</p>
-                <br />
-                <input type="file" onChange={handleImageInput} accept="image/*" />
-                {image && (
-                  <div style={{ marginTop: '10px' }}>
-                    <img id="image-preview" alt="Preview" style={{ maxWidth: '200px', maxHeight: '200px' }} />
-                  </div>
-                )}
+              <label>Upload Image</label>
+            <br />
+            <div className="image-upload">
+              <input
+                type="file"
+                onChange={handleImageInput}
+                accept="image/*"
+                id="file-input"
+              />
+              <label htmlFor="file-input" className="image-upload-label">
+                <RiImageAddLine className="upload-icon" />
+                Chọn 1 ảnh
+              </label>
+              {image && (
+                <div className="image-preview">
+                  <img
+                    id="preview-image"
+                    alt="Preview"
+                    style={{ maxWidth: "100%", marginTop: "10px" }}
+                  />
+                </div>
+              )}
+            </div>
               </div>
             </div>
             <div className="form-right">
@@ -119,29 +132,7 @@ export default function BlogPosting() {
             </div>
           </div>
           <div className="posting-blog-inputImage">
-            <label>Upload Image</label>
-            <br />
-            <div className="image-upload">
-              <input
-                type="file"
-                onChange={handleImageInput}
-                accept="image/*"
-                id="file-input"
-              />
-              <label htmlFor="file-input" className="image-upload-label">
-                <RiImageAddLine className="upload-icon" />
-                Chọn 1 ảnh
-              </label>
-              {image && (
-                <div className="image-preview">
-                  <img
-                    id="preview-image"
-                    alt="Preview"
-                    style={{ maxWidth: "100%", marginTop: "10px" }}
-                  />
-                </div>
-              )}
-            </div>
+            
           </div>
           <p className="see-more-text"> See more <Link to='/policy'>Blog posting rules</Link> to post in the best way.</p>
           <div>
