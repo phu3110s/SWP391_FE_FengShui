@@ -121,8 +121,8 @@ export default function AdvertisingPayment() {
                 const paymentData = {
                     advertisingId: response.data.id,
                     description: response.data.description,
-                    returnUrl: 'http://localhost:3000/MyAdvertising',
-                    canceUrl: 'http://localhost:3000/MyAdvertising'
+                    returnUrl: 'https://swp-391-fe-feng-shui-beta.vercel.app/MyAdvertising',
+                    canceUrl: 'https://swp-391-fe-feng-shui-beta.vercel.app/MyAdvertising'
                 };
 
                 const responsePayment = await createPaymentLink.postPayment(paymentData, {

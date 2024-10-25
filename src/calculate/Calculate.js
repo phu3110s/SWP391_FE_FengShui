@@ -137,7 +137,7 @@ export default function Calculate() {
             <Header />
             <div className='calculate'>
                 {/* <img className='cal-background' src='./img/koi-background.jpg' alt=''></img> */}
-                <h2 className='calculate-title'>Tính mệnh phong thủy</h2>
+                <p className='calculate-title'>Tính mệnh phong thủy</p>
                 <div className='calculate-board'>
                     {userFengShuiInfo ? (
                         <div className='fengshui-result'>
