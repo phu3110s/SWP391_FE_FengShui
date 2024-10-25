@@ -136,7 +136,7 @@ export default function MyAdvertising() {
                             <div className='expired-blog-container'>
                                 {approveAdvertisings.map((post) => (
                                     <div className='blog-information' key={post.id}>
-                                        <Link to={`/AdvertisingList/${post.id}`}>
+                                        <Link to={`/AdvertisingDetail/${post.id}`}>
                                             <h2>{post.title}</h2>
                                             <img src={post.urlImg} style={{ width: '200px', height: '200px' }} alt={post.title} />
                                         </Link>
@@ -157,7 +157,7 @@ export default function MyAdvertising() {
                             <div className='expired-blog-container'>
                                 {Draft.map((post) => (
                                     <div className='blog-information' key={post.id}>
-                                        <Link to={`/AdvertisingList/${post.id}`}>
+                                        <Link to={`/AdvertisingDetail/${post.id}`}>
                                             <img src={post.urlImg} style={{ width: '200px', height: '200px' }} alt={post.itemTypeName} />
                                             <h4>{post.itemTypeName}</h4>
                                         </Link>
