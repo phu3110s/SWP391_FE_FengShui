@@ -9,8 +9,8 @@ const ChartData ={
         return axiosClient.get(url);
     },
     getLineData: (startDate,endDate) =>{
-        const url = `/transactions/report?startDate=${startDate}&endDate=${endDate}`;
-        return axiosClient.get(url)
+        const url = `/transactions/report-daily?startDate=${startDate}&endDate=${endDate}`;
+        return axiosClient.get(url) 
     }
 }
 export default ChartData;
