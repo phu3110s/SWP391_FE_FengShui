@@ -1,6 +1,6 @@
 import React, { useDebugValue, useEffect, useState } from "react";
 import userApi from "../../apis/userApi";
-import { Button, Input, message, Table } from "antd";
+import { Button, Input, message, Popconfirm, Table } from "antd";
 import { TiUserDeleteOutline } from "react-icons/ti";
 import "./UserManagement.css";
 import { FiDelete } from "react-icons/fi";
@@ -15,8 +15,34 @@ export default function UserManagement() {
   const [userData, setUserData] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [filter, setFilter] = useState([]);
-  const handleInActive = () => {
-    message.success("Xóa ở đây này");
+  const handleDeactivate = async (user) => {
+    // message.success("Xóa ở đây này");
+    console.log(user.id);
+    console.log(user.status)
+    if(user.status === "Inactive"){
+      message.warning("Người dùng này đã bị vô hiệu hóa, Không thể thực hiện lại hành động")
+      return;
+    }
+    setLoading(true);
+    try {
+      const response = await userApi.deactivate(user.id, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (response.status === 200) {
+        message.success("Vô hiệu hóa người dùng thành công!!", 3);
+        fetchData();
+      }
+    } catch (error) {
+      if (error.response) {
+        message.error("Lỗi không thể xóa người dùng này");
+      } else {
+        message.error("Lỗi kết nối");
+      }
+    } finally {
+      setLoading(false);
+    }
   };
   const fetchData = async () => {
     setLoading(true);
@@ -59,6 +85,17 @@ export default function UserManagement() {
       title: "Trạng thái",
       dataIndex: "status",
       key: "status",
+      render: (status) => {
+        return (
+          <span
+            className={
+              status === "Active" ? "status-active" : "status-inactive"
+            }
+          >
+            {status === "Active" ? "Hoạt động" : "Vô hiệu hóa"}
+          </span>
+        );
+      },
     },
     {
       title: "SĐT",
@@ -66,22 +103,25 @@ export default function UserManagement() {
       key: "phoneNumber",
     },
     {
-      title: "Mệnh",
-      dataIndex: "fengShuiName",
-      key: "fengShuiName",
+      title: "Ngày sinh",
+      dataIndex: "birthdate",
+      key: "birthDate",
     },
     {
       title: "Action",
       key: "action",
       render: (_, user) => (
         <div className="action-buttons">
-          <Button
-            danger
-            onClick={handleInActive}
-            icon={<TiUserDeleteOutline />}
+          <Popconfirm
+            title="Bạn có chắc chắn muốn vô hiệu hóa người dùng này?"
+            onConfirm={() => handleDeactivate(user)}
+            onText="Có"
+            CancelText="Không"
           >
-            Vô hiệu hóa
-          </Button>
+            <Button danger icon={<TiUserDeleteOutline />}>
+              Vô hiệu hóa
+            </Button>
+          </Popconfirm>
         </div>
       ),
     },
@@ -97,19 +137,22 @@ export default function UserManagement() {
     setFilter(filtered);
   }, [searchText, userData]);
   return (
-    <div >
-      <h1> Quản lí người dùng</h1>
-      <div className="filter-block">
-      <Input
-        placeholder="Tìm kiếm theo tên"
-        value={searchText}
-        onChange={(e) => setSearchText(e.target.value)}
-        className="filter-text"
-        prefix={<SearchOutlined style={{color:"#194791"}} /> }
-      />
-      {/* <Button className="reset-button" icon={<FiDelete />} secondary/> */}
+    <div className="user-management-block">
+      <div className="header-text">
+        <h1> Quản lí người dùng</h1>
       </div>
-      
+
+      <div className="filter-block">
+        <Input
+          placeholder="Tìm kiếm theo tên"
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+          className="filter-text"
+          prefix={<SearchOutlined style={{ color: "#194791" }} />}
+        />
+        {/* <Button className="reset-button" icon={<FiDelete />} secondary/> */}
+      </div>
+
       <Table
         className="table"
         columns={columns}
