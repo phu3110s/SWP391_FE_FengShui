@@ -9,6 +9,13 @@ import "./styles.css";
 import { AiOutlineHarmonyOS } from "react-icons/ai";
 import { FaUserFriends } from "react-icons/fa";
 import { SiBlogger } from "react-icons/si";
+import { HiArchive } from "react-icons/hi";
+import { FaPlusCircle } from "react-icons/fa";
+import { IoIosColorFilter } from "react-icons/io";
+import { IoPeople } from "react-icons/io5";
+import { HiSpeakerphone } from "react-icons/hi";
+import { BsPostcard } from "react-icons/bs";
+
 const AdminDashboard = () => {
   const [username, setUsername] = useState();
   const token = localStorage.getItem("token");
@@ -75,12 +82,14 @@ const Sidebar = () => {
         <Menu.SubMenu key="sub1" title="Quản lí bài viết" icon={<SiBlogger />}>
           <Menu.Item
             key="4"
+            icon = {<BsPostcard />}
             onClick={() => navigate("/AdminDashboard/ApprovePost")}
           >
-            Duyệt cái bài blog
+            Duyệt các bài blog
           </Menu.Item>
           <Menu.Item
             key="5"
+            icon = {<HiSpeakerphone />}
             onClick={() => navigate("/AdminDashboard/PostingApprove")}
           >
             Duyệt các bài đăng bán
@@ -103,12 +112,14 @@ const Sidebar = () => {
         <Menu.SubMenu key="sub3" title="Quản lí cá" icon={<LiaFishSolid />}>
           <Menu.Item
             key="8"
+            icon={<HiArchive />}
             onClick={() => navigate("/AdminDashboard/FishManagement")}
           >
             Quản lí cá
           </Menu.Item>
           <Menu.Item
             key="9"
+            icon={<FaPlusCircle />}
             onClick={() => navigate("/AdminDashboard/FishGenerating")}
           >
             Thêm giống cá mới
@@ -117,12 +128,14 @@ const Sidebar = () => {
         <Menu.SubMenu key="sub4" title="Quản lí hồ" icon={<GiWaterSplash />}>
           <Menu.Item
             key="10"
+            icon={<HiArchive />}
             onClick={() => navigate("/AdminDashboard/PondManagement")}
           >
             Quản lí hồ
           </Menu.Item>
           <Menu.Item
             key="11"
+            icon = {<FaPlusCircle />}
             onClick={() => navigate("/AdminDashboard/PondGenerating")}
           >
             Thêm kiểu hồ
@@ -149,12 +162,14 @@ const Sidebar = () => {
         >
           <Menu.Item
             key="14"
+            icon={<FaPlusCircle />}
             onClick={() => navigate("/AdminDashboard/Harmony-Adding")}
           >
-            Nhập vào đồ hòa hợp
+            Nhập vào độ hòa hợp
           </Menu.Item>
           <Menu.Item
             key="15"
+            icon={<IoIosColorFilter />}
             onClick={() => navigate("/AdminDashboard/Harmony-Viewing")}
           >
             List hòa hợp
@@ -162,6 +177,7 @@ const Sidebar = () => {
         </Menu.SubMenu>
         <Menu.Item
           key="16"
+          icon = {<IoPeople />}
           onClick={() => navigate("/AdminDashboard/Consulting-Adding")}
         >
           Quản lí tư vấn cho ngũ hành
