@@ -13,7 +13,7 @@ import fishApi from "../../../apis/fishApi";
 import "./FishViewing.css";
 import { red } from "@mui/material/colors";
 import { DeleteOutline } from "@mui/icons-material";
-import { EditOutlined } from "@ant-design/icons";
+import { EditOutlined, SearchOutlined } from "@ant-design/icons";
 
 const FishViewing = () => {
   const token = localStorage.getItem("token");
@@ -24,6 +24,8 @@ const FishViewing = () => {
   const [loading, setLoading] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [selectedFish, setSelectedFish] = useState(null);
+  const [searchText,setSearchText] = useState("")
+  const [filter,setFilter] = useState([])
   const [updateData, setUpdateData] = useState({
     name: "",
     color: "",
@@ -90,7 +92,7 @@ const FishViewing = () => {
         },
       });
       message.success("Xóa thành công!");
-      fetchData(); // Refresh the data after deletion
+      fetchData();
     } catch (error) {
       if (error.response) {
         const { status } = error.response;
@@ -203,14 +205,27 @@ const FishViewing = () => {
   const handlePageChange = (pagination) => {
     setPage(pagination.current);
   };
-
+  useEffect(()=>{
+    const filtered = fishList.filter((fish)=>fish.name.toLowerCase().includes((searchText || "").toLowerCase()))
+    setFilter(filtered)
+  },[searchText,fishList])
   return (
     <div>
       <h1>Admin - Danh Sách Cá</h1>
+      <div className="filter-block">
+        <Input
+          placeholder="Tìm kiếm theo tên của cá"
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+          className="filter-text"
+          prefix={<SearchOutlined style={{ color: "#194791" }} />}
+        />
+        {/* <Button className="reset-button" icon={<FiDelete />} secondary/> */}
+      </div>
       <Table
         className="table"
         columns={columns}
-        dataSource={fishList}
+        dataSource={filter.map((fish)=>({ ... fish,key:fish.id}))}
         pagination={{
           current: page,
           pageSize: size,

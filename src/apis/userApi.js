@@ -25,6 +25,10 @@ const userApi = {
     const url = `users/${id}/image`;
     return axiosClient.put(url, image);
   },
+  deactivate: (id) =>{
+    const url = `users/${id}/deactivate`
+    return axiosClient.put(url,id)
+  }
 };
 
 export default userApi;
