@@ -15,7 +15,8 @@ import { IoIosColorFilter } from "react-icons/io";
 import { IoPeople } from "react-icons/io5";
 import { HiSpeakerphone } from "react-icons/hi";
 import { BsPostcard } from "react-icons/bs";
-
+import { MdOutlinePayments } from "react-icons/md";
+import { FaCcAmazonPay } from "react-icons/fa";
 const AdminDashboard = () => {
   const [username, setUsername] = useState();
   const token = localStorage.getItem("token");
@@ -180,9 +181,31 @@ const Sidebar = () => {
           icon = {<IoPeople />}
           onClick={() => navigate("/AdminDashboard/Consulting-Adding")}
         >
-          Quản lí tư vấn cho ngũ hành
+          Quản lí tư vấn ngũ hành
         </Menu.Item>
-        <Menu.Item key="17" onClick={handleLogout} icon={<LogoutOutlined />}>
+        {/* ======================================== */}
+        <Menu.SubMenu
+          key="sub6"
+          title="Quản lí gói thanh toán"
+          icon={<FaCcAmazonPay />}
+        >
+          <Menu.Item
+            key="17"
+            onClick={()=>navigate("/AdminDashboard/Payment-Adding")}
+            icon={<FaPlusCircle />}
+            // onClick={() => navigate("/AdminDashboard/Harmony-Adding")}
+          >
+            Tạo gói thanh toán
+          </Menu.Item>
+          <Menu.Item
+            key="18"
+            icon={<IoIosColorFilter />}
+            // onClick={() => navigate("/AdminDashboard/Harmony-Viewing")}
+          >
+            Xem các gói thanh toán
+          </Menu.Item>
+        </Menu.SubMenu>
+        <Menu.Item key="20" onClick={handleLogout} icon={<LogoutOutlined />}>
           Đăng xuất
         </Menu.Item>
       </Menu>

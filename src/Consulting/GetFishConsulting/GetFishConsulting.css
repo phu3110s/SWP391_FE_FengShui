@@ -1,6 +1,50 @@
-.select-fengShui-container{
-    margin-top: 50px;   
-}
-h1{
+.fish-pond-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .fish-pond-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 80%;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  
+  .pond-info {
+    width: 48%;
     text-align: center;
-}
+  }
+  
+  .fish-info {
+    width: 48%;
+    text-align: center;
+  }
+  
+  .pond-info h2, .fish-info h2 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .pond-info p,.fish-info p{
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .fish-info img, .pond-info img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  

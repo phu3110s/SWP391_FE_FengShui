@@ -6,6 +6,7 @@ import userApi from "../../apis/userApi";
 import Header from "../../components/header/Header";
 import Navigation from "../../components/navbar/Navigation";
 import "./GetFishConsulting.css";
+import { Footer } from "antd/es/layout/layout";
 
 const { Option } = Select;
 
@@ -67,7 +68,7 @@ const GetConsulting = () => {
       setLoading(true);
       try {
         const response = await fengshuiApi.getAllFengShui(1, 5, {
-          headers:  { Authorization: `Bearer ${token}` },
+          headers: { Authorization: `Bearer ${token}` },
         });
         setFengShuis(response.data.items);
       } catch (error) {
@@ -171,69 +172,40 @@ const GetConsulting = () => {
         <></>
       ) : (
         <div className="fish-pond-container">
-          {fishPond ? (
-            <div>
-              <h2>Thông tin Cá</h2>
-              {fishPond ? (
-                fishPond.fishes.map((fish) => (
-                  <div
-                    key={fish.id}
-                    style={{
-                      border: "1px solid #ccc",
-                      borderRadius: "5px",
-                      padding: "10px",
-                      margin: "10px 0",
-                    }}
-                  >
-                    <p>
-                      <strong>Tên Cá:</strong>{" "}
-                      {fish.name || "Không có thông tin"}
-                    </p>
-                    <p>
-                      <strong>Kích thước Cá:</strong>{" "}
-                      {fish.size || "Không có thông tin"}
-                    </p>
-                    <p>
-                      <strong>Màu Cá:</strong>{" "}
-                      {fish.color || "Không có thông tin"}
-                    </p>
-                    <img
-                      src={fish.urlImg}
-                      alt={fish.name}
-                      style={{ width: "200px", height: "auto" }}
-                    />
-                  </div>
-                ))
-              ) : (
-                <p>Không có thông tin cá</p>
-              )}
-
-              <h2>Thông tin Hồ</h2>
-              {fishPond.ponds.map((pond) => (
-                <div key={pond.id}>
-                  <p>
-                    <strong>Tên Hồ:</strong> {pond.shape}
-                  </p>
-                  <p>
-                    <strong>Chất liệu Hồ:</strong> {pond.material}
-                  </p>
-                  <p>
-                    <strong>Mực nước:</strong> {pond.waterLevel}
-                  </p>
-                  <p>
-                    <strong>Mô tả Hồ:</strong> {pond.description}
-                  </p>
-                  <img
-                    src={pond.urlImg}
-                    alt={pond.shape}
-                    style={{ width: "200px", height: "auto" }}
-                  />
-                </div>
-              ))}
+  {fishPond ? (
+    <>
+      <p className="consultation-description">{fishPond.description}</p>
+      
+      <div className="fish-pond-info">
+        <div className="pond-info">
+          <h2>Thông tin Hồ</h2>
+          {fishPond.ponds.map((pond) => (
+            <div key={pond.id} className="pond-item">
+              <p><strong>Tên Hồ:</strong> {pond.shape}</p>
+              <p><strong>Chất liệu Hồ:</strong> {pond.material}</p>
+              <p><strong>Mực nước:</strong> {pond.waterLevel}</p>
+              <p><strong>Mô tả Hồ:</strong> {pond.description}</p>
+              <img src={pond.urlImg} alt={pond.shape} />
             </div>
-          ) : (
-            <p>Không có dữ liệu</p>
-          )}
+          ))}
+        </div>
+
+        <div className="fish-info">
+          <h2>Thông tin Cá</h2>
+          {fishPond.fishes.map((fish) => (
+            <div key={fish.id} className="fish-item">
+              <p><strong>Tên Cá:</strong> {fish.name || "Không có thông tin"}</p>
+              <p><strong>Kích thước Cá:</strong> {fish.size || "Không có thông tin"}</p>
+              <p><strong>Màu Cá:</strong> {fish.color || "Không có thông tin"}</p>
+              <img src={fish.urlImg} alt={fish.name} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
+  ) : (
+    <p>Không có dữ liệu</p>
+  )}
 
           <div className="buttons">
             <Button onClick={handlePreviousPage} disabled={page <= 1}>
@@ -245,6 +217,7 @@ const GetConsulting = () => {
           </div>
         </div>
       )}
+      <Footer />
     </div>
   );
 };

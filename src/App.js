@@ -39,6 +39,7 @@ import AdvertisingDetail from "./advertising/AdvertisingDetail/AdvertisingDetail
 import ConsultingAdding from "./AdminFunction/Consulting/ConsultingAdding/ConsultingAdding";
 import GetConsulting from "./Consulting/GetFishConsulting/GetConsulting";
 import AdvertisingPayment from "./advertising/AdvertisingPayment/AdvertisingPayment";
+import PaymentCreating from "./AdminFunction/Payment/PaymentCreating/PaymentCreating";
 
 function App() {
   // const [user, setUser] = useState(null);
@@ -135,6 +136,7 @@ function App() {
           <Route path="Harmony-Adding" element={<HarmonyAdding />} />
           <Route path="Harmony-Viewing" element={<HarmonyViewing />} />
           <Route path="Consulting-Adding" element={<ConsultingAdding />} />
+          <Route path="Payment-Adding" element={<PaymentCreating/>} />
         </Route>
       </Routes>
     </div>
