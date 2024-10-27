@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { Select, Button, Input, message } from 'antd';
-import axios from 'axios';
-import './ConsultingAdding.css';  
-import fengshuiApi from '../../../apis/fengshui';
-import fishApi from '../../../apis/fishApi';
-import pondApi from '../../../apis/pondApi';
-import consultingApi from '../../../apis/consultingApi';
+import { Button, Input, message, Popconfirm, Select } from "antd";
+import React, { useEffect, useState } from "react";
+import consultingApi from "../../../apis/consultingApi";
+import fengshuiApi from "../../../apis/fengshui";
+import fishApi from "../../../apis/fishApi";
+import pondApi from "../../../apis/pondApi";
+import "./ConsultingAdding.css";
 
 const { Option } = Select;
 
@@ -13,16 +12,17 @@ const ConsultingAdding = () => {
   const [fishes, setFishes] = useState([]);
   const [ponds, setPonds] = useState([]);
   const [fengShuis, setFengShuis] = useState([]);
-  const [description, setDescription] = useState('');
+  const [description, setDescription] = useState("");
   const [selectedFengShuiId, setSelectedFengShuiId] = useState(null);
   const [selectedFish, setSelectedFish] = useState([]);
   const [selectedPonds, setSelectedPonds] = useState([]);
-  const [fishImage, setFishImage] = useState(null);  
-  const [pondImage, setPondImage] = useState(null);  
+  const [fishImage, setFishImage] = useState(null);
+  const [pondImage, setPondImage] = useState(null);
+  const [consultingList, setConsultingList] = useState([]);
   const page = 1;
   const size = 100;
   const [loading, setLoading] = useState(false);
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     const fetchFengShuis = async () => {
@@ -30,15 +30,15 @@ const ConsultingAdding = () => {
       try {
         const response = await fengshuiApi.getAllFengShui(page, size, {
           headers: {
-            Authorization: `Bearer ${token}`
-          }
+            Authorization: `Bearer ${token}`,
+          },
         });
         setFengShuis(response.data.items);
       } catch (error) {
         if (error.response) {
           const { status } = error.response;
           if (status === 500) {
-            message.error('Lỗi kết nối', 3);
+            message.error("Lỗi kết nối", 3);
           }
         }
       }
@@ -53,7 +53,7 @@ const ConsultingAdding = () => {
         });
         setFishes(response.data.items);
       } catch (error) {
-        message.error('Lỗi khi tải dữ liệu.');
+        message.error("Lỗi khi tải dữ liệu.");
       }
     };
     const fetchPonds = async () => {
@@ -66,7 +66,7 @@ const ConsultingAdding = () => {
         });
         setPonds(response.data.items);
       } catch (error) {
-        message.error('Lỗi khi tải dữ liệu.');
+        message.error("Lỗi khi tải dữ liệu.");
       } finally {
         setLoading(false);
       }
@@ -76,59 +76,86 @@ const ConsultingAdding = () => {
     fetchPonds();
   }, []);
 
+  const fetchConsultingList = async (fengShuiId) => {
+    try {
+      const response = await consultingApi.getConsulting(
+        page,
+        size,
+        fengShuiId,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setConsultingList(response.data.items);
+    } catch (error) {
+      message.error("Lỗi khi tải danh sách tư vấn.");
+    }
+  };
+
   const handleFengShuiChange = (value) => {
     setSelectedFengShuiId(value);
+    fetchConsultingList(value);
   };
 
   const handleFishChange = (value) => {
     setSelectedFish(value);
-
-    // Lấy hình ảnh cá dựa trên lựa chọn
-    const selectedFishObj = fishes.find(fish => fish.id === value[value.length - 1]);
+    const selectedFishObj = fishes.find(
+      (fish) => fish.id === value[value.length - 1]
+    );
     if (selectedFishObj) {
-      setFishImage(selectedFishObj.urlmg);  
+      setFishImage(selectedFishObj.urlmg);
     }
   };
 
   const handlePondsChange = (value) => {
     setSelectedPonds(value);
-
-
-    const selectedPondObj = ponds.find(pond => pond.id === value[value.length - 1]);
+    const selectedPondObj = ponds.find(
+      (pond) => pond.id === value[value.length - 1]
+    );
     if (selectedPondObj) {
-      setPondImage(selectedPondObj.urlmg); 
+      setPondImage(selectedPondObj.urlmg);
     }
   };
 
   const handleSubmit = () => {
+    if (!selectedFish) {
+      message.config("Vui lòng chọn ít nhất 1 loại cá");
+      return;
+    }
+    if (!selectedPonds) {
+      message.config("Vui lòng chọn ít nhất 1 loại hồ");
+      return;
+    }
     const data = {
       description: description,
       fengShuiId: selectedFengShuiId,
       itemIds: [...selectedFish, ...selectedPonds],
     };
-    console.log('Data', data);
     const postConsulting = async () => {
       setLoading(true);
       try {
         const response = await consultingApi.postConsulting(data, {
           headers: {
-            Authorization: `Bearer ${token}`
-          }
+            Authorization: `Bearer ${token}`,
+          },
         });
         if (response.status === 201 || response.status === 200) {
-          message.success('Đẩy thông tin vào Database thành công');
+          message.success("Đẩy thông tin vào Database thành công");
         }
         setSelectedFish([]);
-        setSelectedFengShuiId(null);
+        // setSelectedFengShuiId(null);
         setSelectedPonds([]);
-        setFishImage(null);  
-        setPondImage(null); 
-        setDescription('');   
+        setFishImage(null);
+        setPondImage(null);
+        setDescription("");
+        fetchConsultingList(selectedFengShuiId); // Cập nhật lại danh sách sau khi thêm mới
       } catch (error) {
         if (error.response.status === 400) {
-          message.warning('Thông tin nhập vào bị thiếu hoặc bị lỗi');
+          message.warning("Thông tin nhập vào bị thiếu hoặc bị lỗi");
         } else {
-          message.error('Lỗi kết nối', 5);
+          message.error("Lỗi kết nối", 5);
         }
       } finally {
         setLoading(false);
@@ -139,34 +166,38 @@ const ConsultingAdding = () => {
 
   return (
     <div className="harmony-rating-form">
-      {/* Desccription */}
       <Input
         placeholder="Nhập mô tả"
-        style={{ width: '100%', marginBottom: 50 }}
+        style={{ width: "100%", marginBottom: 50 }}
         value={description}
         onChange={(e) => setDescription(e.target.value)}
       />
 
-      {/* Select mệnh */}
-      <div className="select-fengShui-container"><Select
-        placeholder="Chọn mệnh"
-        style={{ width: '50%', marginBottom: 50, display: 'block', margin: '0 auto' }}
-        onChange={handleFengShuiChange}
-        value={selectedFengShuiId}
-      >
-        {fengShuis.map((fengShui) => (
-          <Select.Option key={fengShui.id} value={fengShui.id}>
-            {fengShui.element}
-          </Select.Option>
-        ))}
-      </Select></div>
-      
+      <div className="select-fengShui-container">
+        <Select
+          placeholder="Chọn mệnh"
+          style={{
+            width: "50%",
+            marginBottom: 50,
+            display: "block",
+            margin: "0 auto",
+          }}
+          onChange={handleFengShuiChange}
+          value={selectedFengShuiId}
+        >
+          {fengShuis.map((fengShui) => (
+            <Select.Option key={fengShui.id} value={fengShui.id}>
+              {fengShui.element}
+            </Select.Option>
+          ))}
+        </Select>
+      </div>
 
       <div className="select-row">
         <Select
           mode="multiple"
           placeholder="Chọn hồ"
-          style={{ width: '48%', marginRight: '4%' }}
+          style={{ width: "48%", marginRight: "4%" }}
           onChange={handlePondsChange}
           value={selectedPonds}
         >
@@ -180,35 +211,63 @@ const ConsultingAdding = () => {
         <Select
           mode="multiple"
           placeholder="Chọn cá"
-          style={{ width: '48%' }}
+          style={{ width: "48%" }}
           onChange={handleFishChange}
           value={selectedFish}
         >
           {fishes.map((fish) => (
-            <Select.Option key={fish.id} value={fish.id}>{fish.name}</Select.Option>
+            <Select.Option key={fish.id} value={fish.id}>
+              {fish.name}
+            </Select.Option>
           ))}
         </Select>
       </div>
 
-  
       <div style={{ marginTop: 20 }}>
         {fishImage && (
           <div>
             <h4>Hình ảnh cá:</h4>
-            <img src={fishImage} alt="Fish" style={{ width: '200px' }} />
+            <img src={fishImage} alt="Fish" style={{ width: "200px" }} />
           </div>
         )}
-        {pondImage && (   
+        {pondImage && (
           <div>
             <h4>Hình ảnh hồ:</h4>
-            <img src={pondImage} alt="Pond" style={{ width: '200px' }} />
+            <img src={pondImage} alt="Pond" style={{ width: "200px" }} />
           </div>
         )}
       </div>
+      <Popconfirm
+        title="Lưu ý không nhập trùng dữ liệu với các tư vấn khác"
+        onConfirm={handleSubmit}
+        okText="Đồng ý gửi"
+        cancelText="Hủy"
+      >
+        <Button type="primary" style={{ marginTop: 20 }}>
+          Gửi dữ liệu
+        </Button>
+      </Popconfirm>
 
-      <Button type="primary" onClick={handleSubmit} style={{ marginTop: 20 }}>
-        Gửi dữ liệu
-      </Button>
+      {/* Danh sách tư vấn hiện có */}
+      <div style={{ marginTop: 40 }}>
+        <h3>Danh sách tư vấn hiện có</h3>
+        {consultingList.map((consulting, index) => (
+          <div
+            key={consulting.id}
+            style={{ padding: "10px 0", borderBottom: "1px solid #ddd" }}
+          >
+            <p>
+              <strong>{consulting.description}:</strong>
+            </p>
+            {consulting.fishes.map((fish) => (
+              <p>Cá: {fish.name}</p>
+            ))}
+            {consulting.ponds.map((pond) => (
+              <p>Hồ: {consulting.ponds.material}</p>
+            ))}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
