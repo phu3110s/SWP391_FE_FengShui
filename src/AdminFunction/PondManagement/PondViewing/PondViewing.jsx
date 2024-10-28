@@ -13,6 +13,7 @@ import pondApi from "../../../apis/pondApi";
 import "./PondViewing.css";
 import { red } from "@mui/material/colors";
 import { DeleteOutline, DeleteOutlined, EditOutlined } from "@mui/icons-material";
+import { SearchOutlined } from "@ant-design/icons";
 const PondViewing = () => {
   const token = localStorage.getItem("token");
   const [page, setPage] = useState(1);
@@ -23,6 +24,8 @@ const PondViewing = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [selectedPond, setSelectedPond] = useState(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [searchText, setSearchText] = useState("");
+  const [filter, setFilter] = useState([]);
   const [updateData, setUpdateData] = useState({
     material: "",
     shape: "",
@@ -195,7 +198,10 @@ const PondViewing = () => {
       setLoading(false);
     }
   };
-
+  useEffect(()=>{
+    const filtered = PondList.filter((pond)=>pond.material.toLowerCase().includes((searchText || "").toLowerCase()))
+    setFilter(filtered)
+  },[searchText,PondList])
   const handlePageChange = (e) => {
     setPage(e.current);
   };
@@ -203,10 +209,20 @@ const PondViewing = () => {
   return (
     <div>
       <h1>Admin - Danh Sách Hồ</h1>
+      <div className="filter-block">
+        <Input
+          placeholder="Tìm kiếm theo nguyên vật liệu hồ"
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+          className="filter-text"
+          prefix={<SearchOutlined style={{ color: "#194791" }} />}
+        />
+        {/* <Button className="reset-button" icon={<FiDelete />} secondary/> */}
+      </div>
       <Table
         className="table"
         columns={columns}
-        dataSource={PondList}
+        dataSource={filter.map((pond)=>({...pond,key:pond.id}))}
         pagination={{
           current: page,
           pageSize: size,

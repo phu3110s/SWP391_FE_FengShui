@@ -56,7 +56,7 @@ export default function Header() {
         <Link to="/MyBlog">Blog của tôi</Link>
       </Menu.Item>
       <Menu.Item key="2">
-        <Link to="/user-profile">Trang cá nhân</Link>
+        <Link to="/user-profile">Hồ sơ của tôi</Link>
       </Menu.Item>
       <Menu.Item key="3">
         <span onClick={handleLogout}>Đăng xuất</span>
@@ -82,8 +82,13 @@ export default function Header() {
       <div className="list-active-form">
         <ul className="list-active">
           <li className="active">
+            <Link className="link" to={"/"}>
+              Trang chủ
+            </Link>
+          </li>
+          <li className="active">
             <Link className="link" to={"/Calculate"}>
-              Feng Shui
+              Tính toán phong thủy
             </Link>
           </li>
           <li className="active">

@@ -1,30 +1,48 @@
-.filter-text {
-    margin-top: 30px;
-    margin-left:500px;
-    margin-bottom: 7px;
-    width: 100%;
-    max-width: 500px;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #d9d9d9;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    align-items: center;
-}
-
-.filter-block {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-bottom: 40px;
-}
-
-Table {
-    margin-right: 200px;
-}
-
-/* .reset-button {
-    background-color: aqua;
-    color: aquamarine;
+header-text h1{
+    text-align: center;
+    font-size: 40px;
+    color: #194791;
     margin-bottom: 30px;
-    size: 1.5rem;
-} */
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+  
+  .filter-block {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    margin-top:30px
+  }
+  
+  .filter-text {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 25px;
+    padding: 8px 15px;
+    border: 1px solid #d9d9d9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .filter-text:focus,
+  .filter-text:hover {
+    border-color: #194791;
+    box-shadow: 0 4px 12px rgba(25, 71, 145, 0.2);
+  }
+  
+  .table {
+    margin-top: 20px;
+  }
+
+
+.status-active {
+    color: green;
+    font-weight: bold;
+  }
+  
+  .status-inactive {
+    color: red;
+    font-weight: bold;
+  }
+.user-management-block{
+    margin: 0 auto;
+}
