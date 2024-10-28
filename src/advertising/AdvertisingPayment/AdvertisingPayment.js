@@ -14,6 +14,8 @@ export default function AdvertisingPayment() {
 
     const location = useLocation();
     const adData = location.state?.post || {};
+    console.log(adData);
+
 
     const userId = localStorage.getItem("userId");
     const token = localStorage.getItem("token");
@@ -22,8 +24,9 @@ export default function AdvertisingPayment() {
     const [description, setDescription] = useState(adData.description || '');
     const [image, setImage] = useState(adData.urlImg || null);
     const [planID, setPlanID] = useState(adData.planID || null);
-    const [itemTypeName, setitemTypeName] = useState(adData.itemTypeName || '');
+    const [itemTypeName, setItemTypeName] = useState(adData.itemTypeName || '');
     const [urlImg, seturlImg] = useState(adData.urlImg || '');
+    const [price, setPrice] = useState(adData.urlImg || '');
     // const [advertisingId, setAdvertisingId] = useState(adData.advertisingId || null);
     const [id, setid] = useState(adData.id || '');
     // const [updateAt, setupdateAt] = useState(adData.updateAt || '');
@@ -83,47 +86,40 @@ export default function AdvertisingPayment() {
         e.preventDefault();
         setLoading(true);
 
-        // if (adData && adData.post) {
-        //     const isExpiredPost = adData.post.status === 'Expired';
 
-        //     if (isExpiredPost) {
-        //         setPlanID(null);
-        //     }
+        // const formData = new FormData();
+        // formData.append("Title ", title);
+        // formData.append("Description ", description);
+        // formData.append("Image", urlImg);
+        // formData.append("UserId", userId);
+        // formData.append("ItemTypeName ", itemTypeName);
+        // formData.append("Price", price);
+        // if (planID) formData.append("PaymentPlanId", planID);
+
+
+        // for (let pair of formData.entries()) {
+        //     console.log(pair[0] + ': ' + pair[1]);
         // }
-
-        const formData = new FormData();
-        formData.append("Description ", description);
-        formData.append("Image ", urlImg);
-        formData.append("UserId ", userId);
-        formData.append("ItemTypeName ", itemTypeName);
-        formData.append("PaymentPlanId ", paymentPlanId);
-        // formData.append("id", id);
-        // formData.append("createAt", createAt);
-        // formData.append("updateAt", updateAt);
-        // formData.append("expiredAt", expiredAt);
-        // formData.append("status", status);
-
-        if (planID) formData.append("paymentPlanId", planID);
-
-
-        for (let pair of formData.entries()) {
-            console.log(pair[0] + ': ' + pair[1]);
-        }
         try {
-            const response = await postingApi.postAdvertisings(formData, {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                },
-            });
-            if (response.status === 201) {
+            // const response = await postingApi.postAdvertisings(formData, {
+            //     headers: {
+            //         'Authorization': `Bearer ${token}`,
+            //     },
+            // });
+            // if (response.status === 201) {
+            if (adData) {
 
-                message.success("Đăng blog thành công. Chờ duyệt");
+
+                // message.success("Đăng blog thành công. Chờ duyệt");
                 const paymentData = {
-                    advertisingId: response.data.id,
-                    description: response.data.description,
+                    advertisingId: adData.id,
+                    paymentPlanId: planID,
+                    description: adData.description,
                     returnUrl: 'https://swp-391-fe-feng-shui-beta.vercel.app/MyAdvertising',
                     canceUrl: 'https://swp-391-fe-feng-shui-beta.vercel.app/MyAdvertising'
                 };
+                console.log(paymentData);
+
 
                 const responsePayment = await createPaymentLink.postPayment(paymentData, {
                     headers: {
@@ -138,10 +134,10 @@ export default function AdvertisingPayment() {
                 setTitle("");
                 setDescription("");
                 setImage(null);
-            } else if (response.status === 401) {
-                alert(
-                    "Lỗi. Không thể đăng bài. Hết phiên đăng nhập vui lòng đăng nhập lại"
-                );
+                // } else if (response.status === 401) {
+                //     alert(
+                //         "Lỗi. Không thể đăng bài. Hết phiên đăng nhập vui lòng đăng nhập lại"
+                //     );
             } else {
                 alert("Lỗi gì bất định");
             }
@@ -160,6 +156,15 @@ export default function AdvertisingPayment() {
             setLoading(false);
         }
     };
+
+
+    const [selectedOption, setSelectedOption] = useState('');
+
+    const handleChange = (event) => {
+        setSelectedOption(event.target.value);
+    };
+
+    // console.log("qưeqweqweqwe", itemTypeName);
 
     return (
         <div className="posting-blog">
@@ -182,12 +187,22 @@ export default function AdvertisingPayment() {
                         </div>
                         <div className="form-right">
                             <div className="posting-blog-title">
+                                <label style={{ fontSize: 20 }}>Chọn một loại:</label>
+                                <select value={itemTypeName} onChange={(e) => setItemTypeName(e.target.value)} required>
+                                    <option value="">--Chọn--</option>
+                                    <option value="fish">Fish</option>
+                                    <option value="pond">Pond</option>
+                                    <option value="decoration">Decoration</option>
+                                </select>
+                                <p>Loại đã chọn: {itemTypeName}</p>
+                            </div>
+                            <div className="posting-blog-title">
                                 <label style={{ fontSize: 20, }}>Tiêu đề</label>
                                 <Input
                                     type="text"
-                                    value={itemTypeName}
-                                    onChange={(e) => setitemTypeName(e.target.value)}
-                                    placeholder="Enter blog title"
+                                    value={title}
+                                    onChange={(e) => setTitle(e.target.value)}
+                                    placeholder="Nhập tiêu đề"
                                     required
                                 />
                             </div>
@@ -197,7 +212,16 @@ export default function AdvertisingPayment() {
                                     type="text"
                                     value={description}
                                     onChange={(e) => setDescription(e.target.value)}
-                                    placeholder="Enter your blog description"
+                                    placeholder="Nhập mô tả"
+                                    required
+                                />
+                            </div>
+                            <div className="posting-blog-title">
+                                <label style={{ fontSize: 20, }}>Giá tiền</label>
+                                <Input
+                                    type="number" min="0" step="0.01" placeholder="Nhập giá tiền"
+                                    value={price}
+                                    onChange={(e) => setPrice(e.target.value)}
                                     required
                                 />
                             </div>
@@ -205,6 +229,7 @@ export default function AdvertisingPayment() {
                     </div>
 
                     <div className="form-payment-plan">
+
                         <label className='title-plan'>Gói đăng bài</label><br />
                         <Radio.Group onChange={(e) => setPlanID(e.target.value)} value={planID}>
                             {listPlan.map(plan => (

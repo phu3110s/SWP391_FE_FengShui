@@ -10,7 +10,7 @@
 }
 
 .home-logo{
-    width: 65px;
+    width: 55px;
     height: 40px;
     display: flex;
     text-align: center;
@@ -25,8 +25,7 @@
 .home-logo {
   display: flex;
   justify-content: center;
-  /* margin-bottom: 40px; */
-  margin-top: 40px;
+  margin-top: 45px;
 }
 
 .logo-home{
@@ -34,8 +33,12 @@
     height: auto;
 }
 
+.list-active-form{
+    width: 70%;
+}
+
 .list-active{
-    width: 100%;
+    width: auto;
     text-align: left;
 }
 
@@ -48,11 +51,6 @@
 }
 .active a{
     color: black;
-    /* text-shadow: 
-        1.5px 1.5px 0 black, 
-        -1.5px 1.5px 0 black, 
-        1.5px -1.5px 0 black, 
-        -1.5px -1.5px 0 black; */
 }
 .active menu{
     background-color: pink;
@@ -62,7 +60,7 @@
     text-decoration: none;
     color: black;
     text-align: right;
-    color: #f0f8ff; /* Xanh nhạt */
+    color: #f0f8ff;
     text-decoration: none;
 
 }
@@ -71,7 +69,7 @@
     background-color: #FFFFFF;
     color: black;
     display: inline;
-    padding: 7px 25px 7px 25px;
+    padding: 7px 25px;
     margin: 5px 10px 5px 22px;
     font-size: 15px;
     border: 1px solid blueviolet;
@@ -92,7 +90,7 @@
     background-color: #FFFFFF;
     color: black;
     display: inline;
-    padding: 7px 25px 7px 25px;
+    padding: 7px 20px;
     margin: 5px 40px 5px 10px;
     font-size: 15px;
     border: 1px solid blueviolet;
@@ -106,4 +104,14 @@
 .link_to_login{
     text-decoration:none;
     color: black;
+}
+.login-form-avt{
+    display: inline;
+    width: 25%;
+}
+.authorization-box{
+    text-align: right;
+}
+.div-avata{
+    margin-right: 20px;
 }

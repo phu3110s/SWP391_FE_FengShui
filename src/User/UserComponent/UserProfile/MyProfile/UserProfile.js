@@ -5,6 +5,7 @@ import "./UserProfile.css";
 import Radio from "antd/es/radio/radio";
 import passwordApi from "../../../../apis/changePassword";
 import userApi from "../../../../apis/userApi";
+import Footer from "../../../../components/footer/Footer";
 
 export default function UserProfile() {
   const loggedInUserId = localStorage.getItem("userId");
@@ -228,7 +229,7 @@ export default function UserProfile() {
 
         </div>
         <div className="user-profile-bio">
-          <h1>User Profile</h1>
+          <h1>Trang cá nhân của {formData.fullName}</h1>
           <table className="user-table-form">
             <thead>
               <tr className="action-bar">
@@ -365,8 +366,8 @@ export default function UserProfile() {
             </Form.Item>
           </Form>
         </Modal>
-
       </div>
+      <Footer />
     </>
   );
 }

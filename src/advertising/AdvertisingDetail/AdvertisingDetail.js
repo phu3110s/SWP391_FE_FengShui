@@ -50,11 +50,13 @@ export default function AdvertisingDetail() {
             <Navigation />
             <div className="short-detail-in4">
                 <div className='detail-img'>
-                    <img src={advertisings.urlImg} alt={advertisings.itemTypeName} />
+                    <img src={advertisings.urlImg} alt={advertisings.title} />
                 </div>
                 <div className="product-detail-in4">
-                    <h2>{advertisings.itemTypeName}</h2> <br />
-                    <p>Created at: {advertisings.createAt}</p> <br />
+                    <h2>{advertisings.title}</h2> <br />
+                    <p>Ngày đăng: {advertisings.createAt}</p> <br />
+                    <p>Giá: {advertisings.price}</p>
+                    <p>Loại bài đăng: {advertisings.itemTypeName}</p>
 
                     <h4>Mô tả chi tiết</h4> <br />
                     <p>{advertisings.description}</p>

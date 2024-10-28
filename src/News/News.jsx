@@ -11,7 +11,7 @@ function News() {
   };
 
   return (
-    <div>
+    <div className="news-container">
       <Header />
       <div className="tabs">
         <div
@@ -45,302 +45,41 @@ function News() {
         <div className={`tab-pane ${activeTab === 0 ? "active" : ""}`}>
           <h2>News 1</h2>
           <h4>How To Care For Your Koi Fish After Receiving It</h4>
-          <p>Use this guide to properly introduce new koi fish into your pond using the proper quarantining, pond care, and water quality control methods for good husbandry in koi care. Based on our Japanese breeders and koi farm, these techniques are what work best when receiving Kodama koi but are also good tips for any koi pond owner adding more koi to their pond.
 
-            Adding new koi to your pond is exciting and fun but should be approached with caution. If you have not added any outside koi in over a year than take extra precautions mentioned in this article on koi care.
-
-            The natural instinct for Nishikigoi is to coexist with others and to bring peace into a home, which is part of their attraction along with their beauty.
-
-            In fact, the peace and enjoyment it brings to many koi and pond owners have grown Nishikigoi appreciation into a global culture.
-
-            Is it Hard to Take Care of Koi Fish?
-            No, koi fish care is not hard, but has specific challenges.
-
-            Keeping their water clean, balanced and aerated is the highest priority.
-
-            They can survive through winters and are omnivores with plenty of food options. They are peaceful and hardy creatures. Koi create an intimate ecosystem and are susceptible to the pathogens from outsiders. By taking the time to slowly introduce new koi, you allow them to acclimate to each other and ensure the health of everyone!
-
-            The natural instinct for Nishikigoi is to coexist with others and to bring peace into a home. This, along with their beauty, is a big part of their attraction.
-
-            The peace and enjoyment it brings to koi pond owners has brought Nishikigoi appreciation out of Japan and into global culture. We want you to experience the fun and excitement of growing your koi family, and know a little caution can go a long way, especially if you have not added any outside koi in over a year. Take the extra precautions outlined in this article on koi care and you will have a lifetime of tranquility and joy.
-            The Importance of Quarantine for New Koi
-            A necessary tool for all koi hobbyists and owners is a separate quarantine tank. It is strongly recommended that every Kodama Koi purchased should be quarantined before adding to your aquarium or pond. Learn more on our other blog post about koi quarantine tank setup & procedures.
-
-            Even with the best care and precautions Nishikigoi carry parasites, bacteria, fungus, and other illnesses. Your koi learn to coexist with local bacteria, but are susceptible to outsiders. Quarantining and introducing local fish and water slowly allows all fish to adapt at a safer pace.
-
-            It’s not just about introducing something unhealthy to your current fish population either. Japanese Koi Fish bought online tend to become extremely stressed and exhausted while in transport from the farm or breeder to the owner. A new fish is even more susceptible to sickness, so the quarantine process gives them time to gets their immunity back up to be a healthy new family addition!
-            How Do I Quarantine My Koi Fish (Nishikigoi)?
-            It is recommended to keep and treat newly purchased Japanese koi fish in a separate quarantine tank for at least 21 days before introducing them to your pond or aquarium to reduce the risk of disease while giving them time to adjust.
-
-            Basic supplies needed for a quarantine tank:
-
-            The tank (100-300 gallons)
-            Net cover for the tank
-            Small pump and filter
-            Air pump
-            Water thermometer
-            Test kit for ammonia, nitrate, pH, and salt
-            Salt
-            Pond or aquarium heater
-            Ultimate
-
-            How Do I Quarantine My Koi Fish (Nishikigoi)?
-            It is recommended to keep and treat newly purchased Japanese koi fish in a separate quarantine tank for at least 21 days before introducing them to your pond or aquarium to reduce the risk of disease while giving them time to adjust.
-
-            Basic supplies needed for a quarantine tank:
-
-            The tank (100-300 gallons)
-            Net cover for the tank
-            Small pump and filter
-            Air pump
-            Water thermometer
-            Test kit for ammonia, nitrate, pH, and salt
-            Salt
-            Pond or aquarium heater
-            Ultimate
-            Setup Before You Receive Nishikigoi
-            1. Prepare the quarantine tank depending on the size of your koi. We recommend 100-300 gallons, blue show tanks are OK too.
-
-            2. Depending on the water of your existing pond, fill the tank with your pond stock (given it’s in good condition), fresh dechlorinated water, or well water.
-
-            3. Ideally, the quarantine tank should have a filtration system as well, but sound aeration from an air pump is acceptable.
-
-            4. Maintain a water temperature of 72° F or above. If working with a smaller tank, 1-2 aquarium heaters will work to achieve that.
-
-            5. Add salt to the tank until it is 0.3% concentration (3 pounds of salt per 100 gallons of water)
-            What To Do After You Receive Nishikigoi
-            1. Observe for 14-21 Days – Place your Japanese koi fish into the quarantine tank and observe carefully for 14-21 days. Please watch to see if they develop any problems.
-
-            2. Filter or Change Water Every 2-3 Days – If working without a filtration system, partial water changes are needed every 2-3 days of about 25%. Add salt to adjust accordingly.
-
-            3. Feed Easily Digestible Food – Feed your Nishikigoi with digestible koi food every day. We recommend Manda Fu Koi Food.
-
-            4. Check Nitrate and Ammonia Daily – During this initial period, it is EXTRA important to keep your nitrate levels balanced. A new koi, fresh from the stresses of traveling (shipping), is more susceptible to problems.
-          </p>
         </div>
         <div className={`tab-pane ${activeTab === 1 ? "active" : ""}`}>
-          <h2>News 2</h2>
-          <p>Use this guide to properly introduce new koi fish into your pond using the proper quarantining, pond care, and water quality control methods for good husbandry in koi care. Based on our Japanese breeders and koi farm, these techniques are what work best when receiving Kodama koi but are also good tips for any koi pond owner adding more koi to their pond.
-
-            Adding new koi to your pond is exciting and fun but should be approached with caution. If you have not added any outside koi in over a year than take extra precautions mentioned in this article on koi care.
-
-            The natural instinct for Nishikigoi is to coexist with others and to bring peace into a home, which is part of their attraction along with their beauty.
-
-            In fact, the peace and enjoyment it brings to many koi and pond owners have grown Nishikigoi appreciation into a global culture.
-
-            Is it Hard to Take Care of Koi Fish?
-            No, koi fish care is not hard, but has specific challenges.
-
-            Keeping their water clean, balanced and aerated is the highest priority.
-
-            They can survive through winters and are omnivores with plenty of food options. They are peaceful and hardy creatures. Koi create an intimate ecosystem and are susceptible to the pathogens from outsiders. By taking the time to slowly introduce new koi, you allow them to acclimate to each other and ensure the health of everyone!
-
-            The natural instinct for Nishikigoi is to coexist with others and to bring peace into a home. This, along with their beauty, is a big part of their attraction.
-
-            The peace and enjoyment it brings to koi pond owners has brought Nishikigoi appreciation out of Japan and into global culture. We want you to experience the fun and excitement of growing your koi family, and know a little caution can go a long way, especially if you have not added any outside koi in over a year. Take the extra precautions outlined in this article on koi care and you will have a lifetime of tranquility and joy.
-            The Importance of Quarantine for New Koi
-            A necessary tool for all koi hobbyists and owners is a separate quarantine tank. It is strongly recommended that every Kodama Koi purchased should be quarantined before adding to your aquarium or pond. Learn more on our other blog post about koi quarantine tank setup & procedures.
-
-            Even with the best care and precautions Nishikigoi carry parasites, bacteria, fungus, and other illnesses. Your koi learn to coexist with local bacteria, but are susceptible to outsiders. Quarantining and introducing local fish and water slowly allows all fish to adapt at a safer pace.
-
-            It’s not just about introducing something unhealthy to your current fish population either. Japanese Koi Fish bought online tend to become extremely stressed and exhausted while in transport from the farm or breeder to the owner. A new fish is even more susceptible to sickness, so the quarantine process gives them time to gets their immunity back up to be a healthy new family addition!
-            How Do I Quarantine My Koi Fish (Nishikigoi)?
-            It is recommended to keep and treat newly purchased Japanese koi fish in a separate quarantine tank for at least 21 days before introducing them to your pond or aquarium to reduce the risk of disease while giving them time to adjust.
-
-            Basic supplies needed for a quarantine tank:
-
-            The tank (100-300 gallons)
-            Net cover for the tank
-            Small pump and filter
-            Air pump
-            Water thermometer
-            Test kit for ammonia, nitrate, pH, and salt
-            Salt
-            Pond or aquarium heater
-            Ultimate
-
-            How Do I Quarantine My Koi Fish (Nishikigoi)?
-            It is recommended to keep and treat newly purchased Japanese koi fish in a separate quarantine tank for at least 21 days before introducing them to your pond or aquarium to reduce the risk of disease while giving them time to adjust.
-
-            Basic supplies needed for a quarantine tank:
-
-            The tank (100-300 gallons)
-            Net cover for the tank
-            Small pump and filter
-            Air pump
-            Water thermometer
-            Test kit for ammonia, nitrate, pH, and salt
-            Salt
-            Pond or aquarium heater
-            Ultimate
-            Setup Before You Receive Nishikigoi
-            1. Prepare the quarantine tank depending on the size of your koi. We recommend 100-300 gallons, blue show tanks are OK too.
-
-            2. Depending on the water of your existing pond, fill the tank with your pond stock (given it’s in good condition), fresh dechlorinated water, or well water.
-
-            3. Ideally, the quarantine tank should have a filtration system as well, but sound aeration from an air pump is acceptable.
-
-            4. Maintain a water temperature of 72° F or above. If working with a smaller tank, 1-2 aquarium heaters will work to achieve that.
-
-            5. Add salt to the tank until it is 0.3% concentration (3 pounds of salt per 100 gallons of water)
-            What To Do After You Receive Nishikigoi
-            1. Observe for 14-21 Days – Place your Japanese koi fish into the quarantine tank and observe carefully for 14-21 days. Please watch to see if they develop any problems.
-
-            2. Filter or Change Water Every 2-3 Days – If working without a filtration system, partial water changes are needed every 2-3 days of about 25%. Add salt to adjust accordingly.
-
-            3. Feed Easily Digestible Food – Feed your Nishikigoi with digestible koi food every day. We recommend Manda Fu Koi Food.
-
-            4. Check Nitrate and Ammonia Daily – During this initial period, it is EXTRA important to keep your nitrate levels balanced. A new koi, fresh from the stresses of traveling (shipping), is more susceptible to problems.
+          <h2>Lịch sử và Ý nghĩa của Cá Koi</h2>
+          <h4>Cá Koi: Biểu tượng của sự trường thọ và may mắn</h4>
+          <p>Cá Koi có nguồn gốc từ Nhật Bản, được nuôi dưỡng từ những năm 1600.
+            Chúng được phát triển từ cá chép, ban đầu được nuôi để làm thực phẩm.
+            Tuy nhiên, với sự phát triển của nghệ thuật và văn hóa, cá Koi đã trở thành một biểu tượng của sự trường thọ,
+            may mắn và thành công trong văn hóa Nhật Bản.
+            Cá Koi thường được nuôi trong các ao cá và được xem là biểu tượng của sự kiên trì và sức mạnh,
+            với truyền thuyết nổi tiếng về một con cá Koi vượt thác để trở thành rồng. Hình ảnh cá Koi thường xuất hiện trong nghệ thuật,
+            trang trí và các buổi lễ, đặc biệt là trong lễ hội trẻ em ở Nhật Bản, khi cá Koi được coi là biểu tượng của sức khỏe và hạnh phúc.
           </p>
         </div>
         <div className={`tab-pane ${activeTab === 2 ? "active" : ""}`}>
-          <h2>News 3</h2>
-          <p>Use this guide to properly introduce new koi fish into your pond using the proper quarantining, pond care, and water quality control methods for good husbandry in koi care. Based on our Japanese breeders and koi farm, these techniques are what work best when receiving Kodama koi but are also good tips for any koi pond owner adding more koi to their pond.
+          <h2>Kỹ Thuật Nuôi Cá Koi</h2>
+          <h4>Hướng dẫn nuôi cá Koi cho người mới bắt đầu</h4>
+          <p>Nuôi cá Koi không chỉ là một sở thích mà còn là nghệ thuật. Để nuôi cá Koi khỏe mạnh và đẹp, cần chú ý đến một số yếu tố quan trọng:
 
-            Adding new koi to your pond is exciting and fun but should be approached with caution. If you have not added any outside koi in over a year than take extra precautions mentioned in this article on koi care.
+            Chọn giống cá Koi: Nên chọn giống cá từ những nguồn uy tín, đảm bảo chất lượng. Các loại cá Koi khác nhau có màu sắc, hình dáng và kích thước khác nhau.
 
-            The natural instinct for Nishikigoi is to coexist with others and to bring peace into a home, which is part of their attraction along with their beauty.
+            Ao nuôi: Ao cá cần có kích thước phù hợp, độ sâu tối thiểu là 1 mét để cá có không gian bơi lội. Nên sử dụng hệ thống lọc nước và bơm oxy để duy trì môi trường sống sạch sẽ cho cá.
 
-            In fact, the peace and enjoyment it brings to many koi and pond owners have grown Nishikigoi appreciation into a global culture.
+            Chế độ ăn: Cá Koi cần được cho ăn thực phẩm đặc biệt dành riêng cho cá Koi, với tần suất 2-3 lần mỗi ngày. Nên tránh cho cá ăn quá nhiều để không làm ô nhiễm nước.
 
-            Is it Hard to Take Care of Koi Fish?
-            No, koi fish care is not hard, but has specific challenges.
-
-            Keeping their water clean, balanced and aerated is the highest priority.
-
-            They can survive through winters and are omnivores with plenty of food options. They are peaceful and hardy creatures. Koi create an intimate ecosystem and are susceptible to the pathogens from outsiders. By taking the time to slowly introduce new koi, you allow them to acclimate to each other and ensure the health of everyone!
-
-            The natural instinct for Nishikigoi is to coexist with others and to bring peace into a home. This, along with their beauty, is a big part of their attraction.
-
-            The peace and enjoyment it brings to koi pond owners has brought Nishikigoi appreciation out of Japan and into global culture. We want you to experience the fun and excitement of growing your koi family, and know a little caution can go a long way, especially if you have not added any outside koi in over a year. Take the extra precautions outlined in this article on koi care and you will have a lifetime of tranquility and joy.
-            The Importance of Quarantine for New Koi
-            A necessary tool for all koi hobbyists and owners is a separate quarantine tank. It is strongly recommended that every Kodama Koi purchased should be quarantined before adding to your aquarium or pond. Learn more on our other blog post about koi quarantine tank setup & procedures.
-
-            Even with the best care and precautions Nishikigoi carry parasites, bacteria, fungus, and other illnesses. Your koi learn to coexist with local bacteria, but are susceptible to outsiders. Quarantining and introducing local fish and water slowly allows all fish to adapt at a safer pace.
-
-            It’s not just about introducing something unhealthy to your current fish population either. Japanese Koi Fish bought online tend to become extremely stressed and exhausted while in transport from the farm or breeder to the owner. A new fish is even more susceptible to sickness, so the quarantine process gives them time to gets their immunity back up to be a healthy new family addition!
-            How Do I Quarantine My Koi Fish (Nishikigoi)?
-            It is recommended to keep and treat newly purchased Japanese koi fish in a separate quarantine tank for at least 21 days before introducing them to your pond or aquarium to reduce the risk of disease while giving them time to adjust.
-
-            Basic supplies needed for a quarantine tank:
-
-            The tank (100-300 gallons)
-            Net cover for the tank
-            Small pump and filter
-            Air pump
-            Water thermometer
-            Test kit for ammonia, nitrate, pH, and salt
-            Salt
-            Pond or aquarium heater
-            Ultimate
-
-            How Do I Quarantine My Koi Fish (Nishikigoi)?
-            It is recommended to keep and treat newly purchased Japanese koi fish in a separate quarantine tank for at least 21 days before introducing them to your pond or aquarium to reduce the risk of disease while giving them time to adjust.
-
-            Basic supplies needed for a quarantine tank:
-
-            The tank (100-300 gallons)
-            Net cover for the tank
-            Small pump and filter
-            Air pump
-            Water thermometer
-            Test kit for ammonia, nitrate, pH, and salt
-            Salt
-            Pond or aquarium heater
-            Ultimate
-            Setup Before You Receive Nishikigoi
-            1. Prepare the quarantine tank depending on the size of your koi. We recommend 100-300 gallons, blue show tanks are OK too.
-
-            2. Depending on the water of your existing pond, fill the tank with your pond stock (given it’s in good condition), fresh dechlorinated water, or well water.
-
-            3. Ideally, the quarantine tank should have a filtration system as well, but sound aeration from an air pump is acceptable.
-
-            4. Maintain a water temperature of 72° F or above. If working with a smaller tank, 1-2 aquarium heaters will work to achieve that.
-
-            5. Add salt to the tank until it is 0.3% concentration (3 pounds of salt per 100 gallons of water)
-            What To Do After You Receive Nishikigoi
-            1. Observe for 14-21 Days – Place your Japanese koi fish into the quarantine tank and observe carefully for 14-21 days. Please watch to see if they develop any problems.
-
-            2. Filter or Change Water Every 2-3 Days – If working without a filtration system, partial water changes are needed every 2-3 days of about 25%. Add salt to adjust accordingly.
-
-            3. Feed Easily Digestible Food – Feed your Nishikigoi with digestible koi food every day. We recommend Manda Fu Koi Food.
-
-            4. Check Nitrate and Ammonia Daily – During this initial period, it is EXTRA important to keep your nitrate levels balanced. A new koi, fresh from the stresses of traveling (shipping), is more susceptible to problems.
-          </p>
+            Chăm sóc sức khỏe: Theo dõi sức khỏe của cá thường xuyên và kiểm tra nước định kỳ để đảm bảo môi trường sống lý tưởng cho chúng.</p>
         </div>
         <div className={`tab-pane ${activeTab === 3 ? "active" : ""}`}>
-          <h2>News 4</h2>
-          <p>Use this guide to properly introduce new koi fish into your pond using the proper quarantining, pond care, and water quality control methods for good husbandry in koi care. Based on our Japanese breeders and koi farm, these techniques are what work best when receiving Kodama koi but are also good tips for any koi pond owner adding more koi to their pond.
+          <h2>Văn Hóa Cá Koi trong Nghệ Thuật và Thiết Kế</h2>
+          <h4>Cá Koi trong nghệ thuật và thiết kế: Sự kết hợp giữa truyền thống và hiện đại</h4>
+          <p>Cá Koi không chỉ là loài cá cảnh mà còn là một phần quan trọng trong nghệ thuật và thiết kế. Trong nhiều tác phẩm nghệ thuật, cá Koi thường được thể hiện với màu sắc rực rỡ và hình dáng đẹp mắt, mang lại sự hài hòa và ý nghĩa sâu sắc.
 
-            Adding new koi to your pond is exciting and fun but should be approached with caution. If you have not added any outside koi in over a year than take extra precautions mentioned in this article on koi care.
+            Nhiều nghệ sĩ hiện đại đã đưa hình ảnh cá Koi vào các tác phẩm tranh, điêu khắc và trang trí nội thất. Cá Koi thường được sử dụng trong thiết kế sân vườn, tạo ra không gian thư giãn và hòa mình với thiên nhiên. Hình ảnh cá Koi cũng thường thấy trong các sản phẩm thủ công, từ gốm sứ đến vải, mang lại sự độc đáo và cá tính cho từng sản phẩm.
 
-            The natural instinct for Nishikigoi is to coexist with others and to bring peace into a home, which is part of their attraction along with their beauty.
-
-            In fact, the peace and enjoyment it brings to many koi and pond owners have grown Nishikigoi appreciation into a global culture.
-
-            Is it Hard to Take Care of Koi Fish?
-            No, koi fish care is not hard, but has specific challenges.
-
-            Keeping their water clean, balanced and aerated is the highest priority.
-
-            They can survive through winters and are omnivores with plenty of food options. They are peaceful and hardy creatures. Koi create an intimate ecosystem and are susceptible to the pathogens from outsiders. By taking the time to slowly introduce new koi, you allow them to acclimate to each other and ensure the health of everyone!
-
-            The natural instinct for Nishikigoi is to coexist with others and to bring peace into a home. This, along with their beauty, is a big part of their attraction.
-
-            The peace and enjoyment it brings to koi pond owners has brought Nishikigoi appreciation out of Japan and into global culture. We want you to experience the fun and excitement of growing your koi family, and know a little caution can go a long way, especially if you have not added any outside koi in over a year. Take the extra precautions outlined in this article on koi care and you will have a lifetime of tranquility and joy.
-            The Importance of Quarantine for New Koi
-            A necessary tool for all koi hobbyists and owners is a separate quarantine tank. It is strongly recommended that every Kodama Koi purchased should be quarantined before adding to your aquarium or pond. Learn more on our other blog post about koi quarantine tank setup & procedures.
-
-            Even with the best care and precautions Nishikigoi carry parasites, bacteria, fungus, and other illnesses. Your koi learn to coexist with local bacteria, but are susceptible to outsiders. Quarantining and introducing local fish and water slowly allows all fish to adapt at a safer pace.
-
-            It’s not just about introducing something unhealthy to your current fish population either. Japanese Koi Fish bought online tend to become extremely stressed and exhausted while in transport from the farm or breeder to the owner. A new fish is even more susceptible to sickness, so the quarantine process gives them time to gets their immunity back up to be a healthy new family addition!
-            How Do I Quarantine My Koi Fish (Nishikigoi)?
-            It is recommended to keep and treat newly purchased Japanese koi fish in a separate quarantine tank for at least 21 days before introducing them to your pond or aquarium to reduce the risk of disease while giving them time to adjust.
-
-            Basic supplies needed for a quarantine tank:
-
-            The tank (100-300 gallons)
-            Net cover for the tank
-            Small pump and filter
-            Air pump
-            Water thermometer
-            Test kit for ammonia, nitrate, pH, and salt
-            Salt
-            Pond or aquarium heater
-            Ultimate
-
-            How Do I Quarantine My Koi Fish (Nishikigoi)?
-            It is recommended to keep and treat newly purchased Japanese koi fish in a separate quarantine tank for at least 21 days before introducing them to your pond or aquarium to reduce the risk of disease while giving them time to adjust.
-
-            Basic supplies needed for a quarantine tank:
-
-            The tank (100-300 gallons)
-            Net cover for the tank
-            Small pump and filter
-            Air pump
-            Water thermometer
-            Test kit for ammonia, nitrate, pH, and salt
-            Salt
-            Pond or aquarium heater
-            Ultimate
-            Setup Before You Receive Nishikigoi
-            1. Prepare the quarantine tank depending on the size of your koi. We recommend 100-300 gallons, blue show tanks are OK too.
-
-            2. Depending on the water of your existing pond, fill the tank with your pond stock (given it’s in good condition), fresh dechlorinated water, or well water.
-
-            3. Ideally, the quarantine tank should have a filtration system as well, but sound aeration from an air pump is acceptable.
-
-            4. Maintain a water temperature of 72° F or above. If working with a smaller tank, 1-2 aquarium heaters will work to achieve that.
-
-            5. Add salt to the tank until it is 0.3% concentration (3 pounds of salt per 100 gallons of water)
-            What To Do After You Receive Nishikigoi
-            1. Observe for 14-21 Days – Place your Japanese koi fish into the quarantine tank and observe carefully for 14-21 days. Please watch to see if they develop any problems.
-
-            2. Filter or Change Water Every 2-3 Days – If working without a filtration system, partial water changes are needed every 2-3 days of about 25%. Add salt to adjust accordingly.
-
-            3. Feed Easily Digestible Food – Feed your Nishikigoi with digestible koi food every day. We recommend Manda Fu Koi Food.
-
-            4. Check Nitrate and Ammonia Daily – During this initial period, it is EXTRA important to keep your nitrate levels balanced. A new koi, fresh from the stresses of traveling (shipping), is more susceptible to problems.
+            Cá Koi không chỉ là biểu tượng của văn hóa Nhật Bản mà còn là nguồn cảm hứng cho nhiều nghệ sĩ và nhà thiết kế trên khắp thế giới, thể hiện sự giao thoa giữa truyền thống và hiện đại trong nghệ thuật.
           </p>
         </div>
       </div>

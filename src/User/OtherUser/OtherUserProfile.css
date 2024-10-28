@@ -12,7 +12,6 @@
   width: 80%;
   height: 91vh;
   display: flex;
-
   background-position: center;
   background-size: cover;
   border-top: 2px solid #cee4d0;
@@ -23,9 +22,11 @@
   width: 28%;
   height: 600px;
   padding-top: 40px;
-  margin: 10px;
+  margin: 15px;
   border-right: 3px solid #cee4d0;
   background-color: #FFF;
+  border-radius: 10px;
+  /* position: fixed; */
 }
 
 .user-avatar {
@@ -53,11 +54,13 @@
 }
 
 .user-profile-bio{
-  width: 771px;
-  height: 600px;
+  width: 78%;
+  height: 200vh;
   padding-top: 40px;
-  margin: 10px;
+  /* margin: 10px; */
   background-color: #FFFF;
+  border-radius: 10px;
+  /* position: fixed; */
 }
 .user-profile-bio h3{
   text-align: left;

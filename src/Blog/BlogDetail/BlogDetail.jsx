@@ -44,13 +44,13 @@ const BlogDetail = () => {
         </div>
         <div className="product-detail-in4">
           <h4>{blog.title}</h4> <br />
-          <p>Created at: {blog.createAt}</p> <br />
+          <p>Ngày đăng: {blog.createAt}</p> <br />
           <Link to={`/user-profile/${blog.userInfo.id}`} className="customer-in4">
             <img
               src={blog.userInfo.profileImageUrl}
               alt={blog.userInfo.fullName}
             />
-            <p className="user-block">Author: {blog.userInfo.fullName}</p>
+            <p className="user-block">Tác giả: {blog.userInfo.fullName}</p>
           </Link> <br />
           <h4>Mô tả chi tiết</h4> <br />
           <p>{blog.description}</p>

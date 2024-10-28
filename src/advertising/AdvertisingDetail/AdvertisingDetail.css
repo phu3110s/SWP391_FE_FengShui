@@ -35,6 +35,9 @@
     height: 584px;
     padding: 16px;
   }
+  .product-detail-in4 h2{
+    font-family: var(--font-arima);
+  }
   .product-detail-in4 a{
     text-decoration: none;
     color: black;

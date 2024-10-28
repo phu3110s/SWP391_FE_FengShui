@@ -39,14 +39,14 @@ export default function MyBlog() {
         setTotalPage(responseApproveBlogs.data.total);
       } else {
         setPendingBlogs(responseApproveBlogs.data.items);
-    
-      setTotalPage(responseApproveBlogs.data.totalPages);
-      setLoading(false);
+
+        setTotalPage(responseApproveBlogs.data.totalPages);
+        setLoading(false);
       }
     } catch (err) {
       message.error("Lỗi kết nối")
-      
-    }finally{
+
+    } finally {
       setLoading(false);
     }
   };
@@ -92,9 +92,7 @@ export default function MyBlog() {
               </div>
             ) : (
               <div className="empty-state">
-                <img src="/path-to-empty-state-img.png" alt="No posts" />
-                <p>Không tìm thấy bài viết</p>
-                <Button type="primary">Tạo bài viết</Button>
+                <p>Hiện chưa có blog nào được phê duyệt</p>
               </div>
             )}
           </TabPane>

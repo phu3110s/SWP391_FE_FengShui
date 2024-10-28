@@ -21,7 +21,7 @@ export default function Header() {
       });
       if (response && response.data) {
         setAvatar(response.data.urlImg);
-        localStorage.setItem("fengShuiID",response.data.fengShuiId);
+        localStorage.setItem("fengShuiID", response.data.fengShuiId);
       }
     } catch (error) {
       if (error.response) {
@@ -46,20 +46,28 @@ export default function Header() {
     localStorage.removeItem("userId");
     localStorage.removeItem("username");
     localStorage.removeItem("userImg")
-    message.success("Đăng xuất thành công",5)
+    message.success("Đăng xuất thành công", 5)
     navigate("/");
   };
 
   const userMenu = (
     <Menu>
       <Menu.Item key="1">
-        <Link to="/MyBlog">My Blog</Link>
+        <Link to="/MyBlog">Blog của tôi</Link>
       </Menu.Item>
       <Menu.Item key="2">
-        <Link to="/user-profile">My Profile</Link>
+        <Link to="/user-profile">Trang cá nhân</Link>
       </Menu.Item>
       <Menu.Item key="3">
-        <span onClick={handleLogout}>Logout</span>
+        <span onClick={handleLogout}>Đăng xuất</span>
+      </Menu.Item>
+    </Menu>
+  );
+
+  const advertising = (
+    <Menu>
+      <Menu.Item key="1">
+        <Link to="/MyAdvertising">Bài đăng của tôi</Link>
       </Menu.Item>
     </Menu>
   );
@@ -71,27 +79,27 @@ export default function Header() {
           <img className="logo" src="/img/img-logo.jpg" alt=""></img>
         </Link>
       </div>
-
-      <ul className="list-active">
-        <li className="active">
-          <Link className="link" to={"/Calculate"}>
-            Feng Shui
-          </Link>
-        </li>
-        <li className="active">
-          <Link className="link" to={"/blogs"}>
-            Blog
-          </Link>
-        </li>
-        {token ? (
+      <div className="list-active-form">
+        <ul className="list-active">
           <li className="active">
-            <Link className="link" to={"/blog-posting"}>
-              Đăng Blog
+            <Link className="link" to={"/Calculate"}>
+              Feng Shui
             </Link>
           </li>
-        ) : null}
+          <li className="active">
+            <Link className="link" to={"/blogs"}>
+              Blog
+            </Link>
+          </li>
+          {token ? (
+            <li className="active">
+              <Link className="link" to={"/blog-posting"}>
+                Đăng Blog
+              </Link>
+            </li>
+          ) : null}
 
-        {/* {token ? (
+          {/* {token ? (
           <li className="active">
             <Link className="link" to={"/MyBlog"}>
               Blog Của tôi
@@ -99,57 +107,59 @@ export default function Header() {
           </li>
           
         ) : null} */}
-        {token &&  
-        <li className="active">
-          <Link className="link" to={"/MyAdvertising"}>
-            Đăng quảng cáo
-          </Link>
-        </li>}
-          {token && 
+          {token &&
             <li className="active">
-          <Link className="link" to={"/Harmony-Rating"}>
-            Harmony Rating
-          </Link>
-        </li>
-        }
-        <li className="active">
-          <Link className="link" to={"/News"}>
-            Tin tức
-          </Link>
-        </li>
-      </ul>
+              <Link className="link" to={"/AdvertisingPosting"}>
+                <Dropdown overlay={advertising} trigger={["click"]}>
+                  <div className="active">
+                    Đăng quảng cáo
+                  </div>
+                </Dropdown>
 
-      <Space direction="vertical">
-        <Search placeholder="input search text" />
-      </Space>
+              </Link>
+            </li>}
+          {token &&
+            <li className="active">
+              <Link className="link" to={"/Harmony-Rating"}>
+                Harmony Rating
+              </Link>
+            </li>
+          }
+          <li className="active">
+            <Link className="link" to={"/News"}>
+              Tin tức
+            </Link>
+          </li>
+        </ul>
+      </div>
 
-      <div className="authorization-box">
-        {token ? (
-          <Dropdown overlay={userMenu} trigger={["click"]}>
-            <div
-              style={{
-                cursor: "pointer",
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              <Avatar src={avatarUrl} alt="User Avatar" />
-            </div>
-          </Dropdown>
-        ) : (
-          <>
-            <div className="button-link-signin">
-              <Link className="link_to_signin" to="/SignUp">
-                Sign In
-              </Link>
-            </div>
-            <div className="button-link-login">
-              <Link className="link_to_login" to="/Login">
-                Login
-              </Link>
-            </div>
-          </>
-        )}
+      <div className="login-form-avt">
+        <div className="authorization-box">
+          {token ? (
+            <Dropdown overlay={userMenu} trigger={["click"]}>
+              <div
+                className="div-avata"
+
+              >
+                <Avatar className="user-avt-login"
+                  src={avatarUrl} alt="User Avatar" />
+              </div>
+            </Dropdown>
+          ) : (
+            <>
+              <div className="button-link-signin">
+                <Link className="link_to_signin" to="/SignUp">
+                  Đăng ký
+                </Link>
+              </div>
+              <div className="button-link-login">
+                <Link className="link_to_login" to="/Login">
+                  Đăng nhập
+                </Link>
+              </div>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -84,29 +84,37 @@ export default function PostingApprove() {
 
     return (
         <div style={{ width: '100%' }}>
-            <h1 style={{ backgroundColor: '#FFFFF' }}>Những bài đăng bán đang chờ duyệt</h1>
-            <div className="blog-container" style={{ backgroundColor: '#FFFFF' }}>
-                {posting.map((post) => (
-                    <div className="blog-info" key={post.id}>
-                        <h2>{post.title}</h2>
-                        <img src={post.urlImg} width="100%" alt={post.title} />
-                        <h3>{post.description}</h3>
-                        {/* <p>Author: {post.userInfo.fullName}</p> */}
-                        <div className="action-buttons">
-                            <Button
-                                type="primary"
-                                onClick={() => showConfirm(post.id, "Approved")}
-                                style={{ marginRight: "10px" }}
-                            >
-                                Approve
-                            </Button>
-                            <Button type="danger" onClick={() => showConfirm(post.id, "Rejected")}>
-                                Reject
-                            </Button>
+            <h1 style={{ backgroundColor: '#FFFFF', marginBottom: '30px' }}>Những bài đăng bán đang chờ duyệt</h1>
+            {loading ? (
+                <p>Loading...</p>
+            ) : posting.length > 0 ? (
+                <div className="blog-container" style={{ backgroundColor: '#FFFFF' }}>
+                    {posting.map((post) => (
+                        <div className="blog-info" key={post.id}>
+                            <h2>{post.title}</h2>
+                            <img src={post.urlImg} width="100%" alt={post.title} />
+                            <h3>{post.description}</h3>
+                            <p>Tác giả: {post.fullName}</p>
+                            <div className="action-buttons">
+                                <Button
+                                    type="primary"
+                                    onClick={() => showConfirm(post.id, "Approved")}
+                                    style={{ marginRight: "10px" }}
+                                >
+                                    Chấp nhận
+                                </Button>
+                                <Button type="danger" onClick={() => showConfirm(post.id, "Rejected")}>
+                                    Từ chối
+                                </Button>
+                            </div>
                         </div>
-                    </div>
-                ))}
-            </div>
+                    ))}
+                </div>
+            ) : (
+                <div className='empty-state'>
+                    <p style={{ fontFamily: '--font-arima' }}>Hiện chưa có bài đăng nào</p>
+                </div>
+            )}
             <Modal title={`Xác nhận ${action === "Approved" ? "duyệt" : "Từ chối"} post ?`}
                 visible={visible}
                 onOk={handleOK}

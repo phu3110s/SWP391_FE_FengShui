@@ -55,10 +55,10 @@ export default function AdvertisingList() {
             <div className="blog-container" style={{ backgroundColor: '#FFFFFF', width: '80%', marginLeft: 150 }}>
                 {blogs.map((blog) => (
                     <div className="blog-info" key={blog.id}>
-                        <Link className="link-to-detail" to={`/blogs/${blog.id}`}>
-                            <img src={blog.urlImg} alt={blog.itemTypeName} style={{ width: "220px", height: '220px' }} />
-                            <h4>{blog.itemTypeName}</h4>
-
+                        <Link className="link-to-detail" to={`/AdvertisingDetail/${blog.id}`}>
+                            <img src={blog.urlImg} alt={blog.title} style={{ width: "220px", height: '220px' }} />
+                            <h4>{blog.title}</h4>
+                            <h4>Loại bài đăng:{blog.itemTypeName}</h4>
                         </Link>
                     </div>
                 ))}

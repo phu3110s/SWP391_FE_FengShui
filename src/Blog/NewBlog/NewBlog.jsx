@@ -45,14 +45,20 @@ const NewBlog = () => {
 
   return (
     <div className="new-blog" style={{ width: '100%', backgroundColor: '#F4F7FE' }}>
+      <div className="advertising-posting-home">
+        <h4>Bài quảng cáo</h4>
+        <AdvertisingList />
+      </div>
       <h4>Các Blogs chia sẻ thông tin cá Koi</h4>
       <div className="blog-container" style={{ backgroundColor: '#FFFFFF', width: '80%', marginLeft: 150 }}>
         {blogs.map((blog) => (
           <div className="blog-info" key={blog.id} style={{ alignItems: 'center' }}>
             <Link className="link-to-detail" to={`/blogs/${blog.id}`}>
               <img src={blog.urlImg} alt={blog.title} style={{ width: "220px", height: '220px' }} />
-              <h3 style={{ fontWeight: 'normal', fontSize: 16, padding: '4px 20px 10px', textAlign: 'left' }}>{blog.title}</h3>
-              <p style={{ padding: ' 5px 20px' }}>Author: {blog.userInfo.fullName}</p>
+              <h3 style={{ fontWeight: 'normal', fontSize: 16, padding: '4px 20px 10px', textAlign: 'left', fontFamily: '--font-arima' }}>
+                {blog.title}
+              </h3>
+              <p style={{ padding: ' 5px 20px' }}>Tác giả: {blog.userInfo.fullName}</p>
             </Link>
           </div>
         ))}
@@ -60,10 +66,7 @@ const NewBlog = () => {
           <Link to="/blogs">Xem thêm blog</Link>
         </div>
       </div>
-      <div className="advertising-posting-home">
-        <h4>Bài quảng cáo</h4>
-        <AdvertisingList />
-      </div>
+
 
     </div>
   );
