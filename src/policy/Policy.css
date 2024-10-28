@@ -1,0 +1,16 @@
+.policy{
+    width: 100%;
+}
+.policy-form{
+    width: 63%;
+    font-family: var(--font-arima);
+    text-align: left;
+    border-radius: 5px;
+    border: 1px solid gray;
+    padding: 3%;
+    background-color: #FFF;
+    margin: 3% 18.5%;
+}
+.policy h2{
+    text-align: center;
+}

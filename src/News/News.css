@@ -37,6 +37,7 @@
     opacity: 1;
   }
   .tab-content {
+    min-height: 65vh;
     padding: 28px 0;
   }
   .tab-pane {

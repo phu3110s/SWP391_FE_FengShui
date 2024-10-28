@@ -5,8 +5,11 @@
     align-items: center;
     text-align: center;
     background-color: #F4F4F4;
+    background-image: url('https://i.pinimg.com/originals/a5/82/e4/a582e4166d4b03e59f699d2c3b607a8c.gif');
+    background-size: cover;
+    background-position: center;
     
-}
+}  
 
 /* .login-ui{
     width: 50%;

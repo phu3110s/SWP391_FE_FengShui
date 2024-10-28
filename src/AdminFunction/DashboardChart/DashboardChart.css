@@ -62,6 +62,6 @@
   transition: color 0.3s ease; 
 }
 
-h2:hover {
+.dashboard-chart-container h2:hover {
   color: #007BFF; 
 }

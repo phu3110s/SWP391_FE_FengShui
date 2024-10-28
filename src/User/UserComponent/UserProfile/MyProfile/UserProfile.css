@@ -1,0 +1,6 @@
+.user-profile-bio h1{
+    font-size: 27px;
+    font-family: var(--font-arima);
+  font-weight: bold;
+  text-align: center;
+}

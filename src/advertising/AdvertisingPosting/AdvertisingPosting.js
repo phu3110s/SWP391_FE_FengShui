@@ -1,51 +1,44 @@
-import React, { useEffect, useRef, useState } from 'react'
-import './AdvertisingPosting.css'
-import Header from '../../components/header/Header'
-import Navigation from '../../components/navbar/Navigation'
-import { Button, Input, message, Radio } from 'antd'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
-import postingApi from '../../apis/postingApi'
-import postPayment from '../../apis/payosApi'
-import paymentPlan from '../../apis/paymentApi'
-import createPaymentLink from '../../apis/payosApi'
+import React, { useEffect, useState } from 'react';
+import './AdvertisingPosting.css';
+import Header from '../../components/header/Header';
+import Navigation from '../../components/navbar/Navigation';
+import { Button, Checkbox, Input, message, Radio } from 'antd';
+import { Link, useNavigate } from 'react-router-dom';
+import postingApi from '../../apis/postingApi';
+import postPayment from '../../apis/payosApi';
+import paymentPlan from '../../apis/paymentApi';
+import createPaymentLink from '../../apis/payosApi';
 import Footer from "../../components/footer/Footer";
 
-
 export default function AdvertisingPosting() {
-
     const userId = localStorage.getItem("userId");
     const token = localStorage.getItem("token");
-    const [listPlan, setListPlan] = useState([])
+    const [listPlan, setListPlan] = useState([]);
     const [title, setTitle] = useState("");
-    const [description, setDesription] = useState("");
+    const [description, setDescription] = useState("");
     const [image, setImage] = useState(null);
-    const [planID, setPlanID] = useState(null);
-    const [advertisingId, setadvertisingId] = useState(null);
+    const [paymentPlanId, setPaymentPlanId] = useState(null);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
-    const location = useLocation();
-    const adData = location.state || {};
+    const [checked, setChecked] = useState(false);
+    const [price, setPrice] = useState('');
+    const [itemTypeName, setItemTypeName] = useState('');
 
-    useEffect(
-        () => {
-            getPlanList()
-            if (!token) {
-                alert(
-                    "Bạn phải đăng nhập mới được đăng post. Chuyển hướng sang trang login"
-                );
-                navigate("/Login");
-            }
-        },
-        [token]
-    );
+    useEffect(() => {
+        getPlanList();
+        if (!token) {
+            alert("Bạn phải đăng nhập mới được đăng post. Chuyển hướng sang trang login");
+            navigate("/Login");
+        }
+    }, [token]);
 
     const getPlanList = async () => {
-        const response = await paymentPlan.getPaymentPlan(1, 10)
-        setListPlan(response.data.items)
-    }
+        const response = await paymentPlan.getPaymentPlan(1, 10);
+        setListPlan(response.data.items);
+    };
 
     const handleImageInput = (e) => {
-        const file = e.target.files[0]; 
+        const file = e.target.files[0];
         if (file) {
             setImage(file);
             const reader = new FileReader();
@@ -61,15 +54,14 @@ export default function AdvertisingPosting() {
 
         setLoading(true);
         const formData = new FormData();
+        formData.append("Title", title);
         formData.append("Description", description);
         formData.append("Image", image);
         formData.append("UserId", userId);
-        formData.append("PaymentPlanId", planID);
-        formData.append("ItemTypeName", title);
+        formData.append("ItemTypeName", itemTypeName);
+        formData.append("PaymentPlanId", paymentPlanId);
+        formData.append("Price", price);
 
-        // for (let pair of formData.entries()) {
-        //     console.log(pair[0] + ': ' + pair[1]);
-        // }
         try {
             const response = await postingApi.uploadAdvertisings(formData, {
                 headers: {
@@ -77,13 +69,15 @@ export default function AdvertisingPosting() {
                 },
             });
             if (response.status === 201) {
-                message.success("Đăng blog thành công. Chờ duyệt");
+                message.success("Đăng bài thành công. Chờ duyệt");
                 const paymentData = {
                     advertisingId: response.data.id,
+                    paymentPlanId: paymentPlanId,
                     description: response.data.description,
-                    returnUrl: 'http://localhost:3000/MyAdvertising',
-                    canceUrl: 'http://localhost:3000/MyAdvertising'
+                    returnUrl: 'https://swp-391-fe-feng-shui-beta.vercel.app/MyAdvertising',
+                    canceUrl: 'https://swp-391-fe-feng-shui-beta.vercel.app/MyAdvertising'
                 };
+                console.log(paymentData);
 
                 const responsePayment = await createPaymentLink.postPayment(paymentData, {
                     headers: {
@@ -91,17 +85,16 @@ export default function AdvertisingPosting() {
                     },
                 });
                 if (responsePayment.status === 200) {
-                    window.location.href = responsePayment.data
-                    message.success("Đăng bài thành công. Đang chuyển hướng đến trang thanh toán")
+                    window.location.href = responsePayment.data;
+                    message.success("Đăng bài thành công. Đang chuyển hướng đến trang thanh toán");
                 }
+                console.log("Payment data:", paymentData);
 
                 setTitle("");
-                setDesription("");
+                setDescription("");
                 setImage(null);
             } else if (response.status === 401) {
-                alert(
-                    "Lỗi. Không thể đăng bài. Hết phiên đăng nhập vui lòng đăng nhập lại"
-                );
+                alert("Lỗi. Không thể đăng bài. Hết phiên đăng nhập vui lòng đăng nhập lại");
             } else {
                 alert("Lỗi gì bất định");
             }
@@ -109,11 +102,11 @@ export default function AdvertisingPosting() {
             if (error.response) {
                 const { status } = error.response;
                 if (status === 400) {
-                    message.error("Thông tin nhập vào không đúng yêu cầu")
-                } if (status === 401) {
-                    message.error("Phiên đăng nhập hết hạn")
+                    message.error("Thông tin nhập vào không đúng yêu cầu");
+                } else if (status === 401) {
+                    message.error("Phiên đăng nhập hết hạn");
                 } else {
-                    message.error("Lỗi kết nối")
+                    message.error("Lỗi kết nối");
                 }
             }
         } finally {
@@ -125,13 +118,12 @@ export default function AdvertisingPosting() {
         <div className="posting-blog">
             <Header />
             <div className="bl-pt-form">
-                <h3>Tiêu đề đăng tin và Mô tả chi tiết </h3>
+                <h3>Tiêu đề đăng tin và Mô tả chi tiết</h3>
                 <form onSubmit={handleSubmitPost}>
                     <div className="edit-form">
                         <div className="form-left">
                             <div className="posting-blog-inputImage">
                                 <label style={{ fontSize: 20 }}>Tải hình ảnh lên</label><br /><br />
-                                <p>Share photos or a video</p><br />
                                 <input type="file" onChange={handleImageInput} accept="image/*" />
                                 {image && (
                                     <div style={{ marginTop: '10px' }}>
@@ -142,9 +134,19 @@ export default function AdvertisingPosting() {
                         </div>
                         <div className="form-right">
                             <div className="posting-blog-title">
-                                <label style={{ fontSize: 20, }}>Tiêu đề</label>
+                                <label style={{ fontSize: 20 }}>Chọn một loại:</label>
+                                <select value={itemTypeName} onChange={(e) => setItemTypeName(e.target.value)} required>
+                                    <option value="">--Chọn--</option>
+                                    <option value="fish">Fish</option>
+                                    <option value="pond">Pond</option>
+                                    <option value="decoration">Decoration</option>
+                                </select>
+                            </div>
+                            <div className="posting-blog-title">
+                                <label style={{ fontSize: 20 }}>Tiêu đề</label>
                                 <Input
                                     type="text"
+                                    maxLength="100"
                                     value={title}
                                     onChange={(e) => setTitle(e.target.value)}
                                     placeholder="Enter blog title"
@@ -152,12 +154,21 @@ export default function AdvertisingPosting() {
                                 />
                             </div>
                             <div className="posting-blog-description">
-                                <label style={{ fontSize: 20, }}>Mô tả</label>
+                                <label style={{ fontSize: 20 }}>Mô tả</label>
                                 <Input.TextArea
-                                    type="text"
+                                    maxLength="1000"
                                     value={description}
-                                    onChange={(e) => setDesription(e.target.value)}
+                                    onChange={(e) => setDescription(e.target.value)}
                                     placeholder="Enter your blog description"
+                                    required
+                                />
+                            </div>
+                            <div className="posting-blog-title">
+                                <label style={{ fontSize: 20 }}>Giá tiền</label>
+                                <Input
+                                    type="number" min="0" step="1000" placeholder="Nhập giá tiền (VND)"
+                                    value={price}
+                                    onChange={(e) => setPrice(e.target.value)}
                                     required
                                 />
                             </div>
@@ -166,7 +177,7 @@ export default function AdvertisingPosting() {
 
                     <div className="form-payment-plan">
                         <label className='title-plan'>Gói đăng bài</label><br />
-                        <Radio.Group onChange={(e) => setPlanID(e.target.value)} value={planID}>
+                        <Radio.Group onChange={(e) => setPaymentPlanId(e.target.value)} value={paymentPlanId}>
                             {listPlan.map(plan => (
                                 <Radio key={plan.id} value={plan.id} className='radio-plan'>
                                     _ {plan.name}<br />
@@ -176,13 +187,15 @@ export default function AdvertisingPosting() {
                             ))}
                         </Radio.Group>
                     </div>
-                    <p className='see-more-text'> Xem thêm <Link to='/policy'>Quy định đăng tin</Link> để đăng bài một cách tốt nhất.</p>
+                    <p className="see-more-text"> Xem thêm <Link to='/policy'>Quy định đăng tin</Link> để đăng bài một cách tốt nhất.</p>
 
+                    <Checkbox checked={checked} onChange={(e) => setChecked(e.target.checked)}>
+                        Tôi đồng ý với điều khoản sử dụng
+                    </Checkbox>
                     <div>
-                        <button className="subm-pt-button" type="submit" disabled={loading}>
+                        <button className="subm-pt-button" type="submit" disabled={loading || !checked}>
                             {loading ? "Posting..." : "Đăng bài"}
                         </button>
-
                     </div>
                 </form>
             </div>
