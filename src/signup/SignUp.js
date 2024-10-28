@@ -19,7 +19,7 @@ export default function SignUp() {
   };
   const handleRegister = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    
     if (!validatePhone(phoneNumber)) {
       message.error("Nhập sai format điện thoại. Vui lòng nhập lại");
       return;
@@ -36,6 +36,7 @@ export default function SignUp() {
       gender: gender,
       birthDate: birthDate,
     };
+    setLoading(true);
     try {
       const response = await userApi.register(userRegisterInfo);
       if (response && response.data) {
@@ -48,6 +49,8 @@ export default function SignUp() {
       } else {
         message.error("Lỗi kết nối");
       }
+    }finally{
+      setLoading(false)
     }
   }
   if (loading) return <div><Spin size="big" /></div>

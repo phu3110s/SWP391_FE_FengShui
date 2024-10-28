@@ -74,11 +74,12 @@ const Sidebar = () => {
   const navigate = useNavigate();
   return (
     <div className="sidebar">
-      <div className="home-logo">
-        <Link to={"/AdminDashboard"}>
-          <img className="logo-home" src="./img/Koi-logo.png" alt="Logo" />
-        </Link>
-      </div>
+      <div className="admin-dashboard-logo">
+  <Link to={"/AdminDashboard"}>
+    <img className="admin-logo-img" src="/img/img-logo.jpg" alt="Logo" />
+  </Link>
+</div>
+
       <Menu mode="inline" theme="dark">
         <Menu.SubMenu key="sub1" title="Quản lí bài viết" icon={<SiBlogger />}>
           <Menu.Item
@@ -193,16 +194,15 @@ const Sidebar = () => {
             key="17"
             onClick={()=>navigate("/AdminDashboard/Payment-Adding")}
             icon={<FaPlusCircle />}
-            // onClick={() => navigate("/AdminDashboard/Harmony-Adding")}
           >
-            Tạo gói thanh toán
+            Tạo gói đăng bán
           </Menu.Item>
           <Menu.Item
             key="18"
             icon={<IoIosColorFilter />}
-            // onClick={() => navigate("/AdminDashboard/Harmony-Viewing")}
+            onClick={()=> navigate("/")}
           >
-            Xem các gói thanh toán
+            Xem các gói đăng bán
           </Menu.Item>
         </Menu.SubMenu>
         <Menu.Item key="20" onClick={handleLogout} icon={<LogoutOutlined />}>
