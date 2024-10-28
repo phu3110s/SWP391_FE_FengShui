@@ -53,13 +53,13 @@ export default function Header() {
   const userMenu = (
     <Menu>
       <Menu.Item key="1">
-        <Link to="/MyBlog">My Blog</Link>
+        <Link to="/MyBlog">Blog của tôi</Link>
       </Menu.Item>
       <Menu.Item key="2">
-        <Link to="/user-profile">My Profile</Link>
+        <Link to="/user-profile">Hồ sơ của tôi</Link>
       </Menu.Item>
       <Menu.Item key="3">
-        <span onClick={handleLogout}>Logout</span>
+        <span onClick={handleLogout}>Đăng xuất</span>
       </Menu.Item>
     </Menu>
   );
@@ -71,11 +71,15 @@ export default function Header() {
           <img className="logo" src="/img/img-logo.jpg" alt=""></img>
         </Link>
       </div>
-
       <ul className="list-active">
+      <li className="active">
+          <Link className="link" to={"/"}>
+            Trang chủ
+          </Link>
+        </li>
         <li className="active">
           <Link className="link" to={"/Calculate"}>
-            Feng Shui
+            Tính toán phong thủy
           </Link>
         </li>
         <li className="active">

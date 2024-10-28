@@ -120,12 +120,12 @@ const ConsultingAdding = () => {
   };
 
   const handleSubmit = () => {
-    if (!selectedFish) {
-      message.config("Vui lòng chọn ít nhất 1 loại cá");
+    if (selectedFish.length === 0) {
+      message.error("Vui lòng chọn ít nhất 1 loại cá");
       return;
     }
-    if (!selectedPonds) {
-      message.config("Vui lòng chọn ít nhất 1 loại hồ");
+    if (selectedPonds === 0)  {
+      message.error("Vui lòng chọn ít nhất 1 loại hồ");
       return;
     }
     const data = {
@@ -150,7 +150,7 @@ const ConsultingAdding = () => {
         setFishImage(null);
         setPondImage(null);
         setDescription("");
-        fetchConsultingList(selectedFengShuiId); // Cập nhật lại danh sách sau khi thêm mới
+        fetchConsultingList(selectedFengShuiId);
       } catch (error) {
         if (error.response.status === 400) {
           message.warning("Thông tin nhập vào bị thiếu hoặc bị lỗi");
@@ -197,7 +197,7 @@ const ConsultingAdding = () => {
         <Select
           mode="multiple"
           placeholder="Chọn hồ"
-          style={{ width: "48%", marginRight: "4%" }}
+          style={{ marginRight: "4%" }}
           onChange={handlePondsChange}
           value={selectedPonds}
         >
@@ -247,9 +247,7 @@ const ConsultingAdding = () => {
           Gửi dữ liệu
         </Button>
       </Popconfirm>
-
-      {/* Danh sách tư vấn hiện có */}
-      <div style={{ marginTop: 40 }}>
+      {consultingList.length > 0 ? ( <div style={{ marginTop: 40 }}>
         <h3>Danh sách tư vấn hiện có</h3>
         {consultingList.map((consulting, index) => (
           <div
@@ -263,11 +261,14 @@ const ConsultingAdding = () => {
               <p>Cá: {fish.name}</p>
             ))}
             {consulting.ponds.map((pond) => (
-              <p>Hồ: {consulting.ponds.material}</p>
+              <p>Hồ: {pond.material}</p>
             ))}
           </div>
         ))}
-      </div>
+      </div>): (
+        <h3 style={{marginTop:15}}>Hiện tại không có danh sách nào của hệ đã chọn</h3>
+      )}
+     
     </div>
   );
 };
