@@ -68,14 +68,15 @@ export default function AdvertisingPosting() {
                     'Authorization': `Bearer ${token}`,
                 },
             });
+            const url = window.location.origin;
             if (response.status === 201) {
                 message.success("Đăng bài thành công. Chờ duyệt");
                 const paymentData = {
                     advertisingId: response.data.id,
                     paymentPlanId: paymentPlanId,
                     description: response.data.description,
-                    returnUrl: 'https://swp-391-fe-feng-shui-beta.vercel.app/MyAdvertising',
-                    canceUrl: 'https://swp-391-fe-feng-shui-beta.vercel.app/MyAdvertising'
+                    returnUrl: `${url}/MyAdvertising`,
+                    canceUrl: `${url}/MyAdvertising`
                 };
                 console.log(paymentData);
 
