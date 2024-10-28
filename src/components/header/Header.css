@@ -34,7 +34,7 @@
 }
 
 .list-active-form{
-    width: 70%;
+    width: 80%;
 }
 
 .list-active{
@@ -45,7 +45,7 @@
 .active{
     color: black;
     display: inline;
-    padding: 0 40px 0 40px;
+    padding: 0 30px;
     font-size: 16.5px;
     
 }
@@ -107,7 +107,7 @@
 }
 .login-form-avt{
     display: inline;
-    width: 25%;
+    width: 20%;
 }
 .authorization-box{
     text-align: right;
