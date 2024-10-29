@@ -11,6 +11,10 @@ const ChartData ={
     getLineData: (startDate,endDate) =>{
         const url = `/transactions/report-daily?startDate=${startDate}&endDate=${endDate}`;
         return axiosClient.get(url) 
+    },
+    getBarData:() =>{
+        const url = '/transactions/report-weekly'
+        return axiosClient.get(url)
     }
 }
 export default ChartData;

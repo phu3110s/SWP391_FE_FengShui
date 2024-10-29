@@ -44,6 +44,23 @@ export default function DashboardChart() {
       },
     ],
   });
+  const [barChartData,setBarChartData] = useState({
+    labels: [],
+    datasets: [
+      {
+        label: "Doanh thu hàng tuần ",
+        data: [],
+        backgroundColor: [
+          "rgba(255, 99, 132, 0.2)",
+  
+        ],
+        borderColor: [
+          "rgba(255, 99, 132, 1)",
+        ],
+        borderWidth: 1,
+      },
+    ],
+  })
   const token = localStorage.getItem("token");
   const today = new Date().toISOString().split("T")[0];
   const oneWeekAgo = new Date();
@@ -127,7 +144,7 @@ export default function DashboardChart() {
       setLoading(false);
     }
   };
-
+ 
   const fetchPieRangeData = async (startDateforPie, endDateforPie) => {
     setLoading(true);
     try {
@@ -200,6 +217,40 @@ export default function DashboardChart() {
       setLoading(false);
     }
   };
+  const fetchBarData = async() =>{
+    setLoading(true);
+    try{
+      const response = await ChartData.getBarData({
+        headers:{
+          Authorization: `${token}`,
+        }
+      })
+      const data = response.data.weeklyReports;
+      const labels = data.map((report)=>{
+        const month = report.monthNumber;
+        const week = report.weekNumberOfYear % month;
+        return `Tuần ${week} Tháng ${month}`
+      })
+      // console.log(labels)
+      const barData = data.map((report)=> {return report.totalAmount})
+      console.log(barData)
+      setBarChartData({
+        labels,
+        datasets: [
+          {
+            label: "Doanh thu theo tuần",
+            data: barData,
+            borderColor: "rgba(156, 40, 145, 1)",
+            backgroundColor: "rgba(164, 95, 164, 1)",
+          },
+        ],
+      })
+    }catch(error){
+      if(error.response){
+        message.error("Lỗi kết nối")
+      }
+    }
+  }
   const fetchLineData = async () => {
     setLoading(true);
     try {
@@ -214,7 +265,7 @@ export default function DashboardChart() {
         return `${date.getDate()}/${date.getMonth() + 1}`;
       });
       const lineData = data.map((report) => report.totalAmount);
-      console.log(labels, lineData);
+      // console.log(labels, lineData);
       setLineChartData({
         labels,
         datasets: [
@@ -242,75 +293,28 @@ export default function DashboardChart() {
       moment(endDateforPie).format("YYYY-MM-DD")
     );
     fetchLineData();
+    fetchBarData();
   }, []);
-
-  const lineData = {
-    labels: [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-      "Sunday",
-    ],
-    datasets: [
-      {
-        label: "Weekly Sales ",
-        data: [12, 19, 3, 5, 2, 3, 10],
-        borderColor: "rgba(75,192,192,1)",
-        backgroundColor: "rgba(75,192,192,0.2)",
-      },
-    ],
-  };
-
-  const barData = {
-    labels: ["1", "2", "3", "4", "5", "6"],
-    datasets: [
-      {
-        label: "Doanh thu ",
-        data: [12, 19, 3, 5, 2, 3],
-        backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
-          "rgba(255, 206, 86, 0.2)",
-          "rgba(75, 192, 192, 0.2)",
-          "rgba(153, 102, 255, 0.2)",
-          "rgba(255, 159, 64, 0.2)",
-        ],
-        borderColor: [
-          "rgba(255, 99, 132, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(255, 206, 86, 1)",
-          "rgba(75, 192, 192, 1)",
-          "rgba(153, 102, 255, 1)",
-          "rgba(255, 159, 64, 1)",
-        ],
-        borderWidth: 1,
-      },
-    ],
-  };
-
-  const pieData = {
-    labels: ["Số bài đã xóa", "Số bài đã duyệt", "Số bài đang chờ duyệt"],
-    datasets: [
-      {
-        label: "Quản lí số lượng bài đăng trong hôm nay",
-        data: [3, 0, 0],
-        backgroundColor: [
-          "rgba(174, 198, 207, 0.8)",
-          "rgba(255, 182, 193, 0.8)",
-          "rgba(255, 223, 186, 0.8)",
-        ],
-        borderColor: [
-          "rgba(105, 155, 205, 1)",
-          "rgba(255, 105, 135, 1)",
-          "rgba(255, 183, 88, 1)",
-        ],
-        borderWidth: 2,
-      },
-    ],
-  };
+  // const pieData = {
+  //   labels: ["Số bài đã xóa", "Số bài đã duyệt", "Số bài đang chờ duyệt"],
+  //   datasets: [
+  //     {
+  //       label: "Quản lí số lượng bài đăng trong hôm nay",
+  //       data: [3, 0, 0],
+  //       backgroundColor: [
+  //         "rgba(174, 198, 207, 0.8)",
+  //         "rgba(255, 182, 193, 0.8)",
+  //         "rgba(255, 223, 186, 0.8)",
+  //       ],
+  //       borderColor: [
+  //         "rgba(105, 155, 205, 1)",
+  //         "rgba(255, 105, 135, 1)",
+  //         "rgba(255, 183, 88, 1)",
+  //       ],
+  //       borderWidth: 2,
+  //     },
+  //   ],
+  // };
 
   const handlestartDateforPieChange = (date) => {
     if (date === null) {
@@ -414,7 +418,7 @@ export default function DashboardChart() {
       </div>
 
       <div className="bar-chart chart-container">
-        <Bar data={barData} />
+        <Bar data={barChartData} />
         <strong className="chart-title">Doanh thu hàng tuần</strong>
       </div>
 
