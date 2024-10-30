@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Header.css";
 import userApi from "../../apis/userApi";
+import { toast, ToastContainer } from "react-toastify";
 const { Search } = Input;
 
 export default function Header() {
@@ -46,12 +47,13 @@ export default function Header() {
     localStorage.removeItem("userId");
     localStorage.removeItem("username");
     localStorage.removeItem("userImg")
-    message.success("Đăng xuất thành công", 5)
+    toast.success("Đăng xuất thành công!", { position: "top-right", autoClose: 6000 });
+    // message.success("Đăng xuất thành công", 5)
     navigate("/");
   };
 
   const userMenu = (
-    <Menu>
+    <Menu >
       <Menu.Item key="1">
         <Link to="/MyBlog">Blog của tôi</Link>
       </Menu.Item>
@@ -130,6 +132,7 @@ export default function Header() {
               Tin tức
             </Link>
           </li>
+          <ToastContainer />
         </ul>
       </div>
 
@@ -160,7 +163,10 @@ export default function Header() {
             </>
           )}
         </div>
+
       </div>
+
     </div>
+
   );
 }

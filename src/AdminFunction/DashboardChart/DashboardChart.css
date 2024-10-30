@@ -1,4 +1,4 @@
-.dashboard-chart-container {
+  .dashboard-chart-container {
     padding: 20px;
     font-family: 'Comfortaa', sans-serif;
   }
@@ -58,15 +58,16 @@
   flex-direction: row
 }
 .pie-today-container .pie-range-container{
-  width:1000px;
-  height: 1000px;
+  width:600px;
+  height: 600px;
+  size: 60%;
 }
 .pie-chart {
     display: inline-block;
-    width: 700px; 
-    height: 740px; 
+    width: 600px; 
+    height: 600px; 
     margin: 10px;
-    margin-bottom: 60px;
+    margin-bottom: 70px;
 }
 
 .pie-chart-container {

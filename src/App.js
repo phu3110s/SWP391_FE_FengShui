@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import 'react-toastify/dist/ReactToastify.css';
 
 import "./App.css";
 import Login from "./login/Login";
@@ -41,6 +42,7 @@ import GetConsulting from "./Consulting/GetFishConsulting/GetConsulting";
 import AdvertisingPayment from "./advertising/AdvertisingPayment/AdvertisingPayment";
 import PaymentCreating from "./AdminFunction/Payment/PaymentCreating/PaymentCreating";
 import PaymentViewing from "./AdminFunction/Payment/PaymentViewing/PaymentViewing";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   // const [user, setUser] = useState(null);
@@ -141,6 +143,7 @@ function App() {
           <Route path="Payment-Plans" element={<PaymentViewing/>} />
         </Route>
        </Routes>
+       <ToastContainer/>
     </div>
   );
 }

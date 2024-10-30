@@ -14,3 +14,11 @@
   .select-fengShui-container{
     margin-bottom: 50px;
   }
+  .Info-block{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 800px;
+    margin-left: 200px;
+  }

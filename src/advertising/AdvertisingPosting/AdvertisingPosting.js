@@ -87,7 +87,7 @@ export default function AdvertisingPosting() {
       //     };
 
       const url = window.location.origin;
-      if (response.status === 201) {
+      if (response.status === 200 || response.status === 201) {
         message.success("Đăng bài thành công. Chờ duyệt");
         const paymentData = {
           advertisingId: response.data.id,
@@ -106,7 +106,7 @@ export default function AdvertisingPosting() {
             },
           }
         );
-        if (responsePayment.status === 200) {
+        if (response.status === 200 || response.status === 201) {
           window.location.href = responsePayment.data;
           message.success(
             "Đăng bài thành công. Đang chuyển hướng đến trang thanh toán"

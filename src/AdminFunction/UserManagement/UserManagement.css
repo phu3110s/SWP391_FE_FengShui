@@ -37,11 +37,17 @@ header-text h1{
 .status-active {
     color: green;
     font-weight: bold;
+    border-radius: 12%;
+    border: 1px solid rgb(62, 185, 62);
+    padding: 5px;
   }
   
   .status-inactive {
     color: red;
     font-weight: bold;
+    border-radius: 12%;
+    border: 1px solid rgb(139, 19, 19);
+    padding:5px;
   }
 .user-management-block{
     margin: 0 auto;

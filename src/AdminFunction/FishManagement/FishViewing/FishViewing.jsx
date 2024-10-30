@@ -299,16 +299,18 @@ const FishViewing = () => {
             ) : (
               <div>
                 <p>
-                  <strong>Tên:</strong> {selectedFish.name}
+
+                  <strong>Tên cá:</strong> {selectedFish.name}
                 </p>
                 <p>
-                  <strong>Kích cỡ:</strong> {selectedFish.size}
+                  <strong>Kích thước:</strong> {selectedFish.size}
                 </p>
                 <p>
-                  <strong>Màu:</strong> {selectedFish.color}
+                  <strong>Màu sắc:</strong> {selectedFish.color}
                 </p>
                 <p>
-                  <strong>Mô tả:</strong> {selectedFish.description}
+                  <strong>Chi tiết:</strong> {selectedFish.description}
+
                 </p>
                 <div className="popup-image">
                   <img src={selectedFish.urlImg} alt="Fish" />
