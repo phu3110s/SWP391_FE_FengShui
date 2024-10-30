@@ -2,6 +2,8 @@ import { Input, message } from "antd";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { RiImageAddLine } from "react-icons/ri"; // Import icon
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css'; // Import Quill styles
 import blogApi from "../../apis/blogApi";
 import Header from "../../components/header/Header";
 import "./styles.css";
@@ -12,7 +14,7 @@ export default function BlogPosting() {
   const userId = localStorage.getItem("userId");
   const token = localStorage.getItem("token");
   const [title, setTitle] = useState("");
-  const [description, setDesription] = useState("");
+  const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -58,7 +60,7 @@ export default function BlogPosting() {
         message.success("Đăng blog thành công. Chờ duyệt");
         navigate("/MyBlog");
         setTitle("");
-        setDesription("");
+        setDescription("");
         setImage(null);
       } else if (response.status === 401) {
         alert(
@@ -124,21 +126,17 @@ export default function BlogPosting() {
                 </div>
                 <div className="posting-blog-description">
                   <label>Mô tả</label>
-                  <Input.TextArea
-                    type="text"
+                  <ReactQuill
                     value={description}
-                    onChange={(e) => setDesription(e.target.value)}
+                    onChange={setDescription}
                     placeholder="Enter your blog description"
                     required
                   />
                 </div>
               </div>
             </div>
-            <div className="posting-blog-inputImage">
-
-            </div>
             <p className="see-more-text"> Xem thêm <Link target='_blank' to='/policy'>Quy định đăng tin</Link> để đăng bài một cách tốt nhất.</p>
-
+            
             <div>
               <button className="subm-pt-button" type="submit" disabled={loading}>
                 {loading ? "Posting..." : "Đăng Blog"}

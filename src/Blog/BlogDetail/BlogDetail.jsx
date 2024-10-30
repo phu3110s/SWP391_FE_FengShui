@@ -53,7 +53,7 @@ const BlogDetail = () => {
             <p className="user-block">Tác giả: {blog.userInfo.fullName}</p>
           </Link> <br />
           <h4>Mô tả chi tiết</h4> <br />
-          <p>{blog.description}</p>
+          <div dangerouslySetInnerHTML={{ __html: blog.description }} />
         </div>
       </div>
       <Footer />
