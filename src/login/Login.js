@@ -6,8 +6,7 @@ import { EyeTwoTone, EyeInvisibleOutlined } from "@ant-design/icons";
 // import { login } from "../apis/auth";
 import userApi from "../apis/userApi";
 import { toast, ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
-
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -30,7 +29,7 @@ export default function Login() {
     setLoading(true);
     try {
       if (!username || !password) {
-        message.error("Vui lòng nhập đầy đủ thông tin")
+        message.error("Vui lòng nhập đầy đủ thông tin");
         return;
       }
       const response = await userApi.login(data);
@@ -38,18 +37,20 @@ export default function Login() {
       localStorage.setItem("token", response.data.accessToken);
       localStorage.setItem("username", response.data.fullName);
       localStorage.setItem("userId", response.data.id);
-      localStorage.setItem("userImg", response.data.urlImg)
+      localStorage.setItem("userImg", response.data.urlImg);
       localStorage.setItem("userRole", response.data.role);
       setTimeout(() => {
-        setLoading(true)
+        setLoading(true);
         if (token && userRole === "Admin") {
           navigate("/AdminDashboard");
         } else {
           navigate("/");
         }
-      },700)
-      toast.success("Đăng nhập thành công!", { position: "top-right", autoClose: 6000 });
-      }, 700)
+      }, 700);
+      toast.success("Đăng nhập thành công!", {
+        position: "top-right",
+        autoClose: 6000,
+      });
     } catch (error) {
       if (error.response) {
         const { data, status } = error.response;
@@ -67,7 +68,6 @@ export default function Login() {
   };
   return (
     <div>
-
       <div className="login-background">
         {/* <div className="login-ui">
 
@@ -94,7 +94,9 @@ export default function Login() {
             </Link>
           </div>
           <div className="login-form-title">
-            <h1 className="title-welcome">Chào mừng bạn quay trở lại với Feng Shui Koi!</h1>
+            <h1 className="title-welcome">
+              Chào mừng bạn quay trở lại với Feng Shui Koi!
+            </h1>
             {/* <p className="title-welcome">Chúc bạn một ngày tốt lành!!!</p> */}
           </div>
 
@@ -154,8 +156,5 @@ export default function Login() {
       </div>
       <ToastContainer />
     </div>
-    
-    </div>
-    
   );
 }
