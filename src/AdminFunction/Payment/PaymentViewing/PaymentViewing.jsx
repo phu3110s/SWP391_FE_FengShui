@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import paymentPlan from "../../../apis/paymentApi";
 import { message, Table } from "antd";
+import "./PaymentViewing.css"
 export default function PaymentViewing(){
     const token = localStorage.getItem("token")
     const [loading,setLoading] = useState(false)

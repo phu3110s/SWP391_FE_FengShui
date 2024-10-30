@@ -1,5 +1,6 @@
 .dashboard-chart-container {
     padding: 20px;
+    font-family: 'Comfortaa', sans-serif;
   }
   
   .pie-chart-row {
@@ -19,12 +20,6 @@
   .pie-today-container, .pie-range-container {
     text-align: center;
   }
-  
-  .chart-title {
-    margin-top: 50px;
-    font-weight: bold;
-  }
-  
   .date-picker {
     display: flex;
     justify-content: center;
@@ -46,13 +41,10 @@
 .line-chart-block{
   margin-bottom: 30px;
 }
- .chart-title{
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
-}
 .dashboard-chart-container h2 {
-  font-family: 'Verdana', Geneva, Tahoma, sans-serif; 
   font-size: 32px; 
-  font-weight: bold; 
+  font-weight: bold;
+  font-size: 3rem;
   color: #a15a07; 
   text-align: center; 
   margin: 20px 0; 
@@ -61,7 +53,32 @@
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); 
   transition: color 0.3s ease; 
 }
+.line-and-bar{
+  display: flex;
+  flex-direction: row
+}
+.pie-today-container .pie-range-container{
+  width:1000px;
+  height: 1000px;
+}
+.pie-chart {
+    display: inline-block;
+    width: 700px; 
+    height: 740px; 
+    margin: 10px;
+    margin-bottom: 60px;
+}
 
-.dashboard-chart-container h2:hover {
-  color: #007BFF; 
+.pie-chart-container {
+    display: flex; 
+    justify-content: space-around;
+}
+.line-and-bar strong{
+  display: flex;
+  align-items: flex-start;
+  font-size: 26px;
+  margin-bottom: 20px;
+}
+.Pie{
+  margin-bottom: 30px;
 }

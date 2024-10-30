@@ -1,4 +1,4 @@
-import { DatePicker, message, Spin } from "antd";
+import { Card, Col, DatePicker, message, Row, Spin } from "antd";
 import {
   ArcElement,
   BarElement,
@@ -16,7 +16,16 @@ import React, { useEffect, useState } from "react";
 import { Bar, Line, Pie } from "react-chartjs-2";
 import ChartData from "../../apis/ChartData";
 import "./DashboardChart.css";
-
+import {
+  PercentOutlined,
+  ShoppingCartCheckoutOutlined,
+} from "@mui/icons-material";
+import { RiAdvertisementLine } from "react-icons/ri";
+import { FileOutlined, UserOutlined } from "@ant-design/icons";
+import userApi from "../../apis/userApi";
+import blogApi from "../../apis/blogApi";
+import { SiBlogger } from "react-icons/si";
+import adApi from "../../apis/adApi";
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -33,6 +42,11 @@ export default function DashboardChart() {
   const [loading, setLoading] = useState(false);
   const [pieDataToday, setPieDataToday] = useState("");
   const [pieDataRange, setPieDataRange] = useState("");
+  const [totalUsers, setTotalUsers] = useState("");
+  const [totalBlogs, setTotalBlogs] = useState("");
+  const [totalAd, setTotalAd] = useState("");
+  const page = 1;
+  const size = 10;
   const [lineChartData, setLineChartData] = useState({
     labels: [],
     datasets: [
@@ -44,23 +58,18 @@ export default function DashboardChart() {
       },
     ],
   });
-  const [barChartData,setBarChartData] = useState({
+  const [barChartData, setBarChartData] = useState({
     labels: [],
     datasets: [
       {
         label: "Doanh thu hàng tuần ",
         data: [],
-        backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
-  
-        ],
-        borderColor: [
-          "rgba(255, 99, 132, 1)",
-        ],
+        backgroundColor: ["rgba(255, 99, 132, 0.2)"],
+        borderColor: ["rgba(255, 99, 132, 1)"],
         borderWidth: 1,
       },
     ],
-  })
+  });
   const token = localStorage.getItem("token");
   const today = new Date().toISOString().split("T")[0];
   const oneWeekAgo = new Date();
@@ -68,7 +77,7 @@ export default function DashboardChart() {
   const day = oneWeekAgo.getDate();
   const month = oneWeekAgo.getMonth() + 1;
   const year = oneWeekAgo.getFullYear();
-  const [allAdvertising,setAllAdveritings] = useState(null)
+  const [allAdvertising, setAllAdveritings] = useState(null);
   const startDateforLine = `${year}/${month}/${day}`;
   const [startDateforPie, setstartDateforPie] = useState(
     moment().startOf("month")
@@ -82,7 +91,7 @@ export default function DashboardChart() {
           Authorization: `Bearer ${token}`,
         },
       });
-      setAllAdveritings(response.data.allPosts)
+      setAllAdveritings(response.data.allPosts);
       const {
         draftPosts,
         expiredPosts,
@@ -144,7 +153,57 @@ export default function DashboardChart() {
       setLoading(false);
     }
   };
- 
+  const fetchTotalUser = async () => {
+    try {
+      const response = await userApi.getAll(page, size, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setTotalUsers(response.data.total);
+    } catch (error) {
+      if (error.response) {
+        const { status } = error.response;
+        if (status === 403) {
+          message.error("Bạn không có quyền thực hiện hành động này");
+        } else {
+          message.error("Lỗi kết nối");
+        }
+      }
+    }
+  };
+  const fetchTotalBlog = async () => {
+    try {
+      const response = await blogApi.getBlogs(page, size, "Approved", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setTotalBlogs(response.data.total);
+    } catch (error) {
+      if (error.response) {
+        const { status } = error.response;
+        if (status === 403) {
+          message.error("Bạn không có quyền thực hiện hành động này");
+        } else {
+          message.error("Lỗi kết nối");
+        }
+      }
+    }
+  };
+  const fetchTotalAd = async () => {
+    try {
+      const response = await adApi.getAll(page, size, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setTotalAd(response.data.total);
+    } catch (error) {
+      if (error.response) {
+        const { status } = error.response;
+        if (status === 403) {
+          message.error("Bạn không có quyền thực hiện hành động này");
+        } else {
+          message.error("Lỗi kết nối");
+        }
+      }
+    }
+  };
   const fetchPieRangeData = async (startDateforPie, endDateforPie) => {
     setLoading(true);
     try {
@@ -217,23 +276,25 @@ export default function DashboardChart() {
       setLoading(false);
     }
   };
-  const fetchBarData = async() =>{
+  const fetchBarData = async () => {
     setLoading(true);
-    try{
+    try {
       const response = await ChartData.getBarData({
-        headers:{
+        headers: {
           Authorization: `${token}`,
-        }
-      })
+        },
+      });
       const data = response.data.weeklyReports;
-      const labels = data.map((report)=>{
+      const labels = data.map((report) => {
         const month = report.monthNumber;
-        const week = report.weekNumberOfYear % month;
-        return `Tuần ${week} Tháng ${month}`
-      })
+        const week = report.weekNumberInMonth;
+        return `Tuần ${week} Tháng ${month}`;
+      });
       // console.log(labels)
-      const barData = data.map((report)=> {return report.totalAmount})
-      console.log(barData)
+      const barData = data.map((report) => {
+        return report.totalAmount;
+      });
+      // console.log(barData)
       setBarChartData({
         labels,
         datasets: [
@@ -244,13 +305,13 @@ export default function DashboardChart() {
             backgroundColor: "rgba(164, 95, 164, 1)",
           },
         ],
-      })
-    }catch(error){
-      if(error.response){
-        message.error("Lỗi kết nối")
+      });
+    } catch (error) {
+      if (error.response) {
+        message.error("Lỗi kết nối");
       }
     }
-  }
+  };
   const fetchLineData = async () => {
     setLoading(true);
     try {
@@ -294,28 +355,10 @@ export default function DashboardChart() {
     );
     fetchLineData();
     fetchBarData();
+    fetchTotalAd();
+    fetchTotalBlog();
+    fetchTotalUser();
   }, []);
-  // const pieData = {
-  //   labels: ["Số bài đã xóa", "Số bài đã duyệt", "Số bài đang chờ duyệt"],
-  //   datasets: [
-  //     {
-  //       label: "Quản lí số lượng bài đăng trong hôm nay",
-  //       data: [3, 0, 0],
-  //       backgroundColor: [
-  //         "rgba(174, 198, 207, 0.8)",
-  //         "rgba(255, 182, 193, 0.8)",
-  //         "rgba(255, 223, 186, 0.8)",
-  //       ],
-  //       borderColor: [
-  //         "rgba(105, 155, 205, 1)",
-  //         "rgba(255, 105, 135, 1)",
-  //         "rgba(255, 183, 88, 1)",
-  //       ],
-  //       borderWidth: 2,
-  //     },
-  //   ],
-  // };
-
   const handlestartDateforPieChange = (date) => {
     if (date === null) {
       setstartDateforPie(date);
@@ -344,12 +387,36 @@ export default function DashboardChart() {
     }
   };
 
-  if (loading) return <Spin size="large" style={{ marginRight: 8 }} />;
-
   return (
     <div className="dashboard-chart-container">
-      <h2>Biểu đồ thống kê</h2>
-
+      <h2>Thống kê hệ thống tư vấn phong thủy</h2>
+      <div className="">
+        <Row gutter={16}>
+          <Col span={8}>
+            <Card>
+              <UserOutlined style={{ fontSize: "36px", color: "#1890ff" }} />
+              <h3>Tổng số người dùng</h3>
+              <p style={{ fontSize: "36px" }}>{totalUsers}</p>
+            </Card>
+          </Col>
+          <Col span={8}>
+            <Card>
+              <SiBlogger style={{ fontSize: "36px", color: "#1890ff" }} />
+              <h3>Tổng số blog</h3>
+              <p style={{ fontSize: "36px" }}>{totalBlogs}</p>
+            </Card>
+          </Col>
+          <Col span={8}>
+            <Card>
+              <RiAdvertisementLine
+                style={{ fontSize: "36px", color: "#1890ff" }}
+              />
+              <h3>Tổng số bài quảng cáo</h3>
+              <p style={{ fontSize: "36px" }}>{totalAd}</p>
+            </Card>
+          </Col>
+        </Row>
+      </div>
       <div className="pie-chart-row">
         <div className="pie-chart chart-container">
           <div className="pie-chart-daily">
@@ -358,9 +425,14 @@ export default function DashboardChart() {
                 <p>Hôm nay không có dữ liệu bài đăng.</p>
               ) : (
                 <div className="pie-today-container">
-                  <Pie data={pieDataToday} />
+                  <div className="Pie">
+                    <Pie data={pieDataToday} />
+                  </div>
+
                   <strong className="chart-title">
-                    {allAdvertising === 0 ? " Chưa có dữ liệu về bài đăng bán trong ngày hôm nay" : "Tổng hợp số bài đăng bán hôm nay"  }
+                    {allAdvertising === 0
+                      ? " Chưa có dữ liệu về bài đăng bán trong ngày hôm nay"
+                      : "Tổng hợp số bài đăng bán hôm nay"}
                   </strong>
                 </div>
               )
@@ -384,7 +456,11 @@ export default function DashboardChart() {
                   </p>
                 ) : (
                   <div className="pie-range-container">
-                    <Pie data={pieDataRange} />
+                    <div className="Pie">
+                      {" "}
+                      <Pie data={pieDataRange} />
+                    </div>
+
                     <strong className="chart-title">
                       Tổng hợp số bài đăng bán từ ngày{" "}
                       {startDateforPie.format("YYYY-MM-DD")} đến{" "}
@@ -416,18 +492,18 @@ export default function DashboardChart() {
           </div>
         </div>
       </div>
-
-      <div className="bar-chart chart-container">
-        <Bar data={barChartData} />
-        <strong className="chart-title">Doanh thu hàng tuần</strong>
-      </div>
-
-      <div className="line-chart chart-container">
-        <div className="line-chart-block">
-          <Line data={lineChartData} />
+      <div className="line-and-bar">
+        <div className="bar-chart chart-container">
+          <strong className="chart-title">Doanh thu hàng tuần</strong>
+          <Bar data={barChartData} />
         </div>
 
-        <p className="chart-title">Doanh thu 7 ngày gần nhất</p>
+        <div className="line-chart chart-container">
+          <strong className="chart-title">Doanh thu 7 ngày gần nhất</strong>
+          <div className="line-chart-block">
+            <Line data={lineChartData} />
+          </div>
+        </div>
       </div>
     </div>
   );
