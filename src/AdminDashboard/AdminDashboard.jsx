@@ -193,9 +193,7 @@ const Sidebar = () => {
           <Menu.Item
             key="18"
             icon={<IoIosColorFilter />}
-
-            onClick={()=> navigate("/AdminDashboard/Payment-Plans")}
-
+            onClick={() => navigate("/AdminDashboard/Payment-Plans")}
           >
             Xem các gói đăng bán
           </Menu.Item>
