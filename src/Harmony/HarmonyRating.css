@@ -32,6 +32,10 @@
     border-radius: 10px;
     border: 1px solid black;
 }
+.selected-fish-info img{
+    max-width: 350px;
+    height: auto;
+}
 .harmony-form{
     width: 100%;
     display: flex;

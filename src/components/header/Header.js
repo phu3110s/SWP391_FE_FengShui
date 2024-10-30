@@ -46,7 +46,7 @@ export default function Header() {
     localStorage.removeItem("token");
     localStorage.removeItem("userId");
     localStorage.removeItem("username");
-    localStorage.removeItem("userImg")
+    localStorage.removeItem("userImg");
     toast.success("Đăng xuất thành công!", { position: "top-right", autoClose: 6000 });
     // message.success("Đăng xuất thành công", 5)
     navigate("/");
@@ -163,7 +163,6 @@ export default function Header() {
             </>
           )}
         </div>
-
       </div>
 
     </div>

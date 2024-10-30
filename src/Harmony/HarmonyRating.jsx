@@ -185,8 +185,25 @@ export default function HarmonyRating() {
             </div>
             {harmonyInfo && (
               <div className="rating-result">
-                <h3>Điểm hòa hợp: {rating}</h3>
-                <p>Mô tả: {description}</p>
+              <div className="harmony-bar-wrap">
+                    <div
+                      style={{
+                        "--harmony-point": `${rating}%`,
+                        "--harmony-color":
+                        rating < 40
+                            ? "#f44336"
+                            : rating < 80
+                            ? "#ffeb3b"
+                            : "#4caf50",
+                        "--harmony-text-color":
+                        rating < 80 ? "black" : "white",
+                      }}
+                      className="harmony-rating-bar"
+                    >
+                      <p id="harmony-point">{rating}%</p>
+                    </div>
+                  </div>
+                <strong><h2>Mô tả: {description}</h2></strong>
               </div>
             )}
 
