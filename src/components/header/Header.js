@@ -53,7 +53,7 @@ export default function Header() {
   };
 
   const userMenu = (
-    <Menu>
+    <Menu >
       <Menu.Item key="1">
         <Link to="/MyBlog">Blog của tôi</Link>
       </Menu.Item>
@@ -61,6 +61,9 @@ export default function Header() {
         <Link to="/user-profile">Hồ sơ của tôi</Link>
       </Menu.Item>
       <Menu.Item key="3">
+        <Link to="/MyAdvertising">Bài đăng của tôi</Link>
+      </Menu.Item>
+      <Menu.Item key="4">
         <span onClick={handleLogout}>Đăng xuất</span>
       </Menu.Item>
     </Menu>
@@ -137,6 +140,7 @@ export default function Header() {
               Tin tức
             </Link>
           </li>
+          <ToastContainer/>
         </ul>
       </div>
 
@@ -167,8 +171,10 @@ export default function Header() {
             </>
           )}
         </div>
-        <ToastContainer/>
+       
       </div>
+      
     </div>
+    
   );
 }
