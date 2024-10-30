@@ -19,7 +19,7 @@ export default function SignUp() {
   };
   const handleRegister = async (e) => {
     e.preventDefault();
-    
+
     if (!validatePhone(phoneNumber)) {
       message.error("Nhập sai format điện thoại. Vui lòng nhập lại");
       return;
@@ -49,7 +49,7 @@ export default function SignUp() {
       } else {
         message.error("Lỗi kết nối");
       }
-    }finally{
+    } finally {
       setLoading(false)
     }
   }
@@ -83,13 +83,13 @@ export default function SignUp() {
         </div>
 
         <div className="signup-form-title">
-          <h1 className="title-welcome">Welcome!</h1>
-          <p className="title-welcome">Have a nice day!!!</p>
+          <h1 className="title-welcome">Chào mừng bạn đến với Feng Shui Koi!</h1>
+          {/* <p className="title-welcome">Chúc bạn một ngày tốt lành!!!</p> */}
         </div>
 
         <form>
           <div className="Sign-In-Form">
-            <p className="name-field">Full name</p>
+            <p className="name-field">Họ và Tên</p>
             <input
               type="text"
               placeholder="Enter your full name"
@@ -100,7 +100,7 @@ export default function SignUp() {
           </div>
 
           <div className="signup-phone">
-            <p className="name-field">Phone Number</p>
+            <p className="name-field">Số điện thoại</p>
             <input
               type="phone"
               placeholder="Type your phone number"
@@ -110,7 +110,7 @@ export default function SignUp() {
             />
           </div>
           <div>
-            <p className="name-field">Password</p>
+            <p className="name-field">Mật khẩu</p>
             <Input
               type="password"
               placeholder="Type your password"
@@ -123,7 +123,7 @@ export default function SignUp() {
             />
           </div>
           <div>
-            <p className="name-field">Birth Date</p>
+            <p className="name-field">Ngày/ tháng/ năm sinh</p>
             <input
               type="date"
               className="input-field"
@@ -134,12 +134,12 @@ export default function SignUp() {
           </div>
 
           <div>
-            <p className="gender-field">Gender</p>
+            <p className="gender-field">Giới tính</p>
             <div className="gender-radio">
               <Radio.Group onChange={(e) => setGender(e.target.value)} value={gender}>
-                <Radio value="Male">Male</Radio>
-                <Radio value="Female">Female</Radio>
-                <Radio value="Other">Other</Radio>
+                <Radio value="Male">Nam</Radio>
+                <Radio value="Female">Nữ</Radio>
+                <Radio value="Other">Khác</Radio>
               </Radio.Group>
 
             </div>
@@ -148,9 +148,9 @@ export default function SignUp() {
           <div className="check-policy">
             <label>
               <input type="checkbox" name="terms" required />
-              By creating an account means you agree to the{" "}
-              <a href="./policy">Terms and Conditions</a>, and our{" "}
-              <a href="./policy">Privacy Policy</a>
+              Tạo một tài khoản có nghĩa là bạn đồng ý với{" "}
+              <a href="./policy">Điều khoản và điều kiện</a>, và{" "}
+              <a href="./policy">Chính sách bảo mật</a> của chúng tôi.
             </label>
           </div>
 
@@ -161,15 +161,15 @@ export default function SignUp() {
               onClick={handleRegister}
               disabled={loading}
             >
-              Sign In
+              Đăng Ký
             </button>
           </div>
 
           <div className="forward-to-signUp">
             <p>
-              Already have an account?
+              Bạn đã có tài khoản?
               <Link to="/Login" className="link-to-signin">
-                Sign In
+                Đăng nhập
               </Link>
             </p>
           </div>

@@ -1,10 +1,11 @@
 .calculate{
     width: 100%;
-    height: 100vh;
-   /* background-image: url('https://i.pinimg.com/originals/1a/a2/00/1aa2008c04d15f46d38b797cb1452ed4.gif'); */
+    min-height: 100vh;
+   background-image: url('https://i.pinimg.com/originals/ca/92/06/ca92068e40ef52cadf49ea1d0a98bf6c.gif');
     background-size: cover;
     background-position: center;
-    background-color: #F4F4F4;
+    font-family: var(--font-arima);
+    padding-bottom: 20px;
     
 }
 
@@ -17,22 +18,24 @@
 
 .calculate-title{
     padding: 40px 0;
-    color: black;
+    color: #E8B86D;
     font-size: 50px;
     font-family: var(--font-playwrite);
     text-shadow: 
-        1.5px 1.5px 0 rgb(139, 26, 26), 
-        -1.5px 1.5px 0 rgb(139, 26, 26), 
+        1.5px 1.5px 0 black, 
+        -1.5px 1.5px 0 black, 
         1.5px -1.5px 0 black, 
-        -1.5px -1.5px 0 black;
-}
+         -1.5px -1.5px 0 black;
+} 
 
 .calculate-board{
     background-color: #FFF;
     padding: 30px 40px;
-    margin: 0 410px 0 410px;
+    margin: 0 300px 200px 300px;
     border-radius: 10px;
     border: 1px solid black;
+    background-color: rgba(240, 234, 243, 0.76);
+    background-image: radial-gradient(#7E60BF, #FFE1FF);
     /* opacity: 0.8; */
 
 }
@@ -40,9 +43,10 @@
     font-weight: normal;
     font-family: var(--font-arima);
     color: rgb(90, 11, 11);
+    margin: 10px;
 }
 
-.form-title{
+/* .form-title{
     color: rgb(188, 187, 187);
     text-shadow: 
         1.5px 1.5px 0 black, 
@@ -50,13 +54,25 @@
         1.5px -1.5px 0 black, 
         -1.5px -1.5px 0 black;
         padding: 10px 0;
+} */
+
+.form-input{
+    /* margin: 10px; */
+}
+.form-input input{
+    width: 150px;
+    height: 35px;
+    border-radius: 5px;
+    padding: 5px;
 }
 
 .label{
     margin: 20px;
+    /* font-weight: bold; */
+  margin-bottom: 4px;
 }
 .form-radio{
-    margin-bottom: 30px;
+    margin: 30px;
 }
 .form-radio input{
     padding-left: 5px;
@@ -66,10 +82,37 @@
     margin: 0 20px 0 20px;
     background-color: white;
     border-radius: 5px;
-    padding: 5px 10px;
+    padding: 10px 15px;
 }
 
 .choose-button:hover{
-    background-color: black;
+    background-color: #6F2074;
     color: aliceblue;
+}
+.calculate-quotes{
+    background-color: white;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    /* margin-top: 30px; */
+    background-color: rgba(255, 255, 255, 0.575);
+}
+.cal-quotes{
+    width: 60%;
+    font-size: 16px;
+    padding: 30px 70px;
+    text-align: left;
+}
+.cal-ui{
+width: 40%;
+padding: 10px;
+}
+
+.cal-img{
+    width: 220px;
+    height: 220px;
+    border-radius: 40%;
+    margin: 0 20px;
+    padding: 15px;
 }

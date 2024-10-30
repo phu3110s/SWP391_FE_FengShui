@@ -52,25 +52,29 @@ export default function AdvertisingList() {
 
     return (
         <div>
-            <div className="blog-container" style={{ backgroundColor: '#FFFFFF', width: '80%', marginLeft: 150 }}>
+            <div className="blog-container" style={{ width: '70%', marginLeft: 240, padding: 20 }}>
                 {blogs.map((blog) => (
-                    <div className="blog-info" key={blog.id}>
+                    <div className="blog-info" key={blog.id} style={{ alignItems: 'center', width: '90%', marginBottom: '40px' }}>
                         <Link className="link-to-detail" to={`/AdvertisingDetail/${blog.id}`}>
                             <img src={blog.urlImg} alt={blog.title} style={{ width: "220px", height: '220px' }} />
-                            <h4>{blog.title}</h4>
-                            <h4>Loại bài đăng:{blog.itemTypeName}</h4>
+                            <h3>{blog.title}</h3>
+                            <h3 style={{ fontWeight: 'normal', fontSize: 16, padding: '4px 20px 10px', textAlign: 'left', fontFamily: '--font-arima', margin: 5 }}
+                            >Loại bài đăng: {blog.itemTypeName}</h3>
+                            <h3 style={{ color: '#B7B7B7' }}>
+                                {blog.price != null ? blog.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }) : 'N/A'}
+                            </h3>
                         </Link>
                     </div>
                 ))}
             </div>
-            <div className="pagination">
+            {/* <div className="pagination">
                 <Pagination
                     current={page}
                     pageSize={size}
                     total={totalPage}
                     onChange={handlePageChange}
                 />
-            </div>
+            </div> */}
         </div>
     )
 }

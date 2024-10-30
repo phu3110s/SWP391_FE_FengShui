@@ -61,7 +61,7 @@ export default function FishAdding() {
         <h1>Tạo giống cá mới ở đây</h1>
         <form onSubmit={handleCreateFish}>
           <div className="gen-fish-material gen-fish-text">
-            <label>Name</label>
+            <label>Tên</label>
             <Input
               type="text"
               value={Name}
@@ -71,7 +71,7 @@ export default function FishAdding() {
             />
           </div>
           <div className="gen-fish-shape gen-fish-text">
-            <label>Color</label>
+            <label>Màu</label>
             <Input
               type="text"
               value={Color}
@@ -81,7 +81,7 @@ export default function FishAdding() {
             />
           </div>
           <div className="gen-fish-waterlevel gen-fish-text">
-            <label>Size</label>
+            <label>Kích cỡ</label>
             <Input
               type="text"
               value={Size}
@@ -91,7 +91,7 @@ export default function FishAdding() {
             />
           </div>
           <div className="gen-fish-description">
-            <label>Description</label>
+            <label>Mô tả</label>
             <Input.TextArea
               type="text"
               value={description}
@@ -100,7 +100,7 @@ export default function FishAdding() {
             />
           </div>
           <div className="gen-fish-img">
-            <label>Upload Image</label>
+            <label>Tải hình ảnh lên</label>
             <br />
             <input
               type="file"

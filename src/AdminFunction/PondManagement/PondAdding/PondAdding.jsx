@@ -1,4 +1,4 @@
-  import { Descriptions, Input, message, Spin } from "antd";
+import { Descriptions, Input, message, Spin } from "antd";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import pondApi from "../../../apis/pondApi";
@@ -25,7 +25,7 @@ export default function PondAdding() {
       const response = await pondApi.createPond(formData, {
         headers: {
           Authorization: `Bearer ${token}`,
-        },  
+        },
       });
       if (response) {
         message.success("Tạo loại hồ thành công");
@@ -60,7 +60,7 @@ export default function PondAdding() {
         <h1>Tạo hồ ở đây</h1>
         <form onSubmit={handleCreatePond}>
           <div className="gen-pond-material gen-pond-text">
-            <label>Material</label>
+            <label>Chất liệu</label>
             <Input
               type="text"
               value={Material}
@@ -70,7 +70,7 @@ export default function PondAdding() {
             />
           </div>
           <div className="gen-pond-shape gen-pond-text">
-            <label>Shape</label>
+            <label>Hình dáng</label>
             <Input
               type="text"
               value={Shape}
@@ -90,7 +90,7 @@ export default function PondAdding() {
             />
           </div>
           <div className="gen-pond-description">
-            <label>Description</label>
+            <label>Mô tả</label>
             <Input.TextArea
               type="text"
               value={description}
@@ -99,7 +99,7 @@ export default function PondAdding() {
             />
           </div>
           <div className="gen-pond-img">
-            <label>Upload Image</label>
+            <label>Tải hình ảnh lên</label>
             <br />
             <input type="file" onChange={handleImageInput} accept="image/*" />
           </div>

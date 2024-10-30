@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import './Calculate.css'
 import { useState } from 'react'
-import Header from '../components/header/Header'
+import Header from '../components/header copy/Header'
+import Footer from '../components/footer copy/Footer'
 import Navigation from '../components/navbar/Navigation'
-import Footer from '../components/footer/Footer'
 import { message, Modal, Spin } from 'antd'
 import fengshuiApi from '../apis/fengshui'
 import userApi from '../apis/userApi'
@@ -136,87 +136,122 @@ export default function Calculate() {
         <>
             <Header />
             <div className='calculate'>
+                <div className='calculate-quotes'>
+                    <div className='cal-quotes'>
+                        <p>
+                            Bạn đã bao giờ tự hỏi mệnh phong thủy của mình ảnh hưởng như thế nào đến không gian sống, đặc biệt là khi nuôi cá Koi hoặc trang trí hồ cá trong nhà?
+                            Trong phong thủy , mỗi người đều mang một mệnh riêng - Kim, Mộc, Thủy, Hỏa, Thổ - và mỗi mệnh lại có sự hòa hợp, tương sinh hoặc xung khắc với các yếu tố khác nhau trong thiên nhiên.
+                            Cá Koi và hồ cá không chỉ mang lại vẻ đẹp và sự yên bình mà còn là biểu tượng của tài lộc, may mắn.
+                        </p><br /><br />
+                        <p>
+                            Tuy nhiên, để tạo nên một không gian phù hợp, việc hiểu rõ về mệnh của mình và cách bày trí hồ cá theo phong thủy là rất quan trọng.
+                            Một hồ cá được bố trí đúng theo mệnh phong thủy không chỉ giúp bạn cảm thấy an yên mà còn kích hoạt nguồn năng lượng tích cực, thu hút vượng khí và thịnh vượng cho gia đình.
+                            Hãy cùng khám phá mệnh phong thủy của bạn để biết cách bày trí hồ cá và lựa chọn cá Koi sao cho thật hài hòa và mang lại tài lộc nhé!
+                        </p><br /><br />
+                        <p>Bạn cần lưu ý rằng việc bày trí hồ cá không đúng cách có thể tạo ra nguồn năng lượng xấu, thậm chí mang lại điều không may.
+                            Hồ cá nên được đặt ở vị trí phù hợp và chọn cá Koi có màu sắc tương sinh với mệnh của gia chủ.
+                            Nếu đặt sai vị trí, chẳng hạn gần bếp hoặc trong phòng ngủ, có thể gây mất cân bằng năng lượng, ảnh hưởng đến sức khỏe và tài lộc.
+                            Vì vậy, hãy tìm hiểu kỹ mệnh phong thủy của mình và tránh những sai lầm để đảm bảo hồ cá thực sự mang lại vượng khí, bình an và thịnh vượng cho gia đình bạn.
+                        </p>
+                    </div>
+                    <div className='cal-ui'>
+                        <img className='cal-img' src='/img/koi-abc.jpg'></img>
+                        <img className='cal-img' src='/img/abcdef.webp'></img>
+                        <img className='cal-img' src='/img/pond-abc.jpg'></img>
+                    </div>
+
+                </div>
                 {/* <img className='cal-background' src='./img/koi-background.jpg' alt=''></img> */}
                 <p className='calculate-title'>Tính mệnh phong thủy</p>
+
                 <div className='calculate-board'>
+
                     {userFengShuiInfo ? (
                         <div className='fengshui-result'>
-                            <h4>Your Feng Shui Element: {userFengShuiInfo.element}</h4>
-                            <h4>Suitable color: {userFengShuiInfo.color}</h4>
-                            <h4>Suitable Direction:{userFengShuiInfo.direction}</h4>
-                            <h4>Lucky Number: {userFengShuiInfo.luckyNumber}</h4>
-                            <h4>Description: {userFengShuiInfo.description}</h4>
+                            <h4>Mệnh của bạn: {userFengShuiInfo.element}</h4>
+                            <h4>Màu phù hợp: {userFengShuiInfo.color}</h4>
+                            <h4>Hướng phù hợp:{userFengShuiInfo.direction}</h4>
+                            <h4>Số may mắn: {userFengShuiInfo.luckyNumber}</h4>
+                            <h4>Mô tả: {userFengShuiInfo.description}</h4>
                         </div>
                     ) : (
                         // Code của người dùng chưa đăng nhập ở đây
                         <>
-                            <h4 className='form-title'>Enter year of birth and select gender</h4>
-                            <div className='form-input'>
-                                <label htmlFor="year-of-birth" className='label'>
-                                    Year of Birth:
-                                </label>
-                                <input
-                                    type="date"
-                                    id="year-of-birth"
-                                    value={birthDate}
-                                    onChange={(e) => setBirthDate(e.target.value)}
-                                    placeholder="Enter your Birth Date"
-                                    className='label'
-                                    required
-                                />
-                            </div>
-
-                            <div className='form-radio'>
-                                <label className='label'>Gender:</label>
-                                <label className='label'>
+                            {/* <h4 className='form-title'>Nhập ngày tháng năm sinh và giới tính của bạn</h4> */}
+                            <div className=''>
+                                <div className='form-input'>
+                                    <label htmlFor="year-of-birth" className='label'>
+                                        Nhập ngày/ tháng/ năm sinh:
+                                    </label>
                                     <input
-                                        type="radio"
-                                        name="gender"
-                                        value="male"
-                                        checked={gender === 'male'}
-                                        onChange={() => setGender('male')}
+                                        type="date"
+                                        id="year-of-birth"
+                                        value={birthDate}
+                                        onChange={(e) => setBirthDate(e.target.value)}
+                                        placeholder="Enter your Birth Date"
+                                        className='label'
+                                        required
                                     />
-                                    &ensp; Male
-                                </label>
-                                <label className='label'>
-                                    <input
-                                        type="radio"
-                                        name="gender"
-                                        value="female"
-                                        checked={gender === 'female'}
-                                        onChange={() => setGender('female')}
-                                    />
-                                    &ensp; Female
-                                </label>
-                            </div>
-
-                            {!loading ? (
-                                <div>
-                                    <button onClick={() => handlePressButtonCalFengShui(birthDate)} className='choose-button'>
-                                        Calculate Your Feng Shui
-                                    </button>
-                                    <button onClick={handleFindSuitablePound} className='choose-button'>
-                                        Find the suitable Pound
-                                    </button>
-                                    <button onClick={handleFindSuitableKoi} className='choose-button'>
-                                        Find the suitable Koi
-                                    </button>
                                 </div>
-                            ) : (
-                                <Spin size='large' style={{ marginTop: 12 }} />
-                            )}
+
+                                <div className='form-radio'>
+                                    <label className='label'>Chọn giới tính:</label>
+                                    <label className='label'>
+                                        <input
+                                            type="radio"
+                                            name="gender"
+                                            value="male"
+                                            checked={gender === 'male'}
+                                            onChange={() => setGender('male')}
+                                        />
+                                        &ensp; Nam
+                                    </label>
+                                    <label className='label'>
+                                        <input
+                                            type="radio"
+                                            name="gender"
+                                            value="female"
+                                            checked={gender === 'female'}
+                                            onChange={() => setGender('female')}
+                                        />
+                                        &ensp; Nữ
+                                    </label>
+                                </div>
+
+                                {!loading ? (
+                                    <div>
+                                        <button onClick={() => handlePressButtonCalFengShui(birthDate)} className='choose-button'>
+                                            Tính mệnh phong thủy
+                                        </button>
+                                        <button onClick={handleFindSuitablePound} className='choose-button'>
+                                            Tìm hồ cá phù hợp
+                                        </button>
+                                        <button onClick={handleFindSuitableKoi} className='choose-button'>
+                                            Tìm cá Koi phù hợp
+                                        </button>
+                                    </div>
+                                ) : (
+                                    <Spin size='large' style={{ marginTop: 12 }} />
+                                )}
+                            </div>
+
+
                         </>
                     )}
 
-                    <Modal title="Your Feng Shui Info" visible={isVisible} onOk={handleOK} onCancel={handleOK}>
-                        <h4>Your Feng Shui Element: {guestElementInfo.element}</h4>
-                        <h4>Suitable color: {guestElementInfo.color}</h4>
-                        <h4>Suitable Direction:{guestElementInfo.direction}</h4>
-                        <h4>Lucky Number: {guestElementInfo.luckyNumber}</h4>
-                        <h4>Description: {guestElementInfo.description}</h4>
+                    <Modal className='fengshui-result' title="Thông tin mệnh của bạn" visible={isVisible} onOk={handleOK} onCancel={handleOK}>
+                        <h4>Mệnh của bạn: {guestElementInfo.element}</h4>
+                        <h4>Màu phù hợp: {guestElementInfo.color}</h4>
+                        <h4>Hướng phù hợp:{guestElementInfo.direction}</h4>
+                        <h4>Số may mắn: {guestElementInfo.luckyNumber}</h4>
+                        <h4>Mô tả: {guestElementInfo.description}</h4>
                     </Modal>
                 </div>
+
+
+
             </div>
+
             <Footer />
         </>
     );

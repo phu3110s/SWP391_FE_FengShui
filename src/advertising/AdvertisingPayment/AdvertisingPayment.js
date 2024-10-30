@@ -176,7 +176,7 @@ export default function AdvertisingPayment() {
                         <div className="form-left">
                             <div className="posting-blog-inputImage">
                                 <label style={{ fontSize: 20 }}>Tải hình ảnh lên</label><br /><br />
-                                <p>Share photos or a video</p><br />
+                                <p>Chia sẻ hình ảnh của bạn</p><br />
                                 <input type="file" onChange={handleImageInput} accept="image/*" />
                                 {image && (
                                     <div style={{ marginTop: '10px' }}>

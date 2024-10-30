@@ -1,7 +1,7 @@
 .blog-container {
   width: 80%;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 15px; 
   max-width: 1900px;
   margin-left: 150px;
@@ -9,11 +9,10 @@
 }
 
 .blog-info {
-  border: 0.5px solid rgb(182, 180, 180);
   border-radius: 8px;
   padding: 10px 20px; 
   background-color: #fff;
-  box-shadow: 0 4px 12px rgb(182, 180, 180); 
+  
   /* transition: transform 0.3s ease, box-shadow 0.3s ease; */
   align-items: center;
   height: fit-content;
@@ -22,6 +21,8 @@
 .blog-info:hover {
   transform: translateY(-5px);
   box-shadow: 0 6px 18px rgba(252, 127, 55, 0.5);
+  border: 0.5px solid rgb(182, 180, 180);
+  /* box-shadow: 0 4px 12px rgb(182, 180, 180);  */
   
 }
 /* .blog-info:hover h4{

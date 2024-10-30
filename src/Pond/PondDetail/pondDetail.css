@@ -33,7 +33,7 @@
 }
 
 .pond-detail img {
-  max-width: 300px; 
+  width: 100%; 
   height: auto; 
   border-radius: 8px;
   border: 2px solid #f0f0f0; 

@@ -24,8 +24,8 @@ const FishViewing = () => {
   const [loading, setLoading] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [selectedFish, setSelectedFish] = useState(null);
-  const [searchText,setSearchText] = useState("")
-  const [filter,setFilter] = useState([])
+  const [searchText, setSearchText] = useState("")
+  const [filter, setFilter] = useState([])
   const [updateData, setUpdateData] = useState({
     name: "",
     color: "",
@@ -180,7 +180,7 @@ const FishViewing = () => {
         <div className="action-buttons">
           <Button
             type="primary"
-            style={{ backgroundColor: '#1890ff', borderColor: '#1890ff', marginBottom:15 }}
+            style={{ backgroundColor: '#1890ff', borderColor: '#1890ff', marginBottom: 15 }}
             onClick={() => handleUpdateFish(fish)}
             icon={<EditOutlined />}
 
@@ -205,10 +205,10 @@ const FishViewing = () => {
   const handlePageChange = (pagination) => {
     setPage(pagination.current);
   };
-  useEffect(()=>{
-    const filtered = fishList.filter((fish)=>fish.name.toLowerCase().includes((searchText || "").toLowerCase()))
+  useEffect(() => {
+    const filtered = fishList.filter((fish) => fish.name.toLowerCase().includes((searchText || "").toLowerCase()))
     setFilter(filtered)
-  },[searchText,fishList])
+  }, [searchText, fishList])
   return (
     <div>
       <h1> Danh Sách Cá</h1>
@@ -225,7 +225,7 @@ const FishViewing = () => {
       <Table
         className="table"
         columns={columns}
-        dataSource={filter.map((fish)=>({ ... fish,key:fish.id}))}
+        dataSource={filter.map((fish) => ({ ...fish, key: fish.id }))}
         pagination={{
           current: page,
           pageSize: size,
@@ -299,16 +299,16 @@ const FishViewing = () => {
             ) : (
               <div>
                 <p>
-                  <strong>Name:</strong> {selectedFish.name}
+                  <strong>Tên:</strong> {selectedFish.name}
                 </p>
                 <p>
-                  <strong>Size:</strong> {selectedFish.size}
+                  <strong>Kích cỡ:</strong> {selectedFish.size}
                 </p>
                 <p>
-                  <strong>Color:</strong> {selectedFish.color}
+                  <strong>Màu:</strong> {selectedFish.color}
                 </p>
                 <p>
-                  <strong>Description:</strong> {selectedFish.description}
+                  <strong>Mô tả:</strong> {selectedFish.description}
                 </p>
                 <div className="popup-image">
                   <img src={selectedFish.urlImg} alt="Fish" />

@@ -106,7 +106,7 @@ const HarmonyList = () => {
 
   return (
     <div className="container">
-      <h2>Harmony List</h2>
+      <h2>Danh sách hòa hợp</h2>
       <div className="select-info-container">
         <div className="select-item">
           <Form.Item label="Chọn loại hồ">
@@ -184,12 +184,12 @@ const HarmonyList = () => {
                   bordered={false}
                   className="custom-card"
                 >
-                  <p><strong>Fish Details:</strong></p>
+                  <p><strong>Chi tiết cá:</strong></p>
                   <FishDetail fishId={harmony.fishId} />
-                  <p><strong>Pond Details:</strong></p>
+                  <p><strong>Chi tiết hồ:</strong></p>
                   <PondDetail pondId={harmony.pondId} />
-                  <p><strong>Harmony Point:</strong> {harmony.point}</p>
-                  <p><strong>Description:</strong> {harmony.description}</p>
+                  <p><strong>Điểm hòa hợp:</strong> {harmony.point}</p>
+                  <p><strong>Mô tả:</strong> {harmony.description}</p>
                 </Card>
               </Col>
             ))}

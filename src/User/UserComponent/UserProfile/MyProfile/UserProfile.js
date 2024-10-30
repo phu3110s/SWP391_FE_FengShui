@@ -223,7 +223,7 @@ export default function UserProfile() {
             //               </h3>
             //             </>
             <Button onClick={handleEditClick} type="default">
-              Edit Profile
+              Chỉnh sửa trang cá nhân
             </Button>
           )}
 
@@ -241,7 +241,7 @@ export default function UserProfile() {
             {isEditing ? (
               <>
                 <h3>
-                  Full Name:{" "}<br />
+                  Họ và tên:{" "}<br />
                   <Input
                     className="input-edit"
                     name="fullName"
@@ -260,20 +260,20 @@ export default function UserProfile() {
                 </h3>
 
                 <h3>
-                  Gender:{" "} <br />
+                  Giới tính:{" "} <br />
                   <Radio.Group
                     className='radio-gender'
                     name="gender"
                     onChange={handleGenderChange}
                     value={formData.gender}
                   >
-                    <Radio value="Male">Male</Radio>
-                    <Radio value="Female">Female</Radio>
-                    <Radio value="Other">Other</Radio>
+                    <Radio value="Male">Nam</Radio>
+                    <Radio value="Female">Nữ</Radio>
+                    <Radio value="Other">Khác</Radio>
                   </Radio.Group>
                 </h3>
                 <h3>
-                  Birthdate:{" "} <br />
+                  Ngày sinh:{" "} <br />
                   <Input
                     className="input-edit"
                     type="date"
@@ -298,7 +298,7 @@ export default function UserProfile() {
                 </tr>
 
                 <tr className="cart-content">
-                  <td className='cart-item'>Password: </td>
+                  <td className='cart-item'>Mật khẩu: </td>
                   <td className='cart-item'>********</td>
                   <td className='cart-item'>
                     <Button style={{ backgroundColor: 'white', color: 'black' }}
