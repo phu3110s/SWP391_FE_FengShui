@@ -83,24 +83,25 @@ export default function BlogApprove() {
   if (error) return <p>Error: {error}</p>;
   return (
     <div style={{ width: '100%' }}>
-      <h1 style={{ backgroundColor: '#FFFFF' }}>Những bài blog đang chờ duyệt</h1>
-      <div className="blog-container" style={{ backgroundColor: '#FFFFF' }}>
+      <h1 style={{ fontFamily: 'var(--font-playwrite)', marginBottom: '30px' }}>Những bài blog đang chờ duyệt</h1>
+      <div className="blog-container" style={{ width: '100%', margin: 0 }}>
         {blogs.map((blog) => (
-          <div className="blog-info" key={blog.id}>
-            <h2>{blog.title}</h2>
+          <div className="blog-info" key={blog.id} style={{ width: '100%', height: ' 550px' }}>
+
             <img src={blog.urlImg} width="100%" alt={blog.title} />
+            <h2>{blog.title}</h2>
             <h3>{blog.description}</h3>
-            <p>Author: {blog.userInfo.fullName}</p>
+            <p>Tác giả: {blog.userInfo.fullName}</p>
             <div className="action-buttons">
               <Button
                 type="primary"
                 onClick={() => showConfirm(blog.id, "Approved")}
                 style={{ marginRight: "10px" }}
               >
-                Approve
+                Chấp nhận
               </Button>
               <Button type="danger" onClick={() => showConfirm(blog.id, "Rejected")}>
-                Reject
+                Từ chối
               </Button>
             </div>
           </div>

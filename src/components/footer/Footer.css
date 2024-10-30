@@ -1,24 +1,55 @@
 .footer{
-    /* position: absolute;
-    bottom: 0; */
-    /* position: fixed; */
-    bottom:0;
     width: 100%;
-    background-color: #FCFDF4;
-    background-size: cover;
-    background-position: center;
-    padding: 10px 0;
-    height: auto;
-    font-size: 15px;
-}
-.footer-infor{
-    text-align: left;
-    color: black;
-    margin-left: 45%;
-}
+    display: flex;
+    align-items: center;
+    padding: 50px 10px;
+    /* background-image: linear-gradient(#F1EDDC, white); */
+    background-color: #6F2074;
 
-.copyright{
-    text-align: left;
-    color: black;
-    margin-left: 45%;
-}
+    color: white;
+    font-family: var(--font-arima);
+    font-size: 17px;
+    
+    }
+    .footer-infor{
+        text-align: left;
+        padding-left: 5%;
+        width: 33%;
+    }
+    
+    .footer-infor1{
+        width: 33%;
+    }
+    
+    .footer-infor2{
+        width: 33%;
+    }
+    .signup-footer{
+        text-align: center;
+        /* background-color: #F6EFBD; */
+        background-color: #7E60BF;
+        padding: 25px 17px;
+        border-radius: 10px;
+        width: 80%;
+        color: black;
+    }
+    .button-cal{
+        width: 30%;
+        background-color: whitesmoke;
+        border-radius: 10px;
+        margin-left: 110px;
+        margin-top: 15px;
+        padding: 8px 12px;
+        font-size: 15px;
+    }
+    .button-cal:hover{
+        /* border: 1.5px solid gray; */
+        background-color: black;
+    }
+    .button-cal:hover a{
+        color: white;
+    }
+    .signup-footer a{
+        text-decoration: none;
+        color: black;
+    }

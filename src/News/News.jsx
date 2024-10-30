@@ -18,33 +18,43 @@ function News() {
           className={`tab-item ${activeTab === 0 ? "active" : ""}`}
           onClick={() => handleTabClick(0)}
         >
-          News 1
+          Tin 1
         </div>
         <div
           className={`tab-item ${activeTab === 1 ? "active" : ""}`}
           onClick={() => handleTabClick(1)}
         >
-          News 2
+          Tin 2
         </div>
         <div
           className={`tab-item ${activeTab === 2 ? "active" : ""}`}
           onClick={() => handleTabClick(2)}
         >
-          News 3
+          Tin 3
         </div>
         <div
           className={`tab-item ${activeTab === 3 ? "active" : ""}`}
           onClick={() => handleTabClick(3)}
         >
-          News 4
+          Tin 4
         </div>
         <div className="line"></div>
       </div>
 
       <div className="tab-content">
         <div className={`tab-pane ${activeTab === 0 ? "active" : ""}`}>
-          <h2>News 1</h2>
-          <h4>How To Care For Your Koi Fish After Receiving It</h4>
+          <h2>Các Loại Cá Koi Phổ Biến và Đặc Điểm Nổi Bật</h2>
+          <h4>Khám Phá Các Loại Cá Koi Được Ưa Chuộng Nhất Hiện Nay</h4>
+          <p>Cá Koi không chỉ thu hút bởi vẻ đẹp rực rỡ mà còn bởi sự đa dạng về chủng loại, mỗi loại có màu sắc, hoa văn và đặc điểm riêng biệt. Dưới đây là một số loại cá Koi phổ biến và nổi bật trong các ao cá cảnh hiện nay:<br />
+            1. Kohaku: Đây là loại cá Koi nổi tiếng nhất với màu sắc trắng và đỏ. Kohaku có màu nền trắng tinh khiết, điểm thêm các mảng màu đỏ, được xem là biểu tượng của sự tinh khiết và thịnh vượng.<br />
+            2. Taisho Sanke: Loại cá Koi này là sự kết hợp của ba màu: trắng, đỏ và đen. Ra đời vào đầu thế kỷ 20, Taisho Sanke còn được gọi là “Sanke,” thường được xem là một trong ba loại cá Koi cổ điển, tượng trưng cho sự hòa hợp và cân bằng.<br />
+            3. Showa Sanshoku: Tương tự như Taisho Sanke, nhưng Showa Sanshoku có nền màu đen với các mảng màu trắng và đỏ. Loại cá này được ưa chuộng nhờ vẻ ngoài ấn tượng và độc đáo, thường mang ý nghĩa của sự bền vững và khả năng vượt qua thử thách.<br />
+            4. Asagi: Đây là loại cá Koi cổ điển với màu nền xanh lơ đặc trưng, có hoa văn dạng lưới trên lưng. Asagi đại diện cho sự điềm tĩnh và trí tuệ, được yêu thích bởi vẻ đẹp thanh thoát và tao nhã.<br />
+            5. Tancho: Tancho có đặc điểm nổi bật là một đốm đỏ tròn trên đầu, tượng trưng cho mặt trời mọc của Nhật Bản. Loại cá này rất quý hiếm và được coi là may mắn, mang đến nhiều điều tốt lành cho gia chủ.<br />
+            6. Utsuri: Utsuri bao gồm các loại như Hi Utsuri (đỏ đen), Ki Utsuri (vàng đen), và Shiro Utsuri (trắng đen). Loại cá này thường có các mảng màu tương phản rõ nét, tạo nên vẻ đẹp huyền bí và cuốn hút.<br />
+            Mỗi loại cá Koi không chỉ khác nhau về màu sắc mà còn mang những ý nghĩa văn hóa và phong thủy khác nhau. Khi nuôi cá Koi, việc chọn loại cá phù hợp không chỉ giúp tăng giá trị thẩm mỹ mà còn mang đến năng lượng tích cực và tài lộc cho không gian sống.
+
+          </p>
 
         </div>
         <div className={`tab-pane ${activeTab === 1 ? "active" : ""}`}>

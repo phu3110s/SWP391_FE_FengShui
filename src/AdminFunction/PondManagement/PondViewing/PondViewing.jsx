@@ -32,7 +32,7 @@ const PondViewing = () => {
     waterLevel: "",
     description: "",
   });
-  
+
   const [image, setImage] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
   const handleImageInput = (e) => {
@@ -66,10 +66,10 @@ const PondViewing = () => {
     }
   };
   useEffect(() => {
-    
+
 
     fetchData();
-  }, [page, size],[isEditing]);
+  }, [page, size], [isEditing]);
   const handleDeletePond = async (pondId) => {
     try {
       await pondApi.deletePond(pondId, {
@@ -148,7 +148,7 @@ const PondViewing = () => {
         <div className="action-buttons">
           <Button
             type="primary"
-            style={{ backgroundColor: '#1890ff', borderColor: '#1890ff', marginBottom:15 }}
+            style={{ backgroundColor: '#1890ff', borderColor: '#1890ff', marginBottom: 15 }}
             onClick={() => handleUpdatePond(pond)}
             icon={<EditOutlined />}
 
@@ -186,7 +186,7 @@ const PondViewing = () => {
               Authorization: `Bearer ${token}`,
             },
           }
-        ); 
+        );
       }
       message.success("Cập nhật thành công!", 5);
       setIsModalVisible(false);
@@ -198,14 +198,14 @@ const PondViewing = () => {
       setLoading(false);
     }
   };
-  useEffect(()=>{
-    const filtered = PondList.filter((pond)=>pond.material.toLowerCase().includes((searchText || "").toLowerCase()))
+  useEffect(() => {
+    const filtered = PondList.filter((pond) => pond.material.toLowerCase().includes((searchText || "").toLowerCase()))
     setFilter(filtered)
-  },[searchText,PondList])
+  }, [searchText, PondList])
   const handlePageChange = (e) => {
     setPage(e.current);
   };
-  if(loading) return <Spin size="big" />
+  if (loading) return <Spin size="big" />
   return (
     <div>
       <h1>Admin - Danh Sách Hồ</h1>
@@ -222,7 +222,7 @@ const PondViewing = () => {
       <Table
         className="table"
         columns={columns}
-        dataSource={filter.map((pond)=>({...pond,key:pond.id}))}
+        dataSource={filter.map((pond) => ({ ...pond, key: pond.id }))}
         pagination={{
           current: page,
           pageSize: size,
@@ -295,16 +295,16 @@ const PondViewing = () => {
             ) : (
               <div>
                 <p>
-                  <strong>Material:</strong> {selectedPond.material}
+                  <strong>Chất liệu:</strong> {selectedPond.material}
                 </p>
                 <p>
-                  <strong>Shape:</strong> {selectedPond.shape}
+                  <strong>Hình dáng:</strong> {selectedPond.shape}
                 </p>
                 <p>
-                  <strong>Water Level:</strong> {selectedPond.waterLevel}
+                  <strong>Mật độ nước:</strong> {selectedPond.waterLevel}
                 </p>
                 <p>
-                  <strong>Description:</strong> {selectedPond.description}
+                  <strong>Mô tả:</strong> {selectedPond.description}
                 </p>
                 <div className="popup-image">
                   <img src={selectedPond.urlImg} alt="Pond" />

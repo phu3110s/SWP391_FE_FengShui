@@ -1,9 +1,9 @@
-.header-form{
+.header-form-cal{
     width: 100%;
     height: 60px;
     display: flex;
     align-items: center;
-    /* background-image: linear-gradient(#F1EDDC, white); */
+    /* background-image: linear-gradient(#6F2074, white); */
     background-color: #6F2074;
     background-size: cover;
     background-position: center;
@@ -11,7 +11,7 @@
     font-family: var(--font-arima);
 }
 
-.home-logo{
+.cal-home-logo{
     width: 55px;
     height: 40px;
     display: flex;
@@ -20,45 +20,45 @@
     padding: 0;
     margin-left: 50px;
     border-radius: 50%;
-    background-color: white;
+    /* background-color: white; */
     border: 2px solid white;
 }
 
-.home-logo {
+.cal-home-logo {
   display: flex;
   justify-content: center;
-  margin-top: 45px;
+  margin-top: 10px;
 }
 
-.logo-home{
+.cal-logo-home{
     width: 50%;
     height: auto;
 }
 
-.list-active-form{
+.cal-list-active-form{
     width: 70%;
 }
 
-.list-active{
+.cal-list-active{
     width: auto;
     text-align: left;
 }
 
-.active{
+.cal-active{
     color: white;
     display: inline;
     padding: 0 25px;
-    font-size: 15.5px;
+    font-size: 17px;
     
 }
-.active a{
+.cal-active a{
     color: white;
 }
-.active menu{
+.cal-active menu{
     background-color: pink;
 }
 
-.link{
+.cal-link{
     text-decoration: none;
     color: black;
     text-align: right;
@@ -67,7 +67,7 @@
 
 }
 
-.button-link-signin{
+.cal-button-link-signin{
     background-color: #FFFFFF;
     color: black;
     display: inline;
@@ -79,16 +79,16 @@
     white-space: nowrap;
 }
 
-.button-link-signin:hover{
+.cal-button-link-signin:hover{
     background-color: #CAF4FF;
 }
 
-.link_to_signin{
+.cal-link_to_signin{
     text-decoration:none;
     color: black;
 }
 
-.button-link-login{
+.cal-button-link-login{
     background-color: #FFFFFF;
     color: black;
     display: inline;
@@ -99,21 +99,21 @@
     border-radius: 10px;
 }
 
-.button-link-login:hover{
+.cal-button-link-login:hover{
     background-color: #CAF4FF;
 }
 
-.link_to_login{
+.cal-link_to_login{
     text-decoration:none;
     color: black;
 }
-.login-form-avt{
+.cal-login-form-avt{
     display: inline;
     width: 25%;
 }
-.authorization-box{
+.cal-authorization-box{
     text-align: right;
 }
-.div-avata{
+.cal-div-avata{
     margin-right: 20px;
 }

@@ -4,7 +4,12 @@
     display: flex;
     align-items: center;
     text-align: center;
-    background-color: #F4F4F4;
+    background-image: linear-gradient(#FFF, #fcf4f4, #F6E6CB);
+    /* background-color: #F4F4F4; */
+    /* background-image: url('https://i.pinimg.com/originals/36/25/dc/3625dc729cef05e4e8dc75f94e696262.gif'); */
+    background-size: cover;
+    background-position: center;
+    font-family: var(--font-arima);
     
 }
 
@@ -28,11 +33,11 @@
     width: 50%;
     align-items: center;
     text-align: center;
-    border: 1px solid rgb(186, 186, 186);
+    border: 1px solid rgb(120, 166, 196);
     padding: 20px;
     position: absolute;
     margin-left: 26%;
-    background-color: #FFFF;
+    /* background-color: rgba(198, 236, 253, 0.5); */
     border-radius: 20px;
     padding-bottom: 35px;
 }
@@ -42,6 +47,7 @@
 }
 
 .title-welcome{
+    /* font-family: var(--font-arima); */
     color: black;
     text-align: center;
     font-weight: bold;
@@ -68,7 +74,8 @@
     height: 40px;
     justify-content: space-between;
     border-radius: 10px;
-    background-color: #EDF2F7;
+    background-color: white;
+    padding: 10px;
 }
 
 .input-field:hover{

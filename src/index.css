@@ -3,6 +3,8 @@
 :root{
   --font-playwrite: "Playwrite GB S", cursive;
   --font-arima: "Arima", system-ui;
+  --font-finger: "Finger Paint", sans-serif;
+  --font-sansita: "Sansita Swashed", system-ui;
 }
 body {
   margin: 0;

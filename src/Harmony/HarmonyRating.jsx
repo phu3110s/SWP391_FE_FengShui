@@ -127,7 +127,7 @@ export default function HarmonyRating() {
           src="./img/koi-background.jpg"
           alt=""
         ></img> */}
-        <h2 className="rating-title">Harmony Rating System</h2>
+        <h2 className="rating-title">Hệ thống đánh giá sự hòa hợp</h2>
         <div className="picking-box">
           <Form layout="vertical" onFinish={handlePressButton}>
             <div className="picking-fish-box">
