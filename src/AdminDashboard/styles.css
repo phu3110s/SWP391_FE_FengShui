@@ -11,6 +11,7 @@ body, html {
 }
 
 .admin-dashboard {
+  font-family: 'Comfortaa', sans-serif;
   display: flex;
   min-height: 100vh;
   background-color: #F4F7FE;
@@ -19,6 +20,7 @@ body, html {
 /* ====================================== SIDE BAR ============================= */
 
 .sidebar {
+  font-family: 'Comfortaa', sans-serif;
   width: 250px; 
   height: 100vh; 
   background-color:#0f1537; 

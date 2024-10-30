@@ -5,6 +5,9 @@ import { Input, message, Spin } from "antd";
 import { EyeTwoTone, EyeInvisibleOutlined } from "@ant-design/icons";
 // import { login } from "../apis/auth";
 import userApi from "../apis/userApi";
+import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -44,7 +47,7 @@ export default function Login() {
           navigate("/");
         }
       },700)
-      message.success("login thành công")
+      toast.success("Đăng nhập thành công!", { position: "top-right", autoClose: 6000 });
     } catch (error) {
       if (error.response) {
         const { data, status } = error.response;
@@ -141,6 +144,7 @@ export default function Login() {
           </p>
         </div>
       </div>
+      <ToastContainer />
     </div>
     
     </div>

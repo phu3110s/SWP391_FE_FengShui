@@ -117,22 +117,22 @@ const PondViewing = () => {
   };
   const columns = [
     {
-      title: "Material",
+      title: "Chất liệu",
       dataIndex: "material",
       key: "material",
     },
     {
-      title: "Shape",
+      title: "Hình dáng",
       dataIndex: "shape",
       key: "shape",
     },
     {
-      title: "Water Level",
+      title: "Mực nước",
       dataIndex: "waterLevel",
       key: "Water Level",
     },
     {
-      title: "Description",
+      title: "Chi tiết",
       dataIndex: "description",
       key: "description",
       render: (_, Pond) => (
@@ -295,16 +295,16 @@ const PondViewing = () => {
             ) : (
               <div>
                 <p>
-                  <strong>Material:</strong> {selectedPond.material}
+                  <strong>Chất liệu:</strong> {selectedPond.material}
                 </p>
                 <p>
-                  <strong>Shape:</strong> {selectedPond.shape}
+                  <strong>Hình dáng:</strong> {selectedPond.shape}
                 </p>
                 <p>
-                  <strong>Water Level:</strong> {selectedPond.waterLevel}
+                  <strong>Mực nước:</strong> {selectedPond.waterLevel}
                 </p>
                 <p>
-                  <strong>Description:</strong> {selectedPond.description}
+                  <strong>Chi tiết:</strong> {selectedPond.description}
                 </p>
                 <div className="popup-image">
                   <img src={selectedPond.urlImg} alt="Pond" />

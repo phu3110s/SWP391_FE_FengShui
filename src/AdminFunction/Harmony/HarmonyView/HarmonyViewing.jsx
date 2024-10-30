@@ -58,7 +58,12 @@ const HarmonyList = () => {
 
   const fetchHarmonies = async () => {
     try {
-      const response = await harmonyApi.getAllHarmony(selectedFish, selectedPond, page, size);
+      const response = await harmonyApi.getAllHarmony(
+        selectedFish,
+        selectedPond,
+        page,
+        size
+      );
       setHarmonies(response.data.items);
     } catch (error) {
       message.error("Lỗi");
@@ -84,11 +89,17 @@ const HarmonyList = () => {
   const handleSearch = () => {
     const fetchHarmonies = async () => {
       try {
-        const response = await harmonyApi.getHarmonyRating(selectedFish, selectedPond, page, size, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await harmonyApi.getHarmonyRating(
+          selectedFish,
+          selectedPond,
+          page,
+          size,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         setHarmonies(response.data.items);
       } catch (error) {
         message.error("Lỗi");
@@ -130,7 +141,12 @@ const HarmonyList = () => {
               <p>Hình dạng: {selectedPondDetails.shape}</p>
               <p>Mực nước tối đa: {selectedPondDetails.waterLevel}</p>
               <p>Mô tả: {selectedPondDetails.description}</p>
-              <img src={selectedPondDetails.urlImg} width={389} height={389} alt="Pond" />
+              <img
+                src={selectedPondDetails.urlImg}
+                width={389}
+                height={389}
+                alt="Pond"
+              />
             </div>
           )}
         </div>
@@ -157,7 +173,12 @@ const HarmonyList = () => {
               <p>Màu sắc: {selectedFishDetails.color}</p>
               <p>Kích thước: {selectedFishDetails.size}</p>
               <p>Mô tả: {selectedFishDetails.description}</p>
-              <img src={selectedFishDetails.urlImg} width={389} height={389} alt="Fish" />
+              <img
+                src={selectedFishDetails.urlImg}
+                width={389}
+                height={389}
+                alt="Fish"
+              />
             </div>
           )}
         </div>
@@ -184,12 +205,40 @@ const HarmonyList = () => {
                   bordered={false}
                   className="custom-card"
                 >
-                  <p><strong>Fish Details:</strong></p>
+                  <p>
+                    <strong>Thông tin về cá:</strong>
+                  </p>
                   <FishDetail fishId={harmony.fishId} />
-                  <p><strong>Pond Details:</strong></p>
+                  <p>
+                    <strong>Thông tin về hồ:</strong>
+                  </p>
                   <PondDetail pondId={harmony.pondId} />
-                  <p><strong>Harmony Point:</strong> {harmony.point}</p>
-                  <p><strong>Description:</strong> {harmony.description}</p>
+                  <p>
+                    <strong>Độ tương thích:</strong>
+                    {/* {harmony.point} */}
+                  </p>
+                  <div className="harmony-bar-wrap">
+                    <div
+                      style={{
+                        "--harmony-point": `${harmony.point}%`,
+                        "--harmony-color":
+                          harmony.point < 40
+                            ? "#f44336"
+                            : harmony.point < 80
+                            ? "#ffeb3b"
+                            : "#4caf50",
+                        "--harmony-text-color":
+                          harmony.point < 80 ? "black" : "white",
+                      }}
+                      className="harmony-rating-bar"
+                    >
+                      <p id="harmony-point">{harmony.point}%</p>
+                    </div>
+                  </div>
+
+                  <p>
+                    <strong>Mô tả:</strong> {harmony.description}
+                  </p>
                 </Card>
               </Col>
             ))}
