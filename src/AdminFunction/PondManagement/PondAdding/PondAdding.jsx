@@ -67,6 +67,7 @@ export default function PondAdding() {
         <form onSubmit={handleCreatePond}>
           <div className="gen-pond-material gen-pond-text">
             <label>Vật liệu xây dựng hồ cá</label>
+
             <Input
               type="text"
               value={Material}

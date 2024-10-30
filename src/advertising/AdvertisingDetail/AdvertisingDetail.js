@@ -13,6 +13,7 @@ export default function AdvertisingDetail() {
     const [advertisings, setAdvertisings] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+
     useEffect(() => {
         const fetchBlogDetail = async () => {
             setLoading(true);
@@ -53,10 +54,10 @@ export default function AdvertisingDetail() {
                     <img src={advertisings.urlImg} alt={advertisings.title} />
                 </div>
                 <div className="product-detail-in4">
-                    <h2>{advertisings.title}</h2> <br />
+                    <h2 >{advertisings.title}</h2> <br />
                     <p>Ngày đăng: {advertisings.createAt}</p> <br />
-                    <p>Giá: {advertisings.price}</p>
-                    <p>Loại bài đăng: {advertisings.itemTypeName}</p>
+                    <p>Giá: {(advertisings.price).toLocaleString('vi-VN')} VND</p><br />
+                    <p>Loại bài đăng: {advertisings.itemTypeName}</p><br /> <br />
 
                     <h4>Mô tả chi tiết</h4> <br />
                     <p>{advertisings.description}</p>

@@ -47,7 +47,7 @@ const BlogList = () => {
   };
   useEffect(() => {
     fetchBlogs();
-  }, [page,size]);
+  }, [page, size]);
   if (loading) return <Spin size="Big" style={{ margin: 8 }} />;
   if (error) return <p>Lỗi: {error}</p>;
 
@@ -56,13 +56,13 @@ const BlogList = () => {
       <Header />
       <Navigation />
       {/* Blog List */}
-      <div className="blog-container" style={{ backgroundColor: '#FFFFFF', width: '80%', marginLeft: 150 }}>
+      <div className="blog-container" style={{ width: '70%', marginLeft: 240 }}>
         {blogs.map((blog) => (
-          <div className="blog-info" key={blog.id}>
+          <div className="blog-info" key={blog.id} style={{ alignItems: 'center', width: '90%', marginBottom: '40px' }}>
             <Link className="link-to-detail" to={`/blogs/${blog.id}`}>
               <img src={blog.urlImg} alt={blog.title} style={{ width: "220px", height: '220px' }} />
               <h4 style={{ fontWeight: 'normal', fontSize: 16, padding: '4px 20px 10px', textAlign: 'left' }}>{blog.title}</h4>
-              <p style={{ padding: ' 5px 20px' }}>Author: {blog.userInfo.fullName}</p>
+              <p style={{ padding: ' 5px 20px' }}>Tác giả: {blog.userInfo.fullName}</p>
             </Link>
           </div>
         ))}
@@ -75,7 +75,7 @@ const BlogList = () => {
           onChange={handlePageChange}
         />
       </div>
-      <Footer/>
+      <Footer />
 
     </div>
   );

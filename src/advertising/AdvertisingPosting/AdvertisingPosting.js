@@ -55,6 +55,35 @@ export default function AdvertisingPosting() {
   const handleSubmitPost = async (e) => {
     e.preventDefault();
 
+
+        try {
+            const response = await postingApi.uploadAdvertisings(formData, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
+            });
+            // if (response.status === 201) {
+            //     message.success("Đăng bài thành công. Chờ duyệt");
+            //     const paymentData = {
+            //         advertisingId: response.data.id,
+            //         paymentPlanId: paymentPlanId,
+            //         description: response.data.description,
+            //         returnUrl: 'https://swp-391-fe-feng-shui-beta.vercel.app/MyAdvertising',
+            //         canceUrl: 'https://swp-391-fe-feng-shui-beta.vercel.app/MyAdvertising'
+            //     };
+
+            const url = window.location.origin;
+            if (response.status === 201) {
+                message.success("Đăng bài thành công. Chờ duyệt");
+                const paymentData = {
+                    advertisingId: response.data.id,
+                    paymentPlanId: paymentPlanId,
+                    description: response.data.description,
+                    returnUrl: `${url}/MyAdvertising`,
+                    canceUrl: `${url}/MyAdvertising`
+                };
+                console.log(paymentData);
+
     setLoading(true);
     const formData = new FormData();
     formData.append("Title", title);
@@ -64,6 +93,7 @@ export default function AdvertisingPosting() {
     formData.append("ItemTypeName", itemTypeName);
     formData.append("PaymentPlanId", paymentPlanId);
     formData.append("Price", price);
+
 
     try {
       const response = await postingApi.uploadAdvertisings(formData, {
@@ -155,8 +185,12 @@ export default function AdvertisingPosting() {
                         style={{ maxWidth: "100%", marginTop: "10px" }}
                       />
                     </div>
+
+                    <p className="see-more-text"> Xem thêm <Link target='_blank' to='/policy'>Quy định đăng tin</Link> để đăng bài một cách tốt nhất.</p>
+
                   )}
                 </div>
+
 
               </div>
             </div>

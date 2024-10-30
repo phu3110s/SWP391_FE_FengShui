@@ -46,13 +46,13 @@ const NewBlog = () => {
   return (
     <div className="new-blog" style={{ width: '100%', backgroundColor: '#F4F7FE' }}>
       <div className="advertising-posting-home">
-        <h4>Bài quảng cáo</h4>
+        <h4 style={{ textAlign: 'center' }}>Bài quảng cáo</h4>
         <AdvertisingList />
       </div>
-      <h4>Các Blogs chia sẻ thông tin cá Koi</h4>
-      <div className="blog-container" style={{ backgroundColor: '#FFFFFF', width: '80%', marginLeft: 150 }}>
+      <h4 style={{ textAlign: 'center' }}>Các Blogs chia sẻ thông tin cá Koi</h4>
+      <div className="blog-container" style={{ width: '70%', marginLeft: 240 }}>
         {blogs.map((blog) => (
-          <div className="blog-info" key={blog.id} style={{ alignItems: 'center' }}>
+          <div className="blog-info" key={blog.id} style={{ alignItems: 'center', width: '90%', marginBottom: '40px' }}>
             <Link className="link-to-detail" to={`/blogs/${blog.id}`}>
               <img src={blog.urlImg} alt={blog.title} style={{ width: "220px", height: '220px' }} />
               <h3 style={{ fontWeight: 'normal', fontSize: 16, padding: '4px 20px 10px', textAlign: 'left', fontFamily: '--font-arima' }}>

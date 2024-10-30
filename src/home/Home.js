@@ -26,6 +26,7 @@ export default function Home() {
   return (
     <div className="Log-container">
       <Header />
+
       <Navigation />
 
       <NewBlog />

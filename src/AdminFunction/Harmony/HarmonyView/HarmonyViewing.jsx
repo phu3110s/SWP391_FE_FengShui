@@ -117,7 +117,7 @@ const HarmonyList = () => {
 
   return (
     <div className="container">
-      <h2>Harmony List</h2>
+      <h2>Danh sách hòa hợp</h2>
       <div className="select-info-container">
         <div className="select-item">
           <Form.Item label="Chọn loại hồ">
@@ -235,10 +235,10 @@ const HarmonyList = () => {
                       <p id="harmony-point">{harmony.point}%</p>
                     </div>
                   </div>
-
                   <p>
                     <strong>Mô tả:</strong> {harmony.description}
                   </p>
+
                 </Card>
               </Col>
             ))}

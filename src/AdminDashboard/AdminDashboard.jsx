@@ -68,23 +68,23 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="admin-dashboard-logo">
-  <Link to={"/AdminDashboard"}>
-    <img className="admin-logo-img" src="/img/img-logo.jpg" alt="Logo" />
-  </Link>
-</div>
+        <Link to={"/AdminDashboard"}>
+          <img className="admin-logo-img" src="/img/img-logo.jpg" alt="Logo" />
+        </Link>
+      </div>
 
       <Menu mode="inline" theme="dark">
         <Menu.SubMenu key="sub1" title="Quản lí bài viết" icon={<SiBlogger />}>
           <Menu.Item
             key="4"
-            icon = {<BsPostcard />}
+            icon={<BsPostcard />}
             onClick={() => navigate("/AdminDashboard/ApprovePost")}
           >
             Duyệt các bài blog
           </Menu.Item>
           <Menu.Item
             key="5"
-            icon = {<HiSpeakerphone />}
+            icon={<HiSpeakerphone />}
             onClick={() => navigate("/AdminDashboard/PostingApprove")}
           >
             Duyệt các bài đăng bán
@@ -130,7 +130,7 @@ const Sidebar = () => {
           </Menu.Item>
           <Menu.Item
             key="11"
-            icon = {<FaPlusCircle />}
+            icon={<FaPlusCircle />}
             onClick={() => navigate("/AdminDashboard/PondGenerating")}
           >
             Thêm kiểu hồ
@@ -167,12 +167,12 @@ const Sidebar = () => {
             icon={<IoIosColorFilter />}
             onClick={() => navigate("/AdminDashboard/Harmony-Viewing")}
           >
-            List hòa hợp
+            Danh sách hòa hợp
           </Menu.Item>
         </Menu.SubMenu>
         <Menu.Item
           key="16"
-          icon = {<IoPeople />}
+          icon={<IoPeople />}
           onClick={() => navigate("/AdminDashboard/Consulting-Adding")}
         >
           Quản lí tư vấn ngũ hành
@@ -185,7 +185,7 @@ const Sidebar = () => {
         >
           <Menu.Item
             key="17"
-            onClick={()=>navigate("/AdminDashboard/Payment-Adding")}
+            onClick={() => navigate("/AdminDashboard/Payment-Adding")}
             icon={<FaPlusCircle />}
           >
             Tạo gói đăng bán
@@ -193,7 +193,9 @@ const Sidebar = () => {
           <Menu.Item
             key="18"
             icon={<IoIosColorFilter />}
+
             onClick={()=> navigate("/AdminDashboard/Payment-Plans")}
+
           >
             Xem các gói đăng bán
           </Menu.Item>

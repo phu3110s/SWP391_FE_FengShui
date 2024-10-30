@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Header.css";
 import userApi from "../../apis/userApi";
-import { toast, ToastContainer } from "react-toastify";
 const { Search } = Input;
 
 export default function Header() {
@@ -47,8 +46,7 @@ export default function Header() {
     localStorage.removeItem("userId");
     localStorage.removeItem("username");
     localStorage.removeItem("userImg")
-    toast.success("Đăng xuất thành công!", { position: "top-right", autoClose: 6000 });
-    // message.success("Đăng xuất thành công", 5)
+    message.success("Đăng xuất thành công", 5)
     navigate("/");
   };
 
@@ -75,50 +73,50 @@ export default function Header() {
   );
 
   return (
-    <div className="header-form">
-      <div className="home-logo">
+    <div className="header-form-cal">
+      <div className="cal-home-logo">
         <Link to={"/"}>
           <img className="logo" src="/img/img-logo.jpg" alt=""></img>
         </Link>
       </div>
-      <div className="list-active-form">
-        <ul className="list-active">
-          <li className="active">
-            <Link className="link" to={"/"}>
+      <div className="cal-list-active-form">
+        <ul className="cal-list-active">
+          <li className="cal-active">
+            <Link className="cal-link" to={"/"}>
               Trang chủ
             </Link>
           </li>
-          <li className="active">
-            <Link className="link" to={"/Calculate"}>
+          <li className="cal-active">
+            <Link className="cal-link" to={"/Calculate"}>
               Tính toán phong thủy
             </Link>
           </li>
-          <li className="active">
-            <Link className="link" to={"/blogs"}>
+          <li className="cal-active">
+            <Link className="cal-link" to={"/blogs"}>
               Blog
             </Link>
           </li>
           {token ? (
-            <li className="active">
-              <Link className="link" to={"/blog-posting"}>
+            <li className="cal-active">
+              <Link className="cal-link" to={"/blog-posting"}>
                 Đăng Blog
               </Link>
             </li>
           ) : null}
 
           {/* {token ? (
-          <li className="active">
-            <Link className="link" to={"/MyBlog"}>
+          <li className="cal-active">
+            <Link className="cal-link" to={"/MyBlog"}>
               Blog Của tôi
             </Link>
           </li>
           
         ) : null} */}
           {token &&
-            <li className="active">
-              <Link className="link" to={"/AdvertisingPosting"}>
+            <li className="cal-active">
+              <Link className="cal-link" to={"/AdvertisingPosting"}>
                 <Dropdown overlay={advertising} trigger={["click"]}>
-                  <div className="active">
+                  <div className="cal-active">
                     Đăng quảng cáo
                   </div>
                 </Dropdown>
@@ -126,22 +124,22 @@ export default function Header() {
               </Link>
             </li>}
           {token &&
-            <li className="active">
-              <Link className="link" to={"/Harmony-Rating"}>
+            <li className="cal-active">
+              <Link className="cal-link" to={"/Harmony-Rating"}>
                 Xếp hạng độ hòa hợp
               </Link>
             </li>
           }
-          <li className="active">
-            <Link className="link" to={"/News"}>
+          <li className="cal-active">
+            <Link className="cal-link" to={"/News"}>
               Tin tức
             </Link>
           </li>
         </ul>
       </div>
 
-      <div className="login-form-avt">
-        <div className="authorization-box">
+      <div className="cal-login-form-avt">
+        <div className="cal-authorization-box">
           {token ? (
             <Dropdown overlay={userMenu} trigger={["click"]}>
               <div
@@ -167,7 +165,6 @@ export default function Header() {
             </>
           )}
         </div>
-        <ToastContainer/>
       </div>
     </div>
   );

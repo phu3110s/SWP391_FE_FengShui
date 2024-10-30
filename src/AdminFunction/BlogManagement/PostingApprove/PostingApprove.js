@@ -84,15 +84,16 @@ export default function PostingApprove() {
 
     return (
         <div style={{ width: '100%' }}>
-            <h1 style={{ backgroundColor: '#FFFFF', marginBottom: '30px' }}>Những bài đăng bán đang chờ duyệt</h1>
+            <h1 style={{ fontFamily: 'var(--font-playwrite)', marginBottom: '30px' }}>Những bài đăng bán đang chờ duyệt</h1>
             {loading ? (
                 <p>Loading...</p>
             ) : posting.length > 0 ? (
-                <div className="blog-container" style={{ backgroundColor: '#FFFFF' }}>
+                <div className="blog-container" style={{ width: '100%', margin: 0 }}>
                     {posting.map((post) => (
-                        <div className="blog-info" key={post.id}>
-                            <h2>{post.title}</h2>
+                        <div className="blog-info" key={post.id} style={{ width: '100%', height: ' 500px' }}>
+
                             <img src={post.urlImg} width="100%" alt={post.title} />
+                            <h2>{post.title}</h2>
                             <h3>{post.description}</h3>
                             <p>Tác giả: {post.fullName}</p>
                             <div className="action-buttons">
