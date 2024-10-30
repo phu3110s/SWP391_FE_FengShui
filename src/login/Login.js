@@ -5,6 +5,7 @@ import { Input, message, Spin } from "antd";
 import { EyeTwoTone, EyeInvisibleOutlined } from "@ant-design/icons";
 // import { login } from "../apis/auth";
 import userApi from "../apis/userApi";
+
 import { toast } from "react-toastify";
 
 export default function Login() {
@@ -64,8 +65,13 @@ export default function Login() {
   };
   return (
     <div>
+
       <div className="login-background">
         {/* <div className="login-ui">
+
+        <div className="login-background">
+      {/* <div className="login-ui">
+
         <div className="login-logo">
           <Link to={"/"}>
             <img className="logo" src="https://i.pinimg.com/564x/ae/3d/ca/ae3dcafe057197d6047d6b8afa453174.jpg" alt=""></img>
@@ -145,6 +151,8 @@ export default function Login() {
         </div>
       </div>
     </div>
-
+    
+    </div>
+    
   );
 }
