@@ -203,7 +203,7 @@ const ConsultingAdding = () => {
         >
           {ponds.map((pond) => (
             <Select.Option key={pond.id} value={pond.id}>
-              {pond.description}
+              {pond.material}
             </Select.Option>
           ))}
         </Select>

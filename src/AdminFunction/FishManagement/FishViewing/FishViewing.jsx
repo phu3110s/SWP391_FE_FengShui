@@ -150,22 +150,22 @@ const FishViewing = () => {
 
   const columns = [
     {
-      title: "Name",
+      title: "Tên cá",
       dataIndex: "name",
       key: "name",
     },
     {
-      title: "Size",
+      title: "Kích thước",
       dataIndex: "size",
       key: "size",
     },
     {
-      title: "Color",
+      title: "Màu sắc",
       dataIndex: "color",
       key: "color",
     },
     {
-      title: "Description",
+      title: "Chi tiết",
       dataIndex: "description",
       render: (_, fish) => (
         <Button type="link" onClick={() => showFishDetails(fish)}>
@@ -211,7 +211,7 @@ const FishViewing = () => {
   },[searchText,fishList])
   return (
     <div>
-      <h1>Admin - Danh Sách Cá</h1>
+      <h1> Danh Sách Cá</h1>
       <div className="filter-block">
         <Input
           placeholder="Tìm kiếm theo tên của cá"

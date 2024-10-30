@@ -83,7 +83,7 @@ export default function BlogPosting() {
           <div className="edit-form">
             <div className="form-left">
               <div className="posting-blog-inputImage">
-                <label>Upload Image</label>
+                <label>Tải hình ảnh lên</label>
                 <br />
                 <div className="image-upload">
                   <input
