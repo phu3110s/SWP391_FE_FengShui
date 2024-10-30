@@ -46,7 +46,7 @@ export default function AdvertisingPosting() {
       setImage(file);
       const reader = new FileReader();
       reader.onload = () => {
-        document.getElementById("image-preview").src = reader.result;
+        document.getElementById("preview-image").src = reader.result;
       };
       reader.readAsDataURL(file);
     }

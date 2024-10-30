@@ -40,10 +40,12 @@ const PondDetail = ({ pondId }) => {
     }
     return (
         <div className="pond-detail">
-            <h4>Chất liệu:{pond.material}</h4>
-            <p>Hình dáng:{pond.shape}</p>
-            <p>Mật độ nước:{pond.waterLevel}</p>
-            <p>Mô tả:{pond.description}</p>
+
+            <h4>Chất liệu: {pond.material}</h4>
+            <p>Hình dáng: {pond.shape}</p>
+            <p>Mực nước: {pond.waterLevel}</p>
+            <p>{pond.description}</p>
+
             <img src={pond.urlImg}></img>
 
         </div>

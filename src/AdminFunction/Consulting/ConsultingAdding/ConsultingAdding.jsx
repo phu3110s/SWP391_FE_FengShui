@@ -20,7 +20,7 @@ const ConsultingAdding = () => {
   const [pondImage, setPondImage] = useState(null);
   const [consultingList, setConsultingList] = useState([]);
   const page = 1;
-  const size = 100;
+  const size = 1000;
   const [loading, setLoading] = useState(false);
   const token = localStorage.getItem("token");
 
@@ -254,6 +254,7 @@ const ConsultingAdding = () => {
             key={consulting.id}
             style={{ padding: "10px 0", borderBottom: "1px solid #ddd" }}
           >
+            <div className="Info-block">
             <p>
               <strong>{consulting.description}:</strong>
             </p>
@@ -263,6 +264,8 @@ const ConsultingAdding = () => {
             {consulting.ponds.map((pond) => (
               <p>Hồ: {pond.material}</p>
             ))}
+            </div>
+            
           </div>
         ))}
       </div>): (

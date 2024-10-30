@@ -5,6 +5,7 @@
     align-items: center;
     flex-direction: column;
     background-color: #E6F0F4;
+    gap:12px;
 }
 .gen-fish-form{
   width: 60%;
