@@ -69,14 +69,6 @@ export default function Header() {
     </Menu>
   );
 
-  const advertising = (
-    <Menu>
-      <Menu.Item key="1">
-        <Link to="/MyAdvertising">Bài đăng của tôi</Link>
-      </Menu.Item>
-    </Menu>
-  );
-
   return (
     <div className="header-form">
       <div className="home-logo">
@@ -120,7 +112,7 @@ export default function Header() {
           {token &&
             <li className="active">
               <Link className="link" to={"/AdvertisingPosting"}>
-                <Dropdown overlay={advertising} trigger={["click"]}>
+                <Dropdown overlay={userMenu} trigger={["click"]}>
                   <div className="active">
                     Đăng quảng cáo
                   </div>
@@ -140,7 +132,7 @@ export default function Header() {
               Tin tức
             </Link>
           </li>
-          <ToastContainer/>
+          <ToastContainer />
         </ul>
       </div>
 
@@ -172,8 +164,8 @@ export default function Header() {
           )}
         </div>
       </div>
-      
+
     </div>
-    
+
   );
 }

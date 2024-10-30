@@ -39,6 +39,12 @@
     min-height: 90vh;
     padding: 28px 0;
   }
+  .tab-content p{
+    text-align: left;
+    margin: 3% 10%;
+    font-family: var(--font-arima);
+    font-size: 17px;
+  }
   .tab-pane {
     color: #333;
     display: none;

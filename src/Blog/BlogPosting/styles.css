@@ -13,15 +13,17 @@
     margin-bottom: 50px;
     background-color: #FFF;
     padding: 25px;
+    border-radius: 15px;
 }
 
 .bl-pt-form h3{
     font-family: inherit;
     color: black;
-    font-size: 20px;
+    font-size: 25px;
     margin: 20px;
     padding-left: 3%;
     margin-bottom: 40px;
+    /* color: #7E60BF; */
     font-family: var(--font-playwrite)
 }
 
@@ -55,13 +57,18 @@
     margin-right: 10px;
     font-family: var(--font-arima);
     font-size: 17px;
+    /* padding: 15px; */
+    
+    
 }
 .posting-blog-title{
     text-align: left;
+    margin-bottom: 30px;
 }
 .posting-blog-title input{
-    margin: 20px;
+    margin: 15px;
     width: 90%;
+    padding: 15px;
 }
 .posting-blog-description{
     text-align: left;
@@ -79,7 +86,8 @@
     text-align: left;
     border-radius: 10px;
     margin: 20px; 
-    width: 90%
+    width: 90%;
+    padding: 15px;
 }
 
 .see-more-text{

@@ -241,7 +241,7 @@ export default function AdvertisingPayment() {
                             ))}
                         </Radio.Group>
                     </div>
-                    <p className='see-more-text'> Xem thêm <Link to='/policy'>Quy định đăng tin</Link> để đăng bài một cách tốt nhất.</p>
+                    <p className='see-more-text'> Xem thêm <Link target='_blank' to='/policy'>Quy định đăng tin</Link> để đăng bài một cách tốt nhất.</p>
 
                     <div>
                         <button className="subm-pt-button" type="submit" disabled={loading}>

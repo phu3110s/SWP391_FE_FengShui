@@ -75,76 +75,80 @@ export default function BlogPosting() {
   };
 
   return (
-    <div className="posting-blog">
+    <>
       <Header />
-      <div className="bl-pt-form">
-        <h3>Tiêu đề đăng tin và mô tả chi tiết</h3>
-        <form onSubmit={handleSubmitPost}>
-          <div className="edit-form">
-            <div className="form-left">
-              <div className="posting-blog-inputImage">
-                <label>Tải hình ảnh lên</label>
-                <br />
-                <div className="image-upload">
-                  <input
-                    type="file"
-                    onChange={handleImageInput}
-                    accept="image/*"
-                    id="file-input"
-                  />
-                  <label htmlFor="file-input" className="image-upload-label">
-                    <RiImageAddLine className="upload-icon" />
-                    Chọn 1 ảnh
-                  </label>
-                  {image && (
-                    <div className="image-preview">
-                      <img
-                        id="preview-image"
-                        alt="Preview"
-                        style={{ maxWidth: "100%", marginTop: "10px" }}
-                      />
-                    </div>
-                  )}
+      <div className="posting-blog">
+
+        <div className="bl-pt-form">
+          <h3>Tiêu đề đăng tin và mô tả chi tiết</h3>
+          <form onSubmit={handleSubmitPost}>
+            <div className="edit-form">
+              <div className="form-left">
+                <div className="posting-blog-inputImage">
+                  <label>Tải hình ảnh lên</label>
+                  <br />
+                  <div className="image-upload">
+                    <input
+                      type="file"
+                      onChange={handleImageInput}
+                      accept="image/*"
+                      id="file-input"
+                    />
+                    <label htmlFor="file-input" className="image-upload-label">
+                      <RiImageAddLine className="upload-icon" />
+                      Chọn 1 ảnh
+                    </label>
+                    {image && (
+                      <div className="image-preview">
+                        <img
+                          id="preview-image"
+                          alt="Preview"
+                          style={{ maxWidth: "100%", marginTop: "10px" }}
+                        />
+                      </div>
+                    )}
+                  </div>
+
                 </div>
-
+              </div>
+              <div className="form-right">
+                <div className="posting-blog-title">
+                  <label>Tiêu đề</label>
+                  <Input
+                    type="text"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    placeholder="Enter blog title"
+                    required
+                  />
+                </div>
+                <div className="posting-blog-description">
+                  <label>Mô tả</label>
+                  <Input.TextArea
+                    type="text"
+                    value={description}
+                    onChange={(e) => setDesription(e.target.value)}
+                    placeholder="Enter your blog description"
+                    required
+                  />
+                </div>
               </div>
             </div>
-            <div className="form-right">
-              <div className="posting-blog-title">
-                <label>Tiêu đề</label>
-                <Input
-                  type="text"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  placeholder="Enter blog title"
-                  required
-                />
-              </div>
-              <div className="posting-blog-description">
-                <label>Mô tả</label>
-                <Input.TextArea
-                  type="text"
-                  value={description}
-                  onChange={(e) => setDesription(e.target.value)}
-                  placeholder="Enter your blog description"
-                  required
-                />
-              </div>
+            <div className="posting-blog-inputImage">
+
             </div>
-          </div>
-          <div className="posting-blog-inputImage">
+            <p className="see-more-text"> Xem thêm <Link target='_blank' to='/policy'>Quy định đăng tin</Link> để đăng bài một cách tốt nhất.</p>
 
-          </div>
-          <p className="see-more-text"> Xem thêm <Link to='/policy'>Quy định đăng tin</Link> để đăng bài một cách tốt nhất.</p>
+            <div>
+              <button className="subm-pt-button" type="submit" disabled={loading}>
+                {loading ? "Posting..." : "Đăng Blog"}
+              </button>
+            </div>
+          </form>
+        </div>
 
-          <div>
-            <button className="subm-pt-button" type="submit" disabled={loading}>
-              {loading ? "Posting..." : "Đăng Blog"}
-            </button>
-          </div>
-        </form>
       </div>
       <Footer />
-    </div>
+    </>
   );
 }

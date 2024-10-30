@@ -1,3 +1,11 @@
+.getconsulting{
+  width: 100%;
+  min-height: 100vh;
+}
+.getconsulting :where(.css-dev-only-do-not-override-14qglws).ant-btn-primary.ant-btn-solid {
+background-color: #9B7EBD !important;
+}
+
 .fish-pond-container {
     display: flex;
     flex-direction: column;

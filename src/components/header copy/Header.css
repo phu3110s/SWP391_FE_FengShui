@@ -1,6 +1,6 @@
 .header-form-cal{
     width: 100%;
-    height: 60px;
+    height: 70px;
     display: flex;
     align-items: center;
     /* background-image: linear-gradient(#6F2074, white); */
@@ -21,7 +21,7 @@
     margin-left: 50px;
     border-radius: 50%;
     /* background-color: white; */
-    border: 2px solid white;
+    /* border: 2px solid white; */
 }
 
 .cal-home-logo {
@@ -48,7 +48,7 @@
     color: white;
     display: inline;
     padding: 0 25px;
-    font-size: 17px;
+    font-size: 16px;
     
 }
 .cal-active a{

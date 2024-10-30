@@ -20,7 +20,7 @@
 
 .blog-info:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 18px rgba(252, 127, 55, 0.5);
+  box-shadow: 0 6px 18px #cdc1ff;
   border: 0.5px solid rgb(182, 180, 180);
   /* box-shadow: 0 4px 12px rgb(182, 180, 180);  */
   

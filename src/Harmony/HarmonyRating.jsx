@@ -130,56 +130,58 @@ export default function HarmonyRating() {
         <h2 className="rating-title">Hệ thống đánh giá sự hòa hợp</h2>
         <div className="picking-box">
           <Form layout="vertical" onFinish={handlePressButton}>
-            <div className="picking-fish-box">
-              <Form.Item label="Chọn loại cá">
-                <Select
-                  placeholder="Chọn cá"
-                  value={selectedFish}
-                  onChange={handleFishChange}
-                  required
-                >
-                  {fishes.map((fish) => (
-                    <Select.Option key={fish.id} value={fish.id}>
-                      {fish.name}
-                    </Select.Option>
-                  ))}
-                </Select>
-              </Form.Item>
-              {selectedFishDetails && (
-                <div className="selected-fish-info">
-                  <h3>Thông tin về cá</h3>
-                  <p>Tên cá: {selectedFishDetails.name}</p>
-                  <p>Màu sắc:{selectedFishDetails.color}</p>
-                  <p>Kích thước:{selectedFishDetails.size}</p>
-                  <p>Mô tả: {selectedFishDetails.description}</p>
-                  <img src={selectedFishDetails.urlImg} />
-                </div>
-              )}
-            </div>
-            <div className="picking-pond-box">
-              <Form.Item label="Chọn loại hồ">
-                <Select
-                  placeholder="Chọn hồ"
-                  value={selectedPond}
-                  onChange={handlePondChange}
-                >
-                  {ponds.map((pond) => (
-                    <Select.Option key={pond.id} value={pond.id}>
-                      {pond.material}
-                    </Select.Option>
-                  ))}
-                </Select>
-              </Form.Item>
-              {selectedPondDetails && (
-                <div className="selected-pond-info">
-                  <h3>Thông tin về hồ</h3>
-                  <p>Chất liệu: {selectedPondDetails.material}</p>
-                  <p>Hình dạng: {selectedPondDetails.shape}</p>
-                  <p>Mực nước tối đa: {selectedPondDetails.waterLevel}</p>
-                  <p>Mô tả:{selectedPondDetails.description}</p>
-                  <img src={selectedPondDetails.urlImg} />
-                </div>
-              )}
+            <div className="harmony-form">
+              <div className="picking-fish-box">
+                <Form.Item label="Chọn loại cá">
+                  <Select
+                    placeholder="Chọn cá"
+                    value={selectedFish}
+                    onChange={handleFishChange}
+                    required
+                  >
+                    {fishes.map((fish) => (
+                      <Select.Option key={fish.id} value={fish.id}>
+                        {fish.name}
+                      </Select.Option>
+                    ))}
+                  </Select>
+                </Form.Item>
+                {selectedFishDetails && (
+                  <div className="selected-fish-info">
+                    <h3>Thông tin về cá</h3>
+                    <p>Tên cá: {selectedFishDetails.name}</p>
+                    <p>Màu sắc:{selectedFishDetails.color}</p>
+                    <p>Kích thước:{selectedFishDetails.size}</p>
+                    <p>Mô tả: {selectedFishDetails.description}</p>
+                    <img src={selectedFishDetails.urlImg} />
+                  </div>
+                )}
+              </div>
+              <div className="picking-pond-box">
+                <Form.Item label="Chọn loại hồ">
+                  <Select
+                    placeholder="Chọn hồ"
+                    value={selectedPond}
+                    onChange={handlePondChange}
+                  >
+                    {ponds.map((pond) => (
+                      <Select.Option key={pond.id} value={pond.id}>
+                        {pond.material}
+                      </Select.Option>
+                    ))}
+                  </Select>
+                </Form.Item>
+                {selectedPondDetails && (
+                  <div className="selected-pond-info">
+                    <h3>Thông tin về hồ</h3>
+                    <p>Chất liệu: {selectedPondDetails.material}</p>
+                    <p>Hình dạng: {selectedPondDetails.shape}</p>
+                    <p>Mực nước tối đa: {selectedPondDetails.waterLevel}</p>
+                    <p>Mô tả:{selectedPondDetails.description}</p>
+                    <img src={selectedPondDetails.urlImg} />
+                  </div>
+                )}
+              </div>
             </div>
             {harmonyInfo && (
               <div className="rating-result">
