@@ -46,24 +46,28 @@ export default function AdvertisingDetail() {
 
 
     return (
-        <div className="detail-container">
+        <>
             <Header />
             <Navigation />
-            <div className="short-detail-in4">
-                <div className='detail-img'>
-                    <img src={advertisings.urlImg} alt={advertisings.title} />
-                </div>
-                <div className="product-detail-in4">
-                    <h2 >{advertisings.title}</h2> <br />
-                    <p>Ngày đăng: {advertisings.createAt}</p> <br />
-                    <p>Giá: {(advertisings.price).toLocaleString('vi-VN')} VND</p><br />
-                    <p>Loại bài đăng: {advertisings.itemTypeName}</p><br /> <br />
+            <div className="detail-container">
 
-                    <h4>Mô tả chi tiết</h4> <br />
-                    <p>{advertisings.description}</p>
+                <div className="short-detail-in4">
+                    <div className='detail-img'>
+                        <img src={advertisings.urlImg} alt={advertisings.title} />
+                    </div>
+                    <div className="product-detail-in4">
+                        <h2 >{advertisings.title}</h2> <br />
+                        <p>Ngày đăng: {advertisings.createAt}</p> <br />
+                        <p>Giá: {advertisings.price ? advertisings.price.toLocaleString('vi-VN') : 'N/A'} VND</p><br />
+                        <p>Loại bài đăng: {advertisings.itemTypeName}</p><br /> <br />
+
+                        <h4>Mô tả chi tiết</h4> <br />
+                        <p>{advertisings.description}</p>
+                    </div>
                 </div>
+
             </div>
             <Footer />
-        </div>
+        </>
     )
 }

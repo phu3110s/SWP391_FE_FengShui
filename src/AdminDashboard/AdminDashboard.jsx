@@ -1,27 +1,21 @@
 import { DashboardFilled, LogoutOutlined } from "@ant-design/icons";
 import { Avatar, Dropdown, Menu } from "antd";
 import React, { useEffect, useState } from "react";
-import { GiWaterSplash } from "react-icons/gi";
-import { LiaFishSolid } from "react-icons/lia";
-import { Link, Outlet, useNavigate } from "react-router-dom";
-import { CiSettings } from "react-icons/ci";
-import "./styles.css";
 import { AiOutlineHarmonyOS } from "react-icons/ai";
-import { FaUserFriends } from "react-icons/fa";
-import { SiBlogger } from "react-icons/si";
-import { HiArchive } from "react-icons/hi";
-import { FaPlusCircle } from "react-icons/fa";
+import { BsPostcard } from "react-icons/bs";
+import { CiSettings } from "react-icons/ci";
+import { FaCcAmazonPay, FaPlusCircle, FaUserFriends } from "react-icons/fa";
+import { GiWaterSplash } from "react-icons/gi";
+import { HiArchive, HiSpeakerphone } from "react-icons/hi";
 import { IoIosColorFilter } from "react-icons/io";
 import { IoPeople } from "react-icons/io5";
-import { HiSpeakerphone } from "react-icons/hi";
-import { BsPostcard } from "react-icons/bs";
-import { MdOutlinePayments } from "react-icons/md";
-import { FaCcAmazonPay } from "react-icons/fa";
+import { LiaFishSolid } from "react-icons/lia";
+import { SiBlogger } from "react-icons/si";
+import { Link, Outlet, useNavigate } from "react-router-dom";
+import "./styles.css";
 const AdminDashboard = () => {
-  const [username, setUsername] = useState();
   const token = localStorage.getItem("token");
   const avatarUrl = localStorage.getItem("userImg");
-  const role = localStorage.getItem("userRole");
   const navigate = useNavigate();
   useEffect(
     () => {
@@ -30,8 +24,7 @@ const AdminDashboard = () => {
         navigate("/Login");
       }
     },
-    [token],
-    navigate
+    [token]
   );
   const handleLogout = () => {
     if (window.confirm("Bạn chắc chắn muốn đăng xuất?")) {
@@ -200,7 +193,7 @@ const Sidebar = () => {
           <Menu.Item
             key="18"
             icon={<IoIosColorFilter />}
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/AdminDashboard/Payment-Plans")}
           >
             Xem các gói đăng bán
           </Menu.Item>
@@ -214,7 +207,6 @@ const Sidebar = () => {
 };
 
 const Header = ({ avatarUrl, userMenu }) => {
-  const navigate = useNavigate();
   return (
     <div className="header">
       <h2 className="header-titles">Admin Dashboard</h2>

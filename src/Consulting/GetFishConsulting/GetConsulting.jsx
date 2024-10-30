@@ -6,7 +6,8 @@ import userApi from "../../apis/userApi";
 import Header from "../../components/header/Header";
 import Navigation from "../../components/navbar/Navigation";
 import "./GetFishConsulting.css";
-import { Footer } from "antd/es/layout/layout";
+// import { Footer } from "antd/es/layout/layout";
+import Footer from "../../components/footer/Footer";
 
 const { Option } = Select;
 
@@ -137,88 +138,93 @@ const GetConsulting = () => {
   };
 
   return (
-    <div>
-      <Header />
-      <Navigation />
-      <h1>Tư vấn Cá và Hồ</h1>
-      <div className="select-fengShui-container">
-        <Select
-          placeholder="Chọn mệnh"
-          style={{
-            width: "50%",
-            marginTop: 50,
-            display: "block",
-            margin: "0 auto",
-          }}
-          onChange={handleFengShuiChange}
-          value={selectedFengShuiId}
-        >
-          {fengShuis.map((fengShui) => (
-            <Option key={fengShui.id} value={fengShui.id}>
-              {fengShui.element}
-            </Option>
-          ))}
-        </Select>
-      </div>
-      <Button
-        type="primary"
-        onClick={handleSubmit}
-        style={{ marginTop: 20 }}
-        disabled={loading}
-      >
-        {loading ? <Spin size="big" /> : "Xin tư vấn"}
-      </Button>
-      {loading ? (
-        <></>
-      ) : (
-        <div className="fish-pond-container">
-  {fishPond ? (
     <>
-      <p className="consultation-description">{fishPond.description}</p>
-      
-      <div className="fish-pond-info">
-        <div className="pond-info">
-          <h2>Thông tin Hồ</h2>
-          {fishPond.ponds.map((pond) => (
-            <div key={pond.id} className="pond-item">
-              <p><strong>Tên Hồ:</strong> {pond.shape}</p>
-              <p><strong>Chất liệu Hồ:</strong> {pond.material}</p>
-              <p><strong>Mực nước:</strong> {pond.waterLevel}</p>
-              <p><strong>Mô tả Hồ:</strong> {pond.description}</p>
-              <img src={pond.urlImg} alt={pond.shape} />
-            </div>
-          ))}
-        </div>
+      <Header />
+      <div className="getconsulting">
+        <div>
 
-        <div className="fish-info">
-          <h2>Thông tin Cá</h2>
-          {fishPond.fishes.map((fish) => (
-            <div key={fish.id} className="fish-item">
-              <p><strong>Tên Cá:</strong> {fish.name || "Không có thông tin"}</p>
-              <p><strong>Kích thước Cá:</strong> {fish.size || "Không có thông tin"}</p>
-              <p><strong>Màu Cá:</strong> {fish.color || "Không có thông tin"}</p>
-              <img src={fish.urlImg} alt={fish.name} />
+          <h1>Tư vấn Cá và Hồ</h1>
+          <div className="select-fengShui-container">
+            <Select
+              placeholder="Chọn mệnh"
+              style={{
+                width: "50%",
+                marginTop: 50,
+                display: "block",
+                margin: "0 auto",
+              }}
+              onChange={handleFengShuiChange}
+              value={selectedFengShuiId}
+            >
+              {fengShuis.map((fengShui) => (
+                <Option key={fengShui.id} value={fengShui.id}>
+                  {fengShui.element}
+                </Option>
+              ))}
+            </Select>
+          </div>
+          <Button
+            type="primary"
+            onClick={handleSubmit}
+            style={{ marginTop: 20 }}
+            disabled={loading}
+          >
+            {loading ? <Spin size="big" /> : "Xin tư vấn"}
+          </Button>
+          {loading ? (
+            <></>
+          ) : (
+            <div className="fish-pond-container">
+              {fishPond ? (
+                <>
+                  <p className="consultation-description">{fishPond.description}</p>
+
+                  <div className="fish-pond-info">
+                    <div className="pond-info">
+                      <h2>Thông tin Hồ</h2>
+                      {fishPond.ponds.map((pond) => (
+                        <div key={pond.id} className="pond-item">
+                          <p><strong>Tên Hồ:</strong> {pond.shape}</p>
+                          <p><strong>Chất liệu Hồ:</strong> {pond.material}</p>
+                          <p><strong>Mực nước:</strong> {pond.waterLevel}</p>
+                          <p><strong>Mô tả Hồ:</strong> {pond.description}</p>
+                          <img src={pond.urlImg} alt={pond.shape} />
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="fish-info">
+                      <h2>Thông tin Cá</h2>
+                      {fishPond.fishes.map((fish) => (
+                        <div key={fish.id} className="fish-item">
+                          <p><strong>Tên Cá:</strong> {fish.name || "Không có thông tin"}</p>
+                          <p><strong>Kích thước Cá:</strong> {fish.size || "Không có thông tin"}</p>
+                          <p><strong>Màu Cá:</strong> {fish.color || "Không có thông tin"}</p>
+                          <img src={fish.urlImg} alt={fish.name} />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <p>Không có dữ liệu</p>
+              )}
+
+              <div className="buttons">
+                <Button onClick={handlePreviousPage} disabled={page <= 1}>
+                  Trước
+                </Button>
+                <Button onClick={handleNextPage} disabled={page >= total}>
+                  Tiếp
+                </Button>
+              </div>
             </div>
-          ))}
+          )}
+
         </div>
       </div>
-    </>
-  ) : (
-    <p>Không có dữ liệu</p>
-  )}
-
-          <div className="buttons">
-            <Button onClick={handlePreviousPage} disabled={page <= 1}>
-              Trước
-            </Button>
-            <Button onClick={handleNextPage} disabled={page >= total}>
-              Tiếp
-            </Button>
-          </div>
-        </div>
-      )}
       <Footer />
-    </div>
+    </>
   );
 };
 

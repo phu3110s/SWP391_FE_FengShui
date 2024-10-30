@@ -14,14 +14,38 @@
 }
 .rating-title{
     padding: 40px 0;
-    color: black;
+    color: #7E60BF;
+    text-shadow: 
+        0.5px 0.5px 0 black, 
+        -0.5px 0.5px 0 black, 
+        0.5px -0.5px 0 black, 
+         -0.5px -0.5px 0 black;
     font-size: 50px;
-    font-family: Arial, sans-serif;
+    font-family: var(--font-playwrite);
 }
+
 .picking-box{
+    width: 90%;
     background-color: white;
     padding: 30px 40px;
-    margin: 0 410px 0 410px;
+    margin-left: 5%;
     border-radius: 10px;
     border: 1px solid black;
+}
+.harmony-form{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-left: 5%;
+}
+.picking-fish-box{
+    padding: 3%;
+    width: 45%;
+}
+.picking-pond-box{
+    padding: 3%;
+width: 45%;
+}
+.rating-result{
+    margin: 20px;
 }

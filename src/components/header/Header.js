@@ -59,15 +59,10 @@ export default function Header() {
         <Link to="/user-profile">Hồ sơ của tôi</Link>
       </Menu.Item>
       <Menu.Item key="3">
-        <span onClick={handleLogout}>Đăng xuất</span>
-      </Menu.Item>
-    </Menu>
-  );
-
-  const advertising = (
-    <Menu>
-      <Menu.Item key="1">
         <Link to="/MyAdvertising">Bài đăng của tôi</Link>
+      </Menu.Item>
+      <Menu.Item key="4">
+        <span onClick={handleLogout}>Đăng xuất</span>
       </Menu.Item>
     </Menu>
   );
@@ -115,7 +110,7 @@ export default function Header() {
           {token &&
             <li className="active">
               <Link className="link" to={"/AdvertisingPosting"}>
-                <Dropdown overlay={advertising} trigger={["click"]}>
+                <Dropdown overlay={userMenu} trigger={["click"]}>
                   <div className="active">
                     Đăng quảng cáo
                   </div>
