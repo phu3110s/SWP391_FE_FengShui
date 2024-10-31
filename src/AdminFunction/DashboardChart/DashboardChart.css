@@ -55,7 +55,8 @@
 }
 .line-and-bar{
   display: flex;
-  flex-direction: row
+  flex-direction: row;
+  gap:20px;
 }
 .pie-today-container .pie-range-container{
   width:600px;
@@ -67,7 +68,7 @@
     width: 600px; 
     height: 600px; 
     margin: 10px;
-    margin-bottom: 70px;
+    margin-bottom: 90px;
 }
 
 .pie-chart-container {
@@ -82,4 +83,8 @@
 }
 .Pie{
   margin-bottom: 30px;
+}
+.bar-line-chart{
+  width: 700px;
+  height: 350px;
 }

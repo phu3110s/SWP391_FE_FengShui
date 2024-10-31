@@ -127,6 +127,7 @@ export default function MyAdvertising() {
                                         <Link className="link-to-detail" to={`/AdvertisingDetail/${post.id}`}>
                                             <img src={post.urlImg} alt={post.itemTypeName} style={{ width: "220px", height: '220px' }} />
                                             <h4>{post.itemTypeName}</h4>
+                                            <h4>Tiêu đề: {post.title}</h4>
                                         </Link>
                                         <p>Ngày đăng bài: {post.updateAt}</p>
                                         <p>Gói đăng bài: {post.paymentPlanName}</p>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import postingApi from '../../../apis/postingApi';
 import { Button, message, Modal, Spin } from 'antd';
+import LinesEllipsis from 'react-lines-ellipsis';
 
 export default function PostingApprove() {
 
@@ -90,11 +91,12 @@ export default function PostingApprove() {
             ) : posting.length > 0 ? (
                 <div className="blog-container" style={{ width: '100%', margin: 0 }}>
                     {posting.map((post) => (
-                        <div className="blog-info" key={post.id} style={{ width: '100%', height: ' 500px' }}>
+                        <div className="blog-info" key={post.id} style={{ width: '100%', height: ' 550px' }}>
 
-                            <img src={post.urlImg} width="100%" alt={post.title} />
-                            <h2>{post.title}</h2>
-                            <h3>{post.description}</h3>
+                            <img src={post.urlImg} width="100%" height="70%" alt={post.title} />
+                            <h3>Tiêu đề: <LinesEllipsis text={post.title || "Tiêu đề hiện không có"} maxLine="3" ellipsis="..."/></h3>
+            
+                            <h3>Nội dung: <LinesEllipsis text={post.description || "Nội dung hiện không có"} maxLine="3" ellipsis="..."/></h3>
                             <p>Tác giả: {post.fullName}</p>
                             <div className="action-buttons">
                                 <Button

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import blogApi from "../../../apis/blogApi";
 import { Spin, Button, message, Modal } from "antd";
 import "./BlogApprove.css";
+import LinesEllipsis from "react-lines-ellipsis";
 export default function BlogApprove() {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -89,8 +90,11 @@ export default function BlogApprove() {
           <div className="blog-info" key={blog.id} style={{ width: '100%', height: ' 550px' }}>
 
             <img src={blog.urlImg} width="100%" alt={blog.title} />
-            <h2>{blog.title}</h2>
-            <h3>{blog.description}</h3>
+            <h3>Tiêu đề: <LinesEllipsis text={blog.title} maxLine="3" ellipsis="..." trimRight basedOn="words"/></h3>
+            {/* <h2>{blog.title}</h2> */}
+            <h3>Nội dung: </h3>
+            <LinesEllipsis text={blog.description}  maxLine="3" ellipsis="..." trimRight basedOn="words"/>
+
             <p>Tác giả: {blog.userInfo.fullName}</p>
             <div className="action-buttons">
               <Button

@@ -6,6 +6,10 @@
   --font-finger: "Finger Paint", sans-serif;
   --font-sansita: "Sansita Swashed", system-ui;
 }
+* {
+  font-family: 'Comfortaa', sans-serif;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

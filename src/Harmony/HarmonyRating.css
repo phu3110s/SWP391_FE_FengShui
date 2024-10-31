@@ -21,7 +21,7 @@
         0.5px -0.5px 0 black, 
          -0.5px -0.5px 0 black;
     font-size: 50px;
-    font-family: var(--font-playwrite);
+    /* font-family: var(--font-playwrite); */
 }
 
 .picking-box{
@@ -31,6 +31,10 @@
     margin-left: 5%;
     border-radius: 10px;
     border: 1px solid black;
+}
+.selected-fish-info img{
+    max-width: 350px;
+    height: auto;
 }
 .harmony-form{
     width: 100%;
