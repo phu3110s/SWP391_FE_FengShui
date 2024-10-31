@@ -1,4 +1,5 @@
   .dashboard-chart-container {
+    width: 100%;
     padding: 20px;
     font-family: 'Comfortaa', sans-serif;
   }
@@ -30,12 +31,12 @@
     margin: 0 10px;
   }
   .bar-chart{
-    width: 100%;
+    width: 50%;
     margin-bottom: 15px;
 
   }
   .line-chart{
-    width: 100%;
+    width: 50%;
     margin-bottom: 15px;
   }
 .line-chart-block{
@@ -65,8 +66,8 @@
 }
 .pie-chart {
     display: inline-block;
-    width: 600px; 
-    height: 600px; 
+    width: 50%; 
+    height: 50%; 
     margin: 10px;
     margin-bottom: 90px;
 }
@@ -85,6 +86,6 @@
   margin-bottom: 30px;
 }
 .bar-line-chart{
-  width: 700px;
-  height: 350px;
+  width: 100%;
+  height: auto;
 }

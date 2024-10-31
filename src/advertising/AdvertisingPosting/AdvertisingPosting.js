@@ -140,6 +140,7 @@ export default function AdvertisingPosting() {
     }
   };
 
+
   return (
     <>
       <Header />
@@ -231,9 +232,9 @@ export default function AdvertisingPosting() {
               <Radio.Group onChange={(e) => setPaymentPlanId(e.target.value)} value={paymentPlanId}>
                 {listPlan.map(plan => (
                   <Radio key={plan.id} value={plan.id} className='radio-plan'>
-                    _ {plan.name}<br />
-                    _ {plan.description}<br />
-                    _ {plan.amount}
+                    {plan.name}<br />
+                    {plan.description}<br />
+                    {plan.amount}
                   </Radio>
                 ))}
               </Radio.Group>
