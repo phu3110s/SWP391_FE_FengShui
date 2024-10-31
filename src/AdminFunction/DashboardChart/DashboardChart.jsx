@@ -478,7 +478,7 @@ export default function DashboardChart() {
           {/* Cái chọn ngày linh tinh , đang không config được nên chưa sửa */}
           <div className="date-picker">
             <DatePicker
-              value={startDateforPie}ada
+              value={startDateforPie} ada
               onChange={handlestartDateforPieChange}
               format="YYYY-MM-DD"
               placeholder="Chọn ngày bắt đầu"
@@ -496,7 +496,7 @@ export default function DashboardChart() {
         <div className="bar-chart chart-container">
           <strong className="chart-title">Doanh thu hàng tuần</strong>
           <div className="bar-line-chart"><Bar data={barChartData} /></div>
-          
+
         </div>
 
         <div className="line-chart chart-container">
