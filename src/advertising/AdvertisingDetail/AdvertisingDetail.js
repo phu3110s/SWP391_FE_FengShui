@@ -5,11 +5,13 @@ import { Link, useParams } from 'react-router-dom';
 import postingApi from '../../apis/postingApi';
 import Footer from '../../components/footer/Footer';
 import { Avatar } from 'antd';
+import userApi from '../../apis/userApi';
 
 export default function AdvertisingDetail() {
 
 
     const { id } = useParams();
+    const [user, setUser] = useState(null);
     const [advertisings, setAdvertisings] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -21,6 +23,10 @@ export default function AdvertisingDetail() {
                 const response = await postingApi.getAdvertisingsById(id);
                 if (response && response.data) {
                     setAdvertisings(response.data);
+                    const userResponse = await userApi.getUserProfile(response.data.userId)
+                    if (userResponse && userResponse.data) {
+                        setUser(userResponse.data)
+                    }
                 } else {
                     throw new Error("No blog data found");
                 }
@@ -60,7 +66,13 @@ export default function AdvertisingDetail() {
                         <p>Ngày đăng: {advertisings.createAt}</p> <br />
                         <p>Giá: {advertisings.price ? advertisings.price.toLocaleString('vi-VN') : 'N/A'} VND</p><br />
                         <p>Loại bài đăng: {advertisings.itemTypeName}</p><br /> <br />
-
+                        <Link to={`/user-profile/${user.id}`} className="customer-in4">
+                            <img
+                                src={user.urlImg}
+                                alt={user.fullName}
+                            />
+                            <p className="user-block">Tác giả: {user.fullName}</p>
+                        </Link> <br />
                         <h4>Mô tả chi tiết</h4> <br />
                         <p>{advertisings.description}</p>
                     </div>

@@ -43,7 +43,7 @@ export default function AdvertisingList() {
             setLoading(false);
         }
     };
-    // console.log(blogs)
+    console.log(blogs)
     useEffect(() => {
         fetchBlogs();
     }, [page, size]);

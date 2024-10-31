@@ -25,9 +25,13 @@ const userApi = {
     const url = `users/${id}/image`;
     return axiosClient.put(url, image);
   },
-  deactivate: (id) =>{
+  deactivate: (id) => {
     const url = `users/${id}/deactivate`
-    return axiosClient.put(url,id)
+    return axiosClient.put(url, id)
+  },
+  getAdvertisingByUser: (id, page, size, status) => {
+    const url = `users/${id}/advertising?page=${page}&size=${size}&status=${status}`;
+    return axiosClient.get(url);
   }
 };
 

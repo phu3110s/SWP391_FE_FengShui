@@ -1,118 +1,57 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../../components/header/Header';
-import postingApi from '../../apis/postingApi';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button, message, Pagination, Tabs, Avatar } from 'antd';
 import Footer from '../../components/footer/Footer';
-import createPaymentLink from '../../apis/payosApi';
 import './MyAdvertising.css'
+import userApi from '../../apis/userApi';
 
 const { TabPane } = Tabs;
 
 export default function MyAdvertising() {
-    const [approveAdvertisings, setApproveAdvertisings] = useState([]);
-    const [Draft, setDraft] = useState([]);
-    const [expiredPosts, setExpiredPosts] = useState([]);
     const [post, setPost] = useState([]);
     const [page, setPage] = useState(1);
     const [size, setSize] = useState(10);
-    const [totalPage, setTotalPage] = useState(0);
+    const [total, setTotal] = useState(0);
     const [loading, setLoading] = useState(false);
-    const [postStatus, setPostStatus] = useState(false);
     const [viewType, setViewType] = useState('Approved');
-    const [error, setError] = useState(null);
 
     const username = localStorage.getItem("username");
-    const token = localStorage.getItem('token');
+    const userId = localStorage.getItem("userId")
     const urlImg = localStorage.getItem("userImg");
 
     const handlePageChange = (page, pageSize) => {
         setPage(page);
         setSize(pageSize);
     };
-    const fetchPost = async () => {
-        setLoading(true);
-        try {
-            const response = await postingApi.getUserAdvertisings(page, size, viewType);
 
-            if (viewType === 'Approved') {
-                setApproveAdvertisings(response.data.items);
-            } else if (viewType === 'Draft') {
-                setDraft(response.data.items);
-            } else if (viewType === 'Expired') {
-                setExpiredPosts(response.data.items);
-            }
-            setTotalPage(response.data.totalPages);
-            setLoading(false);
-        } catch (err) {
-            message.error('Error fetching posts.');
-            setLoading(false);
-        }
-    };
+
     // console.log(viewType);
 
     useEffect(() => {
-        fetchPost();
-    }, [viewType, page]);
-
-    const handlePayment = async (advertisingId, description) => {
-        const paymentData = {
-            advertisingId,
-            description,
-            returnUrl: 'http://localhost:3000/MyAdvertising',
-            cancelUrl: 'http://localhost:3000/MyAdvertising',
+        const fetchPost = async () => {
+            setLoading(true);
+            try {
+                const response = await userApi.getAdvertisingByUser(userId, page, size, viewType);
+                if (response.data.items) {
+                    setPost(response.data.items)
+                }
+                setTotal(response.data.total)
+                setLoading(false);
+            } catch (err) {
+                message.error('Error fetching posts.');
+                setLoading(false);
+            }
         };
 
-        try {
-            const responsePayment = await createPaymentLink.postPayment(paymentData, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            window.location.href = responsePayment.data;
-        } catch (error) {
-            message.error('Payment error.');
-        }
-    };
-
-    const fetchBlogs = async () => {
-        setLoading(true);
-        try {
-            const response = await postingApi.getAdvertisings(page, size, "");
-            console.log(response);
-            setPost(response.data.items);
-            setTotalPage(response.data.totalPages);
-            setLoading(false);
-        } catch (err) {
-            if (err.response) {
-                const { status } = err.response;
-                if (status === 401) {
-                    setError(
-                        "Người dùng chưa xác thực/Phiên đăng nhập hết hạn. Vui lòng đăng nhập lại."
-                    );
-                } else if (status === 500) {
-                    setError("Lỗi kết nối!!! Vui lòng thử lại sau.");
-                } else {
-                    setError("Lỗi không xác định.");
-                }
-            } else {
-                setError(err.message);
-            }
-            setLoading(false);
-        }
-    };
-    // console.log(post)
-    useEffect(() => {
-        fetchBlogs();
-    }, [page, size]);
-
+        fetchPost();
+    }, [viewType, page]);
 
     const navigate = useNavigate();
 
     const handleRenew = (post) => {
         navigate('/AdvertisingPayment', { state: { post: post } });
     };
-
 
     return (
         <div className='my-advertising-page'>
@@ -132,9 +71,9 @@ export default function MyAdvertising() {
                     <TabPane tab='Đã được duyệt' key='Approved'>
                         {loading ? (
                             <p>Loading...</p>
-                        ) : approveAdvertisings.length > 0 ? (
+                        ) : post.length > 0 ? (
                             <div className='expired-blog-container'>
-                                {approveAdvertisings.map((post) => (
+                                {post.map((post) => (
                                     <div className='blog-information' key={post.id}>
                                         <Link className="link-to-detail" to={`/AdvertisingDetail/${post.id}`}>
                                             <img src={post.urlImg} alt={post.itemTypeName} style={{ width: "220px", height: '220px' }} />
@@ -155,9 +94,9 @@ export default function MyAdvertising() {
                     <TabPane tab='Chờ duyệt' key='Draft'>
                         {loading ? (
                             <p>Loading...</p>
-                        ) : Draft.length > 0 ? (
+                        ) : post.length > 0 ? (
                             <div className='expired-blog-container'>
-                                {Draft.map((post) => (
+                                {post.map((post) => (
                                     <div className='blog-information' key={post.id}>
                                         <Link className="link-to-detail" to={`/AdvertisingDetail/${post.id}`}>
                                             <img src={post.urlImg} alt={post.itemTypeName} style={{ width: "220px", height: '220px' }} />
@@ -181,9 +120,9 @@ export default function MyAdvertising() {
                     <TabPane tab='Hết hạn' key='Expired'>
                         {loading ? (
                             <p>Loading...</p>
-                        ) : expiredPosts.length > 0 ? (
+                        ) : post.length > 0 ? (
                             <div className='expired-blog-container'>
-                                {expiredPosts.map((post) => (
+                                {post.map((post) => (
                                     <div className='blog-information' key={post.id}>
                                         <Link className="link-to-detail" to={`/AdvertisingDetail/${post.id}`}>
                                             <img src={post.urlImg} alt={post.itemTypeName} style={{ width: "220px", height: '220px' }} />
@@ -239,10 +178,19 @@ export default function MyAdvertising() {
                 </Tabs>
 
                 <div className='pagination'>
+                    {/* <Pagination
+                        current={page}
+                        pageSize={size}
+                        total={total}
+                        onChange={handlePageChange}
+                    /> */}
                     <Pagination
                         current={page}
                         pageSize={size}
-                        total={totalPage}
+                        total={total}
+                        showSizeChanger
+                        showQuickJumper
+                        showTotal={(total) => `Total ${total} items`}
                         onChange={handlePageChange}
                     />
                 </div>
