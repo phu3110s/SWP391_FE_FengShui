@@ -1,19 +1,19 @@
+import { EditOutlined, SearchOutlined } from "@ant-design/icons";
+import { DeleteOutline } from "@mui/icons-material";
+import { red } from "@mui/material/colors";
 import {
   Button,
+  Form,
+  Input,
   Modal,
   Popconfirm,
+  Spin,
   Table,
   message,
-  Input,
-  Form,
-  Spin,
 } from "antd";
 import React, { useEffect, useState } from "react";
 import fishApi from "../../../apis/fishApi";
 import "./FishViewing.css";
-import { red } from "@mui/material/colors";
-import { DeleteOutline } from "@mui/icons-material";
-import { EditOutlined, SearchOutlined } from "@ant-design/icons";
 
 const FishViewing = () => {
   const token = localStorage.getItem("token");
@@ -153,16 +153,20 @@ const FishViewing = () => {
       title: "Tên cá",
       dataIndex: "name",
       key: "name",
+      fixed:"left",
+      width:250
     },
     {
       title: "Kích thước",
       dataIndex: "size",
       key: "size",
+      width:250
     },
     {
       title: "Màu sắc",
       dataIndex: "color",
       key: "color",
+      width:250
     },
     {
       title: "Chi tiết",
@@ -172,6 +176,7 @@ const FishViewing = () => {
           Xem chi tiết
         </Button>
       ),
+      width:400
     },
     {
       title: "Action",
@@ -232,6 +237,7 @@ const FishViewing = () => {
           total: total,
           showSizeChanger: false,
         }}
+        scroll={{x:'800px',y:'550px'}}
         onChange={handlePageChange}
         loading={loading}
       />

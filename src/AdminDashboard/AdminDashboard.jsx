@@ -11,7 +11,9 @@ import { IoIosColorFilter } from "react-icons/io";
 import { IoPeople } from "react-icons/io5";
 import { LiaFishSolid } from "react-icons/lia";
 import { SiBlogger } from "react-icons/si";
+import { TbLogs } from "react-icons/tb";
 import { Link, Outlet, useNavigate } from "react-router-dom";
+import { RiAdvertisementFill } from "react-icons/ri";
 import "./styles.css";
 const AdminDashboard = () => {
   const token = localStorage.getItem("token");
@@ -36,11 +38,7 @@ const AdminDashboard = () => {
   };
 
   const userMenu = (
-    <Menu>
-      <Menu.Item key="1">
-        <span onClick={handleLogout}>Logout</span>
-      </Menu.Item>
-    </Menu>
+    ""
   );
   return (
     <div className="admin-dashboard">
@@ -96,8 +94,8 @@ const Sidebar = () => {
           >
             Duyệt bài đăng bán
           </Menu.Item>
-          <Menu.Item key="21" onClick={() => navigate("/AdminDashboard/Blog-Management")} > Quản lí blog</Menu.Item>
-          <Menu.Item key="23" onClick={() => navigate("/")} > Quản lí bài đăng bán</Menu.Item>
+          <Menu.Item key="21" icon={<TbLogs />} onClick={() => navigate("/AdminDashboard/Blog-Management")} > Quản lí blog</Menu.Item>
+          <Menu.Item key="23" icon={<RiAdvertisementFill />} onClick={() => navigate("/AdminDashboard/Ad-Management")} > Quản lí bài đăng bán</Menu.Item>
         </Menu.SubMenu>
         <Menu.Item
           key="6"
@@ -145,14 +143,7 @@ const Sidebar = () => {
             Thêm kiểu hồ
           </Menu.Item>
         </Menu.SubMenu>
-        
-        <Menu.Item
-          key="13"
-          icon={<CiSettings />}
-          onClick={() => navigate("/AdminDashboard/")}
-        >
-          Cài đặt
-        </Menu.Item>
+      
         <Menu.SubMenu
           key="sub5"
           title="Quản lí độ hòa hợp"
@@ -212,16 +203,16 @@ const Sidebar = () => {
 const Header = ({ avatarUrl, userMenu }) => {
   return (
     <div className="header">
-      <h2 className="header-titles">Admin Dashboard</h2>
+      <div className="header-left">
+        <h2 className="header-titles">Admin Dashboard</h2>
+      </div>
       <div className="header-actions">
-        <button className="notification-btn">Thông báo</button>
         <Dropdown overlay={userMenu} trigger={["click"]}>
           <div
             style={{
               cursor: "pointer",
               display: "flex",
               alignItems: "center",
-              marginLeft: "20px",
             }}
           >
             <Avatar src={avatarUrl} alt="User Avatar" />
@@ -231,5 +222,6 @@ const Header = ({ avatarUrl, userMenu }) => {
     </div>
   );
 };
+
 
 export default AdminDashboard;

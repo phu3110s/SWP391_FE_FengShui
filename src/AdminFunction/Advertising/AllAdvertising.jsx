@@ -1,23 +1,26 @@
 import { Button, Input, message, Modal, Table } from "antd";
 import React, { useEffect, useState } from "react";
-import blogApi from "../../../apis/blogApi";
-import "./AllBlog.css"
 import { SearchOutlined } from "@ant-design/icons";
-export default function AllBlog() {
+import adApi from "../../apis/adApi";
+import "./AllAd.css"
+export default function AllAdvertising() {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [size, setSize] = useState(10);
-  const [blogs, setBlogs] = useState([]);
+  const [ads, setAds] = useState([]);
   const [total, setTotal] = useState();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedBlog, setSelectedBlog] = useState("");
   const [searchText,setSearchText] = useState("")
+  const token = localStorage.getItem("token")
   const [filter,setFilter] = useState([])
   const fetchAllBlog = async () => {
     setLoading(true);
     try {
-      const response = await blogApi.getBlogs(page, size, "");
-      setBlogs(response.data.items);
+      const response = await adApi.getAll(page,size,{headers:{
+        Authorization:`Bearer ${token}`,
+      }})
+      setAds(response.data.items);
       setTotal(response.data.total);
     } catch (error) {
       if (error.response) {
@@ -35,8 +38,8 @@ export default function AllBlog() {
   useEffect(() => {
     fetchAllBlog();
   }, [page, size]);
-  const showBlogDescription = (blog) => {
-    setSelectedBlog(blog);
+  const showAdDescription = (ad) => {
+    setSelectedBlog(ad);
     setIsModalVisible(true);
   };
 
@@ -70,18 +73,16 @@ export default function AllBlog() {
     },
     {
       title: "Tác giả",
-      dataIndex: "userInfo",
-      key: "userInfo.fullName",
-      render: (userInfo) => {
-        return userInfo.fullName;
-      },
+      dataIndex: "userName",
+      key: "userName",
+   
     },
     {
       title: "Chi tiết",
       dataIndex: "description",
-      render: (_, blog) => {
+      render: (_, ad) => {
         return (
-          <Button type="link" onClick={() => showBlogDescription(blog)}>
+          <Button type="link" onClick={() => showAdDescription(ad)}>
             Xem chi tiết nội dung
           </Button>
         );
@@ -93,20 +94,20 @@ export default function AllBlog() {
       key: "status",
       render: (status) => {
         return(
-        <span
+        <span 
           className={
             status === "Rejected"
-              ? "status-rejected"
+              ? "Astatus-rejected"
               : status === "Approved"
-              ? "status-approved"
-              : "status-pending"
+              ? "Astatus-approved"
+              : status === "Draft" ? "Astatus-draft" : status === "Expired" ? "Astatus-expired" : "Astatus-pending"
           }
-        >{
+        > {
             status === "Rejected"
               ? "Từ chối"
               : status === "Approved"
               ? "Đã duyệt"
-              : "Chờ duyệt"
+              : status === "Draft" ? "Bản nháp" : status === "Expired" ? "Hết hạn" : "Chờ duyệt"
           }</span>
         ) 
       }
@@ -116,9 +117,9 @@ export default function AllBlog() {
     setPage(pagination.current);
   };
   useEffect(() => {
-    const filtered = blogs.filter((blog) => blog.title.toLowerCase().includes((searchText || "").toLowerCase()))
+    const filtered = ads.filter((ad) =>  (ad.title?.toLowerCase() || "").includes((searchText || "").toLowerCase()))
     setFilter(filtered)
-  }, [searchText,blogs])
+  }, [searchText,ads])
   return (
     <div className="blog-management-block">
       <div className="header-text">
@@ -137,7 +138,7 @@ export default function AllBlog() {
       <Table
         columns={columns}
         className="table"
-        dataSource={filter.map((blog)=>({...blog,key:blog.id}))}
+        dataSource={filter.map((ad)=>({...ad,key:ad.id}))}
         pagination={{
           current: page,
           pageSize: size,
