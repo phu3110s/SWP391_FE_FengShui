@@ -176,6 +176,7 @@ const GetConsulting = () => {
           ) : (
             <div className="fish-pond-container">
               {fishPond ? (
+
                 <>
                   <p className="consultation-description">{fishPond.description}</p>
 
