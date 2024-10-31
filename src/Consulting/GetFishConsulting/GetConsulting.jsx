@@ -140,6 +140,7 @@ const GetConsulting = () => {
   return (
     <>
       <Header />
+      <Navigation/>
       <div className="getconsulting">
         <div>
 

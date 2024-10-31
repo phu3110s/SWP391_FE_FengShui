@@ -43,6 +43,7 @@ import AdvertisingPayment from "./advertising/AdvertisingPayment/AdvertisingPaym
 import PaymentCreating from "./AdminFunction/Payment/PaymentCreating/PaymentCreating";
 import PaymentViewing from "./AdminFunction/Payment/PaymentViewing/PaymentViewing";
 import { ToastContainer } from "react-toastify";
+import AllBlog from "./AdminFunction/BlogManagement/AllBlog/AllBlog";
 
 function App() {
   // const [user, setUser] = useState(null);
@@ -141,6 +142,7 @@ function App() {
           <Route path="Consulting-Adding" element={<ConsultingAdding />} />
           <Route path="Payment-Adding" element={<PaymentCreating/>} />
           <Route path="Payment-Plans" element={<PaymentViewing/>} />
+          <Route path="Blog-Management" element={<AllBlog/>} />
         </Route>
        </Routes>
        <ToastContainer/>

@@ -8,7 +8,8 @@ import { message, Modal, Spin } from 'antd'
 import fengshuiApi from '../apis/fengshui'
 import userApi from '../apis/userApi'
 import { ConsoleSqlOutlined } from '@ant-design/icons'
-
+import { toast, ToastContainer } from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css";
 export default function Calculate() {
     const [yearOfBirth, setYearOfBirth] = useState(null)
     const token = localStorage.getItem("token");
@@ -29,6 +30,7 @@ export default function Calculate() {
             });
             if (response && response.data) {
                 setUserFengShuiId(response.data.fengShuiId);
+                
                 // console.log(response.data.fengShuiId)
             }
         } catch (error) {
@@ -77,6 +79,9 @@ export default function Calculate() {
     useEffect(() => {
         if (userFengShuiId) {
             getUserFengShuiInfo();
+                // toast.success("Đã tìm ra phong thủy của bạn",{
+                //     position:"top-center",autoClose:3000
+                // })
         }
     }, [userFengShuiId]);
 
@@ -248,11 +253,12 @@ export default function Calculate() {
                     </Modal>
                 </div>
 
-
+                <ToastContainer/>
 
             </div>
-
+                    
             <Footer />
+            
         </>
     );
 }

@@ -121,6 +121,7 @@ export default function HarmonyRating() {
   return (
     <>
       <Header />
+      <Navigation/>
       <div className="harmony-rating">
         {/* <img
           className="rating-background"

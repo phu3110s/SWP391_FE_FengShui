@@ -74,6 +74,13 @@ const Sidebar = () => {
       </div>
 
       <Menu mode="inline" theme="dark">
+      <Menu.Item
+          key="1"
+          onClick={() => navigate("/AdminDashboard/AdminChart")}
+          icon={<DashboardFilled />}
+        >
+          Admin Dashboard
+        </Menu.Item>
         <Menu.SubMenu key="sub1" title="Quản lí bài viết" icon={<SiBlogger />}>
           <Menu.Item
             key="4"
@@ -87,8 +94,10 @@ const Sidebar = () => {
             icon={<HiSpeakerphone />}
             onClick={() => navigate("/AdminDashboard/PostingApprove")}
           >
-            Duyệt các bài đăng bán
+            Duyệt bài đăng bán
           </Menu.Item>
+          <Menu.Item key="21" onClick={() => navigate("/AdminDashboard/Blog-Management")} > Quản lí blog</Menu.Item>
+          <Menu.Item key="23" onClick={() => navigate("/")} > Quản lí bài đăng bán</Menu.Item>
         </Menu.SubMenu>
         <Menu.Item
           key="6"
@@ -136,13 +145,7 @@ const Sidebar = () => {
             Thêm kiểu hồ
           </Menu.Item>
         </Menu.SubMenu>
-        <Menu.Item
-          key="12"
-          onClick={() => navigate("/AdminDashboard/AdminChart")}
-          icon={<DashboardFilled />}
-        >
-          Admin Dashboard
-        </Menu.Item>
+        
         <Menu.Item
           key="13"
           icon={<CiSettings />}
