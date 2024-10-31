@@ -80,8 +80,8 @@ export default function DashboardChart() {
   const [allAdvertising, setAllAdveritings] = useState(null);
   const startDateforLine = `${year}/${month}/${day}`;
   const [startDateforPie, setstartDateforPie] = useState(
-    moment().startOf("month")
-  );
+    moment().subtract(1, 'months').startOf("month")
+  );  
   const [endDateforPie, setendDateforPie] = useState(moment().endOf("day"));
   const fetchPieDataToday = async () => {
     setLoading(true);
@@ -361,14 +361,15 @@ export default function DashboardChart() {
   }, []);
   const handlestartDateforPieChange = (date) => {
     if (date === null) {
-      setstartDateforPie(date);
+      setstartDateforPie(null);
     } else {
       setstartDateforPie(date);
     }
 
     if (date && endDateforPie) {
-      const formattedstartDateforPie = moment(date).format("YYYY-MM-DD");
-      const formattedendDateforPie = moment(endDateforPie).format("YYYY-MM-DD");
+      const formattedstartDateforPie = date.format("YYYY-MM-DD");
+      const formattedendDateforPie = endDateforPie.format("YYYY-MM-DD");
+      console.log(formattedstartDateforPie,formattedendDateforPie)
       fetchPieRangeData(formattedstartDateforPie, formattedendDateforPie);
     }
   };
@@ -381,8 +382,9 @@ export default function DashboardChart() {
     }
     if (startDateforPie && date) {
       const formattedstartDateforPie =
-        moment(startDateforPie).format("YYYY-MM-DD");
-      const formattedendDateforPie = moment(date).format("YYYY-MM-DD");
+        startDateforPie.format("YYYY-MM-DD");
+      const formattedendDateforPie = date.format("YYYY-MM-DD");
+      console.log(formattedstartDateforPie,formattedendDateforPie)
       fetchPieRangeData(formattedstartDateforPie, formattedendDateforPie);
     }
   };
@@ -478,7 +480,7 @@ export default function DashboardChart() {
           {/* Cái chọn ngày linh tinh , đang không config được nên chưa sửa */}
           <div className="date-picker">
             <DatePicker
-              value={startDateforPie}ada
+              value={startDateforPie}
               onChange={handlestartDateforPieChange}
               format="YYYY-MM-DD"
               placeholder="Chọn ngày bắt đầu"
