@@ -7,7 +7,6 @@ import { toast, ToastContainer } from "react-toastify";
 const { Search } = Input;
 
 export default function Header() {
-
   const [username, setUsername] = useState();
   const token = localStorage.getItem("token");
   const userId = localStorage.getItem("userId");
@@ -39,7 +38,7 @@ export default function Header() {
     if (token) {
       fetchUserProfile();
     }
-  }, [])
+  }, []);
 
   const navigate = useNavigate();
   const handleLogout = () => {
@@ -47,13 +46,16 @@ export default function Header() {
     localStorage.removeItem("userId");
     localStorage.removeItem("username");
     localStorage.removeItem("userImg");
-    toast.success("Đăng xuất thành công!", { position: "top-right", autoClose: 6000 });
+    toast.success("Đăng xuất thành công!", {
+      position: "top-right",
+      autoClose: 6000,
+    });
     // message.success("Đăng xuất thành công", 5)
     navigate("/");
   };
 
   const userMenu = (
-    <Menu >
+    <Menu>
       <Menu.Item key="1">
         <Link to="/MyBlog">Blog của tôi</Link>
       </Menu.Item>
@@ -61,7 +63,7 @@ export default function Header() {
         <Link to="/user-profile">Hồ sơ của tôi</Link>
       </Menu.Item>
       <Menu.Item key="3">
-        <Link to="/MyAdvertising">Bài đăng của tôi</Link>
+        <Link to="/MyAdvertising">Bài đăng bán của tôi</Link>
       </Menu.Item>
       <Menu.Item key="4">
         <span onClick={handleLogout}>Đăng xuất</span>
@@ -109,24 +111,20 @@ export default function Header() {
           </li>
           
         ) : null} */}
-          {token &&
+          {token && (
             <li className="active">
               <Link className="link" to={"/AdvertisingPosting"}>
-                <Dropdown overlay={userMenu} trigger={["click"]}>
-                  <div className="active">
-                    Đăng quảng cáo
-                  </div>
-                </Dropdown>
-
+                Đăng quảng cáo
               </Link>
-            </li>}
-          {token &&
+            </li>
+          )}
+          {token && (
             <li className="active">
               <Link className="link" to={"/Harmony-Rating"}>
                 Xếp hạng độ hòa hợp
               </Link>
             </li>
-          }
+          )}
           <li className="active">
             <Link className="link" to={"/News"}>
               Tin tức
@@ -140,12 +138,12 @@ export default function Header() {
         <div className="authorization-box">
           {token ? (
             <Dropdown overlay={userMenu} trigger={["click"]}>
-              <div
-                className="div-avata"
-
-              >
-                <Avatar className="user-avt-login"
-                  src={avatarUrl} alt="User Avatar" />
+              <div className="div-avata">
+                <Avatar
+                  className="user-avt-login"
+                  src={avatarUrl}
+                  alt="User Avatar"
+                />
               </div>
             </Dropdown>
           ) : (
@@ -164,8 +162,6 @@ export default function Header() {
           )}
         </div>
       </div>
-
     </div>
-
   );
 }

@@ -495,12 +495,13 @@ export default function DashboardChart() {
       <div className="line-and-bar">
         <div className="bar-chart chart-container">
           <strong className="chart-title">Doanh thu hàng tuần</strong>
-          <Bar data={barChartData} />
+          <div className="bar-line-chart"><Bar data={barChartData} /></div>
+          
         </div>
 
         <div className="line-chart chart-container">
           <strong className="chart-title">Doanh thu 7 ngày gần nhất</strong>
-          <div className="line-chart-block">
+          <div className="bar-line-chart">
             <Line data={lineChartData} />
           </div>
         </div>
