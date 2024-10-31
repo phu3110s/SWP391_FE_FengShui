@@ -10,6 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 export default function Login() {
   const [username, setUsername] = useState("");
+  const [phoneNumber,setPhoneNumber] = useState("")
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const token = localStorage.getItem("token");
@@ -30,9 +31,20 @@ export default function Login() {
     try {
       if (!username || !password) {
         message.error("Vui lòng nhập đầy đủ thông tin");
-        return;
+        return; 
       }
+
       const response = await userApi.login(data);
+    //   const response = await fetch("https://gift-4-you.onrender.com/api/v1/auth/login", {
+    //     method: "POST",
+    //     headers: {
+    //         "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({
+    //         phoneNumber,
+    //         password,
+    //     }),
+    // });
       const userRole = response.data.role;
       localStorage.setItem("token", response.data.accessToken);
       localStorage.setItem("username", response.data.fullName);

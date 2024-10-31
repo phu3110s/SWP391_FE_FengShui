@@ -154,7 +154,7 @@ export default function UserManagement() {
       </div>
 
       <Table
-        className="table"
+        className="user-table"
         columns={columns}
         dataSource={filter.map((user) => ({ ...user, key: user.id }))}
         pagination={{

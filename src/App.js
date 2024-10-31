@@ -2,48 +2,48 @@ import { Route, Routes } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
 
 import "./App.css";
-import Login from "./login/Login";
 import Home from "./home/Home";
-import SignUp from "./signup/SignUp";
+import Login from "./login/Login";
 import Policy from "./policy/Policy";
+import SignUp from "./signup/SignUp";
 // import Calculate from './calculate/Calculate'
-import BlogList from "./Blog/BlogList/BlogList";
-import BlogDetail from "./Blog/BlogDetail/BlogDetail";
-import Product from "./Product/Product";
-import BlogPosting from "./Blog/BlogPosting/BlogPosting";
-import MyBlog from "./Blog/MyBlog/MyBlog";
-import News from "./News/News";
-import Advise from "./advise/Advise";
 import AdminDashboard from "./AdminDashboard/AdminDashboard";
 import BlogApprove from "./AdminFunction/BlogManagement/BlogApprove/BlogApprove";
 import UserManagement from "./AdminFunction/UserManagement/UserManagement";
-import SellingBlogManagement from "./AdminFunction/SellingBlogManagement/SellingBlogManagement";
+import BlogDetail from "./Blog/BlogDetail/BlogDetail";
+import BlogList from "./Blog/BlogList/BlogList";
+import BlogPosting from "./Blog/BlogPosting/BlogPosting";
+import MyBlog from "./Blog/MyBlog/MyBlog";
+import News from "./News/News";
+import Product from "./Product/Product";
+import Advise from "./advise/Advise";
 // import { useEffect, useState } from "react";
 // import { jwtDecode } from "jwt-decode";
+import { ToastContainer } from "react-toastify";
 import AdminRoute from "./AdminFunction/AdminRoute/AdminRoute";
-import Calculate from "./calculate/Calculate";
-import UserProfile from "./User/UserComponent/UserProfile/MyProfile/UserProfile";
-import PondAdding from "./AdminFunction/PondManagement/PondAdding/PondAdding";
+import AllAdvertising from "./AdminFunction/Advertising/AllAdvertising";
+import AllBlog from "./AdminFunction/BlogManagement/AllBlog/AllBlog";
+import PostingApprove from "./AdminFunction/BlogManagement/PostingApprove/PostingApprove";
+import ConsultingAdding from "./AdminFunction/Consulting/ConsultingAdding/ConsultingAdding";
+import DashboardChart from "./AdminFunction/DashboardChart/DashboardChart";
 import FishAdding from "./AdminFunction/FishManagement/FishAdding/FishAdding";
 import FishViewing from "./AdminFunction/FishManagement/FishViewing/FishViewing";
-import PondViewing from "./AdminFunction/PondManagement/PondViewing/PondViewing";
-import OtherUserProfile from "./User/OtherUser/OtherUserProfile";
-import AdvertisingPosting from "./advertising/AdvertisingPosting/AdvertisingPosting";
-import DashboardChart from "./AdminFunction/DashboardChart/DashboardChart";
 import HarmonyAdding from "./AdminFunction/Harmony/HarmonyInput/HarmonyAdding";
-import HarmonyRating from "./Harmony/HarmonyRating";
 import HarmonyViewing from "./AdminFunction/Harmony/HarmonyView/HarmonyViewing";
-import PostingApprove from "./AdminFunction/BlogManagement/PostingApprove/PostingApprove";
-import MyAdvertising from "./advertising/MyAdvertising/MyAdvertising";
-import AdvertisingList from "./advertising/AdvertisingList/AdvertisingList";
-import AdvertisingDetail from "./advertising/AdvertisingDetail/AdvertisingDetail";
-import ConsultingAdding from "./AdminFunction/Consulting/ConsultingAdding/ConsultingAdding";
-import GetConsulting from "./Consulting/GetFishConsulting/GetConsulting";
-import AdvertisingPayment from "./advertising/AdvertisingPayment/AdvertisingPayment";
 import PaymentCreating from "./AdminFunction/Payment/PaymentCreating/PaymentCreating";
 import PaymentViewing from "./AdminFunction/Payment/PaymentViewing/PaymentViewing";
-import { ToastContainer } from "react-toastify";
-import AllBlog from "./AdminFunction/BlogManagement/AllBlog/AllBlog";
+import PondAdding from "./AdminFunction/PondManagement/PondAdding/PondAdding";
+import PondViewing from "./AdminFunction/PondManagement/PondViewing/PondViewing";
+import GetConsulting from "./Consulting/GetFishConsulting/GetConsulting";
+import HarmonyRating from "./Harmony/HarmonyRating";
+import OtherUserProfile from "./User/OtherUser/OtherUserProfile";
+import UserProfile from "./User/UserComponent/UserProfile/MyProfile/UserProfile";
+import AdvertisingDetail from "./advertising/AdvertisingDetail/AdvertisingDetail";
+import AdvertisingList from "./advertising/AdvertisingList/AdvertisingList";
+import AdvertisingPayment from "./advertising/AdvertisingPayment/AdvertisingPayment";
+import AdvertisingPosting from "./advertising/AdvertisingPosting/AdvertisingPosting";
+import MyAdvertising from "./advertising/MyAdvertising/MyAdvertising";
+import Calculate from "./calculate/Calculate";
 
 function App() {
   // const [user, setUser] = useState(null);
@@ -131,7 +131,6 @@ function App() {
           <Route path="ApprovePost" element={<BlogApprove />} />
           <Route path="PostingApprove" element={<PostingApprove />} />
           <Route path="UserManagement" element={<UserManagement />} />
-          <Route path="ApproveSell" element={<SellingBlogManagement />} />
           <Route path="PondGenerating" element={<PondAdding />} />
           <Route path="FishGenerating" element={<FishAdding />} />
           <Route path="FishManagement" element={<FishViewing />} />
@@ -143,6 +142,7 @@ function App() {
           <Route path="Payment-Adding" element={<PaymentCreating/>} />
           <Route path="Payment-Plans" element={<PaymentViewing/>} />
           <Route path="Blog-Management" element={<AllBlog/>} />
+          <Route path="Ad-Management" element={<AllAdvertising/>} />
         </Route>
        </Routes>
        <ToastContainer/>
