@@ -14,7 +14,7 @@ export default function AdvertisingPayment() {
 
     const location = useLocation();
     const adData = location.state?.post || {};
-    console.log(adData);
+    // console.log(adData);
 
 
     const userId = localStorage.getItem("userId");
@@ -66,8 +66,12 @@ export default function AdvertisingPayment() {
 
 
     const getPlanList = async () => {
-        const response = await paymentPlan.getPaymentPlan(1, 10)
-        setListPlan(response.data.items)
+        try {
+            const response = await paymentPlan.getPaymentPlan(1, 10);
+            setListPlan(response.data.items);
+        } catch (error) {
+            message.error("Lỗi khi lấy danh sách gói đăng bài.");
+        }
     }
 
     const handleImageInput = (e) => {
@@ -107,18 +111,18 @@ export default function AdvertisingPayment() {
             //     },
             // });
             // if (response.status === 201) {
+
+            const url = window.location.origin;
             if (adData) {
-
-
                 // message.success("Đăng blog thành công. Chờ duyệt");
                 const paymentData = {
                     advertisingId: adData.id,
                     paymentPlanId: planID,
                     description: adData.description,
-                    returnUrl: 'https://swp-391-fe-feng-shui-beta.vercel.app/MyAdvertising',
-                    canceUrl: 'https://swp-391-fe-feng-shui-beta.vercel.app/MyAdvertising'
+                    returnUrl: `https://swp-391-fe-feng-shui-beta.vercel.app/MyAdvertising`,
+                    canceUrl: `${url}/MyAdvertising`
                 };
-                console.log(paymentData);
+                console.log("paymentData", paymentData);
 
 
                 const responsePayment = await createPaymentLink.postPayment(paymentData, {
@@ -126,10 +130,12 @@ export default function AdvertisingPayment() {
                         'Authorization': `Bearer ${token}`,
                     },
                 });
-                if (responsePayment.status === 200) {
+                if (responsePayment.status === 200 || responsePayment.status === 201) {
                     window.location.href = responsePayment.data
                     message.success("Đăng bài thành công. Đang chuyển hướng đến trang thanh toán")
                 }
+                console.log("responsePayment", responsePayment);
+
                 setTitle("");
                 setDescription("");
                 setImage(null);
@@ -141,6 +147,8 @@ export default function AdvertisingPayment() {
                 alert("Lỗi gì bất định");
             }
         } catch (error) {
+            console.error("Lỗi khi tạo link thanh toán", error);
+            alert("có lỗi xảy ra trong quá trình tạo link thanh toán");
             if (error.response) {
                 const { status } = error.response;
                 if (status === 400) {

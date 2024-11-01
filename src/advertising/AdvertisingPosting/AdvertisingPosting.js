@@ -10,6 +10,7 @@ import paymentPlan from "../../apis/paymentApi";
 import createPaymentLink from "../../apis/payosApi";
 import Footer from "../../components/footer/Footer";
 import { RiImageAddLine } from "react-icons/ri";
+import axios from "axios";
 
 export default function AdvertisingPosting() {
   const userId = localStorage.getItem("userId");
@@ -39,8 +40,12 @@ export default function AdvertisingPosting() {
 
 
   const getPlanList = async () => {
-    const response = await paymentPlan.getPaymentPlan(1, 10);
-    setListPlan(response.data.items);
+    try {
+      const response = await paymentPlan.getPaymentPlan(1, 10);
+      setListPlan(response.data.items);
+    } catch (error) {
+      message.error("Lỗi khi lấy danh sách gói đăng bài.");
+    }
   };
 
   const handleImageInput = (e) => {
@@ -77,15 +82,20 @@ export default function AdvertisingPosting() {
         },
       });
       // if (response.status === 201) {
-      //     message.success("Đăng bài thành công. Chờ duyệt");
-      //     const paymentData = {
-      //         advertisingId: response.data.id,
-      //         paymentPlanId: paymentPlanId,
-      //         description: response.data.description,
-      //         returnUrl: 'https://swp-391-fe-feng-shui-beta.vercel.app/MyAdvertising',
-      //         canceUrl: 'https://swp-391-fe-feng-shui-beta.vercel.app/MyAdvertising'
-      //     };
+      //   message.success("Đăng bài thành công. Chờ duyệt");
+      //   const paymentData = await axios.post('https://feng-shui-koi-dgedbqdqaebyhgc4.southeastasia-01.azurewebsites.net/api/v1/payment', {
+      //     advertisingId: response.data.id,
+      //     paymentPlanId: paymentPlanId,
+      //     description: response.data.description,
+      //     returnUrl: 'https://swp-391-fe-feng-shui-beta.vercel.app/MyAdvertising',
+      //     canceUrl: 'https://swp-391-fe-feng-shui-beta.vercel.app/MyAdvertising'
+      //   });
+      if (response.data && response.data.paymentUrl) {
+        window.location.href = response.data.paymentUrl;
+      } else {
+        console.error("không tìm thấy link thanh toán");
 
+      }
       const url = window.location.origin;
       if (response.status === 200 || response.status === 201) {
         message.success("Đăng bài thành công. Chờ duyệt");
@@ -93,7 +103,7 @@ export default function AdvertisingPosting() {
           advertisingId: response.data.id,
           paymentPlanId: paymentPlanId,
           description: response.data.description,
-          returnUrl: `${url}/MyAdvertising`,
+          returnUrl: `https://swp-391-fe-feng-shui-beta.vercel.app/MyAdvertising`,
           canceUrl: `${url}/MyAdvertising`
         };
         console.log(paymentData);
@@ -106,7 +116,7 @@ export default function AdvertisingPosting() {
             },
           }
         );
-        if (response.status === 200 || response.status === 201) {
+        if (responsePayment.status === 200 || responsePayment.status === 201) {
           window.location.href = responsePayment.data;
           message.success(
             "Đăng bài thành công. Đang chuyển hướng đến trang thanh toán"
@@ -125,6 +135,9 @@ export default function AdvertisingPosting() {
         alert("Lỗi gì bất định");
       }
     } catch (error) {
+      console.error("Lỗi khi tạo link thanh toán", error);
+      alert("có lỗi xảy ra trong quá trình tạo link thanh toán")
+
       if (error.response) {
         const { status } = error.response;
         if (status === 400) {
