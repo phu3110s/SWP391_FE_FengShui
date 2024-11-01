@@ -39,5 +39,7 @@
     display: flex;
     justify-content: flex-start; 
   }
-  
+  .fish-table{
+    margin-left: 100px;
+  }
   

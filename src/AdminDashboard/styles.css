@@ -115,8 +115,9 @@ body, html {
   width: calc(100%);
   position: fixed;
   top: 0;
+  border-radius: 5%;
   left: 280px;
-  z-index: 999;
+  /* z-index: 999; */
 }
 
 .header-titles {
