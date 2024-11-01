@@ -120,16 +120,19 @@ const PondViewing = () => {
       title: "Chất liệu",
       dataIndex: "material",
       key: "material",
+      width:250
     },
     {
       title: "Hình dáng",
       dataIndex: "shape",
       key: "shape",
+      width:250
     },
     {
       title: "Mực nước",
       dataIndex: "waterLevel",
       key: "Water Level",
+      width:300
     },
     {
       title: "Chi tiết",
@@ -140,6 +143,7 @@ const PondViewing = () => {
           Bấm vào đây để xem chi tiết
         </Button>
       ),
+      width:400
     },
     {
       title: "Action",
@@ -220,7 +224,7 @@ const PondViewing = () => {
         {/* <Button className="reset-button" icon={<FiDelete />} secondary/> */}
       </div>
       <Table
-        className="table"
+        className="pond-table"
         columns={columns}
         dataSource={filter.map((pond) => ({ ...pond, key: pond.id }))}
         pagination={{

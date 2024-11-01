@@ -166,7 +166,7 @@ const FishViewing = () => {
       title: "Màu sắc",
       dataIndex: "color",
       key: "color",
-      width:250
+      width:300
     },
     {
       title: "Chi tiết",
@@ -174,7 +174,7 @@ const FishViewing = () => {
       render: (_, fish) => (
         <Button type="link" onClick={() => showFishDetails(fish)}>
           Xem chi tiết
-        </Button>
+        </Button> 
       ),
       width:400
     },
@@ -204,6 +204,7 @@ const FishViewing = () => {
           </Popconfirm>
         </div>
       ),
+      
     },
   ];
 
@@ -228,7 +229,7 @@ const FishViewing = () => {
         {/* <Button className="reset-button" icon={<FiDelete />} secondary/> */}
       </div>
       <Table
-        className="table"
+        className="fish-table"
         columns={columns}
         dataSource={filter.map((fish) => ({ ...fish, key: fish.id }))}
         pagination={{
@@ -237,7 +238,9 @@ const FishViewing = () => {
           total: total,
           showSizeChanger: false,
         }}
-        scroll={{x:'800px',y:'550px'}}
+        
+        scroll={{x:800,y:750}}
+        // scroll={{x:'500',y:'550px'}}
         onChange={handlePageChange}
         loading={loading}
       />
