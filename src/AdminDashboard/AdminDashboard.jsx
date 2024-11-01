@@ -195,6 +195,8 @@ const Sidebar = () => {
         <Menu.Item key="20" onClick={handleLogout} icon={<LogoutOutlined />}>
           Đăng xuất
         </Menu.Item>
+        
+       
       </Menu>
     </div>
   );
@@ -202,7 +204,7 @@ const Sidebar = () => {
 
 const Header = ({ avatarUrl, userMenu }) => {
   return (
-    <div className="header">
+    <div className="header" style={{marginLeft:30}}>
       <div className="header-left">
         <h2 className="header-titles">Admin Dashboard</h2>
       </div>

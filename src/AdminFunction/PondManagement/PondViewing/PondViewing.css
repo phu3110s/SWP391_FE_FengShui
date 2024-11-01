@@ -39,5 +39,8 @@
     display: flex;
     justify-content: flex-start; 
   }
+  .pond-table{
+    margin-left:100px;
+  }
   
   

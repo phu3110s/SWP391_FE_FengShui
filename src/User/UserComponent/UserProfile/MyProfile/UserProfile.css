@@ -4,3 +4,6 @@
   font-weight: bold;
   text-align: center;
 }
+.save-button{
+  cursor: pointer;
+}

@@ -162,6 +162,7 @@ export default function UserManagement() {
           pageSize: size,
           total: total,
           showSizeChanger: false,
+          // position:['bottomCenter']
         }}
         onChange={handlePageChange}
         loading={loading}
