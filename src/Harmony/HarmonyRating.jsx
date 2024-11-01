@@ -121,7 +121,6 @@ export default function HarmonyRating() {
   return (
     <>
       <Header />
-      <Navigation/>
       <div className="harmony-rating">
         {/* <img
           className="rating-background"
@@ -186,24 +185,24 @@ export default function HarmonyRating() {
             </div>
             {harmonyInfo && (
               <div className="rating-result">
-              <div className="harmony-bar-wrap">
-                    <div
-                      style={{
-                        "--harmony-point": `${rating}%`,
-                        "--harmony-color":
+                <div className="harmony-bar-wrap">
+                  <div
+                    style={{
+                      "--harmony-point": `${rating}%`,
+                      "--harmony-color":
                         rating < 40
-                            ? "#f44336"
-                            : rating < 80
+                          ? "#f44336"
+                          : rating < 80
                             ? "#ffeb3b"
                             : "#4caf50",
-                        "--harmony-text-color":
+                      "--harmony-text-color":
                         rating < 80 ? "black" : "white",
-                      }}
-                      className="harmony-rating-bar"
-                    >
-                      <p id="harmony-point">{rating}%</p>
-                    </div>
+                    }}
+                    className="harmony-rating-bar"
+                  >
+                    <p id="harmony-point">{rating}%</p>
                   </div>
+                </div>
                 <strong><h2>Mô tả: {description}</h2></strong>
               </div>
             )}

@@ -498,7 +498,7 @@ export default function DashboardChart() {
         <div className="bar-chart chart-container">
           <strong className="chart-title">Doanh thu hàng tuần</strong>
           <div className="bar-line-chart"><Bar data={barChartData} /></div>
-          
+
         </div>
 
         <div className="line-chart chart-container">

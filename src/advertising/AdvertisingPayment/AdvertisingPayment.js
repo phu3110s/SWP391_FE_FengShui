@@ -130,7 +130,6 @@ export default function AdvertisingPayment() {
                     window.location.href = responsePayment.data
                     message.success("Đăng bài thành công. Đang chuyển hướng đến trang thanh toán")
                 }
-
                 setTitle("");
                 setDescription("");
                 setImage(null);
@@ -234,9 +233,9 @@ export default function AdvertisingPayment() {
                         <Radio.Group onChange={(e) => setPlanID(e.target.value)} value={planID}>
                             {listPlan.map(plan => (
                                 <Radio key={plan.id} value={plan.id} className='radio-plan'>
-                                    _ {plan.name}<br />
-                                    _ {plan.description}<br />
-                                    _ {plan.amount}
+                                    {plan.name}<br />
+                                    {plan.description}<br />
+                                    {plan.amount}
                                 </Radio>
                             ))}
                         </Radio.Group>

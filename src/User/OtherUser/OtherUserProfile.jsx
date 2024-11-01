@@ -180,8 +180,8 @@ export default function OtherUserProfile() {
                                                     {post.map((post) => (
                                                         <div className="blog-information" key={post.id}>
                                                             <Link className="link-to-detail" to={`/AdvertisingDetail/${post.id}`}>
-                                                                <img src={post.urlImg} alt={post.itemTypeName} style={{ width: "220px", height: '220px' }} />
-                                                                <h4>{post.itemTypeName}</h4>
+                                                                <img src={post.urlImg} alt={post.title} style={{ width: "220px", height: '220px' }} />
+                                                                <h4>{post.title}</h4>
                                                             </Link>
                                                         </div>
                                                     ))}

@@ -11,6 +11,7 @@ body, html {
 }
 
 .admin-dashboard {
+  width: 100%;
   font-family: 'Comfortaa', sans-serif;
   display: flex;
   min-height: 100vh;
@@ -21,7 +22,7 @@ body, html {
 
 .sidebar {
   font-family: 'Comfortaa', sans-serif;
-  width: 250px; 
+  width: 300px; 
   height: 100vh; 
   background-color:#0f1537; 
   color: white; 
@@ -97,6 +98,7 @@ body, html {
 }
 
 .dashboard-main-content {
+  width: 100%;
   margin: 5% 0;
   padding: 50px;
 }
@@ -150,6 +152,7 @@ body, html {
 /* ====================================== DASHBOARD CONTENT ============================= */
 
 .dashboard-content {
+  width: 100%;
   flex-grow: 1;
   padding: 80px 30px 30px;
   margin-left: 280px;

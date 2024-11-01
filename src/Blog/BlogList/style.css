@@ -2,12 +2,7 @@
 .new-blog {
   width: 100%;
   height: auto;
-  background-color: #F4F4F4;
 
-}
-
-.blog-container {
-  height: auto;
 }
 
 .blog-info {
@@ -29,9 +24,9 @@
 }
 
 .blog-container {
+  width: 100%;
+  height: auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-gap: 20px;
   padding: 20px;
 }
 
@@ -83,7 +78,6 @@
   display: inline-block;
   margin: 12px 0;
   transition: background-color 0.3s, color 0.3s;
-  border: 1px solid white;
 }
 
 /* .blog-info a:hover {
