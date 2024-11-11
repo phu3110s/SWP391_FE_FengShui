@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { message, Spin } from "antd";
 import "./pondDetail.css"
-import pondApi from "../../apis/pondApi";
+import pondApi from "../../apis/admin/pondApi";
 const PondDetail = ({ pondId }) => {
     const [pond, setpond] = useState(null)
     const [loading, setLoading] = useState(false)

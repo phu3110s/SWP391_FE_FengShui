@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 import Header from '../../components/header/Header'
 import Navigation from '../../components/navbar/Navigation'
 import { Link, useParams } from 'react-router-dom';
-import postingApi from '../../apis/postingApi';
+import postingApi from '../../apis/advertising/postingApi';
 import Footer from '../../components/footer/Footer';
 import { Avatar } from 'antd';
-import userApi from '../../apis/userApi';
+import userApi from '../../apis/user/userApi';
 
 export default function AdvertisingDetail() {
 
@@ -54,7 +54,6 @@ export default function AdvertisingDetail() {
     return (
         <>
             <Header />
-            <Navigation />
             <div className="detail-container">
 
                 <div className="short-detail-in4">

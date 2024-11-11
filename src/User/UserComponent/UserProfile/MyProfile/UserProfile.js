@@ -2,8 +2,8 @@ import { Button, Form, Input, Modal, Radio, Spin, message } from "antd";
 import React, { useEffect, useState } from "react";
 import Header from "../../../../components/header/Header";
 import "./UserProfile.css";
-import passwordApi from "../../../../apis/changePassword";
-import userApi from "../../../../apis/userApi";
+import passwordApi from "../../../../apis/user/changePassword";
+import userApi from "../../../../apis/user/userApi";
 import Footer from "../../../../components/footer/Footer";
 
 export default function UserProfile() {
@@ -166,7 +166,7 @@ export default function UserProfile() {
             className="user-avatar"
             src={previewImage || userProfile.urlImg}
             alt="userImg"
-            style={{borderRadius:13 }}
+            style={{ borderRadius: 13 }}
           />
           {isEditing && (
             <>
@@ -262,7 +262,7 @@ export default function UserProfile() {
 
                 <tr className="cart-content">
                   <td className='cart-item'>Email: </td>
-                  <td className='cart-item'><span>{userProfile.email}</span></td>
+                  <td className='cart-item' style={{ fontSize: 15, fontStyle: 'italic', color: 'gray' }}><span>{userProfile.email || "chưa có thông tin"}</span></td>
                   <td className='cart-item'>🔒</td>
                 </tr>
 

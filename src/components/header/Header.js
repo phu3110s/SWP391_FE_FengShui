@@ -2,7 +2,7 @@ import { Avatar, Dropdown, Input, Menu, message, Space } from "antd";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Header.css";
-import userApi from "../../apis/userApi";
+import userApi from "../../apis/user/userApi";
 import { toast, ToastContainer } from "react-toastify";
 const { Search } = Input;
 
@@ -118,13 +118,13 @@ export default function Header() {
               </Link>
             </li>
           )}
-          {token && (
+          {/* {token && (
             <li className="active">
               <Link className="link" to={"/Harmony-Rating"}>
                 Xếp hạng độ hòa hợp
               </Link>
             </li>
-          )}
+          )} */}
           <li className="active">
             <Link className="link" to={"/News"}>
               Tin tức

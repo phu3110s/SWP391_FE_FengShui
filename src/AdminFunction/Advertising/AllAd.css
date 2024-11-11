@@ -16,20 +16,20 @@
     color:rgb(29, 90, 29);
     font-weight: bold;
     border-radius: 12%;
-    border:2px solid rgb(18, 99, 18);
-    padding: 5px;
+    /* border:2px solid rgb(18, 99, 18); */
+    /* padding: 5px; */
 }
 .Astatus-draft{
     color:gray;
     font-weight: bold;
     border-radius: 12%;
-    border:2px solid rgb(87, 83, 86);
-    padding: 5px;
+    /* border:2px solid rgb(87, 83, 86); */
+    /* padding: 5px; */
 }
 .Astatus-expired{
     color:rgb(92, 24, 24);
     font-weight: bold;
     border-radius: 12%;
-    border:2px solid rgb(87, 83, 86);
-    padding: 5px;
+    /* border:2px solid rgb(87, 83, 86); */
+    /* padding: 5px; */
 }

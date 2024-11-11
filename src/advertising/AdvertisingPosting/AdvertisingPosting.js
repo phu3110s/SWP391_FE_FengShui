@@ -1,16 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./AdvertisingPosting.css";
 import Header from "../../components/header/Header";
-import Navigation from "../../components/navbar/Navigation";
-import { Button, Checkbox, Input, message, Radio } from "antd";
+import { Checkbox, Input, message, Radio } from "antd";
 import { Link, useNavigate } from "react-router-dom";
-import postingApi from "../../apis/postingApi";
-import postPayment from "../../apis/payosApi";
-import paymentPlan from "../../apis/paymentApi";
-import createPaymentLink from "../../apis/payosApi";
+import postingApi from "../../apis/advertising/postingApi";
+import paymentPlan from "../../apis/advertising/paymentApi";
+import createPaymentLink from "../../apis/advertising/payosApi";
 import Footer from "../../components/footer/Footer";
 import { RiImageAddLine } from "react-icons/ri";
-import axios from "axios";
 
 export default function AdvertisingPosting() {
   const userId = localStorage.getItem("userId");
@@ -103,7 +100,7 @@ export default function AdvertisingPosting() {
           advertisingId: response.data.id,
           paymentPlanId: paymentPlanId,
           description: response.data.description,
-          returnUrl: `https://swp-391-fe-feng-shui-beta.vercel.app/MyAdvertising`,
+          returnUrl: `${url}/MyAdvertising`,
           canceUrl: `${url}/MyAdvertising`
         };
         console.log(paymentData);
@@ -199,9 +196,9 @@ export default function AdvertisingPosting() {
                     required
                   >
                     <option value="">--Chọn--</option>
-                    <option value="fish">Fish</option>
-                    <option value="pond">Pond</option>
-                    <option value="decoration">Decoration</option>
+                    <option value="fish">Cá</option>
+                    <option value="pond">Hồ</option>
+                    <option value="decoration">Đồ trang trí</option>
                   </select>
                 </div>
                 <div className="posting-blog-title">

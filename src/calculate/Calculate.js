@@ -6,7 +6,7 @@ import Footer from '../components/footer/Footer'
 import Navigation from '../components/navbar/Navigation'
 import { message, Modal, Spin } from 'antd'
 import fengshuiApi from '../apis/fengshui'
-import userApi from '../apis/userApi'
+import userApi from '../apis/user/userApi'
 import { ConsoleSqlOutlined } from '@ant-design/icons'
 import { toast, ToastContainer } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css";
@@ -30,7 +30,7 @@ export default function Calculate() {
             });
             if (response && response.data) {
                 setUserFengShuiId(response.data.fengShuiId);
-                
+
                 // console.log(response.data.fengShuiId)
             }
         } catch (error) {
@@ -79,9 +79,9 @@ export default function Calculate() {
     useEffect(() => {
         if (userFengShuiId) {
             getUserFengShuiInfo();
-                // toast.success("Đã tìm ra phong thủy của bạn",{
-                //     position:"top-center",autoClose:3000
-                // })
+            // toast.success("Đã tìm ra phong thủy của bạn",{
+            //     position:"top-center",autoClose:3000
+            // })
         }
     }, [userFengShuiId]);
 
@@ -253,12 +253,12 @@ export default function Calculate() {
                     </Modal>
                 </div>
 
-                <ToastContainer/>
+                <ToastContainer />
 
             </div>
-                    
+
             <Footer />
-            
+
         </>
     );
 }

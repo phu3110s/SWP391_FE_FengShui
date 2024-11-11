@@ -1,5 +1,6 @@
 .my-blog{
     width: 100%;
+    
     align-items: center;
     position: relative;
     height: fit-content;
@@ -7,7 +8,7 @@
 }
 .myBlog-container{
     background-color: #FFF;
-    height: auto;
+    min-height: 80vh;
     width: 70%;
     padding: 20px;
     border: 1px solid rgb(189, 189, 189);

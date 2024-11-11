@@ -1,43 +1,43 @@
 import React, { useEffect, useState } from "react";
-import fishApi from "../../apis/fishApi";
+import fishApi from "../../apis/admin/fishApi";
 import { message, Spin } from "antd";
 import "./FishDetail.css"
-const FishDetail =({fishId}) =>{
-    const [fish,setFish] = useState(null)
-    const [loading,setLoading] = useState(false)
-    useEffect(()=>{
-        const fetchFishDetail = async() =>{
+const FishDetail = ({ fishId }) => {
+    const [fish, setFish] = useState(null)
+    const [loading, setLoading] = useState(false)
+    useEffect(() => {
+        const fetchFishDetail = async () => {
             setLoading(true)
-            try{
+            try {
                 const response = await fishApi.getFishById(fishId);
-                setFish(response.data)  
+                setFish(response.data)
                 console.log(response.data)
-            }catch(error){
-                if(error.response){
-                    const {status} = error.response;
-                    if(status === 400){
+            } catch (error) {
+                if (error.response) {
+                    const { status } = error.response;
+                    if (status === 400) {
                         message.warning("yêu cầu này không thể thực hiện")
-                    }else if(status === 401) {
+                    } else if (status === 401) {
                         message.warning("Phiên đăng nhập hết hạn")
-                    }else{
+                    } else {
                         message.error("Lỗi kết nối")
                     }
                 }
-            }finally{
+            } finally {
                 setLoading(false)
             }
         }
-        if(fishId){
+        if (fishId) {
             fetchFishDetail();
         }
-    },[fishId])
-    if(loading){
+    }, [fishId])
+    if (loading) {
         return <div>Loading....</div>
     }
-    if(!fish){
-        return<div>không tìm thấy dữ liệu cá này</div>
+    if (!fish) {
+        return <div>không tìm thấy dữ liệu cá này</div>
     }
-    return(
+    return (
         <div className="fish-detail">
             <p>{fish.name}</p>
             <p>{fish.color}</p>

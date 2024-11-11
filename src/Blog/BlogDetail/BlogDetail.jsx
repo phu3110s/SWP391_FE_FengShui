@@ -37,7 +37,6 @@ const BlogDetail = () => {
   return (
     <div className="detail-container">
       <Header />
-      <Navigation />
       <div className="short-detail-in4">
         <div className='detail-img'>
           <img src={blog.urlImg} alt={blog.title} />
