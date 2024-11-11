@@ -16,7 +16,7 @@ const HarmonyList = () => {
   const [selectedPondDetails, setSelectedPondDetails] = useState(null);
   const [selectedFishDetails, setSelectedFishDetails] = useState(null);
   const page = 1;
-  const size = 1000;
+  const size = 40;
   const [loading, setLoading] = useState(false);
   const token = localStorage.getItem("token");
 

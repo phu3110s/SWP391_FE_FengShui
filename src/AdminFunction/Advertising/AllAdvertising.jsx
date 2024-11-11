@@ -54,6 +54,7 @@ export default function AllAdvertising() {
       title: "ID",
       dataIndex: "id",
       key: "id",
+      render :(text,record,index) => (page-1) *size + index + 1,
     },
     {
       title: "Tiêu đề",

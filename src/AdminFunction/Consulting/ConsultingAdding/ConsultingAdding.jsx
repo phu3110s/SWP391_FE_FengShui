@@ -197,6 +197,7 @@ const ConsultingAdding = () => {
         <Select
           mode="multiple"
           placeholder="Chọn hồ"
+          showSearch={false}
           style={{ marginRight: "4%" }}
           onChange={handlePondsChange}
           value={selectedPonds}
@@ -210,6 +211,7 @@ const ConsultingAdding = () => {
 
         <Select
           mode="multiple"
+          showSearch={false}
           placeholder="Chọn cá"
           style={{ width: "48%" }}
           onChange={handleFishChange}

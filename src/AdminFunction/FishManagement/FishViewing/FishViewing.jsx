@@ -237,6 +237,7 @@ const FishViewing = () => {
           pageSize: size,
           total: total,
           showSizeChanger: false,
+          position:['bottomCenter']
         }}
 
         scroll={{ x: 800, y: 750 }}
