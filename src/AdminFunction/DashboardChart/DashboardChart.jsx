@@ -14,7 +14,7 @@ import {
 import moment from "moment/moment";
 import React, { useEffect, useState } from "react";
 import { Bar, Line, Pie } from "react-chartjs-2";
-import ChartData from "../../apis/ChartData";
+import ChartData from "../../apis/admin/ChartData";
 import "./DashboardChart.css";
 import {
   PercentOutlined,
@@ -22,10 +22,10 @@ import {
 } from "@mui/icons-material";
 import { RiAdvertisementLine } from "react-icons/ri";
 import { FileOutlined, UserOutlined } from "@ant-design/icons";
-import userApi from "../../apis/userApi";
+import userApi from "../../apis/user/userApi";
 import blogApi from "../../apis/blogApi";
 import { SiBlogger } from "react-icons/si";
-import adApi from "../../apis/adApi";
+import adApi from "../../apis/advertising/adApi";
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -81,7 +81,7 @@ export default function DashboardChart() {
   const startDateforLine = `${year}/${month}/${day}`;
   const [startDateforPie, setstartDateforPie] = useState(
     moment().subtract(1, 'months').startOf("month")
-  );  
+  );
   const [endDateforPie, setendDateforPie] = useState(moment().endOf("day"));
   const fetchPieDataToday = async () => {
     setLoading(true);
@@ -369,7 +369,7 @@ export default function DashboardChart() {
     if (date && endDateforPie) {
       const formattedstartDateforPie = date.format("YYYY-MM-DD");
       const formattedendDateforPie = endDateforPie.format("YYYY-MM-DD");
-      console.log(formattedstartDateforPie,formattedendDateforPie)
+      console.log(formattedstartDateforPie, formattedendDateforPie)
       fetchPieRangeData(formattedstartDateforPie, formattedendDateforPie);
     }
   };
@@ -384,7 +384,7 @@ export default function DashboardChart() {
       const formattedstartDateforPie =
         startDateforPie.format("YYYY-MM-DD");
       const formattedendDateforPie = date.format("YYYY-MM-DD");
-      console.log(formattedstartDateforPie,formattedendDateforPie)
+      console.log(formattedstartDateforPie, formattedendDateforPie)
       fetchPieRangeData(formattedstartDateforPie, formattedendDateforPie);
     }
   };

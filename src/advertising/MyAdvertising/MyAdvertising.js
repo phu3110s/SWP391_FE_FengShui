@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Button, message, Pagination, Tabs, Avatar } from 'antd';
 import Footer from '../../components/footer/Footer';
 import './MyAdvertising.css'
-import userApi from '../../apis/userApi';
+import userApi from '../../apis/user/userApi';
 
 const { TabPane } = Tabs;
 
@@ -91,7 +91,7 @@ export default function MyAdvertising() {
                         )}
                     </TabPane>
 
-                    <TabPane tab='Chờ duyệt' key='Draft'>
+                    <TabPane tab='Chờ thanh toán' key='Draft'>
                         {loading ? (
                             <p>Loading...</p>
                         ) : post.length > 0 ? (

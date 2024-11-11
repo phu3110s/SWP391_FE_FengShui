@@ -1,16 +1,12 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import Header from "../components/header/Header";
-import Navigation from "../components/navbar/Navigation";
 import Footer from "../components/footer/Footer";
 import { Button, Form, message, Modal, Select, Spin } from "antd";
-import fengshuiApi from "../apis/fengshui";
-import userApi from "../apis/userApi";
-import { ConsoleSqlOutlined } from "@ant-design/icons";
 import "./HarmonyRating.css";
-import fishApi from "../apis/fishApi";
-import pondApi from "../apis/pondApi";
-import harmonyApi from "../apis/harmonyApi";
+import fishApi from "../apis/admin/fishApi";
+import pondApi from "../apis/admin/pondApi";
+import harmonyApi from "../apis/admin/harmonyApi";
 export default function HarmonyRating() {
   const [ponds, setPonds] = useState([]);
   const [fishes, setFishes] = useState([]);

@@ -11,8 +11,8 @@ export default function AllBlog() {
   const [total, setTotal] = useState();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedBlog, setSelectedBlog] = useState("");
-  const [searchText,setSearchText] = useState("")
-  const [filter,setFilter] = useState([])
+  const [searchText, setSearchText] = useState("")
+  const [filter, setFilter] = useState([])
   const fetchAllBlog = async () => {
     setLoading(true);
     try {
@@ -54,7 +54,7 @@ export default function AllBlog() {
       title: "Tiêu đề",
       dataIndex: "title",
       key: "title",
-      width:300
+      width: 300
     },
     {
       title: "Thời gian tạo bài",
@@ -82,7 +82,7 @@ export default function AllBlog() {
       render: (_, blog) => {
         return (
           <Button type="link" onClick={() => showBlogDescription(blog)}>
-            Xem chi tiết nội dung
+            Xem chi tiết
           </Button>
         );
       },
@@ -92,23 +92,23 @@ export default function AllBlog() {
       dataIndex: "status",
       key: "status",
       render: (status) => {
-        return(
-        <span
-          className={
-            status === "Rejected"
-              ? "status-rejected"
-              : status === "Approved"
-              ? "status-approved"
-              : "status-pending"
-          }
-        >{
-            status === "Rejected"
-              ? "Từ chối"
-              : status === "Approved"
-              ? "Đã duyệt"
-              : "Chờ duyệt"
-          }</span>
-        ) 
+        return (
+          <span
+            className={
+              status === "Rejected"
+                ? "status-rejected"
+                : status === "Approved"
+                  ? "status-approved"
+                  : "status-pending"
+            }
+          >{
+              status === "Rejected"
+                ? "Từ chối"
+                : status === "Approved"
+                  ? "Đã duyệt"
+                  : "Chờ duyệt"
+            }</span>
+        )
       }
     },
   ];
@@ -118,7 +118,7 @@ export default function AllBlog() {
   useEffect(() => {
     const filtered = blogs.filter((blog) => blog.title.toLowerCase().includes((searchText || "").toLowerCase()))
     setFilter(filtered)
-  }, [searchText,blogs])
+  }, [searchText, blogs])
   return (
     <div className="blog-management-block">
       <div className="header-text">
@@ -137,7 +137,7 @@ export default function AllBlog() {
       <Table
         columns={columns}
         className="table"
-        dataSource={filter.map((blog)=>({...blog,key:blog.id}))}
+        dataSource={filter.map((blog) => ({ ...blog, key: blog.id }))}
         pagination={{
           current: page,
           pageSize: size,

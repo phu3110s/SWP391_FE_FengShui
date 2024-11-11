@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { EyeTwoTone, EyeInvisibleOutlined } from "@ant-design/icons";
 import { Input, message, Radio, Spin } from "antd";
 import { useState } from "react";
-import userApi from "../apis/userApi";
+import userApi from "../apis/user/userApi";
 export default function SignUp() {
   const [fullname, setFullname] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -12,12 +12,20 @@ export default function SignUp() {
   const [gender, setGender] = useState(null);
   const [birthDate, setBirthDate] = useState("");
   const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({});
   const Navigate = useNavigate()
   const validatePhone = (phoneNumber) => {
     const phoneRegex = /^[0-9]{10}$/;
     return phoneRegex.test(phoneNumber);
   };
   const handleRegister = async (e) => {
+
+    e.preventDefault();
+    if (fullname && phoneNumber && password && birthDate && gender) {
+      alert("Đăng ký thành công!");
+    } else {
+      alert("Vui lòng điền đầy đủ các trường bắt buộc.");
+    }
     e.preventDefault();
 
     if (!validatePhone(phoneNumber)) {
@@ -54,6 +62,39 @@ export default function SignUp() {
     }
   }
   if (loading) return <div><Spin size="big" /></div>
+
+
+  function validateDate() {
+    const inputDate = new Date(document.getElementById('date').value);
+    const errorMessage = document.getElementById('error-message');
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    if (inputDate > today) {
+      errorMessage.textContent = "Ngày sinh không được là ngày trong tương lai.";
+      return false;
+    }
+
+    errorMessage.textContent = "";
+    return true;
+  }
+
+  const handleBlur = (field) => {
+    let errorMessage = "";
+
+    if (!field.value) {
+      errorMessage = `Vui lòng nhập ${field.label}.`;
+    } else if (field.name === "birthDate" && new Date(field.value) > new Date()) {
+      errorMessage = "Ngày sinh không thể là ngày trong tương lai.";
+    }
+
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [field.name]: errorMessage
+    }));
+  };
+
 
   return (
     <div className="signup-background">
@@ -94,34 +135,43 @@ export default function SignUp() {
               type="text"
               placeholder="Enter your full name"
               className="input-field"
-              required
+              value={fullname}
               onChange={(e) => setFullname(e.target.value)}
+              onBlur={() => handleBlur({ name: 'fullname', value: fullname, label: 'họ và tên' })}
+              required
             />
+            {errors.fullname && <p style={{ color: 'red' }}>{errors.fullname}</p>}
           </div>
 
           <div className="signup-phone">
             <p className="name-field">Số điện thoại</p>
             <input
-              type="phone"
+              type="tel"
               placeholder="Type your phone number"
               className="input-field"
+              value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
+              onBlur={() => handleBlur({ name: 'phoneNumber', value: phoneNumber, label: 'số điện thoại' })}
               required
             />
+            {errors.phoneNumber && <p style={{ color: 'red' }}>{errors.phoneNumber}</p>}
           </div>
+
           <div>
             <p className="name-field">Mật khẩu</p>
             <Input
               type="password"
               placeholder="Type your password"
               className="input-field"
+              value={password}
               onChange={(e) => setPassword(e.target.value)}
-              iconRender={(visible) =>
-                visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
-              }
+              onBlur={() => handleBlur({ name: 'password', value: password, label: 'mật khẩu' })}
+              iconRender={(visible) => visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />}
               required
             />
+            {errors.password && <p style={{ color: 'red' }}>{errors.password}</p>}
           </div>
+
           <div>
             <p className="name-field">Ngày/ tháng/ năm sinh</p>
             <input
@@ -129,8 +179,10 @@ export default function SignUp() {
               className="input-field"
               value={birthDate}
               onChange={(e) => setBirthDate(e.target.value)}
+              onBlur={() => handleBlur({ name: 'birthDate', value: birthDate, label: 'ngày sinh' })}
               required
             />
+            {errors.birthDate && <p style={{ color: 'red' }}>{errors.birthDate}</p>}
           </div>
 
           <div>
@@ -141,13 +193,17 @@ export default function SignUp() {
                 <Radio value="Female">Nữ</Radio>
                 <Radio value="Other">Khác</Radio>
               </Radio.Group>
-
             </div>
+            {errors.gender && <p style={{ color: 'red' }}>{errors.gender}</p>}
           </div>
 
           <div className="check-policy">
             <label>
-              <input type="checkbox" name="terms" required />
+              <input
+                type="checkbox"
+                name="terms"
+                required
+              />
               Tạo một tài khoản có nghĩa là bạn đồng ý với{" "}
               <a href="./policy">Điều khoản và điều kiện</a>, và{" "}
               <a href="./policy">Chính sách bảo mật</a> của chúng tôi.
@@ -159,19 +215,9 @@ export default function SignUp() {
               className="signup-button"
               type="submit"
               onClick={handleRegister}
-              disabled={loading}
             >
               Đăng Ký
             </button>
-          </div>
-
-          <div className="forward-to-signUp">
-            <p>
-              Bạn đã có tài khoản?
-              <Link to="/Login" className="link-to-signin">
-                Đăng nhập
-              </Link>
-            </p>
           </div>
         </form>
       </div>

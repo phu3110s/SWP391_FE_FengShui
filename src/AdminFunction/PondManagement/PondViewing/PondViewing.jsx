@@ -9,7 +9,7 @@ import {
   Table,
 } from "antd";
 import React, { useEffect, useState } from "react";
-import pondApi from "../../../apis/pondApi";
+import pondApi from "../../../apis/admin/pondApi";
 import "./PondViewing.css";
 import { red } from "@mui/material/colors";
 import { DeleteOutline, DeleteOutlined, EditOutlined } from "@mui/icons-material";
@@ -120,19 +120,19 @@ const PondViewing = () => {
       title: "Chất liệu",
       dataIndex: "material",
       key: "material",
-      width:250
+      width: 250
     },
     {
       title: "Hình dáng",
       dataIndex: "shape",
       key: "shape",
-      width:250
+      width: 250
     },
     {
       title: "Mực nước",
       dataIndex: "waterLevel",
       key: "Water Level",
-      width:300
+      width: 300
     },
     {
       title: "Chi tiết",
@@ -143,7 +143,7 @@ const PondViewing = () => {
           Bấm vào đây để xem chi tiết
         </Button>
       ),
-      width:400
+      width: 400
     },
     {
       title: "Action",

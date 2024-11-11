@@ -1,7 +1,7 @@
 import { Button, Input, message, Modal, Table } from "antd";
 import React, { useEffect, useState } from "react";
 import { SearchOutlined } from "@ant-design/icons";
-import adApi from "../../apis/adApi";
+import adApi from '../../apis/advertising/adApi';
 import "./AllAd.css"
 export default function AllAdvertising() {
   const [loading, setLoading] = useState(false);
@@ -11,15 +11,17 @@ export default function AllAdvertising() {
   const [total, setTotal] = useState();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedBlog, setSelectedBlog] = useState("");
-  const [searchText,setSearchText] = useState("")
+  const [searchText, setSearchText] = useState("")
   const token = localStorage.getItem("token")
-  const [filter,setFilter] = useState([])
+  const [filter, setFilter] = useState([])
   const fetchAllBlog = async () => {
     setLoading(true);
     try {
-      const response = await adApi.getAll(page,size,{headers:{
-        Authorization:`Bearer ${token}`,
-      }})
+      const response = await adApi.getAll(page, size, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        }
+      })
       setAds(response.data.items);
       setTotal(response.data.total);
     } catch (error) {
@@ -57,7 +59,7 @@ export default function AllAdvertising() {
       title: "Tiêu đề",
       dataIndex: "title",
       key: "title",
-      width:300
+      width: 300
     },
     {
       title: "Thời gian tạo bài",
@@ -75,7 +77,7 @@ export default function AllAdvertising() {
       title: "Tác giả",
       dataIndex: "userName",
       key: "userName",
-   
+
     },
     {
       title: "Chi tiết",
@@ -83,7 +85,7 @@ export default function AllAdvertising() {
       render: (_, ad) => {
         return (
           <Button type="link" onClick={() => showAdDescription(ad)}>
-            Xem chi tiết nội dung
+            Xem chi tiết
           </Button>
         );
       },
@@ -93,23 +95,23 @@ export default function AllAdvertising() {
       dataIndex: "status",
       key: "status",
       render: (status) => {
-        return(
-        <span 
-          className={
-            status === "Rejected"
-              ? "Astatus-rejected"
-              : status === "Approved"
-              ? "Astatus-approved"
-              : status === "Draft" ? "Astatus-draft" : status === "Expired" ? "Astatus-expired" : "Astatus-pending"
-          }
-        > {
-            status === "Rejected"
-              ? "Từ chối"
-              : status === "Approved"
-              ? "Đã duyệt"
-              : status === "Draft" ? "Bản nháp" : status === "Expired" ? "Hết hạn" : "Chờ duyệt"
-          }</span>
-        ) 
+        return (
+          <span
+            className={
+              status === "Rejected"
+                ? "Astatus-rejected"
+                : status === "Approved"
+                  ? "Astatus-approved"
+                  : status === "Draft" ? "Astatus-draft" : status === "Expired" ? "Astatus-expired" : "Astatus-pending"
+            }
+          > {
+              status === "Rejected"
+                ? "Từ chối"
+                : status === "Approved"
+                  ? "Đã duyệt"
+                  : status === "Draft" ? "Bản nháp" : status === "Expired" ? "Hết hạn" : "Chờ duyệt"
+            }</span>
+        )
       }
     },
   ];
@@ -117,9 +119,9 @@ export default function AllAdvertising() {
     setPage(pagination.current);
   };
   useEffect(() => {
-    const filtered = ads.filter((ad) =>  (ad.title?.toLowerCase() || "").includes((searchText || "").toLowerCase()))
+    const filtered = ads.filter((ad) => (ad.title?.toLowerCase() || "").includes((searchText || "").toLowerCase()))
     setFilter(filtered)
-  }, [searchText,ads])
+  }, [searchText, ads])
   return (
     <div className="blog-management-block">
       <div className="header-text">
@@ -138,7 +140,7 @@ export default function AllAdvertising() {
       <Table
         columns={columns}
         className="table"
-        dataSource={filter.map((ad)=>({...ad,key:ad.id}))}
+        dataSource={filter.map((ad) => ({ ...ad, key: ad.id }))}
         pagination={{
           current: page,
           pageSize: size,
