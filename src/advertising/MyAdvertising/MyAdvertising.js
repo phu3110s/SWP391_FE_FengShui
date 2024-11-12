@@ -91,7 +91,30 @@ export default function MyAdvertising() {
                         )}
                     </TabPane>
 
-                    <TabPane tab='Chờ thanh toán' key='Draft'>
+                    <TabPane tab='Đang chờ duyệt' key='pending'>
+                        {loading ? (
+                            <p>Loading...</p>
+                        ) : post.length > 0 ? (
+                            <div className='expired-blog-container'>
+                                {post.map((post) => (
+                                    <div className='blog-information' key={post.id}>
+                                        <Link className="link-to-detail" to={`/AdvertisingDetail/${post.id}`}>
+                                            <img src={post.urlImg} alt={post.itemTypeName} style={{ width: "220px", height: '220px' }} />
+                                            <h4>{post.itemTypeName}</h4>
+                                        </Link>
+                                        <p>Ngày đăng bài: {post.updateAt}</p>
+                                        <p>Gói đăng bài: {post.paymentPlanName}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        ) : (
+                            <div className='empty-state'>
+                                <p>Hiện chưa có bài nào được đăng</p>
+                            </div>
+                        )}
+                    </TabPane>
+
+                    <TabPane tab='Bài nháp' key='Draft'>
                         {loading ? (
                             <p>Loading...</p>
                         ) : post.length > 0 ? (
@@ -116,6 +139,29 @@ export default function MyAdvertising() {
                             </div>
                         )}
                     </TabPane>
+
+                    {/* <TabPane tab='Bị từ chối' key='rejected'>
+                        {loading ? (
+                            <p>Loading...</p>
+                        ) : post.length > 0 ? (
+                            <div className='expired-blog-container'>
+                                {post.map((post) => (
+                                    <div className='blog-information' key={post.id}>
+                                        <Link className="link-to-detail" to={`/AdvertisingDetail/${post.id}`}>
+                                            <img src={post.urlImg} alt={post.itemTypeName} style={{ width: "220px", height: '220px' }} />
+                                            <h4>{post.itemTypeName}</h4>
+                                        </Link>
+                                        <p>Ngày đăng bài: {post.updateAt}</p>
+                                        <p>Gói đăng bài: {post.paymentPlanName}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        ) : (
+                            <div className='empty-state'>
+                                <p>Hiện chưa có bài nào bị từ chối</p>
+                            </div>
+                        )}
+                    </TabPane> */}
 
                     <TabPane tab='Hết hạn' key='Expired'>
                         {loading ? (
@@ -149,7 +195,7 @@ export default function MyAdvertising() {
                         )}
                     </TabPane>
 
-                    <TabPane tab='Tất cả các bài đăng' key=''>
+                    {/* <TabPane tab='Tất cả các bài đăng' key=''>
                         <div className="expired-blog-container">
                             {post.map((post) => (
                                 <div className="blog-information" key={post.id}>
@@ -173,7 +219,7 @@ export default function MyAdvertising() {
                                 </div>
                             ))}
                         </div>
-                    </TabPane>
+                    </TabPane> */}
 
                 </Tabs>
 
