@@ -176,7 +176,7 @@ const FishViewing = () => {
           Xem chi tiết
         </Button> 
       ),
-      width:400
+      width:320
     },
     {
       title: "Action",
@@ -240,7 +240,7 @@ const FishViewing = () => {
           position:['bottomCenter']
         }}
         
-        scroll={{x:800,y:750}}
+        // scroll={{x:800,y:750}}
         // scroll={{x:'500',y:'550px'}}
         onChange={handlePageChange}
         loading={loading}

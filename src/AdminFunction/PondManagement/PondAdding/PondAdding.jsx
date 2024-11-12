@@ -132,7 +132,7 @@ export default function PondAdding() {
           </div>
 
           <div>
-            <button className="submit-button" type="submit" disabled={loading}>
+            <button className="submit-button" style={{marginLeft:350}} type="submit" disabled={loading}>
               {loading ? "Generating..." : "Generate Pond"}
             </button>
           </div>

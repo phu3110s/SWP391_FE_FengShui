@@ -45,6 +45,7 @@ export default function DashboardChart() {
   const [totalUsers, setTotalUsers] = useState("");
   const [totalBlogs, setTotalBlogs] = useState("");
   const [totalAd, setTotalAd] = useState("");
+  const [isValidData, setIsValidData] = useState(false);
   const page = 1;
   const size = 10;
   const [lineChartData, setLineChartData] = useState({
@@ -77,11 +78,12 @@ export default function DashboardChart() {
   const day = oneWeekAgo.getDate();
   const month = oneWeekAgo.getMonth() + 1;
   const year = oneWeekAgo.getFullYear();
-  const [allAdvertising, setAllAdveritings] = useState(null);
+  const [allAdvertisingForDay, setAllAdveritingsForDay] = useState(null);
+  const [allAdvertisingForRange, setAllAdveritingsForRange] = useState(null);
   const startDateforLine = `${year}/${month}/${day}`;
   const [startDateforPie, setstartDateforPie] = useState(
-    moment().subtract(1, 'months').startOf("month")
-  );  
+    moment().subtract(1, "months").startOf("month")
+  );
   const [endDateforPie, setendDateforPie] = useState(moment().endOf("day"));
   const fetchPieDataToday = async () => {
     setLoading(true);
@@ -91,7 +93,7 @@ export default function DashboardChart() {
           Authorization: `Bearer ${token}`,
         },
       });
-      setAllAdveritings(response.data.allPosts);
+      setAllAdveritingsForDay(response.data.allPosts);
       const {
         draftPosts,
         expiredPosts,
@@ -223,6 +225,7 @@ export default function DashboardChart() {
         declinedPosts,
         pendingPosts,
       } = response.data;
+      setAllAdveritingsForRange(response.data.allPosts);
       const newRangePieData = {
         labels: [
           "Số bài chưa thanh toán",
@@ -369,8 +372,14 @@ export default function DashboardChart() {
     if (date && endDateforPie) {
       const formattedstartDateforPie = date.format("YYYY-MM-DD");
       const formattedendDateforPie = endDateforPie.format("YYYY-MM-DD");
-      console.log(formattedstartDateforPie,formattedendDateforPie)
-      fetchPieRangeData(formattedstartDateforPie, formattedendDateforPie);
+      if (formattedendDateforPie > formattedstartDateforPie) {
+        fetchPieRangeData(formattedstartDateforPie, formattedendDateforPie);
+      } else {
+        message.error("Ngày bắt đầu lớn hơn ngày kết thúc", 5);
+        setPieDataRange(null);
+        setLoading(false);
+      }
+      // console.log(formattedstartDateforPie - formattedendDateforPie)
     }
   };
 
@@ -381,11 +390,14 @@ export default function DashboardChart() {
       setendDateforPie(date);
     }
     if (startDateforPie && date) {
-      const formattedstartDateforPie =
-        startDateforPie.format("YYYY-MM-DD");
+      const formattedstartDateforPie = startDateforPie.format("YYYY-MM-DD");
       const formattedendDateforPie = date.format("YYYY-MM-DD");
-      console.log(formattedstartDateforPie,formattedendDateforPie)
-      fetchPieRangeData(formattedstartDateforPie, formattedendDateforPie);
+      if (formattedendDateforPie > formattedstartDateforPie) {
+        console.log(formattedstartDateforPie, formattedendDateforPie);
+        fetchPieRangeData(formattedstartDateforPie, formattedendDateforPie);
+      } else {
+        message.error("Ngày bắt đầu lớn hơn ngày kết thúc", 5);
+      }
     }
   };
 
@@ -432,7 +444,7 @@ export default function DashboardChart() {
                   </div>
 
                   <strong className="chart-title">
-                    {allAdvertising === 0
+                    {allAdvertisingForDay === 0
                       ? " Chưa có dữ liệu về bài đăng bán trong ngày hôm nay"
                       : "Tổng hợp số bài đăng bán hôm nay"}
                   </strong>
@@ -464,9 +476,11 @@ export default function DashboardChart() {
                     </div>
 
                     <strong className="chart-title">
-                      Tổng hợp số bài đăng bán từ ngày{" "}
-                      {startDateforPie.format("YYYY-MM-DD")} đến{" "}
-                      {endDateforPie.format("YYYY-MM-DD")}
+                      {allAdvertisingForRange === 0
+                        ? "Hiện không có dữ liệu về thông tin số bài đăng bán"
+                        : `Tổng hợp số bài đăng bán từ ngày ${startDateforPie.format(
+                            "YYYY-MM-DD"
+                          )} đến ${endDateforPie.format("YYYY-MM-DD")}`}
                     </strong>
                   </div>
                 )
@@ -474,7 +488,7 @@ export default function DashboardChart() {
                 <p>Vui lòng chọn cả ngày bắt đầu và ngày kết thúc.</p>
               )
             ) : (
-              <p>Đang tải dữ liệu...</p>
+              <p>Có lỗi khi xử lí dữ liệu...</p>
             )}
           </div>
           {/* Cái chọn ngày linh tinh , đang không config được nên chưa sửa */}
@@ -497,8 +511,9 @@ export default function DashboardChart() {
       <div className="line-and-bar">
         <div className="bar-chart chart-container">
           <strong className="chart-title">Doanh thu hàng tuần</strong>
-          <div className="bar-line-chart"><Bar data={barChartData} /></div>
-
+          <div className="bar-line-chart">
+            <Bar data={barChartData} />
+          </div>
         </div>
 
         <div className="line-chart chart-container">

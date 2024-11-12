@@ -199,7 +199,7 @@ const HarmonyList = () => {
         <div className="card-container">
           <Row gutter={16}>
             {harmonies.map((harmony) => (
-              <Col span={8} key={harmony.id}>
+              <Col span={8  } key={harmony.id}>
                 <Card
                   title={`Độ hòa hợp giữa:`}
                   bordered={false}

@@ -139,7 +139,7 @@ export default function HarmonyAdding() {
                 <p>Hình dạng: {selectedPondDetails.shape}</p>
                 <p>Mực nước tối đa: {selectedPondDetails.waterLevel}</p>
                 <p>Mô tả:{selectedPondDetails.description}</p>
-                <img src={selectedPondDetails.urlImg} width={200} height={200}/>
+                <img src={selectedPondDetails.urlImg} style={{borderRadius:12}}/>
             </div>
         )}
         <Form.Item label="Chọn loại cá">
@@ -163,7 +163,7 @@ export default function HarmonyAdding() {
                 <p>Màu sắc:{selectedFishDetails.color}</p>
                 <p>Kích thước:{selectedFishDetails.size}</p>
                 <p>Mô tả: {selectedFishDetails.description}</p>
-                <img src={selectedFishDetails.urlImg} />
+                <img src={selectedFishDetails.urlImg} style={{borderRadius:12}} />
             </div>
         )}
 

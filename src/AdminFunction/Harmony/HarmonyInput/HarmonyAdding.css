@@ -18,20 +18,19 @@
     color: #595959;
     margin: 4px 0;
   }
-  
+/*   
   .selected-fish-info img {
     margin-top: 10px;
-    border-radius: 8px;
-    border: 2px solid #1890ff;
-  }
+     border-radius: 8px;
+    /* border: 2px solid #1890ff;  */
+  /* } */ */
   .selected-fish-info img,.selected-pond-info img {
     margin-top: 10px;
-    border-radius: 8px;
-    border: 2px solid #1890ff; 
+    border-radius: 20px;
+    /* border: 2px solid #1890ff;   */
     width: 100%; 
-    max-width: 300px;
+    max-width: 400px;
     aspect-ratio: 4 / 3; 
-    object-fit: contain; 
     background-color: #f0f0f0; 
   }
   

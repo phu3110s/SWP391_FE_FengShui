@@ -1,4 +1,4 @@
-import { Descriptions, Input, message, Spin } from "antd";
+      import { Descriptions, Input, message, Spin } from "antd";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import pondApi from "../../../apis/pondApi";
@@ -37,7 +37,6 @@ export default function FishAdding() {
           setColor("");
           setDescription("");
           setImage(null)
-
         },3500)
       }
       
@@ -142,8 +141,8 @@ export default function FishAdding() {
 
               </div>
 
-          <div>
-            <button className="submit-button" type="submit" disabled={loading}>
+          <div className="button-block">
+            <button className="submit-button" style={{marginLeft:350}} type="submit" disabled={loading}>
               {loading ? (<Spin size="small" />) : " Tạo cá"}
             </button>
           </div>

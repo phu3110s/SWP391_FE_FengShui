@@ -75,13 +75,13 @@ export default function PaymentCreating() {
                         <label>Số ngày hiệu lực</label>
                         <Input
                             type="number"
-                            value={expiredDate}
+                            value={expiredDate}                             
                             onChange={(e) => setExpiredDate(Number(e.target.value))}
                             required
                         />
                     </div>
                     <div>
-                        <Button className="submit-button" type="submit" onClick={handleSubmit} disabled={loading}>
+                        <Button className="submit-button" type="submit" onClick={handleSubmit} style={{marginLeft:430}} disabled={loading}>
                             {loading ? <Spin /> : "Tạo gói"}
                         </Button>
                     </div>

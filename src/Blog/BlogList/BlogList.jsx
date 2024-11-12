@@ -6,6 +6,7 @@ import "../BlogList/style.css";
 import { Pagination, Spin } from "antd";
 import Navigation from "../../components/navbar/Navigation";
 import Footer from "../../components/footer/Footer";
+import axios from "axios";
 
 const BlogList = () => {
   const [blogs, setBlogs] = useState([]);
@@ -22,7 +23,8 @@ const BlogList = () => {
   const fetchBlogs = async () => {
     setLoading(true);
     try {
-      const response = await blogApi.getBlogs(page, size, "Approved");
+      // const response = await blogApi.getBlogs(page, size, "Approved");
+      const response = await axios.get("https://gift-4-you.onrender.com/api/v1/inventory-items?page=0&size=10");
       setBlogs(response.data.items);
       setTotalPage(response.data.total);
       console.log(totalPage)
