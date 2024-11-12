@@ -133,14 +133,14 @@ export default function HarmonyAdding() {
           </Select>
         </Form.Item>
         {selectedPondDetails && (
-          <div className="selected-pond-info">
-            <h3>Thông tin về hồ</h3>
-            <p>Chất liệu: {selectedPondDetails.material}</p>
-            <p>Hình dạng: {selectedPondDetails.shape}</p>
-            <p>Mực nước tối đa: {selectedPondDetails.waterLevel}</p>
-            <p>Mô tả:{selectedPondDetails.description}</p>
-            <img src={selectedPondDetails.urlImg} width={200} height={200} />
-          </div>
+            <div className="selected-pond-info">
+                <h3>Thông tin về hồ</h3>
+                <p>Chất liệu: {selectedPondDetails.material}</p>
+                <p>Hình dạng: {selectedPondDetails.shape}</p>
+                <p>Mực nước tối đa: {selectedPondDetails.waterLevel}</p>
+                <p>Mô tả:{selectedPondDetails.description}</p>
+                <img src={selectedPondDetails.urlImg} style={{borderRadius:12}}/>
+            </div>
         )}
         <Form.Item label="Chọn loại cá">
           <Select
@@ -157,14 +157,14 @@ export default function HarmonyAdding() {
           </Select>
         </Form.Item>
         {selectedFishDetails && (
-          <div className="selected-fish-info">
-            <h3>Thông tin về cá</h3>
-            <p>Tên cá: {selectedFishDetails.name}</p>
-            <p>Màu sắc:{selectedFishDetails.color}</p>
-            <p>Kích thước:{selectedFishDetails.size}</p>
-            <p>Mô tả: {selectedFishDetails.description}</p>
-            <img src={selectedFishDetails.urlImg} />
-          </div>
+            <div className="selected-fish-info">
+                <h3>Thông tin về cá</h3>
+                <p>Tên cá: {selectedFishDetails.name}</p>
+                <p>Màu sắc:{selectedFishDetails.color}</p>
+                <p>Kích thước:{selectedFishDetails.size}</p>
+                <p>Mô tả: {selectedFishDetails.description}</p>
+                <img src={selectedFishDetails.urlImg} style={{borderRadius:12}} />
+            </div>
         )}
 
         <Form.Item label="Điểm đánh giá">
