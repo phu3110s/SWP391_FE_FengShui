@@ -43,7 +43,13 @@ const BlogDetail = () => {
         </div>
         <div className="product-detail-in4">
           <h4>{blog.title}</h4> <br />
-          <p>Ngày đăng: {new Date(blog.createAt).toLocaleDateString('vi-VN')}</p><br />
+          <p>Ngày đăng: {new Date(blog.createAt).toLocaleString('vi-VN', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+          })}</p><br />
           <Link to={`/user-profile/${blog.userInfo.id}`} className="customer-in4">
             <img
               src={blog.userInfo.profileImageUrl}

@@ -17,7 +17,7 @@ export default function AdvertisingPayment() {
     const userId = localStorage.getItem("userId");
     const token = localStorage.getItem("token");
     const [listPlan, setListPlan] = useState([])
-    const [title, setTitle] = useState(adData.itemTypeName || '');
+    const [title, setTitle] = useState(adData.title || '');
     const [description, setDescription] = useState(adData.description || '');
     const [image, setImage] = useState(adData.urlImg || null);
     const [planID, setPlanID] = useState(adData.planID || null);
@@ -192,9 +192,9 @@ export default function AdvertisingPayment() {
                                 <label style={{ fontSize: 20 }}>Chọn một loại:</label>
                                 <select value={itemTypeName} onChange={(e) => setItemTypeName(e.target.value)} required>
                                     <option value="">--Chọn--</option>
-                                    <option value="fish">Fish</option>
-                                    <option value="pond">Pond</option>
-                                    <option value="decoration">Decoration</option>
+                                    <option value="fish">Cá</option>
+                                    <option value="pond">Hồ</option>
+                                    <option value="decoration">Đồ trang trí</option>
                                 </select>
                                 <p>Loại đã chọn: {itemTypeName}</p>
                             </div>
