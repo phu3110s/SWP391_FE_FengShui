@@ -140,9 +140,8 @@ const GetConsulting = () => {
   return (
     <>
       <Header />
-      <Navigation />
       <div className="getconsulting">
-        <div>
+        <div className="tu-van">
 
           <h1>Tư vấn Cá và Hồ</h1>
           <div className="select-fengShui-container">
@@ -179,8 +178,9 @@ const GetConsulting = () => {
               {fishPond ? (
 
                 <>
-                  <p className="consultation-description">{fishPond.description}</p>
-
+                  <div className="div-consultation-description">
+                    <p className="consultation-description">{fishPond.description}</p>
+                  </div>
                   <div className="fish-pond-info">
                     <div className="pond-info">
                       <h2>Thông tin Hồ</h2>

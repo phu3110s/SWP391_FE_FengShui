@@ -126,6 +126,11 @@ export default function Header() {
             </li>
           )} */}
           <li className="active">
+            <Link className="link" to={"/AdvertisingFilter"}>
+              Bài bán
+            </Link>
+          </li>
+          <li className="active">
             <Link className="link" to={"/News"}>
               Tin tức
             </Link>

@@ -2,11 +2,7 @@
 .new-blog {
   width: 100%;
   height: auto;
-
-}
-
-.blog-info {
-  background-color: #FFFFFF;
+  
 }
 
 .blog-info a {
@@ -28,10 +24,10 @@
   height: auto;
   display: grid;
   padding: 20px;
+  /* background-color: #F4F4F4; */
 }
 
 .blog-info {
-  background-color: #fff;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -42,7 +38,10 @@
   justify-content: space-between;
   height: 90%;
   border-radius: 10px;
-  background-color: #ebf0ff;
+  background-color: #e6f1f5;
+  /* background-color: #e6f1f5; */
+  /* background-color: #eceae3; vàng bò */
+  /* background-color: #d3bfcd; */
 }
 
 .blog-info:hover {
@@ -101,3 +100,8 @@ h1 {
   margin: 0;
 }
 
+.pagination{
+  width: 100%;
+  padding: 20px 0;
+  padding-left: 45%;
+}

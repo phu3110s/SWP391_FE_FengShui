@@ -1,9 +1,34 @@
 .getconsulting{
   width: 100%;
   min-height: 100vh;
+  padding: 30px;
 }
+.tu-van{
+  width: 80%;
+  background-color: #fff;
+  padding: 20px;
+  margin-left: 10%;
+  border-radius: 15px;
+}
+
+.select-fengShui-container{
+  padding: 20px;
+  margin: 10px;
+}
+
+.div-consultation-description{
+  width: 80%;
+  padding: 30px;
+}
+
 .getconsulting :where(.css-dev-only-do-not-override-14qglws).ant-btn-primary.ant-btn-solid {
-background-color: #9B7EBD !important;
+background-color: #EBF0FF !important;
+color: black;
+font-weight: bold;
+}
+
+.getconsulting :where(.css-dev-only-do-not-override-14qglws).ant-btn-primary.ant-btn-solid:hover{
+  background-color: #C5D3E8 !important;
 }
 
 .fish-pond-container {
@@ -17,11 +42,12 @@ background-color: #9B7EBD !important;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 80%;
+    width: 100%;
     margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 8px;
-    padding: 20px;
+    padding: 30px;
+    background-color: #fff;
   }
   
   .pond-info {
@@ -39,14 +65,14 @@ background-color: #9B7EBD !important;
     margin-bottom: 10px;
   }
   .pond-info p,.fish-info p{
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin: 20px 0;
   }
   
   .fish-info img, .pond-info img {
-    width: 100%;
+    width: 85%;
     height: auto;
     border-radius: 5px;
+    padding: 10px;
   }
   
   .buttons {

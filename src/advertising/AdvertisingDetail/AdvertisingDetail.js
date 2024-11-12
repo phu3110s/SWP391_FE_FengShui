@@ -62,7 +62,13 @@ export default function AdvertisingDetail() {
                     </div>
                     <div className="product-detail-in4">
                         <h2 >{advertisings.title}</h2> <br />
-                        <p>Ngày đăng: {advertisings.createAt}</p> <br />
+                        <p>Ngày đăng: {new Date(advertisings.createAt).toLocaleString('vi-VN', {
+                            day: '2-digit',
+                            month: '2-digit',
+                            year: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit'
+                        })}</p><br />
                         <p>Giá: {advertisings.price ? advertisings.price.toLocaleString('vi-VN') : 'N/A'} VND</p><br />
                         <p>Loại bài đăng: {advertisings.itemTypeName}</p><br /> <br />
                         <Link to={`/user-profile/${user.id}`} className="customer-in4">

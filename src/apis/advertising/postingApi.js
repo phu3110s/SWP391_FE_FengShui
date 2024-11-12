@@ -15,6 +15,10 @@ const postingApi = {
         // const url = `/advertisings?page=${page}&size=${size}`;
         return axiosClient.get(url);
     },
+    getAdvertisingsBy: (page, size, status, itemType, orderBy) => {
+        const url = `/advertisings?status=${status}&page=${page}&size=${size}&itemType=${itemType}&orderBy=${orderBy}`;
+        return axiosClient.get(url);
+    },
     getAdvertisingsById: (id) => {
         const url = `/advertisings/${id}`;
         return axiosClient.get(url);

@@ -44,6 +44,7 @@ import AdvertisingPayment from "./advertising/AdvertisingPayment/AdvertisingPaym
 import AdvertisingPosting from "./advertising/AdvertisingPosting/AdvertisingPosting";
 import MyAdvertising from "./advertising/MyAdvertising/MyAdvertising";
 import Calculate from "./calculate/Calculate";
+import AdvertisingFilter from "./advertising/AdvertisingFilter/AdvertisingFilter";
 
 function App() {
 
@@ -85,7 +86,7 @@ function App() {
         <Route path="/AdvertisingPayment" element={<AdvertisingPayment />} />
         <Route path="/AdvertisingDetail/:id" element={<AdvertisingDetail />} />
         <Route path="/Fish-Consulting" element={<GetConsulting />} />
-
+        <Route path="/AdvertisingFilter" element={<AdvertisingFilter />} />
         <Route
           path="/AdminDashboard"
           element={

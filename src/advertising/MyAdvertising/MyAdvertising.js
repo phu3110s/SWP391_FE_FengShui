@@ -177,7 +177,7 @@ export default function MyAdvertising() {
 
                 </Tabs>
 
-                <div className='pagination'>
+                <div className='pagination-myad'>
                     {/* <Pagination
                         current={page}
                         pageSize={size}
