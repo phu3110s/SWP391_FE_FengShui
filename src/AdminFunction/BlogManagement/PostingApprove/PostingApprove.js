@@ -175,7 +175,7 @@ export default function PostingApprove() {
             Đóng
           </Button>,
         ]}
-      />
+      > {fullDescription}</Modal>
     </div>
   );
 }
