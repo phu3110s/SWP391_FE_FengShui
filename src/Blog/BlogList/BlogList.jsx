@@ -13,7 +13,7 @@ const BlogList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
-  const [size, setSize] = useState(11);
+  const [size, setSize] = useState(12);
   const [totalPage, setTotalPage] = useState(0);
   const handlePageChange = (page, pageSize) => {
     setPage(page);
@@ -23,8 +23,8 @@ const BlogList = () => {
   const fetchBlogs = async () => {
     setLoading(true);
     try {
-      // const response = await blogApi.getBlogs(page, size, "Approved");
-      const response = await axios.get("https://gift-4-you.onrender.com/api/v1/inventory-items?page=0&size=10");
+      const response = await blogApi.getBlogs(page, size, "Approved");
+      // const response = await axios.get("https://gift-4-you.onrender.com/api/v1/inventory-items?page=0&size=10");
       setBlogs(response.data.items);
       setTotalPage(response.data.total);
       console.log(totalPage)
@@ -44,14 +44,16 @@ const BlogList = () => {
       } else {
         setError(err.message);
       }
-      setLoading(false);
+     
+    }finally{
+      setLoading(false)
     }
   };
   useEffect(() => {
     fetchBlogs();
   }, [page, size]);
-  if (loading) return <Spin size="Big" style={{ margin: 8 }} />;
-  if (error) return <p>Lỗi: {error}</p>;
+  // if (loading) return <Spin size="Big" style={{ margin: 8 }} />;
+  // if (error) return <p>Lỗi: {error}</p>;
 
   return (
     <div style={{ width: '100%', backgroundColor: '#F4F4F4' }}>
