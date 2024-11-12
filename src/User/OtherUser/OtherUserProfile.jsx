@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import userApi from "../../apis/userApi";
+import userApi from "../../apis/user/userApi";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { message, Spin, Tabs } from "antd";
 import Header from "../../components/header/Header";
 import "./OtherUserProfile.css";
-import postingApi from "../../apis/postingApi";
+import postingApi from "../../apis/advertising/postingApi";
 import TabPane from "antd/es/tabs/TabPane";
 import blogApi from "../../apis/blogApi";
+import Footer from "../../components/footer/Footer";
 
 export default function OtherUserProfile() {
     const [userProfile, setUserProfile] = useState(null);
@@ -159,7 +160,7 @@ export default function OtherUserProfile() {
                                         Giới tính: <span>{userProfile.gender}</span>
                                     </h3>
                                     <h3>
-                                        Email: <span>{userProfile.email}</span>
+                                        Email: <span>{userProfile.email || "chưa có thông tin"}</span>
                                     </h3>
                                     <h3>
                                         Số điện thoại: <span>{userProfile.phoneNumber}</span>
@@ -227,6 +228,7 @@ export default function OtherUserProfile() {
                     <div>No user profile found.</div>
                 )}
             </div>
+            <Footer />
         </div>
     );
 }

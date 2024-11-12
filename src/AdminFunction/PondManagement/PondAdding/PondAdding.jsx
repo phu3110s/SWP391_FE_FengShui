@@ -1,7 +1,7 @@
 import { Descriptions, Input, message, Spin } from "antd";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import pondApi from "../../../apis/pondApi";
+import pondApi from "../../../apis/admin/pondApi";
 import "./PondAdding.css";
 import { RiImageAddLine } from "react-icons/ri";
 export default function PondAdding() {

@@ -1,6 +1,6 @@
 import { Button, Input, message, Spin } from "antd";
 import React, { useState } from "react";
-import paymentPlan from "../../../apis/paymentApi";
+import paymentPlan from "../../../apis/advertising/paymentApi";
 import "./PaymentCreating.css"
 export default function PaymentCreating() {
     const token = localStorage.getItem("token");
@@ -9,7 +9,7 @@ export default function PaymentCreating() {
     const [amount, setAmount] = useState(0);
     const [description, setDescription] = useState("");
     const [expiredDate, setExpiredDate] = useState(0);
-    
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);

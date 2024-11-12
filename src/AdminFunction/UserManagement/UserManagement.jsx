@@ -1,5 +1,5 @@
 import React, { useDebugValue, useEffect, useState } from "react";
-import userApi from "../../apis/userApi";
+import userApi from "../../apis/user/userApi";
 import { Button, Input, message, Popconfirm, Table } from "antd";
 import { TiUserDeleteOutline } from "react-icons/ti";
 import "./UserManagement.css";
@@ -19,7 +19,7 @@ export default function UserManagement() {
     // message.success("Xóa ở đây này");
     console.log(user.id);
     console.log(user.status)
-    if(user.status === "Inactive"){
+    if (user.status === "Inactive") {
       message.warning("Người dùng này đã bị vô hiệu hóa, Không thể thực hiện lại hành động")
       return;
     }

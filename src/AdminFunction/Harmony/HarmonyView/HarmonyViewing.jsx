@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { message, Button, Form, Select, Card, Row, Col, Spin } from "antd";
-import fishApi from "../../../apis/fishApi";
-import pondApi from "../../../apis/pondApi";
-import harmonyApi from "../../../apis/harmonyApi";
+import fishApi from "../../../apis/admin/fishApi";
+import pondApi from "../../../apis/admin/pondApi";
+import harmonyApi from "../../../apis/admin/harmonyApi";
 import FishDetail from "../../../Fish/FishDetail/FishDetail";
 import PondDetail from "../../../Pond/PondDetail/PondDetail";
 import "./HarmonyViewing.css"; // Nhập CSS
@@ -225,8 +225,8 @@ const HarmonyList = () => {
                           harmony.point < 40
                             ? "#f44336"
                             : harmony.point < 80
-                            ? "#ffeb3b"
-                            : "#4caf50",
+                              ? "#ffeb3b"
+                              : "#4caf50",
                         "--harmony-text-color":
                           harmony.point < 80 ? "black" : "white",
                       }}

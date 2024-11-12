@@ -10,7 +10,7 @@
 
 .user-profile-container {
   width: 80%;
-  height: 91vh;
+  min-height: 90vh;
   display: flex;
   background-position: center;
   background-size: cover;
@@ -55,7 +55,7 @@
 
 .user-profile-bio{
   width: 78%;
-  height: 200vh;
+  min-height: 90vh;
   padding-top: 40px;
   /* margin: 10px; */
   background-color: #FFFF;

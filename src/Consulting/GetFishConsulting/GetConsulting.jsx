@@ -1,8 +1,8 @@
 import { Button, message, Select, Spin } from "antd";
 import React, { useEffect, useState } from "react";
-import consultingApi from "../../apis/consultingApi";
+import consultingApi from "../../apis/admin/consultingApi";
 import fengshuiApi from "../../apis/fengshui";
-import userApi from "../../apis/userApi";
+import userApi from "../../apis/user/userApi";
 import Header from "../../components/header/Header";
 import Navigation from "../../components/navbar/Navigation";
 import "./GetFishConsulting.css";
@@ -140,7 +140,7 @@ const GetConsulting = () => {
   return (
     <>
       <Header />
-      <Navigation/>
+      <Navigation />
       <div className="getconsulting">
         <div>
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import postingApi from '../../apis/postingApi';
+import postingApi from '../../apis/advertising/postingApi';
 import { Spin } from 'antd';
 import { Link } from 'react-router-dom';
 import Pagination from '../../components/pagination/pagination';

@@ -1,12 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../../components/header/Header'
-import Navigation from '../../components/navbar/Navigation'
-import { Button, Input, message, Radio } from 'antd'
+import { Input, message, Radio } from 'antd'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import postingApi from '../../apis/postingApi'
-import postPayment from '../../apis/payosApi'
-import paymentPlan from '../../apis/paymentApi'
-import createPaymentLink from '../../apis/payosApi'
+import paymentPlan from '../../apis/advertising/paymentApi'
+import createPaymentLink from '../../apis/advertising/payosApi'
 import Footer from "../../components/footer/Footer";
 
 
@@ -119,7 +116,7 @@ export default function AdvertisingPayment() {
                     advertisingId: adData.id,
                     paymentPlanId: planID,
                     description: adData.description,
-                    returnUrl: `https://swp-391-fe-feng-shui-beta.vercel.app/MyAdvertising`,
+                    returnUrl: `${url}/MyAdvertising`,
                     canceUrl: `${url}/MyAdvertising`
                 };
                 console.log("paymentData", paymentData);

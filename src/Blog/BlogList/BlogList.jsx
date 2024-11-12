@@ -56,13 +56,12 @@ const BlogList = () => {
   return (
     <div style={{ width: '100%', backgroundColor: '#F4F4F4' }}>
       <Header />
-      <Navigation />
       {/* Blog List */}
       <div className="blog-container" style={{ width: '80%', marginLeft: 210, padding: 20 }}>
         {blogs.map((blog) => (
           <div className="blog-info" key={blog.id} style={{ alignItems: 'center', width: '80%', marginBottom: '40px', padding: 20 }}>
             <Link className="link-to-detail" to={`/blogs/${blog.id}`}>
-              <img src={blog.urlImg} alt={blog.title} style={{ width: "220px", height: '220px' }} />
+              <img src={blog.urlImg} alt={blog.title} style={{ width: '220px', height: '220px' }} />
               <h4 style={{ fontWeight: 'normal', fontSize: 16, padding: '4px 20px 10px', textAlign: 'left' }}>{blog.title}</h4>
               <p style={{ padding: ' 5px 20px' }}>Tác giả: {blog.userInfo.fullName}</p>
             </Link>

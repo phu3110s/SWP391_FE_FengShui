@@ -1,9 +1,9 @@
 import { Button, Input, message, Popconfirm, Select } from "antd";
 import React, { useEffect, useState } from "react";
-import consultingApi from "../../../apis/consultingApi";
+import consultingApi from "../../../apis/admin/consultingApi";
 import fengshuiApi from "../../../apis/fengshui";
-import fishApi from "../../../apis/fishApi";
-import pondApi from "../../../apis/pondApi";
+import fishApi from "../../../apis/admin/fishApi";
+import pondApi from "../../../apis/admin/pondApi";
 import "./ConsultingAdding.css";
 
 const { Option } = Select;
@@ -124,7 +124,7 @@ const ConsultingAdding = () => {
       message.error("Vui lòng chọn ít nhất 1 loại cá");
       return;
     }
-    if (selectedPonds === 0)  {
+    if (selectedPonds === 0) {
       message.error("Vui lòng chọn ít nhất 1 loại hồ");
       return;
     }
@@ -249,7 +249,7 @@ const ConsultingAdding = () => {
           Gửi dữ liệu
         </Button>
       </Popconfirm>
-      {consultingList.length > 0 ? ( <div style={{ marginTop: 40 }}>
+      {consultingList.length > 0 ? (<div style={{ marginTop: 40 }}>
         <h3>Danh sách tư vấn hiện có</h3>
         {consultingList.map((consulting, index) => (
           <div
@@ -257,23 +257,23 @@ const ConsultingAdding = () => {
             style={{ padding: "10px 0", borderBottom: "1px solid #ddd" }}
           >
             <div className="Info-block">
-            <p>
-              <strong>{consulting.description}:</strong>
-            </p>
-            {consulting.fishes.map((fish) => (
-              <p>Cá: {fish.name}</p>
-            ))}
-            {consulting.ponds.map((pond) => (
-              <p>Hồ: {pond.material}</p>
-            ))}
+              <p>
+                <strong>{consulting.description}:</strong>
+              </p>
+              {consulting.fishes.map((fish) => (
+                <p>Cá: {fish.name}</p>
+              ))}
+              {consulting.ponds.map((pond) => (
+                <p>Hồ: {pond.material}</p>
+              ))}
             </div>
-            
+
           </div>
         ))}
-      </div>): (
-        <h3 style={{marginTop:15}}>Hiện tại không có danh sách nào của hệ đã chọn</h3>
+      </div>) : (
+        <h3 style={{ marginTop: 15 }}>Hiện tại không có danh sách nào của hệ đã chọn</h3>
       )}
-     
+
     </div>
   );
 };

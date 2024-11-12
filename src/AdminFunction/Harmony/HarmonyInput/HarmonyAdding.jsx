@@ -2,19 +2,19 @@ import React, { useEffect, useState } from "react";
 import "./HarmonyAdding.css";
 import { Button, Form, Input, message, Select } from "antd";
 import TextArea from "antd/es/input/TextArea";
-import fishApi from "../../../apis/fishApi";
-import pondApi from "../../../apis/pondApi";
-import harmonyApi from "../../../apis/harmonyApi";
+import fishApi from "../../../apis/admin/fishApi";
+import pondApi from "../../../apis/admin/pondApi";
+import harmonyApi from "../../../apis/admin/harmonyApi";
 export default function HarmonyAdding() {
   const [ponds, setPonds] = useState([]);
   const [fishes, setFishes] = useState([]);
   const [selectedPond, setSelectedPond] = useState(null);
   const [selectedFish, setSelectedFish] = useState(null);
-  const [selectedPondDetails,setSelectedPondDetails] = useState(null);
-  const [selectedFishDetails,setSelectedFishDetails] = useState(null);
+  const [selectedPondDetails, setSelectedPondDetails] = useState(null);
+  const [selectedFishDetails, setSelectedFishDetails] = useState(null);
   const [rating, setRating] = useState("");
   const [description, setDescription] = useState("");
-  const [loading,setLoading] = useState(false)
+  const [loading, setLoading] = useState(false)
   const token = localStorage.getItem("token")
   const page = 1;
   const size = 1000;
@@ -54,14 +54,14 @@ export default function HarmonyAdding() {
 
     fetchPonds();
   }, []);
-  const handleSubmit = async() => {
+  const handleSubmit = async () => {
     if (!selectedPond || !selectedFish || !rating) {
       message.error("Vui lòng nhập đầy đủ thông tin");
       return;
     }
-    if( rating < 1 || rating > 100){
-        message.error("Điểm đánh giá độ phù hợp chỉ nằm trong khoảng từ 1 đến 100");
-        return;
+    if (rating < 1 || rating > 100) {
+      message.error("Điểm đánh giá độ phù hợp chỉ nằm trong khoảng từ 1 đến 100");
+      return;
     }
     const harmonyData = {
       pondId: selectedPond,
@@ -70,48 +70,48 @@ export default function HarmonyAdding() {
       description: description,
     };
     setLoading(true);
-    try{
-        const response = await harmonyApi.createHarmony(harmonyData,{
-            headers:{
-                Authorization: `Bearer ${token}`,
-            }
-        })
-        if(response && response.data){
-            message.success(`Độ hòa hợp giữa cặp cá ${selectedFishDetails.name} và hồ ${selectedPondDetails.material} được lưu thành công`)
+    try {
+      const response = await harmonyApi.createHarmony(harmonyData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
         }
-        console.log(harmonyData)
-        setSelectedPond(null);
-    setSelectedFish(null);
-    setRating("");
-    setDescription("");
-    setSelectedPondDetails(null);
-    setSelectedFishDetails(null);
-    }catch(error){
-        if(error.response){
-            const {status} = error.response;
-            if(status === 400){
-                alert("Độ phù hợp phong thủy này bạn đã nhập trước đây. Vui lòng nhập thông tin khác")
-            }
-            else if(status === 401) {
-                message.error("Phiên đăng nhập hết hạn/ Token hết hạn")
-            }else if(status === 403) {
-                alert("Bạn không có quyền thực hiện hành động này")
-            }else{
-                message.error("Lỗi kết nối vui lòng thử lại sau.")
-            }
+      })
+      if (response && response.data) {
+        message.success(`Độ hòa hợp giữa cặp cá ${selectedFishDetails.name} và hồ ${selectedPondDetails.material} được lưu thành công`)
+      }
+      console.log(harmonyData)
+      setSelectedPond(null);
+      setSelectedFish(null);
+      setRating("");
+      setDescription("");
+      setSelectedPondDetails(null);
+      setSelectedFishDetails(null);
+    } catch (error) {
+      if (error.response) {
+        const { status } = error.response;
+        if (status === 400) {
+          alert("Độ phù hợp phong thủy này bạn đã nhập trước đây. Vui lòng nhập thông tin khác")
         }
-    }finally{
-        setLoading(false)
+        else if (status === 401) {
+          message.error("Phiên đăng nhập hết hạn/ Token hết hạn")
+        } else if (status === 403) {
+          alert("Bạn không có quyền thực hiện hành động này")
+        } else {
+          message.error("Lỗi kết nối vui lòng thử lại sau.")
+        }
+      }
+    } finally {
+      setLoading(false)
     }
   }
-  const handleFishChange =(e) =>{
+  const handleFishChange = (e) => {
     setSelectedFish(e);
-    const fish = fishes.find((fish)=> fish.id === e);
+    const fish = fishes.find((fish) => fish.id === e);
     setSelectedFishDetails(fish)
   }
-  const handlePondChange =(e) =>{
+  const handlePondChange = (e) => {
     setSelectedPond(e);
-    const pond = ponds.find((pond)=> pond.id === e);
+    const pond = ponds.find((pond) => pond.id === e);
     setSelectedPondDetails(pond)
   }
 
@@ -119,7 +119,7 @@ export default function HarmonyAdding() {
     <div>
       <h2>Admin mời nhập đồ hòa hợp của cá và hồ ở đây</h2>
       <Form layout="vertical" onFinish={handleSubmit}>
-        <Form.Item label="Chọn loại hồ">  
+        <Form.Item label="Chọn loại hồ">
           <Select
             placeholder="Chọn hồ"
             value={selectedPond}
@@ -172,7 +172,7 @@ export default function HarmonyAdding() {
             type="number"
             placeholder="Nhập điểm đánh giá"
             value={rating}
-            onChange={(e) =>(setRating(Number(e.target.value))) }
+            onChange={(e) => (setRating(Number(e.target.value)))}
           />
         </Form.Item>
 

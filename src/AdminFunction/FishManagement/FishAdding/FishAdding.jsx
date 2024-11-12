@@ -1,9 +1,9 @@
       import { Descriptions, Input, message, Spin } from "antd";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import pondApi from "../../../apis/pondApi";
+import pondApi from "../../../apis/admin/pondApi";
 import "./FishAdding.css";
-import fishApi from "../../../apis/fishApi";
+import fishApi from "../../../apis/admin/fishApi";
 import { RiImageAddLine } from "react-icons/ri";
 export default function FishAdding() {
   const token = localStorage.getItem("token");
@@ -29,8 +29,8 @@ export default function FishAdding() {
           Authorization: `Bearer ${token}`,
         },
       });
-      if(response){
-        setTimeout(()=>{
+      if (response) {
+        setTimeout(() => {
           message.success("Tạo loại cá thành công");
           console.log(image);
           setName("");
@@ -39,18 +39,18 @@ export default function FishAdding() {
           setImage(null)
         },3500)
       }
-      
+
     } catch (error) {
       if (error.response) {
         if (error.response.status === 400) {
           alert("Thông tin nhập vào lỗi. Vui lòng thử lại");
-          
+
         } else {
           message.error("Lỗi kết nối xảy ra khi tạo cá. Vui lòng thử lại sau");
-         
+
         }
       }
-    }finally{
+    } finally {
       setTimeout(() => setLoading(false), 1500);
     }
   };
@@ -115,31 +115,31 @@ export default function FishAdding() {
             />
           </div>
           <div className="posting-blog-inputImage">
-                <label>Tải hình ảnh lên</label>
-                <br />
-                <div className="image-upload">
-                  <input
-                    type="file"
-                    onChange={handleImageInput}
-                    accept="image/*"
-                    id="file-input"
+            <label>Tải hình ảnh lên</label>
+            <br />
+            <div className="image-upload">
+              <input
+                type="file"
+                onChange={handleImageInput}
+                accept="image/*"
+                id="file-input"
+              />
+              <label htmlFor="file-input" className="image-upload-label">
+                <RiImageAddLine className="upload-icon" />
+                Chọn 1 ảnh
+              </label>
+              {image && (
+                <div className="image-preview">
+                  <img
+                    id="preview-image"
+                    alt="Preview"
+                    style={{ maxWidth: "100%", marginTop: "10px" }}
                   />
-                  <label htmlFor="file-input" className="image-upload-label">
-                    <RiImageAddLine className="upload-icon" />
-                    Chọn 1 ảnh
-                  </label>
-                  {image && (
-                    <div className="image-preview">
-                      <img
-                        id="preview-image"
-                        alt="Preview"
-                        style={{ maxWidth: "100%", marginTop: "10px" }}
-                      />
-                    </div>
-                  )}
                 </div>
+              )}
+            </div>
 
-              </div>
+          </div>
 
           <div className="button-block">
             <button className="submit-button" style={{marginLeft:350}} type="submit" disabled={loading}>

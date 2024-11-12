@@ -60,7 +60,7 @@ export default function Navigation() {
 
                 <div className='frame-link'>
                     <li className='active-navbar'>
-                        <Link className='link-advise' to={'/'}>Chọn hồ theo ngũ hành</Link>
+                        <Link className='link-advise' to={'/Harmony-Rating'}>Xếp hạng độ hòa hợp</Link>
                     </li>
                 </div>
 

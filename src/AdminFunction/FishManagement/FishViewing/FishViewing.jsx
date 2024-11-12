@@ -12,7 +12,7 @@ import {
   message,
 } from "antd";
 import React, { useEffect, useState } from "react";
-import fishApi from "../../../apis/fishApi";
+import fishApi from "../../../apis/admin/fishApi";
 import "./FishViewing.css";
 
 const FishViewing = () => {
@@ -153,20 +153,20 @@ const FishViewing = () => {
       title: "Tên cá",
       dataIndex: "name",
       key: "name",
-      fixed:"left",
-      width:250
+      fixed: "left",
+      width: 250
     },
     {
       title: "Kích thước",
       dataIndex: "size",
       key: "size",
-      width:250
+      width: 250
     },
     {
       title: "Màu sắc",
       dataIndex: "color",
       key: "color",
-      width:300
+      width: 300
     },
     {
       title: "Chi tiết",
@@ -174,9 +174,10 @@ const FishViewing = () => {
       render: (_, fish) => (
         <Button type="link" onClick={() => showFishDetails(fish)}>
           Xem chi tiết
-        </Button> 
+        </Button>
       ),
       width:320
+
     },
     {
       title: "Action",
@@ -204,7 +205,7 @@ const FishViewing = () => {
           </Popconfirm>
         </div>
       ),
-      
+
     },
   ];
 
@@ -216,7 +217,7 @@ const FishViewing = () => {
     setFilter(filtered)
   }, [searchText, fishList])
   return (
-    <div>
+    <div className="fish-list">
       <h1> Danh Sách Cá</h1>
       <div className="filter-block">
         <Input

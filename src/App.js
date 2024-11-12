@@ -46,39 +46,6 @@ import MyAdvertising from "./advertising/MyAdvertising/MyAdvertising";
 import Calculate from "./calculate/Calculate";
 
 function App() {
-  // const [user, setUser] = useState(null);
-  // const navigate = useNavigate();
-
-  // const handleCredentialResponse = (response) => {
-  //   console.log("Encoded JWT ID token: " + response.credential);
-  //   var decoded = jwtDecode(response.credential);
-  //   console.log(decoded);
-  //   setUser(decoded);
-  //   document.getElementById('buttonDiv').hidden = true;
-  //   navigate('/');
-  // };
-
-  // const handleLogOut = (e) => {
-  //   setUser(null);
-  //   document.getElementById('buttonDiv').hidden = false;
-  //   navigate('/');
-  // };
-
-  // useEffect(() => {
-  //   /* global google */
-  //   window.onload = function () {
-  //     google.accounts.id.initialize({
-  //       client_id: "423770878382-akbp1pkmgfgfjr2dmk70hh3l61l2131g.apps.googleusercontent.com",
-  //       callback: handleCredentialResponse
-  //     });
-
-  //     google.accounts.id.renderButton(
-  //       document.getElementById("buttonDiv"),
-  //       { theme: "outline", size: "large" }
-  //     );
-  //     google.accounts.id.prompt();
-  //   };
-  // }, []);
 
   return (
     <div className="App">
@@ -127,7 +94,7 @@ function App() {
             </AdminRoute>
           }
         >
-          <Route index element = {<DashboardChart/>} />
+          <Route index element={<DashboardChart />} />
           <Route path="ApprovePost" element={<BlogApprove />} />
           <Route path="PostingApprove" element={<PostingApprove />} />
           <Route path="UserManagement" element={<UserManagement />} />
@@ -139,13 +106,13 @@ function App() {
           <Route path="Harmony-Adding" element={<HarmonyAdding />} />
           <Route path="Harmony-Viewing" element={<HarmonyViewing />} />
           <Route path="Consulting-Adding" element={<ConsultingAdding />} />
-          <Route path="Payment-Adding" element={<PaymentCreating/>} />
-          <Route path="Payment-Plans" element={<PaymentViewing/>} />
-          <Route path="Blog-Management" element={<AllBlog/>} />
-          <Route path="Ad-Management" element={<AllAdvertising/>} />
+          <Route path="Payment-Adding" element={<PaymentCreating />} />
+          <Route path="Payment-Plans" element={<PaymentViewing />} />
+          <Route path="Blog-Management" element={<AllBlog />} />
+          <Route path="Ad-Management" element={<AllAdvertising />} />
         </Route>
-       </Routes>
-       <ToastContainer/>
+      </Routes>
+      <ToastContainer />
     </div>
   );
 }
