@@ -15,6 +15,10 @@ export default function PondAdding() {
   const navigate = useNavigate();
   const handleCreatePond = async (e) => {
     e.preventDefault();
+    if(!image){
+      message.info("Vui lòng chọn 1 ảnh");
+      return;
+    }
     setLoading(true);
     const formData = new FormData();
     formData.append("Material", Material);
@@ -35,10 +39,12 @@ export default function PondAdding() {
         setShape("");
         setWaterLevel("");
         setDesc("");
+        setImage(null)
       }
     } catch (error) {
       if (error.response) {
-        if (error.response.status === 400) {
+        const {status,data} = error.response;
+        if (status === 400) {
           alert("Thông tin nhập vào lỗi. Vui lòng thử lại");
         } else {
           message.error("Lỗi kết nối xảy ra khi tạo hồ. Vui lòng thử lại sau");

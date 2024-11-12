@@ -1,4 +1,4 @@
-      import { Descriptions, Input, message, Spin } from "antd";
+import { Descriptions, Input, message, Spin } from "antd";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import pondApi from "../../../apis/admin/pondApi";
@@ -16,6 +16,11 @@ export default function FishAdding() {
   const navigate = useNavigate();
   const handleCreateFish = async (e) => {
     e.preventDefault();
+    if (!image) {
+      message.info("Vui lòng chọn 1 ảnh");
+      return;
+    }
+    
     setLoading(true);
     const formData = new FormData();
     formData.append("Name", Name);
@@ -36,18 +41,17 @@ export default function FishAdding() {
           setName("");
           setColor("");
           setDescription("");
-          setImage(null)
-        },3500)
+          setSize("");
+          setImage(null);
+        }, 3500);
       }
-
     } catch (error) {
       if (error.response) {
-        if (error.response.status === 400) {
-          alert("Thông tin nhập vào lỗi. Vui lòng thử lại");
-
+        const { status } = error.response;
+        if (status === 400) {
+          alert(error.response.data.Error);
         } else {
           message.error("Lỗi kết nối xảy ra khi tạo cá. Vui lòng thử lại sau");
-
         }
       }
     } finally {
@@ -71,7 +75,6 @@ export default function FishAdding() {
         <h1>Tạo giống cá mới ở đây</h1>
         <form onSubmit={handleCreateFish}>
           <div className="gen-fish-material gen-fish-text">
-
             <label>Tên của cá</label>
 
             <Input
@@ -138,12 +141,16 @@ export default function FishAdding() {
                 </div>
               )}
             </div>
-
           </div>
 
           <div className="button-block">
-            <button className="submit-button" style={{marginLeft:350}} type="submit" disabled={loading}>
-              {loading ? (<Spin size="small" />) : " Tạo cá"}
+            <button
+              className="submit-button"
+              style={{ marginLeft: 350 }}
+              type="submit"
+              disabled={loading}
+            >
+              {loading ? <Spin size="small" /> : " Tạo cá"}
             </button>
           </div>
         </form>
