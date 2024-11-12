@@ -6,7 +6,8 @@
     align-items: center;
     padding: 30px 10px;
     /* background-image: linear-gradient(#F1EDDC, white); */
-    background-color: #EBF0FF;
+    /* background-color: #EBF0FF; */
+    background-color: #ADD8E6;
     color: black;
     font-family: var(--font-arima);
     font-size: 17px;
@@ -30,7 +31,8 @@
         /* background-color: #F6EFBD; */
         /* background-color: #7E60BF; */
         padding: 25px 17px;
-        background-color: #C5D3E8;
+        /* background-color: #C5D3E8; */
+        background-color: #7AB2D3;
         border-radius: 10px;
         width: 80%;
         color: black;

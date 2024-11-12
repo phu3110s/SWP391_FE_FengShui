@@ -87,7 +87,6 @@ export default function AdvertisingPayment() {
         e.preventDefault();
         setLoading(true);
 
-
         // const formData = new FormData();
         // formData.append("Title ", title);
         // formData.append("Description ", description);
@@ -174,7 +173,6 @@ export default function AdvertisingPayment() {
         <div className="posting-blog">
             <Header />
             <div className="bl-pt-form">
-                <h3>Tiêu đề đăng tin và Mô tả chi tiết </h3>
                 <form onSubmit={handleSubmitPost}>
                     <div className="edit-form">
                         <div className="form-left">

@@ -4,9 +4,11 @@
     display: flex;
     align-items: center;
     /* background-image: linear-gradient(#F1EDDC, white); */
-    /* background-color: #6F2074; */
+    /* background-color: #6F2074; tím*/
+    /* background-color: #EAE5D2; da bò*/
+    background-color: #ADD8E6;
     background-size: cover;
-    background-color: #EBF0FF;
+    /* background-color: #EBF0FF; xanh trắng*/
     background-position: center;
     border-bottom: 1px solid rgb(167, 167, 167);
     font-family: var(--font-arima);
@@ -48,7 +50,7 @@
 .active{
     color: black;
     display: inline;
-    padding: 0 40px;
+    padding: 0 30px;
     font-size: 15px;
     
 }
