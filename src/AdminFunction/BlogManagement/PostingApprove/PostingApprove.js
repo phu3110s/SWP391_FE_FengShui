@@ -125,13 +125,13 @@ export default function PostingApprove() {
                   text={post.description || "Nội dung hiện không có"}
                   maxLine="3"
                   ellipsis={
-                    <span style={{cursor:"pointer"}}
+                    <span style={{ cursor: "pointer" }}
                       onClick={() => showFullDescription(post.description)}
                     > ...[Xem thêm]</span>
                   }
                 />
               </h3>
-              <p>Tác giả: {post.fullName}</p>
+              <p>Tác giả: {post.userName}</p>
               <div className="action-buttons">
                 <Button
                   type="primary"

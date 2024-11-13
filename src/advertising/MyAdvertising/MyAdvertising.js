@@ -11,7 +11,7 @@ const { TabPane } = Tabs;
 export default function MyAdvertising() {
     const [post, setPost] = useState([]);
     const [page, setPage] = useState(1);
-    const [size, setSize] = useState(10);
+    const [size, setSize] = useState(12);
     const [total, setTotal] = useState(0);
     const [loading, setLoading] = useState(false);
     const [viewType, setViewType] = useState('Approved');
